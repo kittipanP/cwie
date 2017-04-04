@@ -3,7 +3,7 @@
 # Type="MYSQL"
 # HTTP="true"
 $hostname_MyConnect = "localhost";
-$database_MyConnect = "urr_dbv";
+$database_MyConnect = "dannyii";
 $username_MyConnect = "root";
 $password_MyConnect = "Kp5610761!";
 $MyConnect = mysqli_connect($hostname_MyConnect, $username_MyConnect, $password_MyConnect) or trigger_error(mysqli_error(),E_USER_ERROR); 
@@ -12,7 +12,7 @@ $MyConnect = mysqli_connect($hostname_MyConnect, $username_MyConnect, $password_
 function dbconnect()
 {
   $hostname_PrintSchedDataCn = 'localhost';
-  $database_PrintSchedDataCn = 'urr_dbv';
+  $database_PrintSchedDataCn = 'dannyii';
   $username_PrintSchedDataCn = 'root';
   $password_PrintSchedDataCn = 'Kp5610761!';
   $PrintSchedDataCn = mysqli_connect($hostname_PrintSchedDataCn, $username_PrintSchedDataCn, $password_PrintSchedDataCn, $database_PrintSchedDataCn) or trigger_error(mysqli_error(),E_USER_ERROR);
