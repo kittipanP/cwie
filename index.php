@@ -1,201 +1,139 @@
+<?php 
+       
+       ob_start();
+       session_start();
+       require_once 'db_connect/dbconnection.php';
+       
+       //If session is not set, the page redirect to login
+        if (!isset($_SESSION['user'])){
+            header("Location: ui_connect/login/login.php");
+            exit;
+        }
+        $query_session = mysqli_query($link, "SELECT * from login_info where login_id = " .$_SESSION['user']);
+        $userRow = mysqli_fetch_array($query_session);
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="libs/css/w3.css">
-<link rel="stylesheet" href="libs/css/w3-theme-blue-grey.css">
-<link rel='stylesheet' href='libs/css/family=open_and_san.css'>
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<link rel="stylesheet" href="libs/css/font-awesome-4.7.0/css/font-awesome.min.css?v=<?php echo filemtime('font-awesome.min.css'); ?>"" type="text/css">
-<title>Index</title>
+    <?php 
+        //All the meta and css links
+        require_once 'web_elements/head_link_index.php';
+?>
+    <title>Welcome to  WD Trainee Management System</title>
 </head>
-
-<style>
-html,body,h1,h2,h3,h4,h5 {
-}
-</style>
-
-
 <body class="w3-theme-l5">
 
-<!-- Navbar -->
-<div class="w3-top">
- <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
-  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-    <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  </li>
-  <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
-  <li class="w3-hide-small"><a href="ui_connect/Student_Management/Student_Management.php" class="w3-padding-large w3-hover-white" title="Stusent Management"><i class="fa fa-group"></i></a></li>
-  <li class="w3-hide-small"><a href="ui_connect/Report/Report.php" class="w3-padding-large w3-hover-white" title="Report"><i class="fa fa-bar-chart-o"></i></a></li>
-  <li class="w3-hide-small"><a href="ui_connect/Email_Management/Email_Management.php" class="w3-padding-large w3-hover-white" title="E-mail Management"><i class="fa fa-envelope"></i></a></li>
-  <li class="w3-hide-small w3-dropdown-hover">
-    <a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bullhorn"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
-    <div class="w3-dropdown-content w3-white w3-card-4">
-      <a href="#">Kittipan will finish coop on Feb 24, 2017</a>
-      <a href="#">Extend VISA</a>
-      <a href="#">Danny eiei</a>
-    </div>
-  </li>
-  <li class="w3-hide-small w3-right"><a href="ui_connect/my_profile/my_profile.php" class="w3-padding-large w3-hover-white" title="My Account"><img src="img/Avatar/boy.png" alt="Avatar" width="106" height="102" class="w3-circle" style="height:25px;width:25px"></a></li>
- </ul>
-</div>
-
-<!-- Navbar on small screens -->
-<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
-  <ul class="w3-navbar w3-left-align w3-large w3-theme">
-    <li><a class="w3-padding-large" href="ui_connect/Student_Management/Student_Management.php">Stusent Management</a></li>
-    <li><a class="w3-padding-large" href="ui_connect/Report/Report.php">Report</a></li>
-    <li><a class="w3-padding-large" href="ui_connect/Email_Management/Email_Management.php">E-mail Management</a></li>
-    <li><a class="w3-padding-large" href="ui_connect/my_profile/my_profile.php">My Profile</a></li>
-  </ul>
-</div> 
-
+<!-- Navigation bar Code -->
+<?php 
+    
+    require_once 'web_elements/nav_bar_index.php';
+?>
 
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">   
-	<!-- The Grid -->
-  	<div class="w3-row"> 
-		
-        <!-- Header -->
-		<header class="w3-container w3-theme w3-padding" id="myHeader">
- 			<!--<i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-opennav"></i> -->
-  			<div class="w3-center">
-  				<h4>Welcome to ..</h4>
-  				<h1 class="w3-xxxlarge w3-animate-bottom">ทดสอบ ทดสอบ 123 ทดสอบ</h1>
-    		<div class="w3-padding-32">
-      			<button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey" onclick=					"document.getElementById('id01').style.display='block'" style="font-weight:900;">ห้ามกดเด็ดขาด</button>
-   			 </div>
- 			 </div>
-		</header>
-        <p>&nbsp;</p>
-        
-        
-        
-        
-        
-        
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px;">   
+    <!-- The Grid -->
+    <div class="w3-row"> 
+
+            <!-- Header -->
+            <header class="w3-container w3-theme w3-padding w3-round" id="myHeader">
+                <div class="w3-center">
+                    <h1 class="w3-xxlarge w3-animate-left">Welcome To</h1>
+                    <h1 class="w3-xxxlarge w3-animate-right">Trainee Management System</h1>
+
+                </div>
+                
+            </header>
+
+                        <p>&nbsp;</p>
+ 
     <!-- Left Column -->
-    <div class="w3-col m6">
-    	
-        <div class="w3-row-padding w3-center w3-margin-top">
-        
-			<div class="w3-third">
- 		 		<div class="w3-card-2 w3-padding-top" style="min-height:460px">
-  					<h4>Student Management</h4><br>
-  					<i class="fa fa-group w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-                    <hr>
-  					<p>Add, Edit, Delete</p>
- 					<p>Rejected Student</p>
-  					<p>Waiting On Board</p>
-  					<p>Trainee</p>
-                    <p>End Trainee</p>
-  					</div>
-					</div>
+        <div class="w3-col m6">
+            <div class="w3-row-padding w3-center w3-margin-top">
 
-			<div class="w3-third">
-  				<div class="w3-card-2 w3-padding-top" style="min-height:460px">
-  					<h4>Report</h4><br>
- 					<i class="fa fa-bar-chart-o w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-                    <hr>
-  					<p>-------------------</p>
-  					<p>-------------------</p>
-  					<p>-------------------</p>
-  					<p>-------------------</p>
-  				</div>
-				</div>
+                <!-- Student Management-->
+                <div class="w3-third">
+                    <div class="w3-card-2 w3-padding-top" style="min-height:460px">
+                        <a href="ui_connect/student_management/Student_Management.php" class = "textdecoration"><h6 class = "hcol" >Student Management</h6><br></br>
+                            <i class="fa fa-group w3-margin-bottom w3-text-theme" style="font-size:120px"></i></a>
+                                <div class = "hcol" >
+                                <p>Add, Edit, Delete</p>
+                                <p>Rejected Student</p>
+                                <p>Waiting On Board</p>
+                                <p>Trainee</p>
+                                <p>End Trainee</p>
+                                </div>
+                    </div>
+                </div>
 
-			<div class="w3-third">
-  				<div class="w3-card-2 w3-padding-top" style="min-height:460px">
-  					<h4>E-mail Management</h4><br>
-  					<i class="fa fa-envelope w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-                    <hr>
-  					<p>-------------------</p>
-  					<p>-------------------</p>
-  					<p>-------------------</p>
-  					<p>-------------------</p>
-  				</div>
-			</div>
-            
-		</div>
-   
-    <!-- End Left Column -->
-    </div>    
-    
-	<!-- Right Column -->
-    <div class="w3-col m6">
-     	<div class="w3-card-2 w3-round w3-white w3-padding-16 w3-center">
-        <p>Notification</p>
-        <p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p><br></p>
+                <!-- Report Management-->
+                <div class="w3-third">
+                    <div class="w3-card-2 w3-padding-top" style="min-height:460px">
+                        <a href="ui_connect/report/Report.php" class = "textdecoration"><h6 class = "hcol">Report</h6><br></br>
+                            <i class="fa fa-bar-chart-o w3-margin-bottom w3-text-theme" style="font-size:120px"></i></a>
 
-      </div>
-    <!-- End Right Column -->
-    </div>
-    
+                                <p>-------------------</p>
+                                <p>-------------------</p>
+                                <p>-------------------</p>
+                                <p>-------------------</p>
+                    </div>
+                </div>
+
+                <!-- Email Management-->
+                <div class="w3-third">
+                    <div class="w3-card-2 w3-padding-top" style="min-height:460px">
+                        <a href="ui_connect/email_management/Email_Management.php" class = "textdecoration"><h6 class = "hcol">E-mail Management</h6><br></br>
+                            <i class="fa fa-envelope w3-margin-bottom w3-text-theme" style="font-size:120px"></i></a>
+
+                                <p>-------------------</p>
+                                <p>-------------------</p>
+                                <p>-------------------</p>
+                                <p>-------------------</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <!-- End Left Column -->
+             
+        <!-- Right Column Start-->
+        <div class="w3-col m6">
+        <p></p>
+        <!-- Just to balance the all columns -->
+            <div class="w3-third">
+                <div class="w3-card-2 w3-padding-top" style="min-height:460px; text-align: center;">
+                    <a href="ui_connect/activity_management/activity.php" class = "textdecoration"><h6 class = "hcol">Activity Management</h6><br></br>
+                        <i class="fa fa-puzzle-piece w3-margin-bottom w3-text-theme" style="font-size:120px"></i></a>
+                            <p>-------------------</p>
+                            <p>-------------------</p>
+                            <p>-------------------</p>
+                            <p>-------------------</p>
+                </div>
+            </div> 
+        </div>
+                    
+                <!-- End Right Column -->
+        </div>
+
+   </div>
+
+<?php
+    //Script for toggling menu bar on small screen
+    require_once 'web_elements/script_menu.php';?> 
     
     <!-- End The Grid -->
-    </div>
+
+    <!-- End The Page Container -->
+
     
+ <p>&nbsp;</p>
     
-  
-  
-<!-- End Page Container -->
-</div>
-<p>&nbsp;</p>
-
-
-
-
-
-<!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
-</footer>
-
-<footer class="w3-container w3-theme-d5">
-   <p>By <a href="http://www.facebook.com/Bon.KP" target="_blank">บอนไง จะใครล่ะ ^^</a></p>
-</footer>
+  <?php require_once 'web_elements/footer.php'; ?> 
  
-<script>
-// Accordion 
-function myFunction(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-theme-d1";
-    } else { 
-        x.className = x.className.replace("w3-show", "");
-        x.previousElementSibling.className = 
-        x.previousElementSibling.className.replace(" w3-theme-d1", "");
-    }
-}
+ 
+<!-- End Page Container -->
 
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-</script>
+
+
 
 </body>
 </html> 

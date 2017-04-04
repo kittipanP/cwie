@@ -1,0 +1,71 @@
+/* The Modal (background) */
+.modal {
+    width: 800px;
+	margin: 0px auto;
+	position: relative;
+        display: block;
+        text-align: center;
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        overflow: auto; /* Enable scroll if needed */}
+
+/* Modal Content */
+.modal-content {
+    overflow: auto; /* Enable scroll if needed */
+   
+   
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.msform5 {
+	width: 1000px;
+	margin: 0px auto;
+	position: relative;
+        display: block;
+        text-align: center;
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        right: 0;
+        top: 0;
+        overflow: auto; /* Enable scroll if needed */
+         
+        
+        
+}
+.msform5 fieldset {
+	background: whitesmoke;border: 2px;
+	border-radius: 3px;
+	padding: 20px 30px;
+        border: 1px solid #888;
+	width: 50%;
+	margin: 0 25%;
+	
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+/*Hide all except first fieldset*/
+.msform5 fieldset:not(:first-of-type) {
+	display: none;
+}

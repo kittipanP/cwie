@@ -1,165 +1,167 @@
+<?php
+    //Session Query
+    require_once '../../ui_connect/login/query/session.php';?>
+<?php 
+    //Query to show all email on the table
+    require_once 'query/email_query.php';?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../libs/css/w3.css">
-<link rel="stylesheet" href="../../libs/css/w3-theme-blue-grey.css">
-<link rel='stylesheet' href='../../libs/css/css?family=Open+Sans'>
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<link rel="stylesheet" href="../../libs/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css">
-<title>Index</title>
-</head>
-
-<style>
-html,body,h1,h2,h3,h4,h5 {
-}
-</style>
-
-
-<body class="w3-theme-l5">
-
-<!-- Navbar -->
-<div class="w3-top">
- <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
-  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-    <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  </li>
-  <li><a href="../../index.php" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i></a></li>
-  <li class="w3-hide-small"><a href="../student_management/student_management.php" class="w3-padding-large w3-hover-white" title="Stusent Management"><i class="fa fa-group"></i></a></li>
-  <li class="w3-hide-small"><a href="../Report/Report.php" class="w3-padding-large w3-hover-white" title="Report"><i class="fa fa-bar-chart-o"></i></a></li>
-  <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="E-mail Management"><i class="fa fa-envelope"></i></a></li>
-  <li class="w3-hide-small w3-dropdown-hover">
-    <a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bullhorn"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
-    <div class="w3-dropdown-content w3-white w3-card-4">
-      <a href="#">Kittipan will finish coop on Feb 24, 2017</a>
-      <a href="#">Extend VISA</a>
-      <a href="#">Danny eiei</a>
-    </div>
-  </li>
-  <li class="w3-hide-small w3-right"><a href="../../ui_connect/my_profile/my_profile.php" class="w3-padding-large w3-hover-white" title="My Account"><img src="../../img/Avatar/boy.png" alt="Avatar" width="106" height="102" class="w3-circle" style="height:25px;width:25px"></a></li>
- </ul>
-</div>
-
-<!-- Navbar on small screens -->
-<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
-  <ul class="w3-navbar w3-left-align w3-large w3-theme">
-    <li><a class="w3-padding-large" href="../../ui_connect/Student_Management/Student_Management.php">Stusent Management</a></li>
-    <li><a class="w3-padding-large" href="../../ui_connect/Report/Report.php">Report</a></li>
-    <li><a class="w3-padding-large" href="../../ui_connect/Email_Management/Email_Management.php">E-mail Management</a></li>
-    <li><a class="w3-padding-large" href="../../ui_connect/my_profile/my_profile.php">My Profile</a></li>
-  </ul>
-</div> 
-
-
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">   
-	<!-- The Grid -->
-  	<div class="w3-row"> 
-		
-        <!-- Header -->
-		<header class="w3-container w3-theme w3-padding" id="myHeader">
- 			<!--<i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-opennav"></i> -->
-  			<div class="w3-center">
-  				<h4><a href="../../libs/index.php">Welcome to ..</a></h4>
-			  <h1 class="w3-xxxlarge w3-animate-bottom">ทดสอบ ทดสอบ 123 ทดสอบ</h1>
-    		<div class="w3-padding-32">
-      			<button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey" onclick=					"document.getElementById('id01').style.display='block'" style="font-weight:900;">ห้ามกดเด็ดขาด</button>
-   			 </div>
-		  </div>
-		</header>
+    <head>
+        <?php
+            //All the meta and css links
+            require_once '../../web_elements/head_link.php';?>
+        <title>Email Management : WD Trainee Management</title>
+    </head>
+    <body class="w3-theme-l5">
+        <!-- Navigation bar Code -->
+        <?php 
+            require_once '../../web_elements/nav_bar.php';?>
+        <!-- Page Container -->
+        <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">   
+            <div class="w3-row"> 
+            <!-- Header -->
+                <header class="w3-container w3-theme w3-padding w3-round"  id="myHeader">
+                    <div class="w3-center">
+                        <h2 class="w3-xxxlarge w3-animate-left">Welcome to WD Trainee</h2>
+                        <h3 class="w3-xxlarge w3-animate-right">Email Management System</h3>
+                    </div>
+                </header>
+                <p>&nbsp;</p>
+            </div>
+            <!--Table to show all activities email-->
+            <a name="tableemail">
+            <div class="w3-container w3-card-2 w3-white w3-round w3-margin" id="allRecent">
+                <h2><strong>Schedule Email: Activity</strong></h2>
+                <p>Search for an email in the input field.</p>
+                <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for email.." id="allRecentInput" onkeyup="allRecentFn()"/>
+                    <div class="addnew ">
+                        <h3 > <a href="#" title="Add new Schedule email" class=""><strong>Add new </strong><i class="fa fa-pencil w3-margin-right"></i></a></h3>
+                    </div>
+                <table class="w3-table-all w3-margin-top w3-hoverable" >
+                    
+                        <tr class="tr_heading">
+                            <th style="width:5%;">No:</th>
+                            <!--<th style="width:5%;">Title</th>-->
+                             <th style="width:15%;">Subject</th>
+                            <th style="width:10%;">Recipient</th>
+                            <th style="width:10%;">Student Type</th>
+                            <th style="width:10%;">Email Type</th>
+                            <th style="width:8%;">Date</th>
+                            <th style="width:8%;">Time</th>
+                            <th style="width:5%;">Edit</th>
+                            <th style="width:5%;">Delete</th>
+                        </tr>
+                        <?php 
+                        $counter = 1;     
+                        while ($row= mysqli_fetch_array($qyery_sch_act_email_show)){
+                            $id = $row['sch_email_id'];
+                            echo"<tr>";
+                                    //<!--Data from Database-->
+                                echo "<td>" .$counter. "</td>";
+                                //echo "<td>".$row['title_name']."</td>";
+                                //echo "<td >".$fname.' '.$lname."</td>";
+                                echo "<td><a href='../../ui_connect/activity_management/activity.php#tableupac' title = 'Go to Activity'>".$row['activity_name']."</a></td>";
+                                echo "<td><a href = 'show_student.php?sch_email_id=$id' title = 'Check the name of Students' > ".$row['status_desc']."</a></td>";
+                                echo "<td>".$row['status_desc']."</td>";
+                                echo "<td>".$row['email_subject']."</td>";
+                                echo "<td>".$row['sch_date']."</td>";
+                                echo "<td>".$row['sch_time']."</td>";
+                                //<!---Icons-->
+                                echo "<td><a href='email_edit.php?sch_email_id=$id' title = 'Edit'><i class='fa fa-pencil w3-margin-left'></i></a></td>";
+                                echo "<td><a title = 'Delete' href='function/func_email_del.php?sch_email_id=$id'><i class='fa fa-trash w3-margin-left'></i></a></td>";
+                            echo "</tr>";
+                            $counter++; //increment counter by 1 on every pass 
+                        }?>
+                        
+                </table>  
+                <p>&nbsp;</p>
+                <div style="color: #607D8B; text-align: center; font-weight: bolder;">
+                    <?php if ( isset($noresult) ) {?>
+                    <span class="fa fa-exclamation-circle"></span> <?php echo $noresult; ?>
+                    <?php } ?>
+                </div>
+                <p>&nbsp;</p>
+                <div class="w3-center" >
+                    <ul class="w3-pagination ">
+                      <li ><a class="w3-green w3-round" href="" title = "Previous">&laquo;</a></li>
+                      <li><a class="w3-green w3-round" href="" title = "Next">&raquo;</a></li>
+                    </ul>
+                 </div>
+                <p>&nbsp;</p>
+            </div>
+            </a>
+            <p>&nbsp;</p>
+            <!--Table to show all presentation email-->
+            <a name="tableemailpre">
+            <div class="w3-container w3-card-2 w3-white w3-round w3-margin" id="allRecent">
+                <h2><strong>Schedule Email: Presentation</strong></h2>
+                <p>Search for an email in the input field.</p>
+                <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for email.." id="allRecentInput" onkeyup="allRecentFn()"/>
+                    <div class="addnew ">
+                        <h3 > <a href="#" title="Add new Schedule email" class=""><strong>Add new </strong><i class="fa fa-pencil w3-margin-right"></i></a></h3>
+                    </div>
+                <table class="w3-table-all w3-margin-top w3-hoverable" >
+                    
+                        <tr class="tr_heading">
+                            <th style="width:5%;">No:</th>
+                            <!--<th style="width:5%;">Title</th>-->
+                             <th style="width:15%;">Subject</th>
+                            <th style="width:15%;">Recipient</th>
+                            <th style="width:15%;">Student Type</th>
+                            <th style="width:15%;">Trainee ID</th>
+                            <th style="width:10%;">Date</th>
+                            <th style="width:10%;">Time</th>
+                            <th style="width:5%;">Edit</th>
+                            <th style="width:5%;">Delete</th>
+                        </tr>
+                        <?php 
+                        $counter = 1;     
+                        while ($row= mysqli_fetch_array($query_sch_pre_email)){
+                            $id = $row['sch_email_id'];
+                            echo"<tr>";
+                                    //<!--Data from Database-->
+                                echo "<td>" .$counter. "</td>";
+                                //echo "<td>".$row['email_subject']."</td>";
+                                echo "<td><a href='../../ui_connect/activity_management/presentation.php#tableuppre' title = 'Go to Presentation'>".$row['email_subject']."</a></td>";
+                                echo "<td >".$row['s_fname'].' '.$row['s_lname']."</td>";
+                                echo "<td>".$row['status_desc']."</td>";
+                                echo "<td>".$row['pre_trainee_id']."</td>";
+                                echo "<td>".$row['pre_sch_date']."</td>";
+                                echo "<td>".$row['pre_sch_time']."</td>";
+                                //<!---Icons-->
+                                echo "<td><a href='email_edit.php?sch_email_id=$id' title = 'Edit'><i class='fa fa-pencil w3-margin-left'></i></a></td>";
+                                echo "<td><a title = 'Delete' href='function/func_email_del.php?sch_email_id=$id'><i class='fa fa-trash w3-margin-left'></i></a></td>";
+                            echo "</tr>";
+                            $counter++; //increment counter by 1 on every pass 
+                        }?>
+                    </a>    
+                </table>  
+                <p>&nbsp;</p>
+                <div style="color: #607D8B; text-align: center; font-weight: bolder;">
+                    <?php if ( isset($noresult1) ) {?>
+                    <span class="fa fa-exclamation-circle"></span> <?php echo $noresult1; ?>
+                    <?php } ?>
+                </div>
+                <p>&nbsp;</p>
+                <div class="w3-center" >
+                    <ul class="w3-pagination ">
+                      <li ><a class="w3-green w3-round" href="" title = "Previous">&laquo;</a></li>
+                      <li><a class="w3-green w3-round" href="" title = "Next">&raquo;</a></li>
+                    </ul>
+                 </div>
+                <p>&nbsp;</p>
+            </div>
+        </div>
         <p>&nbsp;</p>
-        
-        
-        
-        
-        
-        
-    <!-- Left Column -->
-    <div class="w3-col m6">
-    	
-        <div class="w3-row-padding w3-center w3-margin-top">
-        
-            
-		</div>
-   
-    <!-- End Left Column -->
-    </div>    
-    
-	<!-- Right Column -->
-    <div class="w3-col m6">
-     	<div class="w3-card-2 w3-round w3-white w3-padding-16 w3-center">
-        <p>Notification</p>
         <p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p><br></p>
 
-      </div>
-    <!-- End Right Column -->
-    </div>
-    
-    
-    <!-- End The Grid -->
-    </div>
-    
-    
-  
-  
-<!-- End Page Container -->
-</div>
-<p>&nbsp;</p>
+        <?php 
+            //Footer
+            require_once '../../web_elements/footer.php'; ?> 
 
-
-
-
-
-<!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
-</footer>
-
-<footer class="w3-container w3-theme-d5">
-   <p>By <a href="http://www.facebook.com/Bon.KP" target="_blank">บอนไง จะใครล่ะ ^^</a></p>
-</footer>
- 
-<script>
-// Accordion 
-function myFunction(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-theme-d1";
-    } else { 
-        x.className = x.className.replace("w3-show", "");
-        x.previousElementSibling.className = 
-        x.previousElementSibling.className.replace(" w3-theme-d1", "");
-    }
-}
-
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-</script>
-
-</body>
+        <?php
+            //Script for toggling menu bar on small screen
+            require_once '../../web_elements/script_menu.php';?>
+    </body>
 </html> 

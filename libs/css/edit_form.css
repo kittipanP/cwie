@@ -1,0 +1,252 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*form styles*/
+.msform1 {
+	width: 800px;
+	margin: 0px auto;
+	position: relative;
+        display: block;
+        text-align: center;
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        right: 0;
+        top: 0;
+        overflow: auto; /* Enable scroll if needed */
+        
+}
+.msform1 fieldset {
+	background: whitesmoke;border: 1px;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 50%;
+	margin: 0 25%;
+	
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+/*Hide all except first fieldset*/
+.msform1 fieldset:not(:first-of-type) {
+	display: none;
+}
+/*inputs*/
+.input_name {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 99%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+.input_s_time, .input_e_time {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 49%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+.input_date , .input_room  {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 49%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+.input_stype{
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 49%;
+        
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+/*Text area*/
+.textarea {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+/*Drop Down*/
+.select_bldg {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+/*buttons*/
+.action-button {
+	width: 100px;
+	background: #607D8B;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+        text-align: center;
+}
+
+.hr {
+    display: block;
+    height: 0.5px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    top:-23px;
+    margin-top: 0px;
+    
+}
+/*headings*/
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color:#607D8B ;
+	margin-bottom: 10px;
+        font-weight: bold;
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 14px;
+	color: #607D8B;
+	margin-top: -5px;
+        text-transform: uppercase;
+}
+/*progressbar*/
+.progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+        margin: 0;
+}
+.progressbar li {
+	list-style-type: none;
+	color: #3a4b53;
+	text-transform: uppercase;
+	font-size: 12px;
+	width: 30%;
+	float: left;
+	position: relative;
+}
+.progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: white;
+	background: #607D8B;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+.progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: #3a4b53;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+.progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+.progressbar li.active:before,.progressbar li.active:after {
+	background: #607D8B;
+	color: white;
+}
+.noselect {
+  cursor: default;  
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+/*Login Code*/
+.login-title {
+        text-align: center;
+	text-transform: uppercase;
+	color:#607D8B ;
+	margin-bottom: 10px;
+        font-weight: bold;
+}
+.login_form {
+	width: 800px;
+	margin: 0px auto;
+	position: relative;
+        display: block;
+        text-align: center;
+}
+.login_form fieldset {
+	background: white;border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 50%;
+	margin: 0 25%;
+	
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+/*Hide all except first fieldset*/
+.login_form fieldset:not(:first-of-type) {
+	display: none;
+}
+.body {width: 100%; height: 100%; background-color: whitesmoke;}

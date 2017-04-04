@@ -3,6 +3,7 @@
     ob_start();
     session_start();
     require_once '../../db_connect/dbconnection.php';
+    
 //If session is not set, the page redirect to login
     if (!isset($_SESSION['user'])){
         header("Location: ../../ui_connect/login/login.php");

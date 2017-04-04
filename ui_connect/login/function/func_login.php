@@ -22,15 +22,15 @@
             //If email error
             if (empty($email)){
                 $error = true;
-                $emailError = "Please enter a valid email address.";    
+                $emailError = "Please enter a valid email address";    
                 } else if (!filter_var($email,FILTER_VALIDATE_EMAIL) ) {
                     $error = true;
-                    $emailError = "Please enter vald email address.";
+                    $emailError = "Please enter a vald email address";
                 }
             //If Password error    
             if (empty($pass)){
                 $error = true;
-                $passError = "Please enter password.";
+                $passError = "Please enter password";
             }
 
             //If no error
