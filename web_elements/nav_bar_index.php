@@ -35,7 +35,7 @@
         </li>
         <li class=" w3-right w3-dropdown-hover  ">
             <!--<a href="#" class=" w3-hide-small w3-padding-large w3-hover-white w3-avatar" title=""><img src="img/Avatar/boy.png" alt="Avatar" width="106" height="102" class="w3-circle" style="height:25px;width:25px"></img></a>-->
-            <h6 class=" w3-hover usernavh6 w3-username" ><img  src="img/Avatar/boy.png"  width="24" height="24" title="<?php echo $userRow['full_name'];?>"> <?php echo $userRow[ 'full_name' ];?> </h6>
+            <h6 class=" w3-hover usernavh6 w3-username" > &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; <img  src="img/Avatar/boy.png"  width="24" height="24" title="<?php echo $userRow['full_name'];?>"> <?php echo $userRow[ 'full_name' ];?> &nbsp; </h6>
             <!--Drop Down Menu for Account-->
             <div class="w3-dropdown-content w3-white w3-card-4 ">
                 <!--PHP Code here for the username to show-->
