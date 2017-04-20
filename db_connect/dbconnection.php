@@ -7,7 +7,7 @@
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
 	define('DBPASS', 'Kp5610761!');
-	define('DBNAME', 'dannyii');
+	define('DBNAME', 'cwie_db');
 	
 	$link = mysqli_connect(DBHOST,DBUSER,DBPASS, DBNAME);
 	
