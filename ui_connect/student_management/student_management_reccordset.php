@@ -153,14 +153,14 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['student_info_s_id'], "int"));
   
 		  mysqli_select_db($MyConnect, $database_MyConnect);
-		  $Result1_stu = mysqli_query($MyConnect, $insertSQL_stu) or die(mysqli_error());
+		  $Result1_stu = mysqli_query($MyConnect, $insertSQL_stu) or die(mysqli_error($MyConnect));
 		  $Result1_edt = mysqli_query($MyConnect, $insertSQL_edt) or die(mysqli_error());
 		  $Result1_sct = mysqli_query($MyConnect, $insertSQL_sct) or die(mysqli_error());
 		  $Result1_app = mysqli_query($MyConnect, $insertSQL_app) or die(mysqli_error());
 		  $Result1_sec = mysqli_query($MyConnect, $insertSQL_sec) or die(mysqli_error());
 		  $Result1_sad = mysqli_query($MyConnect, $insertSQL_sad) or die(mysqli_error());	
 		  $Result1_sre = mysqli_query($MyConnect, $insertSQL_sre) or die(mysqli_error());
-		  $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error());
+		  $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error($MyConnect));
 		  
 		  $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error());
 		  $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());	  
