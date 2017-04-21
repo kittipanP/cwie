@@ -69,6 +69,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
+
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
@@ -242,7 +244,7 @@ header{ background: url(../../img/head/headerv.jpg);}
     <!-- Navigation II [S] ## Navigation II [S] ## Navigation II [S] ## Navigation II [S] ## Navigation II [S] ## Navigation II [S] -->
 		<nav class="w3-sidenav w3-white w3-animate-left" style="display:none;z-index:5" id="mySidenav">
         	<a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav w3-large">Close &times;</a>
-          <a onclick="document.getElementById('id01').style.display='block'" ><i class="fa fa-plus w3-margin-right"></i> Create New</a>
+          <a onclick="document.getElementById('id01').style.display='block', w3_close()" ><i class="fa fa-plus w3-margin-right"></i> Create New</a>
           <a href="#allRecent" onclick="w3_close()"><i class="fa fa-globe w3-margin-right"></i> All</a>
           <a href="#onProcesss" onclick="w3_close()"><i class="fa fa-address-book w3-margin-right"></i> On Process</a>
           <a href="#waitingOnBoard" onclick="w3_close()"><i class="fa fa-thumbs-up w3-margin-right"></i> Waiting on Board</a>
@@ -259,11 +261,11 @@ header{ background: url(../../img/head/headerv.jpg);}
         <div class="w3-container">
 
           <div id="id01" class="w3-modal">
-            <?php include 'multiple-step-form-insert.php' ?>
-			
-          </div>
+            <?php include 'multiple-step-form-insert.php' ?></div>
+          <div id="stu-edit" class="w3-modal">
+            <?php include 'student_update.php' ?></div>ß
         </div>
-        <!-- Muti Step Form for Update [E] ## Muti Step Form for Update [E] ## Muti Step Form for Update [E] -->
+        <!-- Muti Step Form for Update [E] ## Muti Step Form for Update [E] ## Muti Step Form for Update [E]  -->
                     
         
 <!--		</div> -->
