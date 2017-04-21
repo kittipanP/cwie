@@ -36,7 +36,7 @@ if ((isset($_GET['s_id'])) && ($_GET['s_id'] != "")) {
                        GetSQLValueString($_GET['s_id'], "int"));
 
   mysqli_select_db($MyConnect, $database_MyConnect);
-  $Result1 = mysqli_query($MyConnect, $deleteSQL) or die(mysqli_error());
+  $Result1 = mysqli_query($MyConnect, $deleteSQL) or die(mysqli_error($MyConnect));
 
   $deleteGoTo = "Student_Management.php";
   if (isset($_SERVER['QUERY_STRING'])) {
