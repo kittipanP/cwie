@@ -77,6 +77,7 @@ $totalRows_Recordset1_stu = mysqli_num_rows($Recordset1_stu);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="UTF-8">
 <title>Untitled Document</title>
 </head>
 
@@ -84,7 +85,7 @@ $totalRows_Recordset1_stu = mysqli_num_rows($Recordset1_stu);
 <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
   <table align="center">
     <tr valign="baseline">
-      <td nowrap="nowrap" align="right">S_idiiiiiiiii:</td>
+      <td nowrap="nowrap" align="right">S_id:</td>
       <td><?php echo $row_Recordset1_stu['s_id']; ?></td>
     </tr>
     <tr valign="baseline">

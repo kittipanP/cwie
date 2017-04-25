@@ -263,7 +263,7 @@ header{ background: url(../../img/head/headerv.jpg);}
           <div id="id01" class="w3-modal">
             <?php include 'multiple-step-form-insert.php' ?></div>
           <div id="stu-edit" class="w3-modal">
-            <?php include 'student_update.php' ?></div>ß
+            <?php include 'student_update.php' ?></div>
         </div>
         <!-- Muti Step Form for Update [E] ## Muti Step Form for Update [E] ## Muti Step Form for Update [E]  -->
                     
