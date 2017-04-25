@@ -86,7 +86,7 @@ if (isset($_GET['s_id'])) {
   $colname_Recordset1_sct = $_GET['s_id'];
 }
 mysqli_select_db($MyConnect, $database_MyConnect);
-$query_Recordset1_sct = sprintf("SELECT * FROM student_info WHERE s_id = %s", GetSQLValueString($colname_Recordset1_sct, "int"));
+$query_Recordset1_sct = sprintf("SELECT * FROM student_contact_details WHERE s_id = %s", GetSQLValueString($colname_Recordset1_sct, "int"));
 $Recordset1_sct = mysqli_query($MyConnect, $query_Recordset1_sct) or die(mysqli_error());
 $row_Recordset1_sct = mysqli_fetch_assoc($Recordset1_sct);
 $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
@@ -223,18 +223,20 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
                         <div align="left">
                         <label for="contact_no"> Tel : </label>
                         </div>
-                        <input type="text" name="contact_no" value="" size="32" placeholder="08 4722 2174"/>
+                        <input type="text" name="contact_no" value="<?php echo htmlentities($row_Recordset1_sct['contact_no'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+
                         
                         <div align="left">
                         <label for="email_adress"> E-mail address : </label>
                         </div>
-                        <input type="text" name="email_adress" value="" size="32" placeholder="kittipan.prasertsang@gmail.com"/>
+                        <input type="text" name="email_adress" value="<?php echo htmlentities($row_Recordset1_sct['email_adress'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
                         
                         
                         <div align="left">
                         <label for="remark"> Remark : </label>
                         </div>
-                        <textarea name="remark" value="" size="32" placeholder="Remark..."></textarea>
+                        <input type="text" name="remark" value="<?php echo htmlentities($row_Recordset1_stu['remark'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+
                         
                         
                                      
@@ -270,6 +272,7 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
                                 <label for="emc_fname"> First Name : </label>
                                 </div>
                                 <input type="text" name="emc_fname" value="" size="32" placeholder="First Name"/>
+                                <input type="text" name="emc_fname" value="<?php echo htmlentities($row_Recordset1_sct['emc_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
         
                             </div>
                           </div>
