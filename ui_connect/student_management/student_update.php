@@ -36,8 +36,19 @@ if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
 
-if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
-  $updateSQL_stu = sprintf("UPDATE student_info SET s_fname=%s, s_lname=%s, thai_fname=%s, thai_lname=%s, s_dob=%s, remark=%s, origin_id=%s, type_id=%s, status_id=%s, ref_id=%s, national_id=%s, title_title_id=%s WHERE s_id=%s",
+if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
+
+  $updateSQL_scd = sprintf("UPDATE student_contact_details 
+    SET contact_no=%s, email_adress=%s
+    WHERE scd_s_id=%s",
+                 GetSQLValueString($_POST['scd_s_id'], "int"),
+                 GetSQLValueString($_POST['contact_no'], "text"),
+                 GetSQLValueString($_POST['email_adress'], "text"),
+                 GetSQLValueString($_POST['contact_id'], "int"));
+
+  $updateSQL_stu = sprintf("UPDATE student_info AS stu
+    SET stu.s_fname=%s, stu.s_lname=%s, stu.thai_fname=%s, stu.thai_lname=%s, stu.s_dob=%s, stu.remark=%s, stu.origin_id=%s, stu.type_id=%s, stu.status_id=%s, stu.ref_id=%s, stu.national_id=%s, stu.title_title_id=%s 
+    WHERE stu.s_id=%s",
                        GetSQLValueString($_POST['s_fname'], "text"),
                        GetSQLValueString($_POST['s_lname'], "text"),
                        GetSQLValueString($_POST['thai_fname'], "text"),
@@ -52,8 +63,11 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
                        GetSQLValueString($_POST['title_title_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int"));
 
+
+
   mysqli_select_db($MyConnect, $database_MyConnect);
-  $Result1_stu = mysqli_query($MyConnect, $updateSQL_stu) or die(mysqli_error());
+  $Result1_stu = mysqli_query($MyConnect, $updateSQL_stu) or die(mysqli_error($MyConnect));
+  $Result1_scd = mysqli_query($MyConnect, $updateSQL_scd) or die(mysqli_error());
 
   $updateGoTo = "Student_Management.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -68,10 +82,19 @@ if (isset($_GET['s_id'])) {
   $colname_Recordset1_stu = $_GET['s_id'];
 }
 mysqli_select_db($MyConnect, $database_MyConnect);
+
+
 $query_Recordset1_stu = sprintf("SELECT * FROM student_info WHERE s_id = %s", GetSQLValueString($colname_Recordset1_stu, "int"));
 $Recordset1_stu = mysqli_query($MyConnect, $query_Recordset1_stu) or die(mysqli_error());
 $row_Recordset1_stu = mysqli_fetch_assoc($Recordset1_stu);
 $totalRows_Recordset1_stu = mysqli_num_rows($Recordset1_stu);
+
+
+
+$query_Recordset1_scd = sprintf("SELECT * FROM student_contact_details WHERE scd_s_id=%s", GetSQLValueString($colname_Recordset1_stu, "int"));
+$Recordset1_scd = mysqli_query($MyConnect, $query_Recordset1_scd) or die(mysqli_error());
+$row_Recordset1_scd = mysqli_fetch_assoc($Recordset1_scd);
+$totalRows_Recordset1_scd = mysqli_num_rows($Recordset1_scd);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -82,7 +105,7 @@ $totalRows_Recordset1_stu = mysqli_num_rows($Recordset1_stu);
 </head>
 
 <body>
-<form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
+<form action="<?php echo $editFormAction; ?>" method="post" name="form-update" id="form-update">
   <table align="center">
     <tr valign="baseline">
       <td nowrap="nowrap" align="right">S_id:</td>
@@ -136,17 +159,42 @@ $totalRows_Recordset1_stu = mysqli_num_rows($Recordset1_stu);
       <td nowrap="nowrap" align="right">Title_title_id:</td>
       <td><input type="text" name="title_title_id" value="<?php echo htmlentities($row_Recordset1_stu['title_title_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" /></td>
     </tr>
+
+
+    <tr valign="baseline">
+      <td nowrap="nowrap" align="right">Contact id :</td>
+      <td><input type="text" name="email_adress" value="<?php echo htmlentities($row_Recordset1_scd['contact_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" /></td>
+    </tr>
+    <tr valign="baseline">
+      <td nowrap="nowrap" align="right">Tel :</td>
+      <td><input type="text" name="contact_no" value="<?php echo htmlentities($row_Recordset1_scd['contact_no'], ENT_COMPAT, 'utf-8'); ?>" size="32" /></td>
+    </tr>
+    <tr valign="baseline">
+      <td nowrap="nowrap" align="right">E-mail address :</td>
+      <td><input type="text" name="email_adress" value="<?php echo htmlentities($row_Recordset1_scd['email_adress'], ENT_COMPAT, 'utf-8'); ?>" size="32" /></td>
+    </tr>
+    <tr valign="baseline">
+      <td nowrap="nowrap" align="right">SCD_S_id:</td>
+      <td><?php echo $row_Recordset1_scd['scd_s_id']; ?></td>
+    </tr>
+    
+
+
+
     <tr valign="baseline">
       <td nowrap="nowrap" align="right">&nbsp;</td>
       <td><input type="submit" value="Update record" /></td>
     </tr>
   </table>
-  <input type="hidden" name="MM_update" value="form1" />
-  <input type="hidden" name="s_id" value="<?php echo $row_Recordset1_stu['s_id']; ?>" />
+  <input type="hidden" name="MM_update" value="form-update" />
+  <input type="hidden" name="scd_s_id" value="<?php echo $row_Recordset1_scd['scd_s_id'];?>" />
+  <input type="hidden" name="s_id" value="<?php echo $row_Recordset1_stu['s_id'];?>" />
+
 </form>
 <p>&nbsp;</p>
 </body>
 </html>
 <?php
 mysqli_free_result($Recordset1_stu);
+mysqli_free_result($Recordset1_scd);
 ?>
