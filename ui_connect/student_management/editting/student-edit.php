@@ -68,11 +68,23 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
                  GetSQLValueString($_POST['contact_id'], "int"),
                  GetSQLValueString($_POST['scd_s_id'], "int"));
 
+    $updateSQL_sec = sprintf("UPDATE student_emergency_contact AS sec
+      INNER JOIN student_contact_details AS scd ON scd.contact_id = sec.contact_id
+      SET emc_fname=%s, emc_lname=%s, emc_relation=%s, emc_contact=%s
+      WHERE scd.scd_s_id=$prm",
+                  GetSQLValueString($_POST['emc_fname'], "text"),
+                  GetSQLValueString($_POST['emc_lname'], "text"),
+                  GetSQLValueString($_POST['emc_relation'], "text"),
+                  GetSQLValueString($_POST['emc_contact'], "text"),
+                  GetSQLValueString($_POST['contact_id'], "int"),
+                  GetSQLValueString($_POST['emc_id'], "int"));
+
 
 
   mysqli_select_db($MyConnect, $database_MyConnect);
   $Result1_stu = mysqli_query($MyConnect, $updateSQL_stu) or die(mysqli_error($MyConnect));
   $Result1_scd = mysqli_query($MyConnect, $updateSQL_scd) or die(mysqli_error($MyConnect));
+  $Result1_sec = mysqli_query($MyConnect, $updateSQL_sec) or die(mysql_error());
 
   $updateGoTo = "../Student_Management.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -100,7 +112,7 @@ $row_Recordset1_scd = mysqli_fetch_assoc($Recordset1_scd);
 $totalRows_Recordset1_scd = mysqli_num_rows($Recordset1_scd);
 
 $thistitle = $row_Recordset1_stu['title_title_id'];
-mysqli_select_db($MyConnect, $database_MyConnect);
+//mysqli_select_db($MyConnect, $database_MyConnect);
     $query_title_rec = "SELECT * FROM title WHERE title_id=$thistitle";
     $title_rec = mysqli_query($MyConnect, $query_title_rec) or die(mysqli_error());
     $row_title_rec = mysqli_fetch_assoc($title_rec);
@@ -111,7 +123,7 @@ mysqli_select_db($MyConnect, $database_MyConnect);
     $totalRows_titleSet = mysqli_num_rows($titleSet);
 
 $thisstatus = $row_Recordset1_stu['status_id'];
-mysqli_select_db($MyConnect, $database_MyConnect);
+//mysqli_select_db($MyConnect, $database_MyConnect);
 $query_status_rec = "SELECT * FROM student_status WHERE status_id=$thisstatus";
 $status_rec = mysqli_query($MyConnect, $query_status_rec) or die(mysqli_error());
 $row_status_rec = mysqli_fetch_assoc($status_rec);
@@ -120,6 +132,12 @@ $query_statusSet = "SELECT * FROM student_status";
 $statusSet = mysqli_query($MyConnect, $query_statusSet) or die(mysqli_error());
 $row_statusSet = mysqli_fetch_assoc($statusSet);
 $totalRows_statusSet = mysqli_num_rows($statusSet);
+
+$thiscontact = $row_Recordset1_scd['contact_id'];
+$query_Recordset1_sec = sprintf("SELECT * FROM student_emergency_contact WHERE contact_id=$thiscontact", GetSQLValueString($colname_Recordset1_stu, "int"));
+$Recordset1_sec = mysqli_query($MyConnect, $query_Recordset1_sec) or die(mysqli_error());
+$row_Recordset1_sec = mysqli_fetch_assoc($Recordset1_sec);
+$totalRows_Recordset1_sec = mysqli_num_rows($Recordset1_sec);
 ?>
 
 
@@ -183,8 +201,8 @@ $totalRows_statusSet = mysqli_num_rows($statusSet);
                         <input type="hidden" name="type_id" value="<?php echo htmlentities($row_Recordset1_stu['type_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
                         <input type="hidden" name="ref_id" value="<?php echo htmlentities($row_Recordset1_stu['ref_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
                         <input type="hidden" name="national_id" value="<?php echo htmlentities($row_Recordset1_stu['national_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
-                        <input type="hidden" name="title_title_id" value="<?php echo htmlentities($row_Recordset1_stu['title_title_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
-                        <input type="hidden" name="status_id" value="<?php echo htmlentities($row_Recordset1_stu['status_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="hidden" name="title_title_id" value="" size="32" />
+                        <input type="hidden" name="status_id" value="" size="32" />
                          <div align="left">
                         <label for="titleSelect"> Title : </label>
                         </div>
@@ -300,13 +318,13 @@ $totalRows_statusSet = mysqli_num_rows($statusSet);
                           <div class="w3-third">
                             <div>   
                                
-                <input type="hidden" name="emc_id" value="" size="32" />
+                            <input type="hidden" name="emc_id" value="" size="32" />
                             <input type="hidden" name="contact_id" value="<?php echo $row_stu_contactSet['contact_id']+1?>" size="32" />
                                 <div align="left">
                                 <label for="emc_fname"> First Name : </label>
                                 </div>
                                 <!-- <input type="text" name="emc_fname" value="" size="32" placeholder="First Name"/> -->
-                                <input type="text" name="emc_fname" value="<?php echo htmlentities($row_Recordset1_sct['emc_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                                <input type="text" name="emc_fname" value="<?php echo htmlentities($row_Recordset1_sec['emc_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
         
                             </div>
                           </div>
@@ -317,7 +335,7 @@ $totalRows_statusSet = mysqli_num_rows($statusSet);
                                 <div align="left"> 
                                 <label for="emc_lname"> Last Name : </label>                      
                                 </div>
-                                <input type="text" name="emc_lname" value="" size="32" placeholder="Last Name"/>
+                                <input type="text" name="emc_lname" value="<?php echo htmlentities($row_Recordset1_sec['emc_lname'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Last Name"/>
                                 
                             </div>
                           </div>
@@ -328,11 +346,11 @@ $totalRows_statusSet = mysqli_num_rows($statusSet);
                                 <div align="left"> 
                                 <label for="emc_relation"> Relationship : </label>                     
                                 </div>
-                                <input type="text" name="emc_relation" value="" size="32" placeholder="Relationship"/> 
+                                <input type="text" name="emc_relation" value="<?php echo htmlentities($row_Recordset1_sec['emc_relation'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Relationship"/> 
                                 <div align="left"> 
                                 <label for="emc_contact"> Contact No : </label>                     
                                 </div>
-                                <input type="text" name="emc_contact" value="" size="32" placeholder="Contact No."/>      
+                                <input type="text" name="emc_contact" value="<?php echo htmlentities($row_Recordset1_sec['emc_contact'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Contact No."/>      
         
                             </div>
                           </div>
@@ -947,4 +965,6 @@ test-->
 </body>
 </html>
 <?php
-mysqli_free_result($Recordset1_stu);?>
+mysqli_free_result($Recordset1_stu);
+
+?>
