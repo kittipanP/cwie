@@ -99,11 +99,27 @@ $Recordset1_scd = mysqli_query($MyConnect, $query_Recordset1_scd) or die(mysqli_
 $row_Recordset1_scd = mysqli_fetch_assoc($Recordset1_scd);
 $totalRows_Recordset1_scd = mysqli_num_rows($Recordset1_scd);
 
+$thistitle = $row_Recordset1_stu['title_title_id'];
 mysqli_select_db($MyConnect, $database_MyConnect);
+    $query_title_rec = "SELECT * FROM title WHERE title_id=$thistitle";
+    $title_rec = mysqli_query($MyConnect, $query_title_rec) or die(mysqli_error());
+    $row_title_rec = mysqli_fetch_assoc($title_rec);
+    $totalRows_title_rec = mysqli_num_rows($title_rec);
     $query_titleSet = "SELECT * FROM title";
     $titleSet = mysqli_query($MyConnect, $query_titleSet) or die(mysqli_error());
     $row_titleSet = mysqli_fetch_assoc($titleSet);
     $totalRows_titleSet = mysqli_num_rows($titleSet);
+
+$thisstatus = $row_Recordset1_stu['status_id'];
+mysqli_select_db($MyConnect, $database_MyConnect);
+$query_status_rec = "SELECT * FROM student_status WHERE status_id=$thisstatus";
+$status_rec = mysqli_query($MyConnect, $query_status_rec) or die(mysqli_error());
+$row_status_rec = mysqli_fetch_assoc($status_rec);
+$totalRows_status_rec = mysqli_num_rows($status_rec);
+$query_statusSet = "SELECT * FROM student_status";
+$statusSet = mysqli_query($MyConnect, $query_statusSet) or die(mysqli_error());
+$row_statusSet = mysqli_fetch_assoc($statusSet);
+$totalRows_statusSet = mysqli_num_rows($statusSet);
 ?>
 
 
@@ -171,13 +187,16 @@ mysqli_select_db($MyConnect, $database_MyConnect);
                         <input type="hidden" name="status_id" value="<?php echo htmlentities($row_Recordset1_stu['status_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
                          <div align="left">
                         <label for="titleSelect"> Title : </label>
-                       </div>
+                        </div>
                         <!--<label for="titleSelect">TITLE :  </label>-->
                         <div align="left">
                         <select name="title_title_id" >
+                                  <option name="title_title_id" size="32" value="<?php echo htmlentities($row_title_rec['title_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_title_rec['title_name']?> </option>
                           <?php
+
                               do {  
                           ?>
+
                                   <option name="title_title_id" size="32" value="<?php echo htmlentities($row_titleSet['title_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_titleSet['title_name']?> </option>
                           <?php
                               } while ($row_titleSet = mysqli_fetch_assoc($titleSet));
@@ -185,8 +204,8 @@ mysqli_select_db($MyConnect, $database_MyConnect);
                               if($rows > 0) {
                               mysqli_data_seek($titleSet, 0);
                               $row_titleSet = mysqli_fetch_assoc($titleSet);
-                               }
-                                                        ?>
+                              }
+                          ?>
                         </select></div>
                       <div align="left">
                         <label for="s_fname"> First Name : </label>
@@ -214,9 +233,10 @@ mysqli_select_db($MyConnect, $database_MyConnect);
                         <div align="left">
                         <label for="statusSelect"> Student status : </label>
                         </div>
-                        <!-- <select name="status_id" style="width: 100%;">
+                        <select name="status_id" style="width: 100%;">
+                            <option  name="title_title_id" value="<?php echo htmlentities($row_status_rec['status_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_status_rec['status_desc']?></option>
                           <?php do {  ?>
-                            <option  name="title_title_id" value="<?php echo $row_statusSet['status_id']?>"><?php echo $row_statusSet['status_desc']?></option>
+                            <option  name="title_title_id" value="<?php echo htmlentities($row_statusSet['status_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_statusSet['status_desc']?></option>
                             <?php
                                 } while ($row_statusSet = mysqli_fetch_assoc($statusSet));
                                   $rows = mysqli_num_rows($statusSet);
@@ -225,7 +245,7 @@ mysqli_select_db($MyConnect, $database_MyConnect);
                                   $row_statusSet = mysqli_fetch_assoc($statusSet);
                                   }
                             ?>
-                        </select> -->
+                        </select> 
                     </div>
                   </div>
                         
