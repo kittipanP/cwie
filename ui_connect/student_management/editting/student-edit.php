@@ -36,8 +36,16 @@ if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
 
-if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
-  $updateSQL_stu = sprintf("UPDATE student_info SET s_fname=%s, s_lname=%s, thai_fname=%s, thai_lname=%s, s_dob=%s, remark=%s, origin_id=%s, type_id=%s, status_id=%s, ref_id=%s, national_id=%s, title_title_id=%s WHERE s_id=%s",
+if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
+
+  $colname_Recordset1_stu = "-1";
+  if (isset($_GET['s_id'])) {
+  $prm = $_GET['s_id'];
+  }
+
+  $updateSQL_stu = sprintf("UPDATE student_info AS stu
+    SET stu.s_fname=%s, stu.s_lname=%s, stu.thai_fname=%s, stu.thai_lname=%s, stu.s_dob=%s, stu.remark=%s, stu.origin_id=%s, stu.type_id=%s, stu.status_id=%s, stu.ref_id=%s, stu.national_id=%s, stu.title_title_id=%s 
+    WHERE stu.s_id=%s",
                        GetSQLValueString($_POST['s_fname'], "text"),
                        GetSQLValueString($_POST['s_lname'], "text"),
                        GetSQLValueString($_POST['thai_fname'], "text"),
@@ -52,17 +60,21 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
                        GetSQLValueString($_POST['title_title_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int"));
 
-  $updateSQL_sct = sprintf("UPDATE student_contact_details SET contact_id=%s, s_id=%s, contact_no=%s, email_adress=%s) WHERE s_id=%s",
-                 GetSQLValueString($_POST['contact_id'], "int"),
-                 GetSQLValueString($_POST['s_id'], "int"),
+    $updateSQL_scd = sprintf("UPDATE student_contact_details 
+    SET contact_no=%s, email_adress=%s
+    WHERE scd_s_id=$prm",
                  GetSQLValueString($_POST['contact_no'], "text"),
-                 GetSQLValueString($_POST['email_adress'], "text"));
+                 GetSQLValueString($_POST['email_adress'], "text"),
+                 GetSQLValueString($_POST['contact_id'], "int"),
+                 GetSQLValueString($_POST['scd_s_id'], "int"));
+
+
 
   mysqli_select_db($MyConnect, $database_MyConnect);
-  $Result1_stu = mysqli_query($MyConnect, $updateSQL_stu) or die(mysqli_error());
-  $Result1_sct = mysqli_query($MyConnect, $insertSQL_sct) or die(mysqli_error());
+  $Result1_stu = mysqli_query($MyConnect, $updateSQL_stu) or die(mysqli_error($MyConnect));
+  $Result1_scd = mysqli_query($MyConnect, $updateSQL_scd) or die(mysqli_error($MyConnect));
 
-  $updateGoTo = "Student_Management.php";
+  $updateGoTo = "../Student_Management.php";
   if (isset($_SERVER['QUERY_STRING'])) {
     $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
     $updateGoTo .= $_SERVER['QUERY_STRING'];
@@ -75,22 +87,23 @@ if (isset($_GET['s_id'])) {
   $colname_Recordset1_stu = $_GET['s_id'];
 }
 mysqli_select_db($MyConnect, $database_MyConnect);
+
+
 $query_Recordset1_stu = sprintf("SELECT * FROM student_info WHERE s_id = %s", GetSQLValueString($colname_Recordset1_stu, "int"));
 $Recordset1_stu = mysqli_query($MyConnect, $query_Recordset1_stu) or die(mysqli_error());
 $row_Recordset1_stu = mysqli_fetch_assoc($Recordset1_stu);
 $totalRows_Recordset1_stu = mysqli_num_rows($Recordset1_stu);
 
+$query_Recordset1_scd = sprintf("SELECT * FROM student_contact_details WHERE scd_s_id=%s", GetSQLValueString($colname_Recordset1_stu, "int"));
+$Recordset1_scd = mysqli_query($MyConnect, $query_Recordset1_scd) or die(mysqli_error());
+$row_Recordset1_scd = mysqli_fetch_assoc($Recordset1_scd);
+$totalRows_Recordset1_scd = mysqli_num_rows($Recordset1_scd);
 
-$colname_Recordset1_sct = "-1";
-if (isset($_GET['s_id'])) {
-  $colname_Recordset1_sct = $_GET['s_id'];
-}
 mysqli_select_db($MyConnect, $database_MyConnect);
-$query_Recordset1_sct = sprintf("SELECT * FROM student_contact_details WHERE s_id = %s", GetSQLValueString($colname_Recordset1_sct, "int"));
-$Recordset1_sct = mysqli_query($MyConnect, $query_Recordset1_sct) or die(mysqli_error());
-$row_Recordset1_sct = mysqli_fetch_assoc($Recordset1_sct);
-$totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
-
+    $query_titleSet = "SELECT * FROM title";
+    $titleSet = mysqli_query($MyConnect, $query_titleSet) or die(mysqli_error());
+    $row_titleSet = mysqli_fetch_assoc($titleSet);
+    $totalRows_titleSet = mysqli_num_rows($titleSet);
 ?>
 
 
@@ -125,7 +138,7 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
 </style>
 
 <body>
-<form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="msform" enctype="multipart/form-data">
+<form action="<?php echo $editFormAction; ?>" method="post" name="form-update" id="msform" enctype="multipart/form-data">
                     
               <!-- progressbar -->
               <ul id="progressbar">
@@ -149,12 +162,13 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
                                     <!--<i class="fa fa-group w3-margin-bottom w3-text-theme" style="font-size:120px"></i>-->
                                     <!--<hr>-->
                                     
-                        <input type="hidden" name="s_dob" value="" size="32" />
-                        <input type="hidden" name="origin_id" value="" size="32" />
-                        <input type="hidden" name="type_id" value="" size="32" />
-                        <input type="hidden" name="ref_id" value="" size="32" />
-                        <input type="hidden" name="national_id" value="" size="32" />
-                        <input type="hidden" name="title_title_id" value="" size="32" />
+                        <input type="hidden" name="s_dob" value="<?php echo htmlentities($row_Recordset1_stu['s_dob'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="hidden" name="origin_id" value="<?php echo htmlentities($row_Recordset1_stu['origin_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="hidden" name="type_id" value="<?php echo htmlentities($row_Recordset1_stu['type_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="hidden" name="ref_id" value="<?php echo htmlentities($row_Recordset1_stu['ref_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="hidden" name="national_id" value="<?php echo htmlentities($row_Recordset1_stu['national_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="hidden" name="title_title_id" value="<?php echo htmlentities($row_Recordset1_stu['title_title_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="hidden" name="status_id" value="<?php echo htmlentities($row_Recordset1_stu['status_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
                          <div align="left">
                         <label for="titleSelect"> Title : </label>
                        </div>
@@ -164,7 +178,7 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
                           <?php
                               do {  
                           ?>
-                                  <option name="title_title_id" size="32" value="<?php echo $row_titleSet['title_id']?>"><?php echo $row_titleSet['title_name']?> </option>
+                                  <option name="title_title_id" size="32" value="<?php echo htmlentities($row_titleSet['title_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_titleSet['title_name']?> </option>
                           <?php
                               } while ($row_titleSet = mysqli_fetch_assoc($titleSet));
                               $rows = mysqli_num_rows($titleSet);
@@ -200,7 +214,7 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
                         <div align="left">
                         <label for="statusSelect"> Student status : </label>
                         </div>
-                        <select name="status_id" style="width: 100%;">
+                        <!-- <select name="status_id" style="width: 100%;">
                           <?php do {  ?>
                             <option  name="title_title_id" value="<?php echo $row_statusSet['status_id']?>"><?php echo $row_statusSet['status_desc']?></option>
                             <?php
@@ -211,7 +225,7 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
                                   $row_statusSet = mysqli_fetch_assoc($statusSet);
                                   }
                             ?>
-                        </select>
+                        </select> -->
                     </div>
                   </div>
                         
@@ -223,13 +237,13 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
                         <div align="left">
                         <label for="contact_no"> Tel : </label>
                         </div>
-                        <input type="text" name="contact_no" value="<?php echo htmlentities($row_Recordset1_sct['contact_no'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="text" name="contact_no" value="<?php echo htmlentities($row_Recordset1_scd['contact_no'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
 
                         
                         <div align="left">
                         <label for="email_adress"> E-mail address : </label>
                         </div>
-                        <input type="text" name="email_adress" value="<?php echo htmlentities($row_Recordset1_sct['email_adress'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="text" name="email_adress" value="<?php echo htmlentities($row_Recordset1_scd['email_adress'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
                         
                         
                         <div align="left">
@@ -271,7 +285,7 @@ $totalRows_Recordset1_sct = mysqli_num_rows($Recordset1_sct);
                                 <div align="left">
                                 <label for="emc_fname"> First Name : </label>
                                 </div>
-                                <input type="text" name="emc_fname" value="" size="32" placeholder="First Name"/>
+                                <!-- <input type="text" name="emc_fname" value="" size="32" placeholder="First Name"/> -->
                                 <input type="text" name="emc_fname" value="<?php echo htmlentities($row_Recordset1_sct['emc_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
         
                             </div>
@@ -890,10 +904,12 @@ test-->
                     
                            
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
-                    <input type="submit" name="submit" class="action-button" value="Submit" />
-                    <input type="hidden" name="MM_insert" class="submit action-button" value="msform" />
+                    <input type="submit" name="submit" class="action-button" value="Update record!!" />
+                    <input type="hidden" name="MM_update" class="submit action-button" value="msform" />
               </fieldset>
-                    <input type="hidden" name="MM_insert" value="form1" />
+                    <input type="hidden" name="MM_update" value="form-update" />
+                    <input type="hidden" name="scd_s_id" value="<?php echo $row_Recordset1_scd['scd_s_id'];?>" /> <!--do not need-->
+                    <input type="hidden" name="s_id" value="<?php echo $row_Recordset1_stu['s_id'];?>" />
                     
 
             </form>    
@@ -906,10 +922,9 @@ test-->
     <script src="../../../libs/js/index.js"></script>
 
   <!--for According-->
-  <script src="../../../libs/js/According.js"></script
+  <script src="../../../libs/js/According.js"></script>
 
 </body>
 </html>
 <?php
-mysqli_free_result($Recordset1_stu);
-?>
+mysqli_free_result($Recordset1_stu);?>
