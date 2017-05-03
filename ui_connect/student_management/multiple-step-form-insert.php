@@ -92,7 +92,7 @@
                     <div >
                                             <!--<h4>E-mail Management</h4><br>-->
                         <input type="hidden" name="contact_id" value="" size="32" /> 
-                        <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />                                       
+                        <input type="hidden" name="scd_s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />                                       
                         <div align="left">
                       	<label for="contact_no"> Tel : </label>
                       	</div>
@@ -137,7 +137,7 @@
                           <div class="w3-third">
                             <div>   
                                
-								<input type="hidden" name="emc_id" value="" size="32" />
+								            <input type="hidden" name="emc_id" value="" size="32" />
                         		<input type="hidden" name="contact_id" value="<?php echo $row_stu_contactSet['contact_id']+1?>" size="32" />
                                 <div align="left">
                                 <label for="emc_fname"> First Name : </label>
@@ -180,7 +180,24 @@
                           <div class="w3-third">
                             <div>
                                 <input type="hidden" name="address_Id" value="" size="32" />
-                                <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />         
+                                <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" /> 
+                                <div align="left">
+                                <label for="place_name"> Number : </label> 
+                                </div>
+                                <input type="text" name="no" value="" size="32"  placeholder="108/24 Moo 19"/>  
+                                <div align="left">  
+                                <label for="sub_district"> Sub-district : </label>                 
+                                </div> 
+                                <input type="text" name="sub_district" value="" size="32" placeholder="Jhumphol"/> 
+                                <div align="left">
+                                <label for="province_name"> Province : </label> 
+                                </div>
+                                <input type="text" name="province_name" value="" size="32" placeholder="Nong Khai"/>     
+                                                                                           
+                            </div>
+                          </div>
+                          <div class="w3-third">
+                            <div >   
                                 <div align="left">
                                 <label for="place_name"> Place/Village : </label> 
                                 </div>
@@ -190,15 +207,16 @@
                                  </div>
                                 <input type="text" name="district" value="" size="32" placeholder="Phonphisai"/>
                                 <div align="left">
-                                <label for="province_name"> Province : </label> 
+                                <label for="zip_code"> Zip Code/Post : </label> 
                                 </div>
-                                <input type="text" name="province_name" value="" size="32" placeholder="Nong Khai"/>
+                                <input type="text" name="zip_code" value="" size="32" placeholder="43120"/> 
+  
                             </div>
-                          </div>
+                          </div>          
                           <div class="w3-third">
-                            <div >                              
+                            <div >                                                 
                                 <div align="left">
-                                <label for="road_name"> Road/Street : </label>                      	
+                                <label for="road_name"> Road/Street : </label>                    
                                 </div> 
                                 <input type="text" name="road_name" value="" size="32" placeholder="N/A"/>
                                 <div align="left">
@@ -208,19 +226,7 @@
                                 <div align="left">
                                 <label for="country_id"> Country : </label> 
                                 </div>
-                                <input type="text" name="country_id" value="" size="32" placeholder="Thailand"/>   
-                            </div>
-                          </div>          
-                          <div class="w3-third">
-                            <div >                                                 
-                                <div align="left">  
-                                <label for="sub_district"> Sub-district : </label>                    
-                                </div> 
-                                <input type="text" name="sub_district" value="" size="32" placeholder="Jhumphol"/>
-                                <div align="left">
-                                <label for="zip_code"> Zip Code/Post : </label> 
-                                </div>
-                                <input type="text" name="zip_code" value="" size="32" placeholder="43120"/>     
+                                <input type="text" name="country_id" value="" size="32" placeholder="Thailand"/>                                     
                             </div>
                           </div>
                         </div>

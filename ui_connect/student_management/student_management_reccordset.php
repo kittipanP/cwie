@@ -66,9 +66,9 @@ if (isset($_SERVER['QUERY_STRING'])) {
 							   GetSQLValueString($_POST['uni_id'], "int"),
 							   GetSQLValueString($_POST['collage_id'], "int"));
 	
-	$insertSQL_sct = sprintf("INSERT INTO student_contact_details (contact_id, s_id, contact_no, email_adress) VALUES (%s, %s, %s, %s)",
+	$insertSQL_sct = sprintf("INSERT INTO student_contact_details (contact_id, scd_s_id, contact_no, email_adress) VALUES (%s, %s, %s, %s)",
 							   GetSQLValueString($_POST['contact_id'], "int"),
-							   GetSQLValueString($_POST['s_id'], "int"),
+							   GetSQLValueString($_POST['scd_s_id'], "int"),
 							   GetSQLValueString($_POST['contact_no'], "text"),
 							   GetSQLValueString($_POST['email_adress'], "text"));
 		
@@ -88,9 +88,10 @@ if (isset($_SERVER['QUERY_STRING'])) {
 							   GetSQLValueString($_POST['emc_contact'], "text"),
 							   GetSQLValueString($_POST['contact_id'], "int"));
 	
-	$insertSQL_sad = sprintf("INSERT INTO student_address (address_Id, s_id, place_name, road_name, sub_district, district, city, zip_code, province_name, country_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+	$insertSQL_sad = sprintf("INSERT INTO student_address (address_Id, s_id, no, place_name, road_name, sub_district, district, city, zip_code, province_name, country_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 							   GetSQLValueString($_POST['address_Id'], "int"),
 							   GetSQLValueString($_POST['s_id'], "int"),
+							   GetSQLValueString($_POST['no'], "text"),
 							   GetSQLValueString($_POST['place_name'], "text"),
 							   GetSQLValueString($_POST['road_name'], "text"),
 							   GetSQLValueString($_POST['sub_district'], "text"),
@@ -155,7 +156,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		  mysqli_select_db($MyConnect, $database_MyConnect);
 		  $Result1_stu = mysqli_query($MyConnect, $insertSQL_stu) or die(mysqli_error($MyConnect));
 		  $Result1_edt = mysqli_query($MyConnect, $insertSQL_edt) or die(mysqli_error());
-		  $Result1_sct = mysqli_query($MyConnect, $insertSQL_sct) or die(mysqli_error());
+		  $Result1_sct = mysqli_query($MyConnect, $insertSQL_sct) or die(mysqli_error($MyConnect));
 		  $Result1_app = mysqli_query($MyConnect, $insertSQL_app) or die(mysqli_error());
 		  $Result1_sec = mysqli_query($MyConnect, $insertSQL_sec) or die(mysqli_error());
 		  $Result1_sad = mysqli_query($MyConnect, $insertSQL_sad) or die(mysqli_error());	
@@ -422,6 +423,9 @@ $queryString_countrySet = sprintf("&totalRows_countrySet=%d%s", $totalRows_count
   $Result1 = mysqli_query($insertSQL, $MyConnect) or die(mysqli_error());
 
 }*/	
+
+
+
 ?>
 
 
