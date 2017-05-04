@@ -175,11 +175,12 @@ $row_Recordset1_sad = mysqli_fetch_assoc($Recordset1_sad);
 $totalRows_Recordset1_sad = mysqli_num_rows($Recordset1_sad);
 
 
-$thiscountry = $row_Recordset1_sad['country_id'];
+
 //mysqli_select_db($MyConnect, $database_MyConnect);
 $query_country_rec = "SELECT * FROM country_list 
 LEFT JOIN student_address ON student_address.s_id=$thisstu
-LEFT JOIN student_info ON student_info.s_id=$thisstu";
+LEFT JOIN student_info ON student_info.s_id=$thisstu
+WHERE country_list.country_id=student_address.country_id";
 $country_rec = mysqli_query($MyConnect, $query_country_rec) or die(mysqli_error($MyConnect));
 $row_country_rec = mysqli_fetch_assoc($country_rec);
 $totalRows_country_rec = mysqli_num_rows($country_rec);
@@ -192,6 +193,38 @@ $query_Recordset1_sre = sprintf("SELECT * FROM student_relationship WHERE s_id=$
 $Recordset1_sre = mysqli_query($MyConnect, $query_Recordset1_sre) or die(mysqli_error($MyConnect));
 $row_Recordset1_sre = mysqli_fetch_assoc($Recordset1_sre);
 $totalRows_Recordset1_sre = mysqli_num_rows($Recordset1_sre); 
+
+$query_Recordset1_edu = sprintf("SELECT * FROM education_info 
+  LEFT JOIN major_info ON major_info.major_id = education_info.major_id
+  LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+  LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
+  LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id
+  WHERE education_info.s_id=$thisstu", GetSQLValueString($colname_Recordset1_stu, "int"));
+$Recordset1_edu = mysqli_query($MyConnect, $query_Recordset1_edu) or die(mysqli_error());
+$row_Recordset1_edu = mysqli_fetch_assoc($Recordset1_edu);
+$totalRows_Recordset1_edu = mysqli_num_rows($Recordset1_edu);
+
+$query_major_info_rec = "SELECT * FROM major_info 
+LEFT JOIN education_info ON education_info.s_id=$thisstu
+LEFT JOIN student_info ON student_info.s_id=$thisstu";
+$major_info_rec = mysqli_query($MyConnect, $query_major_info_rec) or die(mysqli_error($MyConnect));
+$row_major_info_rec = mysqli_fetch_assoc($major_info_rec);
+$totalRows_major_info_rec = mysqli_num_rows($major_info_rec);
+$query_major_infoSet = "SELECT * FROM major_info";
+$major_infoSet = mysqli_query($MyConnect, $query_major_infoSet) or die(mysqli_error());
+$row_major_infoSet = mysqli_fetch_assoc($major_infoSet);
+$totalRows_major_infoSet = mysqli_num_rows($major_infoSet); 
+
+$query_degree_info_rec = "SELECT * FROM degree_info 
+LEFT JOIN education_info ON education_info.s_id=$thisstu
+LEFT JOIN student_info ON student_info.s_id=$thisstu";
+$degree_info_rec = mysqli_query($MyConnect, $query_degree_info_rec) or die(mysqli_error($MyConnect));
+$row_degree_info_rec = mysqli_fetch_assoc($degree_info_rec);
+$totalRows_degree_info_rec = mysqli_num_rows($degree_info_rec);
+$query_degree_infoSet = "SELECT * FROM degree_info";
+$degree_infoSet = mysqli_query($MyConnect, $query_degree_infoSet) or die(mysqli_error());
+$row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet);
+$totalRows_degree_infoSet = mysqli_num_rows($degree_infoSet); 
 
 
 ?>

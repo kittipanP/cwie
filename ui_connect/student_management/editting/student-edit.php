@@ -410,20 +410,35 @@
                          <div align="left">
                          <label for="degree_id"> Degree : </label>
                        </div>
-                         <select name="degree_id" id="degreeSelect" style="width: 100%;">
+                                <?php if($row_Recordset1_edu['degree_id']==null){?>
+                                <select name="degree_id" style="width: 100%;">
+                                    <option  name="degree_id" value="">Plese Select Your Country!</option>
+                                  <?php do {  ?>
+                                    <option  name="degree_id" value="<?php echo htmlentities($row_degree_infoSet['degree_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_degree_infoSet['degree_name']?></option>
                                     <?php
-                        do {  
-                        ?>
-                                    <option value="<?php echo $row_degreeSet['degree_id']?>"><?php echo $row_degreeSet['degree_name']?></option>
+                                        } while ($row_degree_infoSet = mysqli_fetch_assoc($countrySet));
+                                          $rows = mysqli_num_rows($countrySet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($countrySet, 0);
+                                          $row_degree_infoSet = mysqli_fetch_assoc($countrySet);
+                                          }
+                                    ?>
+                                </select> 
+                                <?php }else{ ?>
+                                <select name="degree_id" style="width: 100%;">
+                                    <option  name="degree_id" value="<?php echo htmlentities($row_country_rec['country_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_country_rec['country_name']?></option>
+                                  <?php do {  ?>
+                                    <option  name="degree_id" value="<?php echo htmlentities($row_degree_infoSet['degree_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_degree_infoSet['degree_name']?></option>
                                     <?php
-                        } while ($row_degreeSet = mysqli_fetch_assoc($degreeSet));
-                          $rows = mysqli_num_rows($degreeSet);
-                          if($rows > 0) {
-                              mysqli_data_seek($degreeSet, 0);
-                              $row_degreeSet = mysqli_fetch_assoc($degreeSet);
-                          }
-                        ?>
-                        </select>
+                                        } while ($row_degree_infoSet = mysqli_fetch_assoc($countrySet));
+                                          $rows = mysqli_num_rows($countrySet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($countrySet, 0);
+                                          $row_degree_infoSet = mysqli_fetch_assoc($countrySet);
+                                          }
+                                    ?>
+                                </select> 
+                                <?php }; ?>
                          <!--<input type="text" name="degree_id" value="" size="32" />-->
                          
                         <div align="left">
