@@ -268,10 +268,36 @@
                                 <div align="left">
                                 <label for="country_id"> Country : </label> 
                                 </div>
-                                <input type="text" name="country_id" value="<?php echo htmlentities($row_Recordset1_sad['country_id'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
-
-                                <?php echo $row_Recordset1_sad['sad_s_id']; ?>
-
+                                <?php if($row_Recordset1_sad['country_id']==null){?>
+                                <select name="country_id" style="width: 100%;">
+                                    <option  name="country_id" value="">Plese Select Your Country!</option>
+                                  <?php do {  ?>
+                                    <option  name="country_id" value="<?php echo htmlentities($row_countrySet['country_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_countrySet['country_name']?></option>
+                                    <?php
+                                        } while ($row_countrySet = mysqli_fetch_assoc($countrySet));
+                                          $rows = mysqli_num_rows($countrySet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($countrySet, 0);
+                                          $row_countrySet = mysqli_fetch_assoc($countrySet);
+                                          }
+                                    ?>
+                                </select> 
+                                <?php }else{ ?>
+                                <select name="country_id" style="width: 100%;">
+                                    <option  name="country_id" value="<?php echo htmlentities($row_country_rec['country_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_country_rec['country_name']?></option>
+                                  <?php do {  ?>
+                                    <option  name="country_id" value="<?php echo htmlentities($row_countrySet['country_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_countrySet['country_name']?></option>
+                                    <?php
+                                        } while ($row_countrySet = mysqli_fetch_assoc($countrySet));
+                                          $rows = mysqli_num_rows($countrySet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($countrySet, 0);
+                                          $row_countrySet = mysqli_fetch_assoc($countrySet);
+                                          }
+                                    ?>
+                                </select> 
+                                <?php }; ?>
+                                <!-- <input type="text" name="country_id" value="<?php echo htmlentities($row_Recordset1_sad['country_id'], ENT_COMPAT, 'utf-8'); ?>" size="32"/> -->
                             </div>
                           </div>
                         </div>
@@ -299,15 +325,15 @@
                               <div class="w3-third">
                                 <div>   
                                     <input type="hidden" name="relation_id" value="" size="32" />
-                                    <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />                                      
+                                    <input type="hidden" name="s_id" value="" size="32" />                                      
                                     <div align="left">
                                     <label for="relation_fname"> First Name : </label>
                                     </div>
-                                    <input type="text" name="relation_fname" value="" size="32" placeholder="Bongkoch"/>
+                                    <input type="text" name="relation_fname" value="<?php echo htmlentities($row_Recordset1_sre['relation_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
                                     <div align="left"> 
                                     <label for="relation_occupation"> Occupation : </label>                     
                                     </div>
-                                    <input type="text" name="relation_occupation" value="" size="32" placeholder="Officer"/>
+                                    <input type="text" name="relation_occupation" value="<?php echo htmlentities($row_Recordset1_sre['relation_occupation'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
 
                                 </div>
                               </div>
@@ -316,11 +342,11 @@
                                     <div align="left"> 
                                     <label for="relation_lname"> Last Name : </label>                       
                                     </div>    
-                                    <input type="text" name="relation_lname" value="" size="32" placeholder="Prasertsang"/> 
+                                    <input type="text" name="relation_lname" value="<?php echo htmlentities($row_Recordset1_sre['relation_lname'], ENT_COMPAT, 'utf-8'); ?>" size="32"/> 
                                     <div align="left"> 
                                     <label for="relation_contact"> Contact : </label>                     
                                     </div>
-                                    <input type="text" name="relation_contact" value="" size="32" placeholder="08 6223 86XX "/> 
+                                    <input type="text" name="relation_contact" value="<?php echo htmlentities($row_Recordset1_sre['relation_contact'], ENT_COMPAT, 'utf-8'); ?>" size="32"/> 
                                 </div>
                               </div>          
                               <div class="w3-third">
@@ -328,7 +354,7 @@
                                     <div align="left"> 
                                     <label for="relation_type"> Relation Type : </label>                     
                                     </div> 
-                                    <input type="text" name="relation_type" value="" size="32" placeholder="Mother"/>     
+                                    <input type="text" name="relation_type" value="<?php echo htmlentities($row_Recordset1_sre['relation_type'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>    
                                 </div>
                               </div>
                             </div>      
