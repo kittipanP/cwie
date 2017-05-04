@@ -28,9 +28,9 @@
                               <td><?php echo $row_studentSet_all['major_name']; ?></td>
                               <td><?php echo $row_studentSet_all['uni_name']; ?>
                                     <?php echo $row_studentSet_all['collage_name']; ?></td>
-                              <td><a href="editting/student-edit.php?s_id=<?php echo $row_studentSet_all['s_id']; ?>"><i class="fa fa-pencil w3-margin-right"></i></a></td> 
-                              <!-- <td><a onclick="document.getElementById('stu-edit').style.display='block'" ><i class="fa fa-pencil w3-margin-right"></i></a></td> -->
-                              <td><a href="student_delete.php?s_id=<?php echo $row_studentSet_all['s_id']; ?>"><i class="fa fa-trash w3-margin-right"></i></a></td>
+                              <td><a href="editting/student-edit.php?s_id=<?php echo $row_studentSet_all['s_id']; ?>"><i class="fa fa-pencil w3-margin-right"></i></a></td>  
+                             <!--<td><a onclick="document.getElementById('stu-edit').style.display='block'" ><i class="fa fa-pencil w3-margin-right"></i></a></td>  -->
+                              <td><a href="student_delete.php?s_id=<?php echo $row_studentSet_all['s_id']; ?>"><i class="fa fa-trash w3-margin-right"></i></a></td> 
                             </tr> 
                         <?php } while ($row_studentSet_all = mysqli_fetch_assoc($studentSet_all)); ?>               
                     </table>

@@ -173,7 +173,7 @@
                       </dt>
                       <dd class="accordion-content accordionItem is-collapsed" id="accordion1" aria-hidden="true">
                             <p></p>
-                        <div class="w3-row-padding w3-center w3-margin-top">
+                  <div class="w3-row-padding w3-center w3-margin-top">
                   <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Emergency Cantact Data</p></div>
                           <div class="w3-third">
                             <div>   
@@ -210,7 +210,7 @@
                                 <div align="left"> 
                                 <label for="emc_contact"> Contact No : </label>                     
                                 </div>
-                                <input type="text" name="emc_contact" value="<?php echo htmlentities($row_Recordset1_sec['emc_contact'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Contact No."/>      
+                                <input type="text" name="emc_contact" value="<?php echo htmlentities($row_Recordset1_sec['emc_contact'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Contact No."/>     
         
                             </div>
                           </div>
@@ -222,52 +222,60 @@
                           <div class="w3-third">
                             <div>
                                 <input type="hidden" name="address_Id" value="" size="32" />
-                                <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />         
+                                <input type="hidden" name="sad_s_id" value="" size="32" /> 
                                 <div align="left">
-                                <label for="place_name"> Place/Village : </label> 
+                                <label for="no"> Number : </label> 
                                 </div>
-                                <input type="text" name="place_name" value="" size="32"  placeholder="Sermsook"/>
-                                <div align="left">
-                                <label for="district"> District : </label> 
-                                 </div>
-                                <input type="text" name="district" value="" size="32" placeholder="Phonphisai"/>
+                                <input type="text" name="no" value="<?php echo htmlentities($row_Recordset1_sad['no'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Relationship"/>
+                                <div align="left">  
+                                <label for="sub_district"> Sub-district : </label>                 
+                                </div> 
+                                <input type="text" name="sub_district" value="<?php echo htmlentities($row_Recordset1_sad['sub_district'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Relationship"/>
                                 <div align="left">
                                 <label for="province_name"> Province : </label> 
                                 </div>
-                                <input type="text" name="province_name" value="" size="32" placeholder="Nong Khai"/>
+                                <input type="text" name="province_name" value="<?php echo htmlentities($row_Recordset1_sad['province_name'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Relationship"/>     
+                                                                                           
                             </div>
                           </div>
                           <div class="w3-third">
-                            <div >                              
+                            <div >   
                                 <div align="left">
-                                <label for="road_name"> Road/Street : </label>                        
-                                </div> 
-                                <input type="text" name="road_name" value="" size="32" placeholder="N/A"/>
-                                <div align="left">
-                                <label for="city"> City : </label> 
+                                <label for="place_name"> Place/Village : </label> 
                                 </div>
-                                <input type="text" name="city" value="" size="32" placeholder="N/A"/> 
+                                <input type="text" name="place_name" value="<?php echo htmlentities($row_Recordset1_sad['place_name'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
                                 <div align="left">
-                                <label for="country_id"> Country : </label> 
+                                <label for="district"> District : </label> 
+                                 </div>
+                                <input type="text" name="district" value="<?php echo htmlentities($row_Recordset1_sad['district'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                <div align="left">
+                                <label for="zip_code"> Zip Code/Post : </label> 
                                 </div>
-                                <input type="text" name="country_id" value="" size="32" placeholder="Thailand"/>   
+                                <input type="text" name="zip_code" value="<?php echo htmlentities($row_Recordset1_sad['zip_code'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+  
                             </div>
                           </div>          
                           <div class="w3-third">
                             <div >                                                 
-                                <div align="left">  
-                                <label for="sub_district"> Sub-district : </label>                    
-                                </div> 
-                                <input type="text" name="sub_district" value="" size="32" placeholder="Jhumphol"/>
                                 <div align="left">
-                                <label for="zip_code"> Zip Code/Post : </label> 
+                                <label for="road_name"> Road/Street : </label>                    
+                                </div> 
+                                <input type="text" name="road_name" value="<?php echo htmlentities($row_Recordset1_sad['road_name'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                <div align="left">
+                                <label for="city"> City : </label> 
                                 </div>
-                                <input type="text" name="zip_code" value="" size="32" placeholder="43120"/>     
+                                <input type="text" name="city" value="<?php echo htmlentities($row_Recordset1_sad['city'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                <div align="left">
+                                <label for="country_id"> Country : </label> 
+                                </div>
+                                <input type="text" name="country_id" value="<?php echo htmlentities($row_Recordset1_sad['country_id'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+
+                                <?php echo $row_Recordset1_sad['sad_s_id']; ?>
+
                             </div>
                           </div>
                         </div>
                         
-
 
 
 
@@ -808,6 +816,7 @@ test-->
                     <input type="hidden" name="MM_update" value="form-update" />
                     <input type="hidden" name="scd_s_id" value="<?php echo $row_Recordset1_scd['scd_s_id'];?>" /> <!--do not need-->
                     <input type="hidden" name="s_id" value="<?php echo $row_Recordset1_stu['s_id'];?>" />
+                    
                     
 
             </form>    

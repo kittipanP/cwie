@@ -40,6 +40,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $colname_Recordset1_stu = "-1";
   if (isset($_GET['s_id'])) {
   $prm = $_GET['s_id'];
+  $prmii = $_GET['s_id'];
   }
 
   $updateSQL_stu = sprintf("UPDATE student_info AS stu
@@ -78,12 +79,29 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
                   GetSQLValueString($_POST['emc_id'], "int"),
                   GetSQLValueString($_POST['contact_id'], "int"));
 
+    $updateSQL_sad = sprintf("UPDATE student_address 
+      INNER JOIN student_info ON student_info.s_id=student_address.sad_s_id
+      SET no=%s, sub_district=%s, province_name=%s, place_name=%s, district=%s, zip_code=%s, road_name=%s, city=%s, country_id=%s
+      WHERE student_address.sad_s_id=$prm",
+                 GetSQLValueString($_POST['no'], "text"),
+                 GetSQLValueString($_POST['sub_district'], "text"),
+                 GetSQLValueString($_POST['province_name'], "text"),
+                 GetSQLValueString($_POST['place_name'], "text"),
+                 GetSQLValueString($_POST['district'], "text"),
+                 GetSQLValueString($_POST['zip_code'], "int"),
+                 GetSQLValueString($_POST['road_name'], "text"),
+                 GetSQLValueString($_POST['city'], "text"),
+                 GetSQLValueString($_POST['country_id'], "int"),
+                 GetSQLValueString($_POST['address_Id'], "int"),
+                 GetSQLValueString($_POST['sad_s_id'], "int")); 
+
 
 
   mysqli_select_db($MyConnect, $database_MyConnect);
   $Result1_stu = mysqli_query($MyConnect, $updateSQL_stu) or die(mysqli_error($MyConnect));
   $Result1_scd = mysqli_query($MyConnect, $updateSQL_scd) or die(mysqli_error($MyConnect));
   $Result1_sec = mysqli_query($MyConnect, $updateSQL_sec) or die(mysql_error());
+  $Result1_sad = mysqli_query($MyConnect, $updateSQL_sad) or die(mysql_error());
 
   $updateGoTo = "../Student_Management.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -137,6 +155,25 @@ $query_Recordset1_sec = sprintf("SELECT * FROM student_emergency_contact WHERE c
 $Recordset1_sec = mysqli_query($MyConnect, $query_Recordset1_sec) or die(mysqli_error($MyConnect));
 $row_Recordset1_sec = mysqli_fetch_assoc($Recordset1_sec);
 $totalRows_Recordset1_sec = mysqli_num_rows($Recordset1_sec);
+
+$thisstu = $row_Recordset1_stu['s_id'];
+$query_Recordset1_sad = sprintf("SELECT * FROM student_address WHERE sad_s_id=$thisstu", GetSQLValueString($colname_Recordset1_stu, "int"));
+$Recordset1_sad = mysqli_query($MyConnect, $query_Recordset1_sad) or die(mysqli_error($MyConnect));
+$row_Recordset1_sad = mysqli_fetch_assoc($Recordset1_sad);
+$totalRows_Recordset1_sad = mysqli_num_rows($Recordset1_sad);
+
+$thiscountry = $row_Recordset1_sad['country_id'];
+//mysqli_select_db($MyConnect, $database_MyConnect);
+$query_country_rec = "SELECT * FROM country_list WHERE country_id=$thiscountry";
+$country_rec = mysqli_query($MyConnect, $query_country_rec) or die(mysqli_error());
+$row_country_rec = mysqli_fetch_assoc($country_rec);
+$totalRows_country_rec = mysqli_num_rows($country_rec);
+$query_countrySet = "SELECT * FROM country_list";
+$countrySet = mysqli_query($MyConnect, $query_countrySet) or die(mysqli_error());
+$row_countrySet = mysqli_fetch_assoc($countrySet);
+$totalRows_countrySet = mysqli_num_rows($countrySet);
+
+
 ?>
 
 

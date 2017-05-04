@@ -226,7 +226,18 @@
                                 <div align="left">
                                 <label for="country_id"> Country : </label> 
                                 </div>
-                                <input type="text" name="country_id" value="" size="32" placeholder="Thailand"/>                                     
+                                <select name="country_id" style="width: 100%;">
+                                  <?php do {  ?>
+                                    <option  name="country_id" value="<?php echo $row_countrySet['country_id']?>"><?php echo $row_countrySet['country_name']?></option>
+                                    <?php
+                                        } while ($row_countrySet = mysqli_fetch_assoc($countrySet));
+                                          $rows = mysqli_num_rows($countrySet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($countrySet, 0);
+                                          $row_countrySet = mysqli_fetch_assoc($countrySet);
+                                          }
+                                    ?>
+                                </select>                                    
                             </div>
                           </div>
                         </div>

@@ -232,18 +232,14 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		$queryString_studentSet = sprintf("&totalRows_studentSet=%d%s", $totalRows_studentSet, $queryString_studentSet);
 
 		
-$maxRows_countrySet = 10;
-$pageNum_countrySet = 0;
-if (isset($_GET['pageNum_countrySet'])) {
-  $pageNum_countrySet = $_GET['pageNum_countrySet'];
-}
-$startRow_countrySet = $pageNum_countrySet * $maxRows_countrySet;
+
 
 mysqli_select_db($MyConnect, $database_MyConnect);
 $query_countrySet = "SELECT * FROM country_list";
-$query_limit_countrySet = sprintf("%s LIMIT %d, %d", $query_countrySet, $startRow_countrySet, $maxRows_countrySet);
-$countrySet = mysqli_query($MyConnect, $query_limit_countrySet) or die(mysqli_error());
+$countrySet = mysqli_query($MyConnect, $query_countrySet) or die(mysqli_error());
 $row_countrySet = mysqli_fetch_assoc($countrySet);
+$totalRows_countrySet = mysqli_num_rows($countrySet);
+
 
 /*if (isset($_GET['totalRows_countrySet'])) {
   $totalRows_countrySet = $_GET['totalRows_countrySet'];
