@@ -416,25 +416,25 @@
                                   <?php do {  ?>
                                     <option  name="degree_id" value="<?php echo htmlentities($row_degree_infoSet['degree_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_degree_infoSet['degree_name']?></option>
                                     <?php
-                                        } while ($row_degree_infoSet = mysqli_fetch_assoc($countrySet));
-                                          $rows = mysqli_num_rows($countrySet);
+                                        } while ($row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet));
+                                          $rows = mysqli_num_rows($degree_infoSet);
                                           if($rows > 0) {
-                                          mysqli_data_seek($countrySet, 0);
-                                          $row_degree_infoSet = mysqli_fetch_assoc($countrySet);
+                                          mysqli_data_seek($degree_infoSet, 0);
+                                          $row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet);
                                           }
                                     ?>
                                 </select> 
                                 <?php }else{ ?>
                                 <select name="degree_id" style="width: 100%;">
-                                    <option  name="degree_id" value="<?php echo htmlentities($row_country_rec['country_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_country_rec['country_name']?></option>
+                                    <option  name="degree_id" value="<?php echo htmlentities($row_degree_info_rec['degree_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_degree_info_rec['degree_name']?></option>
                                   <?php do {  ?>
                                     <option  name="degree_id" value="<?php echo htmlentities($row_degree_infoSet['degree_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_degree_infoSet['degree_name']?></option>
                                     <?php
-                                        } while ($row_degree_infoSet = mysqli_fetch_assoc($countrySet));
-                                          $rows = mysqli_num_rows($countrySet);
+                                        } while ($row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet));
+                                          $rows = mysqli_num_rows($degree_infoSet);
                                           if($rows > 0) {
-                                          mysqli_data_seek($countrySet, 0);
-                                          $row_degree_infoSet = mysqli_fetch_assoc($countrySet);
+                                          mysqli_data_seek($degree_infoSet, 0);
+                                          $row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet);
                                           }
                                     ?>
                                 </select> 
@@ -444,20 +444,36 @@
                         <div align="left">
                         <label for="major_id"> Major : </label>
                         </div>
-                        <select name="major_id" id="majorSelect" style="width: 100%;">
+                                <?php if($row_Recordset1_edu['major_id']==null){?>
+                                <select name="major_id" style="width: 100%;">
+                                    <option  name="major_id" value="">Plese Select Your Country!</option>
+                                  <?php do {  ?>
+                                    <option  name="major_id" value="<?php echo htmlentities($row_majorSet['major_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_majorSet['major_name']?></option>
                                     <?php
-                        do {  
-                        ?>
-                                    <option value="<?php echo $row_majorSet['major_id']?>"><?php echo $row_majorSet['major_name']?></option>
+                                        } while ($row_majorSet = mysqli_fetch_assoc($majorSet));
+                                          $rows = mysqli_num_rows($majorSet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($majorSet, 0);
+                                          $row_majorSet = mysqli_fetch_assoc($majorSet);
+                                          }
+                                    ?>
+                                </select> 
+                                <?php }else{ ?>
+                                <select name="major_id" style="width: 100%;">
+                                    <option  name="major_id" value="<?php echo htmlentities($row_major_rec['major_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_major_rec['major_name']?></option>
+                                  <?php do {  ?>
+                                    <option  name="major_id" value="<?php echo htmlentities($row_majorSet['major_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_majorSet['major_name']?></option>
                                     <?php
-                        } while ($row_majorSet = mysqli_fetch_assoc($majorSet));
-                          $rows = mysqli_num_rows($majorSet);
-                          if($rows > 0) {
-                              mysqli_data_seek($majorSet, 0);
-                              $row_majorSet = mysqli_fetch_assoc($majorSet);
-                          }
-                        ?>
-                        </select>
+                                        } while ($row_majorSet = mysqli_fetch_assoc($majorSet));
+                                          $rows = mysqli_num_rows($majorSet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($majorSet, 0);
+                                          $row_majorSet = mysqli_fetch_assoc($majorSet);
+                                          }
+                                    ?>
+                                </select> 
+                                <?php }; ?>
+
                         <!--<input type="text" name="major_id" value="" size="32" />-->
                         
                       <div align="left">  
