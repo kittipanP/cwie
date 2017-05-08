@@ -229,8 +229,54 @@ $majorSet = mysqli_query($MyConnect, $query_majorSet) or die(mysqli_error());
 $row_majorSet = mysqli_fetch_assoc($majorSet);
 $totalRows_majorSet = mysqli_num_rows($majorSet); 
 
+$query_institute_rec = "SELECT * FROM intitute_type 
+LEFT JOIN education_info ON education_info.s_id=$thisstu
+LEFT JOIN student_info ON student_info.s_id=$thisstu
+WHERE intitute_type.intitute_id=education_info.intitute_id";
+$institute_rec = mysqli_query($MyConnect, $query_institute_rec) or die(mysqli_error($MyConnect));
+$row_institute_rec = mysqli_fetch_assoc($institute_rec);
+$totalRows_institute_rec = mysqli_num_rows($institute_rec);
+$query_instituteSet = "SELECT * FROM intitute_type";
+$instituteSet = mysqli_query($MyConnect, $query_instituteSet) or die(mysqli_error());
+$row_instituteSet = mysqli_fetch_assoc($instituteSet);
+$totalRows_instituteSet = mysqli_num_rows($instituteSet); 
 
+$query_uni_rec = "SELECT * FROM university_info 
+LEFT JOIN education_info ON education_info.s_id=$thisstu
+LEFT JOIN student_info ON student_info.s_id=0$thisstu
+WHERE university_info.uni_id=education_info.uni_id";
+$uni_rec = mysqli_query($MyConnect, $query_uni_rec) or die(mysqli_error($MyConnect));
+$row_uni_rec = mysqli_fetch_assoc($uni_rec);
+$totalRows_uni_rec = mysqli_num_rows($uni_rec);
+mysqli_select_db($MyConnect, $database_MyConnect);
+$query_universitySet = "SELECT * FROM university_info";
+$universitySet = mysqli_query($MyConnect, $query_universitySet) or die(mysqli_error());
+$row_universitySet = mysqli_fetch_assoc($universitySet);
+$totalRows_universitySet = mysqli_num_rows($universitySet);
+
+$query_col_rec = "SELECT * FROM collage_info 
+LEFT JOIN education_info ON education_info.s_id=$thisstu
+LEFT JOIN student_info ON student_info.s_id=$thisstu
+WHERE collage_info.collage_id=education_info.collage_id";
+$col_rec = mysqli_query($MyConnect, $query_col_rec) or die(mysqli_error($MyConnect));
+$row_col_rec = mysqli_fetch_assoc($col_rec);
+$totalRows_col_rec = mysqli_num_rows($col_rec);
+mysqli_select_db($MyConnect, $database_MyConnect);
+$query_collageSet = "SELECT * FROM collage_info";
+$collageSet = mysqli_query($MyConnect, $query_collageSet) or die(mysqli_error());
+$row_collageSet = mysqli_fetch_assoc($collageSet);
+$totalRows_collageSet = mysqli_num_rows($collageSet);
+
+/*
+mysqli_select_db($MyConnect, $database_MyConnect);
+$query_instituteSet = "SELECT * FROM intitute_type";
+$instituteSet = mysqli_query($MyConnect, $query_instituteSet) or die(mysqli_error());
+$row_instituteSet = mysqli_fetch_assoc($instituteSet);
+$totalRows_instituteSet = mysqli_num_rows($instituteSet); */
 
 ?>
+
+
+
 
 

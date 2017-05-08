@@ -1,4 +1,5 @@
 <?php require_once('../../../Connections/MyConnect.php'); ?>
+
 <?php include 'student-editController.php' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,6 +32,8 @@
 </style>
 
 <body>
+
+
 <form action="<?php echo $editFormAction; ?>" method="post" name="form-update" id="msform" enctype="multipart/form-data">
                     
               <!-- progressbar -->
@@ -491,21 +494,37 @@
                         <div align="left">  
                         <label for="intitute_id"> Institute : </label>                      
                         </div>
-                        <select name="intitute_id" id="insSelect" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; " >
-                            <option value="">Select Institute Type</option>
-                          <?php
-                    do {  
-                    ?>
-                          <option value="<?php echo $row_instituteSet['intitute_id']?>"><?php echo $row_instituteSet['intitute_name']?></option>
-                          <?php
-                    } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
-                      $rows = mysqli_num_rows($instituteSet);
-                      if($rows > 0) {
-                          mysqli_data_seek($instituteSet, 0);
-                          $row_instituteSet = mysqli_fetch_assoc($instituteSet);
-                      }
-                    ?>
-                        </select>
+                        <?php if($row_Recordset1_edu['intitute_id']==null){?>
+                          <select name="intitute_id" id="insSelect" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; " >
+                              <option value="">Select Institute Type</option>
+                              <?php
+                              do {  
+                              ?>
+                              <option value="<?php echo $row_instituteSet['intitute_id']?>"><?php echo $row_instituteSet['intitute_name']?></option>
+                              <?php
+                              } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
+                              $rows = mysqli_num_rows($instituteSet);
+                              if($rows > 0) {
+                                mysqli_data_seek($instituteSet, 0);
+                              $row_instituteSet = mysqli_fetch_assoc($instituteSet);
+                              }
+                              ?>
+                          </select>
+                        <?php }else{ ?>
+                                <select name="intitute_id" id="insSelect" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; ">
+                                    <option  name="intitute_id" value="<?php echo htmlentities($row_institute_rec['intitute_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_institute_rec['intitute_name']?></option>
+                                  <?php do {  ?>
+                                    <option  name="intitute_id" value="<?php echo htmlentities($row_instituteSet['intitute_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_instituteSet['intitute_name']?></option>
+                                    <?php
+                                        } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
+                                          $rows = mysqli_num_rows($instituteSet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($instituteSet, 0);
+                                          $row_instituteSet = mysqli_fetch_assoc($instituteSet);
+                                          }
+                                    ?>
+                                </select> 
+                        <?php }; ?>
                         <!--<input type="text" name="intitute_id" value="" size="32" />-->
                        
                         <div align="left">                        
@@ -523,17 +542,41 @@
                         <div align="left">   
                         <label for="uni_id"> University : </label>                    
                         </div>
-                        <select name="uni_id" id="uniSelect" style="width: 100%;" >                         
-              <option value="" >Select Institute Type First</option>
-            </select>
+                        <?php if($row_Recordset1_edu['uni_id']==null){?>
+                        <select name="uni_id" id="uniSelect" style="width: 100%;" >     
+                          <option value="">Select Institute Type First</option>
+                        </select>
+                        <?php }else{ ?>
+                        <select name="uni_id" id="uniSelect" style="width: 100%;" >
+
+                          <option  name="uni_id" value="<?php echo htmlentities($row_uni_rec['uni_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_uni_rec['uni_name']?></option>
+                          <?php
+                            do {  
+                            ?>
+                            <option value="<?php echo htmlentities($row_universitySet['uni_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_universitySet['uni_name']?></option>
+                            <?php
+                            } while ($row_universitySet = mysqli_fetch_assoc($universitySet));
+                              $rows = mysqli_num_rows($universitySet);
+                              if($rows > 0) {
+                                  mysqli_data_seek($universitySet, 0);
+                                  $row_universitySet = mysqli_fetch_assoc($universitySet);
+                              }
+                          ?>
+
+
+                        </select>
+                        <?php }; ?>
+
+
                         <!--<input type="text" name="uni_id" value="" size="32" />-->
                         
                         <div align="left">  
-                        <label for="collage_id"> Collage : </label>                     
+                        <label for="collage_id"> Collage : </label>
                         </div>
                         <select name="collage_id" id="collageSelect" style="width: 100%;">
                           <option value="">Select Institute Type First</option>
                         </select>
+
                         <p id='eiei'></p>
                         <!--<input type="text" name="collage_id" value="" size="32" />-->
                         
@@ -876,7 +919,17 @@ test-->
                     
                     
 
-            </form>    
+            </form> 
+<?php include "get_university.php";?>
+
+
+
+
+            <?php 
+              $thisMoota = $thisstu;
+              echo "<meta http-equiv='refresh' content='url=get_university.php?this-stu=".$thisMoota."' />";
+            ?>
+  
 <p>&nbsp;</p>
 
     <!-- for muti step form -->
@@ -887,6 +940,41 @@ test-->
 
   <!--for According-->
   <script src="../../../libs/js/According.js"></script>
+
+
+  <!-- for Institute University and Collage -->
+  <script>  
+
+  function getUniversity(val, $thisstu) {
+      
+      $.ajax({
+      type: "POST",
+      url: "",
+      data:'ins_id='+val,
+      
+      success: function(data){
+        $("#uniSelect").html(data);
+      }
+      }); 
+    }
+  function getUniversityii(val) {
+      
+      $.ajax({
+      type: "POST",
+      url: "get_collage.php",
+      data:'ins_id='+val,
+      success: function(data){
+        $("#collageSelect").html(data);
+      }
+      });
+  }  
+  function selectCountry(val) {
+    $("#search-box").val(val);
+    $("#suggesstion-box").hide(); 
+    }
+
+
+  </script>
   
 
 </body>

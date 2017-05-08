@@ -1,13 +1,10 @@
-
 <?php
 require_once("dbcontroller.php");
 $db_handle = new DBController();
-  
 if(!empty($_POST["ins_id"])) {
   //$query ="SELECT * FROM intitute_type WHERE intitute_id = '" . $_POST["ins_id"] . "'";
   $results = $db_handle->runQuery($query);
 ?> 
- 
   <?php if($_POST["ins_id"]=='2'){?>
     <option value=""><i class="fa fa-thumbs-up w3-margin-right"></i>Cannot Select University </option>    
     <?php }elseif($_POST["ins_id"]=='1'){?> 
@@ -27,6 +24,8 @@ if(!empty($_POST["ins_id"])) {
   <option value="">Select Institute Type First</option> 
   <?php }
 } ?>
+
+
 
 
 
