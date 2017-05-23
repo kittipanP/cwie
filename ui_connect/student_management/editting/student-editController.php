@@ -95,7 +95,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
                  GetSQLValueString($_POST['address_Id'], "int"),
                  GetSQLValueString($_POST['s_id'], "int")); 
 
-        $updateSQL_sad = sprintf("UPDATE student_relationship
+    $updateSQL_sre = sprintf("UPDATE student_relationship
       INNER JOIN student_info ON student_info.s_id=student_relationship.s_id
       SET relation_type=%s, relation_fname=%s, relation_lname=%s, relation_occupation=%s, relation_contact=%s
       WHERE student_relationship.s_id=$prm",
@@ -107,6 +107,23 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
                  GetSQLValueString($_POST['relation_id'], "int"),
                  GetSQLValueString($_POST['s_id'], "int")); 
 
+    $updateSQL_edu = sprintf("UPDATE education_info
+      LEFT JOIN major_info ON major_info.major_id = education_info.major_id
+      LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+      LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
+      LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id
+      LEFT JOIN intitute_type ON intitute_type.intitute_id = education_info.intitute_id
+      INNER JOIN student_info ON student_info.s_id=education_info.s_id
+      SET intitute_id=%s, major_id=%s, degree_id=%s, uni_id=%s, collage_id=%s,
+      WHERE education_info.s_id=$prm",
+                 GetSQLValueString($_POST['intitute_id'], "int"),
+                 GetSQLValueString($_POST['major_id'], "int"),
+                 GetSQLValueString($_POST['degree_id'], "int"),
+                 GetSQLValueString($_POST['uni_id'], "int"),
+                 GetSQLValueString($_POST['collage_id'], "int"),
+                 GetSQLValueString($_POST['education_name'], "text"),
+                 GetSQLValueString($_POST['education_id'], "int"),
+                 GetSQLValueString($_POST['s_id'], "int")); 
 
 
   mysqli_select_db($MyConnect, $database_MyConnect);
@@ -114,6 +131,9 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $Result1_scd = mysqli_query($MyConnect, $updateSQL_scd) or die(mysqli_error($MyConnect));
   $Result1_sec = mysqli_query($MyConnect, $updateSQL_sec) or die(mysql_error());
   $Result1_sad = mysqli_query($MyConnect, $updateSQL_sad) or die(mysql_error());
+  $Result1_sre = mysqli_query($MyConnect, $updateSQL_sre) or die(mysql_error());
+  $Result1_edu = mysqli_query($MyConnect, $updateSQL_edu) or die(mysql_error());
+
 
   $updateGoTo = "../Student_Management.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -199,6 +219,7 @@ $query_Recordset1_edu = sprintf("SELECT * FROM education_info
   LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
   LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
   LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id
+  LEFT JOIN intitute_type ON intitute_type.intitute_id = education_info.intitute_id
   WHERE education_info.s_id=$thisstu", GetSQLValueString($colname_Recordset1_stu, "int"));
 $Recordset1_edu = mysqli_query($MyConnect, $query_Recordset1_edu) or die(mysqli_error());
 $row_Recordset1_edu = mysqli_fetch_assoc($Recordset1_edu);
@@ -266,6 +287,8 @@ $query_collageSet = "SELECT * FROM collage_info";
 $collageSet = mysqli_query($MyConnect, $query_collageSet) or die(mysqli_error());
 $row_collageSet = mysqli_fetch_assoc($collageSet);
 $totalRows_collageSet = mysqli_num_rows($collageSet);
+
+
 
 /*
 mysqli_select_db($MyConnect, $database_MyConnect);

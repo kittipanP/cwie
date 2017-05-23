@@ -245,7 +245,12 @@ header{ background: url(../../img/head/headerv.jpg);}
     <!-- Navigation II [S] ## Navigation II [S] ## Navigation II [S] ## Navigation II [S] ## Navigation II [S] ## Navigation II [S] -->
 		<nav class="w3-sidenav w3-white w3-animate-left" style="display:none;z-index:5" id="mySidenav">
         	<a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav w3-large">Close &times;</a>
-          <a onclick="document.getElementById('id01').style.display='block', w3_close()" ><i class="fa fa-plus w3-margin-right"></i> Create New</a>
+          <div class="w3-bar-item w3-button " onclick="myAccFunc()" style="padding: 15px; border: 1px solid #ccc; border-radius: 3px; margin-bottom: 10px;" >
+          &nbsp;&nbsp;Create New &nbsp;<i class="fa fa-caret-down"></i></div>
+          <div id="demoAcc" class="w3-hide w3-white w3-card-4">
+            <a onclick="document.getElementById('id01').style.display='block', w3_close()" >&nbsp;&nbsp;<i class="fa fa-flash w3-margin-right"></i>&nbsp;Fast Process</a>
+            <a href="insert/stu-insert-all.php" class="w3-bar-item w3-button">&nbsp;&nbsp;<i class="fa fa-plus w3-margin-right"></i>Full Process</a>
+          </div>
           <a href="#allRecent" onclick="w3_close()"><i class="fa fa-globe w3-margin-right"></i> All</a>
           <a href="#onProcesss" onclick="w3_close()"><i class="fa fa-address-book w3-margin-right"></i> On Process</a>
           <a href="#waitingOnBoard" onclick="w3_close()"><i class="fa fa-thumbs-up w3-margin-right"></i> Waiting on Board</a>
@@ -351,7 +356,20 @@ header{ background: url(../../img/head/headerv.jpg);}
 	
     
     
-    
+    <!-- Nav Acc-->
+<script>
+function myAccFunc() {
+    var x = document.getElementById("demoAcc");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-green";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-green", "");
+    }
+}
+</script>
     
     
     

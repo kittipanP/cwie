@@ -45,13 +45,13 @@ $query_Recordset1_stu = sprintf("SELECT student_info.s_id, title.title_name, stu
 			FROM student_info
 			INNER JOIN title ON title.title_id = student_info.title_title_id
 			INNER JOIN student_status ON student_status.status_id = student_info.status_id
-			LEFT JOIN student_contact_details ON student_contact_details.s_id = student_info.s_id
+			LEFT JOIN student_contact_details ON student_contact_details.scd_s_id = student_info.s_id
 			LEFT JOIN education_info ON student_info.s_id = education_info.s_id
 			LEFT JOIN major_info ON major_info.major_id = education_info.major_id
 			LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
 			LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
 			LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id WHERE student_info.s_id = %s", GetSQLValueString($colname_Recordset1_stu, "int"));
-$Recordset1_stu = mysqli_query($MyConnect, $query_Recordset1_stu) or die(mysqli_error());
+$Recordset1_stu = mysqli_query($MyConnect, $query_Recordset1_stu) or die(mysqli_error($MyConnect));
 $row_Recordset1_stu = mysqli_fetch_assoc($Recordset1_stu);
 $totalRows_Recordset1_stu = mysqli_num_rows($Recordset1_stu);
 ?>

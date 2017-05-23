@@ -1,54 +1,92 @@
 <?php require_once('../../../Connections/MyConnect.php'); ?>
-
-<?php include 'student-editController.php' ?>
+<?php include ("stu-insert-reccordset.php"); ?>
+<?php //require_once('fn-upload.inc.php'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="UTF-8">
-<title>Student Updatting</title>
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../../../libs/css/w3.css">
+
 <link rel="stylesheet" href="../../../libs/css/w3-theme-blue-grey.css">
-<link rel='stylesheet' href='../../../libs/css/css?family=Open+Sans'>
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<link rel="stylesheet" href="../../../libs/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css">
-<link href="../../../libs/css/font-awesome.min.css" rel="stylesheet">
 
-<link rel="icon" type="image/png" href="../../../img/images/wd.png"/>
-
-      <!-- For Multi Form -->
-      <link rel="stylesheet" href="../../../libs/css/style-msform.css?v=0214i" type="text/css">
-
-      <!-- According-Form-->
-      <!--<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>-->
-      <link rel="stylesheet" href="../../../libs/css/style-according.css?v=0228i" type="text/css">
-
-<style> 
-  html {
-  background : #C0C0C0;
-    
-  }  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../../libs/css/font-awesome-4.7.0/css/font-awesome.min.css?v=<?php echo filemtime('font-awesome.min.css'); ?>" type="text/css">
+<link href="../../../SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#apDiv1 {
+	position: absolute;
+	left: 61px;
+	top: 4314px;
+	width: 95px;
+	height: 36px;
+	z-index: 1;
+}
 </style>
+<link href="../../../libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<title>Index</title>
+<script src="../../../SpryAssets/SpryTabbedPanels.js" type="text/javascript"></script>
+
+	<!-- customselect[]-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script src='../../../libs/jQuery-Customselect/src/jquery-customselect.js'></script>
+    <link href='../../../libs/jQuery-Customselect/src/jquery-customselect.css?v=<55' rel='stylesheet' />
+    
+    <!-- alert-->
+<script src="dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+
+
+    <!--<link href='../../../libs/jQuery-Customselect/src/jquery-customselect.css?v=<?php echo filemtime('jquery-customselect.css'); ?>' rel='stylesheet' />-->
+    
+    <!-- ms-form-->
+    <!--<link href="../../../libs/css/style-msform.css" rel="stylesheet" type="text/css" />-->
+    
+</head>
 
 <body>
+<!-- Navbar --><!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
+  <ul class="w3-navbar w3-left-align w3-large w3-theme">
+    <li><a class="w3-padding-large" href="ui_connect/Student_Management/Student_Management.php">Stusent Management</a></li>
+    <li><a class="w3-padding-large" href="ui_connect/Report/Report.php">Report</a></li>
+    <li><a class="w3-padding-large" href="ui_connect/Email_Management/Email_Management.php">E-mail Management</a></li>
+    <li><a class="w3-padding-large" href="ui_connect/my_profile/my_profile.php">My Profile</a></li>
+  </ul>
+</div> 
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">   
+	<!-- The Grid -->
+  <div class="w3-row"> 
+		
+        <!-- Header -->
+	<header class="w3-container w3-theme w3-padding" id="myHeader">
+ 			<!--<i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-opennav"></i> -->
+  			<div class="w3-center">
+  				<h4>&nbsp;</h4>
+  				<h1 class="w3-xxxlarge w3-animate-bottom">&nbsp;</h1>
+    		<div class="w3-padding-32"></div>
+		  </div>
+	</header>
+    <p>&nbsp;</p>
+    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="msform" enctype="multipart/form-data">
+      <div id="TabbedPanels1" class="TabbedPanels">
+        <ul class="TabbedPanelsTabGroup">
+          <li class="TabbedPanelsTab" tabindex="0">Tab 1</li>
+          <li class="TabbedPanelsTab" tabindex="0">Tab 2</li>
+          <li class="TabbedPanelsTab" tabindex="0">Tab 3</li>
+        </ul>
+        <div class="TabbedPanelsContentGroup">
+          <div class="TabbedPanelsContent">
 
 
-<form action="<?php echo $editFormAction; ?>" method="post" name="form-update" id="msform" enctype="multipart/form-data">
-                    
-              <!-- progressbar -->
-              <ul id="progressbar">
-                  <li class="active">Personal Detail</li>
-                  <li>Education Data</li>
-                  <li>Other Information</li>
-                  <li>File Upload</li>
-              </ul>
-                    
-              <!-- fieldsets -->
-              <fieldset>
-                <span onclick="document.getElementById('stu-edit').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
+
+<fieldset>
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
                 <h2 class="fs-title">Personal Detail</h2>
-                <h3 class="fs-subtitle">This is step 1</h3>
+                <h3 class="fs-subtitle">Form Update Step One</h3>
                         
                 <div class="w3-row-padding w3-center w3-margin-top">
  
@@ -58,43 +96,39 @@
                                     <!--<i class="fa fa-group w3-margin-bottom w3-text-theme" style="font-size:120px"></i>-->
                                     <!--<hr>-->
                                     
-                        <input type="hidden" name="s_dob" value="<?php echo htmlentities($row_Recordset1_stu['s_dob'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
-                        <input type="hidden" name="origin_id" value="<?php echo htmlentities($row_Recordset1_stu['origin_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
-                        <input type="hidden" name="type_id" value="<?php echo htmlentities($row_Recordset1_stu['type_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
-                        <input type="hidden" name="ref_id" value="<?php echo htmlentities($row_Recordset1_stu['ref_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
-                        <input type="hidden" name="national_id" value="<?php echo htmlentities($row_Recordset1_stu['national_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="hidden" name="s_dob" value="" size="32" />
+                        <input type="hidden" name="origin_id" value="" size="32" />
+                        <input type="hidden" name="type_id" value="" size="32" />
+                        <input type="hidden" name="ref_id" value="" size="32" />
+                        <input type="hidden" name="national_id" value="" size="32" />
                         <input type="hidden" name="title_title_id" value="" size="32" />
-                        <input type="hidden" name="status_id" value="" size="32" />
                          <div align="left">
                         <label for="titleSelect"> Title : </label>
-                        </div>
+                       </div>
                         <!--<label for="titleSelect">TITLE :  </label>-->
                         <div align="left">
                         <select name="title_title_id" >
-                                  <option name="title_title_id" size="32" value="<?php echo htmlentities($row_title_rec['title_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_title_rec['title_name']?> </option>
                           <?php
-
                               do {  
                           ?>
-
-                                  <option name="title_title_id" size="32" value="<?php echo htmlentities($row_titleSet['title_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_titleSet['title_name']?> </option>
+                                  <option name="title_title_id" size="32" value="<?php echo $row_titleSet['title_id']?>"><?php echo $row_titleSet['title_name']?> </option>
                           <?php
                               } while ($row_titleSet = mysqli_fetch_assoc($titleSet));
                               $rows = mysqli_num_rows($titleSet);
                               if($rows > 0) {
                               mysqli_data_seek($titleSet, 0);
                               $row_titleSet = mysqli_fetch_assoc($titleSet);
-                              }
-                          ?>
+                               }
+                                                        ?>
                         </select></div>
                       <div align="left">
                         <label for="s_fname"> First Name : </label>
                       </div>
-                      <input type="text" name="s_fname" value="<?php echo htmlentities($row_Recordset1_stu['s_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                      <input id="inputFirstname" class="" type="text" name="s_fname" value="" size="32" placeholder="KITTIPAN" />
                       <div align="left">
                         <label for="s_lname"> Last Name : </label>
                       </div>
-                      <input type="text" name="s_lname" value="<?php echo htmlentities($row_Recordset1_stu['s_lname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                      <input id="inputLastname" type="text" name="s_lname" value="" size="32" placeholder="PRASERTSANG"/>
                     </div>
                   </div>
        
@@ -105,18 +139,17 @@
                         <div align="left">
                         <label for="thai_fname"> Thai First Name : </label>
                         </div>
-                        <input type="text" name="thai_fname" value="<?php echo htmlentities($row_Recordset1_stu['thai_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="text" name="thai_fname" value="" size="32" placeholder="กิตติพันธ์" />
                         <div align="left">
                         <label for="thai_lname"> Thai Last Name : </label>
                         </div>
-                        <input type="text" name="thai_lname" value="<?php echo htmlentities($row_Recordset1_stu['thai_lname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="text" name="thai_lname" value="" size="32" placeholder="ประเสริฐสังข์"/>
                         <div align="left">
                         <label for="statusSelect"> Student status : </label>
                         </div>
                         <select name="status_id" style="width: 100%;">
-                            <option  name="title_title_id" value="<?php echo htmlentities($row_status_rec['status_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_status_rec['status_desc']?></option>
                           <?php do {  ?>
-                            <option  name="title_title_id" value="<?php echo htmlentities($row_statusSet['status_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_statusSet['status_desc']?></option>
+                            <option  name="title_title_id" value="<?php echo $row_statusSet['status_id']?>"><?php echo $row_statusSet['status_desc']?></option>
                             <?php
                                 } while ($row_statusSet = mysqli_fetch_assoc($statusSet));
                                   $rows = mysqli_num_rows($statusSet);
@@ -125,7 +158,7 @@
                                   $row_statusSet = mysqli_fetch_assoc($statusSet);
                                   }
                             ?>
-                        </select> 
+                        </select>
                     </div>
                   </div>
                         
@@ -133,25 +166,22 @@
                     <div >
                                             <!--<h4>E-mail Management</h4><br>-->
                         <input type="hidden" name="contact_id" value="" size="32" /> 
-                        <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />                                       
+                        <input type="hidden" name="scd_s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />                                       
                         <div align="left">
                         <label for="contact_no"> Tel : </label>
                         </div>
-                        <input type="text" name="contact_no" value="<?php echo htmlentities($row_Recordset1_scd['contact_no'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
-
+                        <input type="text" name="contact_no" value="" size="32" placeholder="08 4722 2174"/>
                         
                         <div align="left">
                         <label for="email_adress"> E-mail address : </label>
                         </div>
-                        <input type="text" name="email_adress" value="<?php echo htmlentities($row_Recordset1_scd['email_adress'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                        <input type="text" name="email_adress" value="" size="32" placeholder="kittipan.prasertsang@gmail.com"/>
                         
                         
                         <div align="left">
                         <label for="remark"> Remark : </label>
                         </div>
-                        <textarea name="remark" value="" size="32" placeholder=""><?php echo htmlentities($row_Recordset1_stu['remark'], ENT_COMPAT, 'utf-8'); ?></textarea>
-                        <!--<input type="text" name="remark" value="<?php echo htmlentities($row_Recordset1_stu['remark'], ENT_COMPAT, 'utf-8'); ?>" size="32" /> -->
-
+                        <textarea name="remark" value="" size="32" placeholder="Remark..."></textarea>
                         
                         
                                      
@@ -167,27 +197,18 @@
                 <!-- Accordion [S] ## Accordion [S] ## Accordion [S] ## Accordion [S]-->             
               <!--<input type="hidden" name="MM_insert" value="form3" />-->         
                   <div class="accordion">
-                    <dl>
-                      <!-- description list -->
-
-                      <dt>
-                            <!-- accordion tab 1 -->
-                            <a href="#accordion1" aria-expanded="false" aria-controls="accordion1" class="accordion-title accordionTitle js-accordionTrigger">Address and Contact Data</a>
-                      </dt>
-                      <dd class="accordion-content accordionItem is-collapsed" id="accordion1" aria-hidden="true">
-                            <p></p>
-                  <div class="w3-row-padding w3-center w3-margin-top">
+                    
+                        <div class="w3-row-padding w3-center w3-margin-top">
                   <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Emergency Cantact Data</p></div>
                           <div class="w3-third">
                             <div>   
                                
                             <input type="hidden" name="emc_id" value="" size="32" />
-                            <input type="hidden" name="contact_id" value="" size="32" />
+                            <input type="hidden" name="contact_id" value="<?php echo $row_stu_contactSet['contact_id']+1?>" size="32" />
                                 <div align="left">
                                 <label for="emc_fname"> First Name : </label>
                                 </div>
-                                <!-- <input type="text" name="emc_fname" value="" size="32" placeholder="First Name"/> -->
-                                <input type="text" name="emc_fname" value="<?php echo htmlentities($row_Recordset1_sec['emc_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                                <input type="text" name="emc_fname" value="" size="32" placeholder="First Name"/>
         
                             </div>
                           </div>
@@ -198,7 +219,7 @@
                                 <div align="left"> 
                                 <label for="emc_lname"> Last Name : </label>                      
                                 </div>
-                                <input type="text" name="emc_lname" value="<?php echo htmlentities($row_Recordset1_sec['emc_lname'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Last Name"/>
+                                <input type="text" name="emc_lname" value="" size="32" placeholder="Last Name"/>
                                 
                             </div>
                           </div>
@@ -209,11 +230,11 @@
                                 <div align="left"> 
                                 <label for="emc_relation"> Relationship : </label>                     
                                 </div>
-                                <input type="text" name="emc_relation" value="<?php echo htmlentities($row_Recordset1_sec['emc_relation'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Relationship"/> 
+                                <input type="text" name="emc_relation" value="" size="32" placeholder="Relationship"/> 
                                 <div align="left"> 
                                 <label for="emc_contact"> Contact No : </label>                     
                                 </div>
-                                <input type="text" name="emc_contact" value="<?php echo htmlentities($row_Recordset1_sec['emc_contact'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Contact No."/>     
+                                <input type="text" name="emc_contact" value="" size="32" placeholder="Contact No."/>      
         
                             </div>
                           </div>
@@ -225,19 +246,19 @@
                           <div class="w3-third">
                             <div>
                                 <input type="hidden" name="address_Id" value="" size="32" />
-                                <input type="hidden" name="sad_s_id" value="" size="32" /> 
+                                <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" /> 
                                 <div align="left">
-                                <label for="no"> Number : </label> 
+                                <label for="place_name"> Number : </label> 
                                 </div>
-                                <input type="text" name="no" value="<?php echo htmlentities($row_Recordset1_sad['no'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Relationship"/>
+                                <input type="text" name="no" value="" size="32"  placeholder="108/24 Moo 19"/>  
                                 <div align="left">  
                                 <label for="sub_district"> Sub-district : </label>                 
                                 </div> 
-                                <input type="text" name="sub_district" value="<?php echo htmlentities($row_Recordset1_sad['sub_district'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Relationship"/>
+                                <input type="text" name="sub_district" value="" size="32" placeholder="Jhumphol"/> 
                                 <div align="left">
                                 <label for="province_name"> Province : </label> 
                                 </div>
-                                <input type="text" name="province_name" value="<?php echo htmlentities($row_Recordset1_sad['province_name'], ENT_COMPAT, 'utf-8'); ?>" size="32" placeholder="Relationship"/>     
+                                <input type="text" name="province_name" value="" size="32" placeholder="Nong Khai"/>     
                                                                                            
                             </div>
                           </div>
@@ -246,15 +267,15 @@
                                 <div align="left">
                                 <label for="place_name"> Place/Village : </label> 
                                 </div>
-                                <input type="text" name="place_name" value="<?php echo htmlentities($row_Recordset1_sad['place_name'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                <input type="text" name="place_name" value="" size="32"  placeholder="Sermsook"/>
                                 <div align="left">
                                 <label for="district"> District : </label> 
                                  </div>
-                                <input type="text" name="district" value="<?php echo htmlentities($row_Recordset1_sad['district'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                <input type="text" name="district" value="" size="32" placeholder="Phonphisai"/>
                                 <div align="left">
                                 <label for="zip_code"> Zip Code/Post : </label> 
                                 </div>
-                                <input type="text" name="zip_code" value="<?php echo htmlentities($row_Recordset1_sad['zip_code'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                <input type="text" name="zip_code" value="" size="32" placeholder="43120"/> 
   
                             </div>
                           </div>          
@@ -263,19 +284,17 @@
                                 <div align="left">
                                 <label for="road_name"> Road/Street : </label>                    
                                 </div> 
-                                <input type="text" name="road_name" value="<?php echo htmlentities($row_Recordset1_sad['road_name'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                <input type="text" name="road_name" value="" size="32" placeholder="N/A"/>
                                 <div align="left">
                                 <label for="city"> City : </label> 
                                 </div>
-                                <input type="text" name="city" value="<?php echo htmlentities($row_Recordset1_sad['city'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                <input type="text" name="city" value="" size="32" placeholder="N/A"/> 
                                 <div align="left">
                                 <label for="country_id"> Country : </label> 
                                 </div>
-                                <?php if($row_Recordset1_sad['country_id']==null){?>
                                 <select name="country_id" style="width: 100%;">
-                                    <option  name="country_id" value="">Plese Select Your Country!</option>
                                   <?php do {  ?>
-                                    <option  name="country_id" value="<?php echo htmlentities($row_countrySet['country_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_countrySet['country_name']?></option>
+                                    <option  name="country_id" value="<?php echo $row_countrySet['country_id']?>"><?php echo $row_countrySet['country_name']?></option>
                                     <?php
                                         } while ($row_countrySet = mysqli_fetch_assoc($countrySet));
                                           $rows = mysqli_num_rows($countrySet);
@@ -284,23 +303,7 @@
                                           $row_countrySet = mysqli_fetch_assoc($countrySet);
                                           }
                                     ?>
-                                </select> 
-                                <?php }else{ ?>
-                                <select name="country_id" style="width: 100%;">
-                                    <option  name="country_id" value="<?php echo htmlentities($row_country_rec['country_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_country_rec['country_name']?></option>
-                                  <?php do {  ?>
-                                    <option  name="country_id" value="<?php echo htmlentities($row_countrySet['country_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_countrySet['country_name']?></option>
-                                    <?php
-                                        } while ($row_countrySet = mysqli_fetch_assoc($countrySet));
-                                          $rows = mysqli_num_rows($countrySet);
-                                          if($rows > 0) {
-                                          mysqli_data_seek($countrySet, 0);
-                                          $row_countrySet = mysqli_fetch_assoc($countrySet);
-                                          }
-                                    ?>
-                                </select> 
-                                <?php }; ?>
-                                <!-- <input type="text" name="country_id" value="<?php echo htmlentities($row_Recordset1_sad['country_id'], ENT_COMPAT, 'utf-8'); ?>" size="32"/> -->
+                                </select>                                    
                             </div>
                           </div>
                         </div>
@@ -313,30 +316,23 @@
 
 
 
-                      </dd>
-                      <!--end accordion tab 1 -->
 
-                      <dt>
-                          <!-- accordion tab 2 -->
-                            <a href="#accordion2" aria-expanded="false" aria-controls="accordion2" class="accordion-title accordionTitle js-accordionTrigger">Student's Relation Data</a>
-                      </dt>
-                      <dd class="accordion-content accordionItem is-collapsed" id="accordion2" aria-hidden="true">
-                        
+                     
                             <p class="headings"></p> 
                             <div class="w3-row-padding w3-center w3-margin-top">
                             <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Relation Data</p></div>
                               <div class="w3-third">
                                 <div>   
                                     <input type="hidden" name="relation_id" value="" size="32" />
-                                    <input type="hidden" name="s_id" value="" size="32" />                                      
+                                    <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />                                      
                                     <div align="left">
                                     <label for="relation_fname"> First Name : </label>
                                     </div>
-                                    <input type="text" name="relation_fname" value="<?php echo htmlentities($row_Recordset1_sre['relation_fname'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                    <input type="text" name="relation_fname" value="" size="32" placeholder="Bongkoch"/>
                                     <div align="left"> 
                                     <label for="relation_occupation"> Occupation : </label>                     
                                     </div>
-                                    <input type="text" name="relation_occupation" value="<?php echo htmlentities($row_Recordset1_sre['relation_occupation'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>
+                                    <input type="text" name="relation_occupation" value="" size="32" placeholder="Officer"/>
 
                                 </div>
                               </div>
@@ -345,11 +341,11 @@
                                     <div align="left"> 
                                     <label for="relation_lname"> Last Name : </label>                       
                                     </div>    
-                                    <input type="text" name="relation_lname" value="<?php echo htmlentities($row_Recordset1_sre['relation_lname'], ENT_COMPAT, 'utf-8'); ?>" size="32"/> 
+                                    <input type="text" name="relation_lname" value="" size="32" placeholder="Prasertsang"/> 
                                     <div align="left"> 
                                     <label for="relation_contact"> Contact : </label>                     
                                     </div>
-                                    <input type="text" name="relation_contact" value="<?php echo htmlentities($row_Recordset1_sre['relation_contact'], ENT_COMPAT, 'utf-8'); ?>" size="32"/> 
+                                    <input type="text" name="relation_contact" value="" size="32" placeholder="08 6223 86XX "/> 
                                 </div>
                               </div>          
                               <div class="w3-third">
@@ -357,38 +353,20 @@
                                     <div align="left"> 
                                     <label for="relation_type"> Relation Type : </label>                     
                                     </div> 
-                                    <input type="text" name="relation_type" value="<?php echo htmlentities($row_Recordset1_sre['relation_type'], ENT_COMPAT, 'utf-8'); ?>" size="32"/>    
+                                    <input type="text" name="relation_type" value="" size="32" placeholder="Mother"/>     
                                 </div>
                               </div>
                             </div>      
-                      </dd>
-                      <!-- end accordion tab 2 -->
 
-                      <!--<dt>
-                         
-                            <a href="#accordion3" aria-expanded="false" aria-controls="accordion3" class="accordion-title accordionTitle js-accordionTrigger">Accordion tab 3</a>
-                        </dt>
-                      <dd class="accordion-content accordionItem is-collapsed" id="accordion3" aria-hidden="true">
-                        <div class="container-fluid" style="padding-top: 20px;">
-                            <p class="headings">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</p>
-                        </div>
-                      </dd>-->
-                     
+                      
+                  <p>&nbsp;</p>
 
-                    </dl>
-                   
-                  </div>
-                  <!-- Accordion [E] ## Accordion [E] ## Accordion [E] ## Accordion [E]-->        
-        
-
-
-                <input type="button" name="next" class="next action-button" value="Next" />
                         
                         
               </fieldset>
-
+                  <p>&nbsp;</p>
               <fieldset>
-                <span onclick="document.getElementById('stu-edit').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
                 <h2 class="fs-title">Education Data</h2>
                 <div align="center">
                     <h3 class="fs-subtitle" >
@@ -413,70 +391,39 @@
                          <div align="left">
                          <label for="degree_id"> Degree : </label>
                        </div>
-                                <?php if($row_Recordset1_edu['degree_id']==null){?>
-                                <select name="degree_id" style="width: 100%;">
-                                    <option  name="degree_id" value="">Plese Select Your Country!</option>
-                                  <?php do {  ?>
-                                    <option  name="degree_id" value="<?php echo htmlentities($row_degree_infoSet['degree_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_degree_infoSet['degree_name']?></option>
+                         <select name="degree_id" id="degreeSelect" style="width: 100%;">
                                     <?php
-                                        } while ($row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet));
-                                          $rows = mysqli_num_rows($degree_infoSet);
-                                          if($rows > 0) {
-                                          mysqli_data_seek($degree_infoSet, 0);
-                                          $row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet);
-                                          }
-                                    ?>
-                                </select> 
-                                <?php }else{ ?>
-                                <select name="degree_id" style="width: 100%;">
-                                    <option  name="degree_id" value="<?php echo htmlentities($row_degree_info_rec['degree_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_degree_info_rec['degree_name']?></option>
-                                  <?php do {  ?>
-                                    <option  name="degree_id" value="<?php echo htmlentities($row_degree_infoSet['degree_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_degree_infoSet['degree_name']?></option>
+                        do {  
+                        ?>
+                                    <option value="<?php echo $row_degreeSet['degree_id']?>"><?php echo $row_degreeSet['degree_name']?></option>
                                     <?php
-                                        } while ($row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet));
-                                          $rows = mysqli_num_rows($degree_infoSet);
-                                          if($rows > 0) {
-                                          mysqli_data_seek($degree_infoSet, 0);
-                                          $row_degree_infoSet = mysqli_fetch_assoc($degree_infoSet);
-                                          }
-                                    ?>
-                                </select> 
-                                <?php }; ?>
+                        } while ($row_degreeSet = mysqli_fetch_assoc($degreeSet));
+                          $rows = mysqli_num_rows($degreeSet);
+                          if($rows > 0) {
+                              mysqli_data_seek($degreeSet, 0);
+                              $row_degreeSet = mysqli_fetch_assoc($degreeSet);
+                          }
+                        ?>
+                        </select>
                          <!--<input type="text" name="degree_id" value="" size="32" />-->
                          
                         <div align="left">
                         <label for="major_id"> Major : </label>
                         </div>
-                                <?php if($row_Recordset1_edu['major_id']==null){?>
-                                <select name="major_id" style="width: 100%;">
-                                    <option  name="major_id" value="">Plese Select Your Country!</option>
-                                  <?php do {  ?>
-                                    <option  name="major_id" value="<?php echo htmlentities($row_majorSet['major_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_majorSet['major_name']?></option>
+                        <select name="major_id" id="majorSelect" style="width: 100%;">
                                     <?php
-                                        } while ($row_majorSet = mysqli_fetch_assoc($majorSet));
-                                          $rows = mysqli_num_rows($majorSet);
-                                          if($rows > 0) {
-                                          mysqli_data_seek($majorSet, 0);
-                                          $row_majorSet = mysqli_fetch_assoc($majorSet);
-                                          }
-                                    ?>
-                                </select> 
-                                <?php }else{ ?>
-                                <select name="major_id" style="width: 100%;">
-                                    <option  name="major_id" value="<?php echo htmlentities($row_major_rec['major_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_major_rec['major_name']?></option>
-                                  <?php do {  ?>
-                                    <option  name="major_id" value="<?php echo htmlentities($row_majorSet['major_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_majorSet['major_name']?></option>
+                        do {  
+                        ?>
+                                    <option value="<?php echo $row_majorSet['major_id']?>"><?php echo $row_majorSet['major_name']?></option>
                                     <?php
-                                        } while ($row_majorSet = mysqli_fetch_assoc($majorSet));
-                                          $rows = mysqli_num_rows($majorSet);
-                                          if($rows > 0) {
-                                          mysqli_data_seek($majorSet, 0);
-                                          $row_majorSet = mysqli_fetch_assoc($majorSet);
-                                          }
-                                    ?>
-                                </select> 
-                                <?php }; ?>
-
+                        } while ($row_majorSet = mysqli_fetch_assoc($majorSet));
+                          $rows = mysqli_num_rows($majorSet);
+                          if($rows > 0) {
+                              mysqli_data_seek($majorSet, 0);
+                              $row_majorSet = mysqli_fetch_assoc($majorSet);
+                          }
+                        ?>
+                        </select>
                         <!--<input type="text" name="major_id" value="" size="32" />-->
                         
                       <div align="left">  
@@ -494,37 +441,21 @@
                         <div align="left">  
                         <label for="intitute_id"> Institute : </label>                      
                         </div>
-                        <?php if($row_Recordset1_edu['intitute_id']==null){?>
-                          <select name="intitute_id" id="insSelect" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; " >
-                              <option value="">Select Institute Type</option>
-                              <?php
-                              do {  
-                              ?>
-                              <option value="<?php echo $row_instituteSet['intitute_id']?>"><?php echo $row_instituteSet['intitute_name']?></option>
-                              <?php
-                              } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
-                              $rows = mysqli_num_rows($instituteSet);
-                              if($rows > 0) {
-                                mysqli_data_seek($instituteSet, 0);
-                              $row_instituteSet = mysqli_fetch_assoc($instituteSet);
-                              }
-                              ?>
-                          </select>
-                        <?php }else{ ?>
-                                <select name="intitute_id" id="insSelect" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; ">
-                                    <option  name="intitute_id" value="<?php echo htmlentities($row_institute_rec['intitute_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_institute_rec['intitute_name']?></option>
-                                  <?php do {  ?>
-                                    <option  name="intitute_id" value="<?php echo htmlentities($row_instituteSet['intitute_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_instituteSet['intitute_name']?></option>
-                                    <?php
-                                        } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
-                                          $rows = mysqli_num_rows($instituteSet);
-                                          if($rows > 0) {
-                                          mysqli_data_seek($instituteSet, 0);
-                                          $row_instituteSet = mysqli_fetch_assoc($instituteSet);
-                                          }
-                                    ?>
-                                </select> 
-                        <?php } ?>
+                        <select name="intitute_id" id="insSelect" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; " >
+                            <option value="">Select Institute Type</option>
+                          <?php
+                    do {  
+                    ?>
+                          <option value="<?php echo $row_instituteSet['intitute_id']?>"><?php echo $row_instituteSet['intitute_name']?></option>
+                          <?php
+                    } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
+                      $rows = mysqli_num_rows($instituteSet);
+                      if($rows > 0) {
+                          mysqli_data_seek($instituteSet, 0);
+                          $row_instituteSet = mysqli_fetch_assoc($instituteSet);
+                      }
+                    ?>
+                        </select>
                         <!--<input type="text" name="intitute_id" value="" size="32" />-->
                        
                         <div align="left">                        
@@ -540,59 +471,19 @@
                     <div >
                                             
                         <div align="left">   
-                        <label for="uni_id, collage_id"> University : </label>                    
+                        <label for="uni_id"> University : </label>                    
                         </div>
-                        <?php 
-                        if($row_Recordset1_edu['intitute_id']==null){?>
-                          <select name="uni_id" id="uniSelect" style="width: 100%;" >     
-                            <option value="">Select Institute Type First</option>
-                          </select>
-                        <?php 
-                        }else{?>
-                          <select name="uni_id" id="uniSelect" style="width: 100%;" >     
-                            <?php 
-                            if($row_uni_rec['uni_id']!=null){?>
-                              <option value="<?php echo htmlentities($row_uni_rec['uni_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_uni_rec['uni_name']?></option>
-                              <?php
-                                do {  ?>
-                                  <option value="<?php echo htmlentities($row_universitySet['uni_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_universitySet['uni_name']?></option>
-                                <?php
-                                } while ($row_universitySet = mysqli_fetch_assoc($universitySet));
-                                $rows = mysqli_num_rows($universitySet);
-                                if($rows > 0) {
-                                  mysqli_data_seek($universitySet, 0);
-                                  $row_universitySet = mysqli_fetch_assoc($universitySet);
-                                }?>
-                            <?php 
-                            }else{?>
-                              <option value="<?php echo htmlentities($row_col_rec['collage_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_col_rec['collage_name']?></option>
-                              <?php
-                                do {  ?>
-                                  <option value="<?php echo htmlentities($row_collageSet['collage_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_collageSet['collage_name']?></option>
-                                <?php
-                                } while ($row_collageSet = mysqli_fetch_assoc($collageSet));
-                                $rows = mysqli_num_rows($collageSet);
-                                if($rows > 0) {
-                                  mysqli_data_seek($collageSet, 0);
-                                  $row_collageSet = mysqli_fetch_assoc($collageSet);
-                                }?>
-
-                            <?php
-                            } ?>
-
-                          </select> 
-                        <?php }?>
-
-
+                        <select name="uni_id" id="uniSelect" style="width: 100%;" >                         
+              <option value="" >Select Institute Type First</option>
+            </select>
                         <!--<input type="text" name="uni_id" value="" size="32" />-->
                         
-                        <!-- <div align="left">  
-                        <label for="collage_id"> Collage : </label>
+                        <div align="left">  
+                        <label for="collage_id"> Collage : </label>                     
                         </div>
                         <select name="collage_id" id="collageSelect" style="width: 100%;">
                           <option value="">Select Institute Type First</option>
-                        </select> -->
-
+                        </select>
                         <p id='eiei'></p>
                         <!--<input type="text" name="collage_id" value="" size="32" />-->
                         
@@ -601,20 +492,13 @@
                  
                 </div>              
                                      
-                             <!-- Used some part of the code from Chris Wright (http://codepen.io/chriswrightdesign/)'s Pen  -->
-                             
-                  <!-- Accordion [S] ## Accordion [S] ## Accordion [S] ## Accordion [S]-->
-          <!--<input type="hidden" name="MM_insert" value="form3" />-->         
+      
                   <div class="accordion">
-                    <dl>
-                      <!-- description list -->
+                    
 
-                      <dt>
-                            <!-- accordion tab 1 -->
-                            <a href="#accordion1" aria-expanded="false" aria-controls="accordion1" class="accordion-title accordionTitle js-accordionTrigger"> Educational Background</a>
-                      </dt>
-                      <dd class="accordion-content accordionItem is-collapsed" id="accordion1" aria-hidden="true">
-                            <p></p>
+                            <div class="w3-panel w3-gray w3-card-8 w3-center-align w3-center"><p>Educational Background</p></div>
+
+
                         <div class="w3-row-padding w3-center w3-margin-top">
                           <div class="w3-third">
                             <div>      
@@ -661,27 +545,12 @@
                         </div>
                         
                         
-                            
-                      </dd>
-                      <!--end accordion tab 1 -->
-                      
-                    </dl>
-                    <!-- end description list -->
-                  </div>
-                  <!-- Accordion [E] ## Accordion [E] ## Accordion [E] ## Accordion [E]-->
+                  <p>&nbsp;</p>
 
-<!--test
-                            <input type="text" name="email" placeholder="First Name" />
-                             <input type="text" name="email" placeholder="Last Name" />
-                             <input type="text" name="email" placeholder="Email" />
-                             
-test-->
-                            <input type="button" name="previous" class="previous action-button" value="Previous" />
-                            <input type="button" name="next" class="next action-button" value="Next" />
               </fieldset>
 
               <fieldset>
-                <span onclick="document.getElementById('stu-edit').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
                 <h2 class="fs-title">Other Information</h2>
                 <div align="center">
                     <h3 class="fs-subtitle" >
@@ -806,9 +675,9 @@ test-->
                             <input type="button" name="next" class="next action-button" value="Next" />
               </fieldset>
               
-              
+                  <p>&nbsp;</p>
               <fieldset>
-                <span onclick="document.getElementById('stu-edit').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
                 <h2 class="fs-title">Eiei</h2>
                 <div align="center">
                     <h3 class="fs-subtitle" >
@@ -926,76 +795,127 @@ test-->
                     
                            
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
-                    <input type="submit" name="submit" class="action-button" value="Update record!!" />
-                    <input type="hidden" name="MM_update" class="submit action-button" value="msform" />
-              </fieldset>
-                    <input type="hidden" name="MM_update" value="form-update" />
-                    <input type="hidden" name="scd_s_id" value="<?php echo $row_Recordset1_scd['scd_s_id'];?>" /> <!--do not need-->
-                    <input type="hidden" name="s_id" value="<?php echo $row_Recordset1_stu['s_id'];?>" />
-                    
-                    
-
-            </form> 
-<?php include "get_university.php";?>
+                    <input type="submit" name="submit" class="action-button" value="Submit" />
+                    <input type="hidden" name="MM_insert" class="submit action-button" value="msform" />
+              </fieldset>  
+                    <input type="hidden" name="MM_insert" value="form1" />         
 
 
-
-
-            <?php 
-              $thisMoota = $thisstu;
-              echo "<meta http-equiv='refresh' content='url=get_university.php?this-stu=".$thisMoota."' />";
-            ?>
-  
-<p>&nbsp;</p>
-
-    <!-- for muti step form -->
-    <script src='../../../libs/js/jquery.min.js'></script>
-    <script src='../../../libs/js/jquery.easing.min.js'></script>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            
+            
+          </div>
+          <div class="TabbedPanelsContent">
+          
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </div>
+          <div class="TabbedPanelsContent">Content 3</div>
+        </div>
+      </div>
+      <p>&nbsp;</p>
+      				<a onclick="validation();"> Check!! </a>
+					<input type="submit" name="submit" class="action-button" value="Submit" onclick="validation();" />
+                    <input type="hidden" name="MM_insert" class="submit action-button" value="msform" />
+      
+                   <input type="hidden" name="MM_insert" value="form1"  />
+    </form>
+    <p><!-- Left Column --><!-- Right Column --><!-- End The Grid -->  </p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </div>
     
-    <script src="../../../libs/js/index.js"></script>
 
-  <!--for According-->
-  <script src="../../../libs/js/According.js"></script>
-
-
-  <!-- for Institute University and Collage -->
-  <script>  
-
-  function getUniversity(val, $thisstu) {
-      
-      $.ajax({
-      type: "POST",
-      url: "",
-      data:'ins_id='+val,
-      
-      success: function(data){
-        $("#uniSelect").html(data);
-      }
-      }); 
-    }
-  function getUniversityii(val) {
-      
-      $.ajax({
-      type: "POST",
-      url: "get_collage.php",
-      data:'ins_id='+val,
-      success: function(data){
-        $("#collageSelect").html(data);
-      }
-      });
-  }  
-  function selectCountry(val) {
-    $("#search-box").val(val);
-    $("#suggesstion-box").hide(); 
-    }
-
-
-  </script>
   
+<!-- End Page Container -->
+</div>
+
+  <!-- major-add [S]-->
+  <div id="major-add" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4">
+      <header class="w3-container w3-teal"> 
+        <span onclick="document.getElementById('major-add').style.display='none'" 
+        class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
+        <h3>Reccord New Major</h3>
+      </header>
+      <div class="w3-container">
+        <p>Some text..</p>
+        <p>Some text..</p>
+      </div>
+    </div>
+  </div>
+  <!-- major-add [E]-->
+
+<script>
+// Accordion 
+function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+}
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+</script>
+
+      <script>
+      $(function() {
+        $("#majorSelect").customselect();
+      });
+      $(function() {
+        $("#standard").customselect();
+      });
+      </script>
+<!-- sweetalert-->     
+
+<script type="text/javascript">
+	function validation(){
+		var s_fname =  document.getElementById('inputFirstname').value;
+		var s_lname = document.getElementById('inputLastname').value;
+		
+		if((s_fname == s_fname) && (s_lname == s_lname)){
+			swal({
+			  title: "Good Job!",
+			  text: "The recording has been completed",
+			  type: "success",
+			  confirmButtonColor: "#DD6B55",
+			  confirmButtonText: "Okay",
+			  closeOnConfirm: false
+			},
+			function(){
+			  swal("Deleted!", "Your imaginary file has been deleted.", "success");
+			});
+			}
+		else{
+			swal(
+			  'Oops...',
+			  'Something went wrong!',
+			  'error'
+			)
+				}
+		}
+</script>
+
 
 </body>
-</html>
-<?php
-mysqli_free_result($Recordset1_stu);
-
-?>
+</html> 

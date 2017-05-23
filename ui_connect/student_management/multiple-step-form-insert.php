@@ -12,7 +12,7 @@
               <fieldset>
                 <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
                 <h2 class="fs-title">Personal Detail</h2>
-                <h3 class="fs-subtitle">This is step 1</h3>
+                <h3 class="fs-subtitle">Form Update Step One</h3>
                         
                 <div class="w3-row-padding w3-center w3-margin-top">
  
