@@ -1,0 +1,77 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link href="../../../libs/sweetalert2/sweetalert2.css" rel="stylesheet" type="text/css" />
+<!--<link href="../../../libs/sweetalert2/sweetalert.css" rel="stylesheet" type="text/css" />-->
+
+<title>Untitled Document</title>
+
+
+</head>
+
+<body>
+
+	<div>
+  <input type="text" id="s_fname" required placeholder="eieieiei"  />
+  <br>
+  <br>
+  <input type="password" id="s_lname" required placeholder="eieieiei"  />
+  <br>
+  <br>
+  <button  onclick="sweet();">EiEiEi</button>
+	</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="../../../libs/sweetalert2/sweetalert2.js"></script>
+<!--<script type="text/javascript" src="../../../libs/sweetalert2/sweetalert.min.js"></script>-->
+<script type="text/javascript">
+	function sweet(){
+		swal({
+		  title: 'Auto close alert!',
+		  text: 'I will close in 2 seconds.',
+		  timer: 2000
+		}).then(
+		  function () {},
+		  // handling the promise rejection
+		  function (dismiss) {
+			if (dismiss === 'timer') {
+			  console.log('I was closed by the timer')
+			}
+		  }
+		)
+	
+		}
+</script>
+
+	<!--
+	/*	var s_fname =  'aaa';
+		var s_lname = '123';
+		
+		var s_fname =  document.getElementById('s_fname').value;
+		var s_lname = document.getElementById('s_lname').value;*/
+		
+	/*	
+		if((s_fname == s_fname) && (s_lname == s_lname)){
+			swal(
+			  'Good job!',
+			  'You clicked the button!',
+			  'success'
+				)
+			}
+		else{
+			swal(
+			  'Oops...',
+			  'Something went wrong!',
+			  'error'
+			)
+				}*/-->
+
+</body>
+</html>

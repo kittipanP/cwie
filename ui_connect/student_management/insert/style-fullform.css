@@ -1,0 +1,112 @@
+/*custom font*/
+@import url(family=Montserrat);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+/*bon html {
+	height: 100%;
+	/*Image only BG fallback*/
+	
+	/*background = gradient + image pattern combo*/
+/*bon	background: 
+		linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}  
+bon*/
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+
+
+/*form styles*/
+#fullform {
+	width: 100%;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+
+/*Hide all except first fieldset*/
+
+/*inputs*/
+#fullform input, #fullform textarea {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*border: 1px solid #888;*/
+  background: #fff;
+  	text-align: left;
+	margin-left: 3px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+	
+	padding: 3px 10px;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+#fullform select {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*border: 1px solid #888;*/
+  background: #fff;
+  	text-align: left;
+	margin-left: 3px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+	
+	padding: 3px 10px;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+#fullform option {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	/*width: 100%;*/
+	
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+/*buttons*/
+#fullform .action-button {
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+
+
+
+
+

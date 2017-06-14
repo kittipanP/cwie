@@ -143,7 +143,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
   	$insertSQL_oth = sprintf("INSERT INTO other_doc (other_name, other_file, application_application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['other_name'], "text"),
 					   GetSQLValueString(upload($_FILES['other_file'],'./other-source/'), "text"),
-                       GetSQLValueString($_POST['application_application_id'], "int")); */
+                       GetSQLValueString($_POST['application_application_id'], "int"));*/
 
   	$insertSQL_wex = sprintf("INSERT INTO work_experience (wex_id, wex_dateS, wex_dateE, wex_organ, wex_detail, student_info_s_id) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['wex_id'], "int"),
@@ -152,78 +152,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['wex_organ'], "text"),
                        GetSQLValueString($_POST['wex_detail'], "text"),
                        GetSQLValueString($_POST['student_info_s_id'], "int"));
-
-  	$insertSQL_lgIn = sprintf("INSERT INTO language_info (lg_info_id, s_id) VALUES (%s, %s)",
-                       GetSQLValueString($_POST['lg_info_id'], "int"),
-                       GetSQLValueString($_POST['s_id'], "int"));
-
-  	$insertSQL_lgIn_has_lg = sprintf("INSERT INTO lgInfo_has_lg (lgINfo_has_lg_id, lgInfo_id, lg_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['lgINfo_has_lg_id'], "int"),
-                       GetSQLValueString($_POST['lgInfo_id'], "int"),
-                       GetSQLValueString($_POST['lg_id'], "int"));
-
-  	$insertSQL_LgIn_has_lv = sprintf("INSERT INTO lgInfo_has_lv (lgINfo_has_lv_id, lgInfo_id, lv_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['lgINfo_has_lv_id'], "int"),
-                       GetSQLValueString($_POST['lgInfo_id'], "int"),
-                       GetSQLValueString($_POST['lv_id'], "int"));
-
-  	$insertSQL_tni = sprintf("INSERT INTO trainee_info (trainee_id, s_id, job_id, dep_id, transportation_id, plant_id, location_id, trainee_acc_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-  						GetSQLValueString($_POST['trainee_id'],"text"),
-  						GetSQLValueString($_POST['s_id'],"int"),
-  						GetSQLValueString($_POST['job_id'],"int"),
-  						GetSQLValueString($_POST['dep_id'],"int"),
-  						GetSQLValueString($_POST['transportation_id'],"int"),
-  						GetSQLValueString($_POST['plant_id'],"int"),
-  						GetSQLValueString($_POST['location_id'],"int"),
-  						GetSQLValueString($_POST['trainee_acc_id'],"int"));
-
-  	/*$insertSQL_pre = sprintf("INSERT INTO trainee_presentation (presentation_id, presentation_date, presentation_stime, presentation_ftime, presentation_duration, remark, presentation_score, created_details, room_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['presentation_id'], "int"),
-                       GetSQLValueString($_POST['presentation_date'], "date"),
-                       GetSQLValueString($_POST['presentation_stime'], "time"),
-                       GetSQLValueString($_POST['presentation_ftime'], "time"),
-                       GetSQLValueString($_POST['presentation_duration'], "time"),
-                       GetSQLValueString($_POST['remark'], "text"),
-                       GetSQLValueString($_POST['presentation_score'], "float"),
-                       GetSQLValueString($_POST['created_details'], "timstamp"),
-                       GetSQLValueString($_POST['room_id'], "int"));*/
-
-
-    $insertSQL_bac = sprintf("INSERT INTO bank_acc_info (bac_id, bac_no, bac_name, trainee_id, bnk_has_id) VALUES (%s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['bac_id'], "int"),
-                       GetSQLValueString($_POST['bac_no'], "int"),
-                       GetSQLValueString($_POST['bac_name'], "text"),
-                       GetSQLValueString($_POST['trainee_id'], "int"),
-                       GetSQLValueString($_POST['bnk_has_id'], "int"));
-  	$insertSQL_bhb = sprintf("INSERT INTO bank_has_banch (bnk_has_bch_id, bnk_id, bch_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['bnk_has_bch_id'], "int"),
-                       GetSQLValueString($_POST['bnk_id'], "int"),
-                       GetSQLValueString($_POST['bch_id'], "int")); 
-  	$insertSQL_prj = sprintf("INSERT INTO trainee_project (project_id, project_name, project_detail) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['project_id'], "int"),
-                       GetSQLValueString($_POST['project_name'], "text"),
-                       GetSQLValueString($_POST['project_detail'], "text")); 
-  	$insertSQL_thp = sprintf("INSERT INTO trainee_has_project (thp_id, project_id, trainee_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['thp_id'], "int"),
-                       GetSQLValueString($_POST['project_id'], "int"),
-                       GetSQLValueString($_POST['trainee_id'], "int")); 
-  	$insertSQL_tac = sprintf("INSERT INTO trainee_account (trainee_acc_id, account_name, trainee_email, keycard_id) VALUES (%s, %s, %s, %s)",
-                       GetSQLValueString($_POST['trainee_acc_id'], "int"),
-                       GetSQLValueString($_POST['account_name'], "text"),
-                       GetSQLValueString($_POST['trainee_email'], "text"),
-                       GetSQLValueString($_POST['keycard_id'], "text")); 
-                       
-  	/*
-  	$insertSQL_ = sprintf("INSERT INTO xxx (x1, x2, x3) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['x1'], "int"),
-                       GetSQLValueString($_POST['x2'], "int"),
-                       GetSQLValueString($_POST['x3'], "int")); 
-                       */
   
 		  mysqli_select_db($MyConnect, $database_MyConnect);
-		  /*
-		  $Result1_ = mysqli_query($MyConnect, $insertSQL_) or die(mysqli_error());
-		  */
 		  $Result1_stu = mysqli_query($MyConnect, $insertSQL_stu) or die(mysqli_error($MyConnect));
 		  $Result1_edt = mysqli_query($MyConnect, $insertSQL_edt) or die(mysqli_error());
 		  $Result1_sct = mysqli_query($MyConnect, $insertSQL_sct) or die(mysqli_error($MyConnect));
@@ -233,27 +163,15 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		  $Result1_sre = mysqli_query($MyConnect, $insertSQL_sre) or die(mysqli_error());
 		  $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error($MyConnect));
 		  
-		 /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error());
+		  /*$Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error());
 		  $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());	  
 		  $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die(mysqli_error());
 		  $Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
 		  $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());*/
 
 		  $Result1_wex = mysqli_query($MyConnect, $insertSQL_wex) or die(mysqli_error());
-
-		  $Result1_lgIn = mysqli_query($MyConnect, $insertSQL_lgIn) or die(mysqli_error());
-		  $Result1_lgIn_has_lg = mysqli_query($MyConnect, $insertSQL_lgIn_has_lg) or die(mysqli_error());
-		  $Result1_LgIn_has_lv = mysqli_query($MyConnect, $insertSQL_LgIn_has_lv) or die(mysqli_error());
-
-		  $Result1_tni = mysqli_query($MyConnect, $insertSQL_tni) or die(mysqli_error($MyConnect));
-		  //$Result1_pre = mysqli_query($MyConnect, $insertSQL_pre) or die(mysqli_error());
-		  $Result1_bac = mysqli_query($MyConnect, $insertSQL_bac) or die(mysqli_error($MyConnect));
-		  $Result1_bhb = mysqli_query($MyConnect, $insertSQL_bhb) or die(mysqli_error());
-		  $Result1_prj = mysqli_query($MyConnect, $insertSQL_prj) or die(mysqli_error($MyConnect));
-		  $Result1_thp = mysqli_query($MyConnect, $insertSQL_thp) or die(mysqli_error());
-		  $Result1_tac = mysqli_query($MyConnect, $insertSQL_tac) or die(mysqli_error());
 		
-		  $insertGoTo = "stu-insert-all.php";
+		  $insertGoTo = "Student_Management.php";
 		  if (isset($_SERVER['QUERY_STRING'])) {
 			$insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
 			$insertGoTo .= $_SERVER['QUERY_STRING'];
@@ -338,21 +256,25 @@ $totalPages_countrySet = ceil($totalRows_countrySet/$maxRows_countrySet)-1;
 
 $currentPage_studentInfo = $_SERVER["PHP_SELF"];
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_degreeSet = "SELECT * FROM degree_info";
 $degreeSet = mysqli_query($MyConnect, $query_degreeSet) or die(mysqli_error());
 $row_degreeSet = mysqli_fetch_assoc($degreeSet);
 $totalRows_degreeSet = mysqli_num_rows($degreeSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_majorSet = "SELECT * FROM major_info";
 $majorSet = mysqli_query($MyConnect, $query_majorSet) or die(mysqli_error());
 $row_majorSet = mysqli_fetch_assoc($majorSet);
 $totalRows_majorSet = mysqli_num_rows($majorSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_resumeSet = "SELECT resume_name FROM resume";
 $resumeSet = mysqli_query($MyConnect, $query_resumeSet) or die(mysqli_error());
 $row_resumeSet = mysqli_fetch_assoc($resumeSet);
 $totalRows_resumeSet = mysqli_num_rows($resumeSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_RecordsetStudentInfo = "SELECT * FROM `application`";
 $RecordsetStudentInfo = mysqli_query($MyConnect, $query_RecordsetStudentInfo) or die(mysqli_error());
 $row_RecordsetStudentInfo = mysqli_fetch_assoc($RecordsetStudentInfo);
@@ -360,32 +282,38 @@ $totalRows_RecordsetStudentInfo = mysqli_num_rows($RecordsetStudentInfo);
 
 
 		/*-- titleSet [S]--*/
+		mysqli_select_db($MyConnect, $database_MyConnect);
 		$query_titleSet = "SELECT * FROM title";
 		$titleSet = mysqli_query($MyConnect, $query_titleSet) or die(mysqli_error());
 		$row_titleSet = mysqli_fetch_assoc($titleSet);
 		$totalRows_titleSet = mysqli_num_rows($titleSet);
 		/*-- titleSet [E]--*/
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_statusSet = "SELECT * FROM student_status";
 $statusSet = mysqli_query($MyConnect, $query_statusSet) or die(mysqli_error());
 $row_statusSet = mysqli_fetch_assoc($statusSet);
 $totalRows_statusSet = mysqli_num_rows($statusSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_educationSet = "SELECT * FROM education_info";
 $educationSet = mysqli_query($MyConnect, $query_educationSet) or die(mysqli_error());
 $row_educationSet = mysqli_fetch_assoc($educationSet);
 $totalRows_educationSet = mysqli_num_rows($educationSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_instituteSet = "SELECT * FROM intitute_type";
 $instituteSet = mysqli_query($MyConnect, $query_instituteSet) or die(mysqli_error());
 $row_instituteSet = mysqli_fetch_assoc($instituteSet);
 $totalRows_instituteSet = mysqli_num_rows($instituteSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_universitySet = "SELECT * FROM university_info";
 $universitySet = mysqli_query($MyConnect, $query_universitySet) or die(mysqli_error());
 $row_universitySet = mysqli_fetch_assoc($universitySet);
 $totalRows_universitySet = mysqli_num_rows($universitySet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_collageSet = "SELECT * FROM collage_info";
 $collageSet = mysqli_query($MyConnect, $query_collageSet) or die(mysqli_error());
 $row_collageSet = mysqli_fetch_assoc($collageSet);
@@ -397,146 +325,69 @@ $studentSet = mysqli_query($MyConnect, $query_studentSet) or die(mysqli_error())
 $row_studentSet = mysqli_fetch_assoc($studentSet);
 $totalRows_studentSet = mysqli_num_rows($studentSet);*/
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_stu_addressSet = "SELECT * FROM student_address";
 $stu_addressSet = mysqli_query($MyConnect, $query_stu_addressSet) or die(mysqli_error());
 $row_stu_addressSet = mysqli_fetch_assoc($stu_addressSet);
 $totalRows_stu_addressSet = mysqli_num_rows($stu_addressSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_stu_relationshipSet = "SELECT * FROM student_relationship";
 $stu_relationshipSet = mysqli_query($MyConnect, $query_stu_relationshipSet) or die(mysqli_error());
 $row_stu_relationshipSet = mysqli_fetch_assoc($stu_relationshipSet);
 $totalRows_stu_relationshipSet = mysqli_num_rows($stu_relationshipSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_ed_bgSet = "SELECT * FROM education_blackgrounf";
 $ed_bgSet = mysqli_query($MyConnect, $query_ed_bgSet) or die(mysqli_error());
 $row_ed_bgSet = mysqli_fetch_assoc($ed_bgSet);
 $totalRows_ed_bgSet = mysqli_num_rows($ed_bgSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_appSet = "SELECT * FROM `application`
 	ORDER BY application.application_id DESC";
 $appSet = mysqli_query($MyConnect, $query_appSet) or die(mysqli_error());
 $row_appSet = mysqli_fetch_assoc($appSet);
 $totalRows_appSet = mysqli_num_rows($appSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_videoSet = "SELECT * FROM video";
 $videoSet = mysqli_query($MyConnect, $query_videoSet) or die(mysqli_error());
 $row_videoSet = mysqli_fetch_assoc($videoSet);
 $totalRows_videoSet = mysqli_num_rows($videoSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_transcriptSet = "SELECT * FROM transcript";
 $transcriptSet = mysqli_query($MyConnect, $query_transcriptSet) or die(mysqli_error());
 $row_transcriptSet = mysqli_fetch_assoc($transcriptSet);
 $totalRows_transcriptSet = mysqli_num_rows($transcriptSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_visaSet = "SELECT * FROM visa";
 $visaSet = mysqli_query($MyConnect, $query_visaSet) or die(mysqli_error());
 $row_visaSet = mysqli_fetch_assoc($visaSet);
 $totalRows_visaSet = mysqli_num_rows($visaSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_other_docSet = "SELECT * FROM other_doc";
 $other_docSet = mysqli_query($MyConnect, $query_other_docSet) or die(mysqli_error());
 $row_other_docSet = mysqli_fetch_assoc($other_docSet);
 $totalRows_other_docSet = mysqli_num_rows($other_docSet);
 
+
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_stu_contactSet = "SELECT * FROM student_contact_details
 	ORDER BY student_contact_details.contact_id DESC";
 $stu_contactSet = mysqli_query($MyConnect, $query_stu_contactSet) or die(mysqli_error());
 $row_stu_contactSet = mysqli_fetch_assoc($stu_contactSet);
 $totalRows_stu_contactSet = mysqli_num_rows($stu_contactSet);
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 $query_secSet = "SELECT * FROM student_emergency_contact
 	ORDER BY student_emergency_contact.contact_id DESC";
 $secSet = mysqli_query($MyConnect, $query_secSet) or die(mysqli_error());
 $row_secSet = mysqli_fetch_assoc($secSet);
-$totalRows_secSet = mysqli_num_rows($secSet);
-
-		$query_lgSet = "SELECT * FROM language";
-		$lgSet = mysqli_query($MyConnect, $query_lgSet) or die(mysqli_error());
-		$row_lgSet = mysqli_fetch_assoc($lgSet);
-		$totalRows_lgSet = mysqli_num_rows($lgSet);		
-
-
-		$query_lgInSet = "SELECT * FROM language_info
-			ORDER BY lg_info_id DESC";
-		$lgInSet = mysqli_query($MyConnect, $query_lgInSet) or die(mysqli_error());
-		$row_lgInSet = mysqli_fetch_assoc($lgInSet);
-		$totalRows_lgInSet = mysqli_num_rows($lgInSet);	
-
-		$query_lgLvSet = "SELECT * FROM language_lv";
-		$lgLvSet = mysqli_query($MyConnect, $query_lgLvSet) or die(mysqli_error());
-		$row_lgLvSet = mysqli_fetch_assoc($lgLvSet);
-		$totalRows_lgLvSet = mysqli_num_rows($lgLvSet);
-
-
-	$query_tniSet = "SELECT * FROM trainee_info
-		ORDER BY trainee_id DESC";
-	$tniSet = mysqli_query($MyConnect, $query_tniSet) or die(mysqli_error());
-	$row_tniSet = mysqli_fetch_assoc($tniSet);
-	$totalRows_tniSet = mysqli_num_rows($tniSet);	
-
-	$query_locSet = "SELECT * FROM location";
-	$locSet = mysqli_query($MyConnect, $query_locSet) or die(mysqli_error());
-	$row_locSet = mysqli_fetch_assoc($locSet);
-	$totalRows_locSet = mysqli_num_rows($locSet);	
-
-	$query_depSet = "SELECT * FROM department_info";
-	$depSet = mysqli_query($MyConnect, $query_depSet) or die(mysqli_error());
-	$row_depSet = mysqli_fetch_assoc($depSet);
-	$totalRows_depSet = mysqli_num_rows($depSet);	
-
-	$query_plaSet = "SELECT * FROM plant_info";
-	$plaSet = mysqli_query($MyConnect, $query_plaSet) or die(mysqli_error());
-	$row_plaSet = mysqli_fetch_assoc($plaSet);
-	$totalRows_plaSet = mysqli_num_rows($plaSet);
-
-	$query_rmSet = "SELECT * FROM room";
-	$rmSet = mysqli_query($MyConnect, $query_rmSet) or die(mysqli_error());
-	$row_rmSet = mysqli_fetch_assoc($rmSet);
-	$totalRows_rmSet = mysqli_num_rows($rmSet);
-
-	$query_tspSet = "SELECT * FROM trainee_transportation";
-	$tspSet = mysqli_query($MyConnect, $query_tspSet) or die(mysqli_error());
-	$row_tspSet = mysqli_fetch_assoc($tspSet);
-	$totalRows_tspSet = mysqli_num_rows($tspSet);
-
-	$query_bhbSet = "SELECT * FROM bank_has_banch
-		ORDER BY bnk_has_bch_id DESC";
-	$bhbSet = mysqli_query($MyConnect, $query_bhbSet) or die(mysqli_error());
-	$row_bhbSet = mysqli_fetch_assoc($bhbSet);
-	$totalRows_bhbSet = mysqli_num_rows($bhbSet);
-
-  
-  $query_bhbSet = "SELECT * FROM bank_has_banch
-    ORDER BY bnk_has_bch_id DESC";
-  $bhbSet = mysqli_query($MyConnect, $query_bhbSet) or die(mysqli_error());
-  $row_bhbSet = mysqli_fetch_assoc($bhbSet);
-  $totalRows_bhbSet = mysqli_num_rows($bhbSet);
-
-	$query_bnkSet = "SELECT * FROM bank";
-	$bnkSet = mysqli_query($MyConnect, $query_bnkSet) or die(mysqli_error());
-	$row_bnkSet = mysqli_fetch_assoc($bnkSet);
-	$totalRows_bnkSet = mysqli_num_rows($bnkSet);
-
-	$query_bchSet = "SELECT * FROM bnk_banch";
-	$bchSet = mysqli_query($MyConnect, $query_bchSet) or die(mysqli_error($MyConnect));
-	$row_bchSet = mysqli_fetch_assoc($bchSet);
-	$totalRows_bchSet = mysqli_num_rows($bchSet);
-
-	$query_prjSet = "SELECT * FROM trainee_project
-		ORDER BY project_id DESC";
-	$prjSet = mysqli_query($MyConnect, $query_prjSet) or die(mysqli_error());
-	$row_prjSet = mysqli_fetch_assoc($prjSet);
-	$totalRows_prjSet = mysqli_num_rows($prjSet);
-
-	$query_tacSet = "SELECT * FROM trainee_account
-		ORDER BY trainee_acc_id DESC";
-	$tacSet = mysqli_query($MyConnect, $query_tacSet) or die(mysqli_error());
-	$row_tacSet = mysqli_fetch_assoc($tacSet);
-	$totalRows_tacSet = mysqli_num_rows($tacSet);
-
-
-
-
+$totalRows_secSet = mysqli_num_rows($secSet);		
 
 		
 
