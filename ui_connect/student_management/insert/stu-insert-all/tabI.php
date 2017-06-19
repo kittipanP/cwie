@@ -393,11 +393,13 @@
                   <div class="accordion">
                             <p></p>
                       	<div class="w3-row-padding w3-center w3-margin-top">
+
+                            <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Education Background</p></div>
                           <div class="w3-third">
                             <div>      
                             	
-                                <input type="hidden" name="bg_id" value="" size="32" />
-                                <input type="hidden" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" /> 
+                                <input type="text" name="bg_id" value="" size="32" />
+                                <input type="text" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" /> 
                                 <div align="left">
                                 </div>
                                 <div align="left">
@@ -414,11 +416,27 @@
                                 <div align="left">
                                 <label for="bg_degree"> Degree : </label>                      	
                                 </div> 
-                                <input type="text" name="bg_degree" value="" size="32" placeholder="Senior High School"/>
+                                <select name="bg_degree" id="" style="width: 100%;">
+
+                                            <option value="">Select Degree</option>
+                                            <?php
+                                do {  
+                                ?>
+                                            <option value="<?php echo $row_degreeSet['degree_id']?>"><?php echo $row_degreeSet['degree_name']?></option>
+                                            <?php
+                                } while ($row_degreeSet = mysqli_fetch_assoc($degreeSet));
+                                  $rows = mysqli_num_rows($degreeSet);
+                                  if($rows > 0) {
+                                      mysqli_data_seek($degreeSet, 0);
+                                      $row_degreeSet = mysqli_fetch_assoc($degreeSet);
+                                  }
+                                ?>
+                                </select>
                                 <div align="left">
                                 <label for="bg_major"> Major : </label>                      	
                                 </div> 
                                 <input type="text" name="bg_major" value="" size="32" placeholder="Science-mathematics"/>
+
                             </div>
                           </div>          
                           <div class="w3-third">
@@ -465,8 +483,8 @@
                             <div class="field_wrapper w3-row-padding w3-center w3-margin-top">
                           <div class="w3-row">
                             <div class="w3-col s3 w3-container">      
-                            	 <input type="text" name="wex_id" value="" size="32" />
-                                <input type="text" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1 ?>" size="32" />
+                            	 <input type="hidden" name="wex_id" value="" size="32" />
+                                <input type="hidden" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1 ?>" size="32" />
                                 <div align="left">
                                 <label for=""> Duration : </label>
                                 </div>
