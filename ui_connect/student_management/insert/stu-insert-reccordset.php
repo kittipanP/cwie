@@ -110,15 +110,15 @@ if (isset($_SERVER['QUERY_STRING'])) {
 							   GetSQLValueString($_POST['relation_occupation'], "text"),
 							   GetSQLValueString($_POST['relation_contact'], "text"));
 							   
-	$insertSQL_ebg = sprintf("INSERT INTO education_blackgrounf (bg_id, bg_durationS, bg_durationE, bg_major, bg_institute_name, bg_degree, bg_gpax, student_info_s_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+	$insertSQL_ebg = sprintf("INSERT INTO education_blackgrounf (bg_id, student_info_s_id, bg_durationS, bg_durationE, bg_degree, bg_major, bg_institute_name, bg_gpax) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
 							   GetSQLValueString($_POST['bg_id'], "int"),
+                 GetSQLValueString($_POST['student_info_s_id'], "int"),
 							   GetSQLValueString($_POST['bg_durationS'], "date"),
 							   GetSQLValueString($_POST['bg_durationE'], "date"),
+                 GetSQLValueString($_POST['bg_degree'], "int"),
 							   GetSQLValueString($_POST['bg_major'], "text"),
 							   GetSQLValueString($_POST['bg_institute_name'], "text"),
-							   GetSQLValueString($_POST['bg_degree'], "int"),
-							   GetSQLValueString($_POST['bg_gpax'], "int"),
-							   GetSQLValueString($_POST['student_info_s_id'], "int"));
+							   GetSQLValueString($_POST['bg_gpax'], "text")); 
 							   
 	/*$insertSQL_vdo = sprintf("INSERT INTO video (video_name, video_file, application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['video_name'], "text"),
@@ -151,7 +151,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['wex_dateE'], "date"),
                        GetSQLValueString($_POST['wex_organ'], "text"),
                        GetSQLValueString($_POST['wex_detail'], "text"),
-                       GetSQLValueString($_POST['student_info_s_id'], "int"));
+                       GetSQLValueString($_POST['student_info_s_id'], "int")); 
 
   	$insertSQL_lgIn = sprintf("INSERT INTO language_info (lg_info_id, s_id) VALUES (%s, %s)",
                        GetSQLValueString($_POST['lg_info_id'], "int"),
@@ -212,7 +212,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['account_name'], "text"),
                        GetSQLValueString($_POST['trainee_email'], "text"),
                        GetSQLValueString($_POST['keycard_id'], "text")); 
-                       
+                  
   	/*
   	$insertSQL_ = sprintf("INSERT INTO xxx (x1, x2, x3) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['x1'], "int"),
@@ -240,14 +240,13 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		  $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());*/
 
 		  $Result1_wex = mysqli_query($MyConnect, $insertSQL_wex) or die(mysqli_error());
-
 		  $Result1_lgIn = mysqli_query($MyConnect, $insertSQL_lgIn) or die(mysqli_error());
 		  $Result1_lgIn_has_lg = mysqli_query($MyConnect, $insertSQL_lgIn_has_lg) or die(mysqli_error());
 		  $Result1_LgIn_has_lv = mysqli_query($MyConnect, $insertSQL_LgIn_has_lv) or die(mysqli_error());
 
 		  $Result1_tni = mysqli_query($MyConnect, $insertSQL_tni) or die(mysqli_error($MyConnect));
 		  //$Result1_pre = mysqli_query($MyConnect, $insertSQL_pre) or die(mysqli_error());
-		  $Result1_bac = mysqli_query($MyConnect, $insertSQL_bac) or die(mysqli_error($MyConnect));
+      $Result1_bac = mysqli_query($MyConnect, $insertSQL_bac) or die(mysqli_error($MyConnect));
 		  $Result1_bhb = mysqli_query($MyConnect, $insertSQL_bhb) or die(mysqli_error());
 		  $Result1_prj = mysqli_query($MyConnect, $insertSQL_prj) or die(mysqli_error($MyConnect));
 		  $Result1_thp = mysqli_query($MyConnect, $insertSQL_thp) or die(mysqli_error());
