@@ -3,7 +3,7 @@
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-mail-reply fa-stack-1x fa-inverse"></i>
                 </span></a>
-                <h2 class="fs-title">xxxxxXXXXxxxxx</h2>
+                <h2 class="fs-title">Trainee Information</h2>
                 <div align="center">
                     
                 </div>
@@ -38,11 +38,11 @@
                         <div align="left">
                         <label for=""> WD e-mail account : </label>
                         </div>
-                        <input type="hidden" name="trainee_acc_id" value="" size="32" placeholder="" />
+                        <input type="hidden" name="trainee_acc_id" value="<?php echo $row_tacSet['trainee_acc_id']+1?>" size="32" placeholder="" />
                         <input type="hidden" name="account_name" value="" size="32" placeholder="" />
                         <input type="text" name="trainee_email" value="" size="32" placeholder="kittipan.prasertsang@wdc.com" />
 
-                        <input type="hidden" name="trainee_account_id" value="<?php echo $row_tacSet['trainee_acc_id']+1?>" size="32" placeholder="" />
+                        <input type="hidden" name="tac_acc_id" value="<?php echo $row_tacSet['trainee_acc_id']+1?>" size="32" placeholder="" />
 
                         <div align="left">
                         <label for=""> Location : </label>
@@ -91,8 +91,8 @@
                         <div align="left">
                         <label for=""> Department : </label>
                         </div>
-                        <select name="dep_id" id="" style="width: 100%; " >
-                            <option value="">Select Trainee Department</option>
+                        <select name="dep_id" id="" style="width: 100%; " class="selectpicker" data-live-search="true" title="Please Select Department !">
+                            <!-- <option value="">Select Trainee Department</option> -->
                           <?php
                     do {  
                     ?>
@@ -106,6 +106,10 @@
                       }
                     ?>
                         </select>
+                  <div align="right">
+                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Department</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      </a>
+                  </div> 
 
 
 
@@ -114,49 +118,127 @@
                  
                 </div>                        
 
-                <div class="w3-row-padding w3-center w3-margin-top">
-                  <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Transportation Line</p></div>
-                  
-                        <select name="transportation_id" id="" style="width: 100%; " >
-                            <option value="">Select Trainee Transportation</option>
-                          <?php
-                    do {  
-                    ?>
-                          <option value="<?php echo $row_tspSet['transportation_id']?>"><?php echo $row_tspSet['transportation_point']?></option>
-                          <?php
-                    } while ($row_tspSet = mysqli_fetch_assoc($tspSet));
-                      $rows = mysqli_num_rows($tspSet);
-                      if($rows > 0) {
-                          mysqli_data_seek($tspSet, 0);
-                          $row_tspSet = mysqli_fetch_assoc($tspSet);
-                      }
-                    ?>
+        <!-- third start -->
+        <div class="w3-col l12">
+            <div class="">
+
+                <!-- I/III -->
+                <div class="w3-third">
+                  <div class="">
+
+                    <div class="w3-row-padding w3-center w3-margin-top">
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p> Supervisor Information</p></div>
+
+                        <input type="hidden" name="supervisor_info_spv_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" placeholder="" />
+                        <select name="supervisor_info_spv_id" id="" style="width: 100%; " class="selectpicker" data-live-search="true" title="Please Select Suppervisor !">
+                                  <!-- <option value="">Select Supervisor</option> -->
+                                <?php
+                          do {  
+                          ?>
+                                <option value="<?php echo $row_spvSet['spv_id']?>"><?php echo $row_spvSet['spv_fname']?>&nbsp;<?php echo $row_spvSet['spv_lname']?></option>
+                                <?php
+                          } while ($row_spvSet = mysqli_fetch_assoc($spvSet));
+                            $rows = mysqli_num_rows($spvSet);
+                            if($rows > 0) {
+                                mysqli_data_seek($spvSet, 0);
+                                $row_tspvSet = mysqli_fetch_assoc($tpvSet);
+                            }
+                          ?>
                         </select>
+                  <div align="right">
+                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Suppervisor</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      </a>
+                  </div> 
 
-                </div> 
 
-                <div class="w3-row-padding w3-center w3-margin-top">
-                  <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Duration Information</p></div>
-                  <div class="w3-third">
+                    </div> 
+
+                    <div class="w3-row-padding w3-center w3-margin-top">
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p> Transportation Line</p></div>
+                      
+                              <select name="transportation_id" id="" style="width: 100%; " class="selectpicker" data-live-search="true" title="Please Select Transportation !">
+                                  <!-- <option value="">Select Trainee Transportation</option> -->
+                                <?php
+                          do {  
+                          ?>
+                                <option value="<?php echo $row_tspSet['transportation_id']?>"><?php echo $row_tspSet['transportation_point']?></option>
+                                <?php
+                          } while ($row_tspSet = mysqli_fetch_assoc($tspSet));
+                            $rows = mysqli_num_rows($tspSet);
+                            if($rows > 0) {
+                                mysqli_data_seek($tspSet, 0);
+                                $row_tspSet = mysqli_fetch_assoc($tspSet);
+                            }
+                          ?>
+                              </select>
+                        <div align="right">
+                            <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Transportation Line</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                            </a>
+                        </div>
+
+                    </div> 
+                        
+                  </div>
+                </div>
+
+                <!-- II/III-->
+                <div class="w3-third">
+                    <div class="" style="">
+                    <div class="w3-row-padding w3-center w3-margin-top">
+                       
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p> Duration Information</p></div>
 
                         <div align="left">
-                        <label for=""></label>
+                        <label for="">Starting Date: </label>
                         </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
+                        <input type="text" name="" value="" size="32" placeholder="trigger calendar" id="dtwdS"/>
 
                         <div align="left">
-                        <label for=""></label>
+                        <label for="">Ending Date: </label>
                         </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />                           
+                        <input type="text" name="" value="" size="32" placeholder="trigger calendar" id="dtwdE"/>
 
-                  </div>
-                  <div class="w3-third">
-                            
-                  </div>          
-                  <div class="w3-third">
-                            
-                  </div>
-                </div>     
+
+
+                    </div> 
+                    </div>
+                </div>
+
+                <!--  III/III-->
+                <div class="w3-third">
+                    <div class=""  style="">
+                    <div class="w3-row-padding w3-center w3-margin-top">    
+
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Co-op Project</p></div>
+
+                        <div align="left">
+                        <label for="">Project Name : </label>
+                        </div>
+                        <input type="hidden" name="project_id" value="" size="32" placeholder="" /> 
+                        <input type="text" name="project_name" value="" size="32" placeholder="Smart CWIE Database Management System" />  
+                    
+                        <div align="left">
+                        <label for="">Project Detail : </label>
+                        </div>
+                        <textarea name="project_detail" value="" size="32" placeholder=""></textarea>
+                        
+            
+                        <input type="hidden" name="thp_id" value="" size="32" placeholder="" />
+                        <input type="hidden" name="project_id" value="<?php echo $row_prjSet['project_id']+1?>" size="32" placeholder="" />
+                        <input type="hidden" name="trainee_id" value="<?php echo $row_tniSet['trainee_id']+1?>" size="32" placeholder="" />
+
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+
+        <!-- third end -->
+
+        </div>
+<p>&nbsp;</p>
+                 
+  
                 
                 <div class="w3-row-padding w3-center w3-margin-top">
                   <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Bank Account Information</p></div>
@@ -179,7 +261,7 @@
                         <div align="left">
                         <label for="">Bank Name : </label>
                         </div>
-                        <input type="text" name="bnk_has_bch_id" value="" size="32" placeholder="" />   
+                        <input type="hidden" name="bnk_has_bch_id" value="" size="32" placeholder="" />   
                         <select name="bnk_id" id="" style="width: 100%; " >
                           <?php
                     do {  
@@ -196,7 +278,7 @@
                         </select>
                         <div align="left">
                         <label for=""> Branch : </label>
-                        </div><select name="bch_id" id="" style="width: 100%; " >
+                        </div><select name="bch_id" id="" style="width: 100%; " class="selectpicker" data-live-search="true" title="Please Select Branch !">
                           <?php
                     do {  
                     ?>
@@ -210,6 +292,10 @@
                       }
                     ?>
                         </select> 
+                  <div align="right">
+                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Branch</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      </a>
+                  </div> 
                   </div>          
                   <div class="w3-third"> 
                         <div align="left">
@@ -221,19 +307,18 @@
                 </div> 
 
                 <div class="w3-row-padding w3-center w3-margin-top">
-                  <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Final Presentation Information</p></div>
+<!--                  <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Final Presentation Information</p></div>
                   <div class="w3-third">
                         <div align="left">
                         <label for="">Date : </label>
                         </div>
-                        <!-- <input type="text" name="" value="" size="32" /> -->
                         <input type="hidden" name="presentation_id" value="" size="32" />
-                        <input type="text" name="presentation_date" value="" size="32" placeholder="xx-xx-xx" />
+                        <input type="text" name="presentation_date" value="<?php echo $row_preSet['presentation_date']?>" size="32" placeholder="xx-xx-xx" />
                         <div align="left">
                         <label for="">Time : </label>
                         </div>
-                        <input type="text" name="presentation_stime" value="" size="32" placeholder="xx.xx.xx" /> 
-                        <input type="text" name="presentation_ftime" value="" size="32" placeholder="xx.xx.xx" />  
+                        <input type="text" name="presentation_stime" value="<?php echo $row_preSet['presentation_stime']?>" size="32" placeholder="xx.xx.xx" /> 
+                        <input type="text" name="presentation_ftime" value="<?php echo $row_preSet['presentation_ftime']?>" size="32" placeholder="xx.xx.xx" />  
                   </div>
                   <div class="w3-third">
                         <div align="left">
@@ -267,27 +352,14 @@
                         <div align="left">
                         <label for="">Remark : </label>
                         </div>
-                        <input type="text" name="remark" value="" size="32" placeholder="..." />     
+                        <input type="remark" name="remark" value="" size="32" placeholder="..." />     
                         <div align="left">
                         <label for="">Presentation Duration : </label>
                         </div>
                         <input type="text" name="presentation_duration" value="" size="32" placeholder="xx-xx-xx" />  
                     </div>
-                  
-                    <div class="w3-col w3-container" style="width:45%">
-                        <div align="left">
-                        <label for="">Project Name : </label>
-                        </div>
-                        <input type="hidden" name="project_id" value="" size="32" placeholder="" /> 
-                        <input type="text" name="project_name" value="" size="32" placeholder="Smart CWIE Database Management System" />  
-                    </div>
-                    <div class="w3-col w3-container" style="width:55%">
-                        <div align="left">
-                        <label for="">Project Detail : </label>
-                        </div>
-                        <input type="text" name="project_detail" value="" size="32" placeholder="" />
-                    </div>
-
+-->                  
+                    
                         <input type="hidden" name="thp_id" value="" size="32" placeholder="" />
                         <input type="hidden" name="project_id" value="<?php echo $row_prjSet['project_id']+1?>" size="32" placeholder="" />
                         <input type="hidden" name="trainee_id" value="<?php echo $row_tniSet['trainee_id']+1?>" size="32" placeholder="" />
@@ -323,77 +395,6 @@
               </fieldset>
 
 
-
-<fieldset>
-                <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
-                <h2 class="fs-title">Supervisor Information</h2>
-                <div align="center">
-                    
-                </div>
-
-                <div class="w3-row-padding w3-center w3-margin-top">
-
-                  <div class="w3-third">
-                    <div>
-                        
-                        <div align="left">
-                        <label for=""> First Name : </label>
-                        </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
-                        
-                      <div align="left">  
-                      <label for=""> Last Name : </label>
-                      </div>
-                      <input type="text" name="" value="" size="32" placeholder="" />
-                      
-                      <div align="left">
-                      <label for=""> Position </label>
-                      </div>
-                      <input type="text" name="" value="" size="32" placeholder="" />
-                     
-                    </div>
-                  </div>
-       
-                  <div class="w3-third">
-                    <div >
-                                            
-                        <div align="left">  
-                        <label for=""> Office : </label>                   
-                        </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
-                        
-                        <div align="left">      
-                        <label for=""> Mobile : </label>                  
-                        </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
-                        
-                        <div align="left">  
-                        <label for=""> E-mail : </label>                      
-                        </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
-                        
-                    </div>
-                  </div>
-                        
-                  <div class="w3-third">
-                    <div >
-                                         
-                        <div align="left">  
-                        <label for=""> Section : </label>                   
-                        </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
-                        
-                        <div align="left">      
-                        <label for=""> Department : </label>                  
-                        </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
-                        
-                    </div>
-                  </div>
-                 
-                </div>
-          
-</fieldset>
 
 
 
@@ -556,7 +557,11 @@
                   </div>
                  
                 </div>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
                                       
 </fieldset>
 

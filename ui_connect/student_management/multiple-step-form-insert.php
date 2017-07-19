@@ -5,7 +5,7 @@
                   <li class="active">Personal Detail</li>
                   <li>Education Data</li>
                   <li>Other Information</li>
-                  <li>File Upload</li>
+                  <li>Duration & File Upload</li>
               </ul>
                     
               <!-- fieldsets -->
@@ -660,7 +660,7 @@ test-->
               
               <fieldset>
                 <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
-                <h2 class="fs-title">Eiei</h2>
+                <h2 class="fs-title">Duration & Files Upload</h2>
                 <div align="center">
                     <h3 class="fs-subtitle" >
                         <table>

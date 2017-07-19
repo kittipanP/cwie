@@ -1,5 +1,6 @@
 
 <fieldset>
+<!--
                 <a href="../Student_Management.php" class="w3-closebtn" title="Cancel and back to main page"><span class="fa-stack">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-mail-reply fa-stack-1x fa-inverse"></i>
@@ -19,7 +20,7 @@
                         </div>
                         <input type="text" name="" value="" size="32" placeholder="" />
                         
-                      <div align="left"> 	
+                      <div align="left">  
                       <label for=""> Leonard : </label>
                       </div>
                         <input type="text" name="" value="" size="32" placeholder="" />
@@ -36,20 +37,20 @@
                                             
                         <div align="left">  
                         <label for=""> Pre-English Test : </label>                   
-                      	</div>
+                        </div>
                         <input type="text" name="" value="" size="32" placeholder="" />
                         
                         <div align="left">      
-                        <label for=""> Post-English Test : </label>                	
-                      	</div>
+                        <label for=""> Post-English Test : </label>                 
+                        </div>
                         <input type="text" name="" value="" size="32" placeholder="" />
                         
                         <div align="left">  
-                        <label for=""> Final Presentation Score : </label>                    	
-                      	</div>
+                        <label for=""> Final Presentation Score : </label>                      
+                        </div>
                         <input type="text" name="presentation_score" value="" size="32" placeholder="xxx.xx" />
                         
-                  	</div>
+                    </div>
                   </div>
                         
                   <div class="w3-third">
@@ -101,10 +102,7 @@
 
 
                   </div>
-                </div>  
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>                    
+                </div>   
+
+-->                   
 </fieldset>

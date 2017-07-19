@@ -157,25 +157,33 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['lg_info_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int"));
 
-  	$insertSQL_lgIn_has_lg = sprintf("INSERT INTO lgInfo_has_lg (lgINfo_has_lg_id, lgInfo_id, lg_id) VALUES (%s, %s, %s)",
+  	/*$insertSQL_lgIn_has_lg = sprintf("INSERT INTO lgInfo_has_lg (lgINfo_has_lg_id, lgInfo_id, lg_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['lgINfo_has_lg_id'], "int"),
                        GetSQLValueString($_POST['lgInfo_id'], "int"),
-                       GetSQLValueString($_POST['lg_id'], "int"));
+                       GetSQLValueString($_POST['lg_id'], "int")); */
 
   	$insertSQL_LgIn_has_lv = sprintf("INSERT INTO lgInfo_has_lv (lgINfo_has_lv_id, lgInfo_id, lv_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['lgINfo_has_lv_id'], "int"),
                        GetSQLValueString($_POST['lgInfo_id'], "int"),
                        GetSQLValueString($_POST['lv_id'], "int"));
 
-  	$insertSQL_tni = sprintf("INSERT INTO trainee_info (trainee_id, s_id, job_id, dep_id, transportation_id, plant_id, location_id, trainee_acc_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+
+  	$insertSQL_tni = sprintf("INSERT INTO trainee_info (trainee_id, trainee_code, s_id, job_id, tac_acc_id, location_id, plant_id, dep_id, transportation_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
   						GetSQLValueString($_POST['trainee_id'],"text"),
+              GetSQLValueString($_POST['trainee_code'],"text"),
   						GetSQLValueString($_POST['s_id'],"int"),
   						GetSQLValueString($_POST['job_id'],"int"),
+              GetSQLValueString($_POST['tac_acc_id'],"int"),
+              GetSQLValueString($_POST['location_id'],"int"),
+              GetSQLValueString($_POST['plant_id'],"int"),
   						GetSQLValueString($_POST['dep_id'],"int"),
-  						GetSQLValueString($_POST['transportation_id'],"int"),
-  						GetSQLValueString($_POST['plant_id'],"int"),
-  						GetSQLValueString($_POST['location_id'],"int"),
-  						GetSQLValueString($_POST['trainee_acc_id'],"int"));
+  						GetSQLValueString($_POST['transportation_id'],"int"));
+
+    $insertSQL_tac = sprintf("INSERT INTO trainee_account (trainee_acc_id, account_name, trainee_email, keycard_id) VALUES (%s, %s, %s, %s)",
+                       GetSQLValueString($_POST['trainee_acc_id'], "int"),
+                       GetSQLValueString($_POST['account_name'], "text"),
+                       GetSQLValueString($_POST['trainee_email'], "text"),
+                       GetSQLValueString($_POST['keycard_id'], "text")); 
 
   	/*$insertSQL_pre = sprintf("INSERT INTO trainee_presentation (presentation_id, presentation_date, presentation_stime, presentation_ftime, presentation_duration, remark, presentation_score, created_details, room_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['presentation_id'], "int"),
@@ -188,6 +196,10 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['created_details'], "timstamp"),
                        GetSQLValueString($_POST['room_id'], "int"));*/
 
+    $insertSQL_bhb = sprintf("INSERT INTO bank_has_banch (bnk_has_bch_id, bnk_id, bch_id) VALUES (%s, %s, %s)",
+                       GetSQLValueString($_POST['bnk_has_bch_id'], "int"),
+                       GetSQLValueString($_POST['bnk_id'], "int"),
+                       GetSQLValueString($_POST['bch_id'], "int")); 
 
     $insertSQL_bac = sprintf("INSERT INTO bank_acc_info (bac_id, bac_no, bac_name, trainee_id, bnk_has_id) VALUES (%s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['bac_id'], "int"),
@@ -195,10 +207,6 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['bac_name'], "text"),
                        GetSQLValueString($_POST['trainee_id'], "int"),
                        GetSQLValueString($_POST['bnk_has_id'], "int"));
-  	$insertSQL_bhb = sprintf("INSERT INTO bank_has_banch (bnk_has_bch_id, bnk_id, bch_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['bnk_has_bch_id'], "int"),
-                       GetSQLValueString($_POST['bnk_id'], "int"),
-                       GetSQLValueString($_POST['bch_id'], "int")); 
   	$insertSQL_prj = sprintf("INSERT INTO trainee_project (project_id, project_name, project_detail) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['project_id'], "int"),
                        GetSQLValueString($_POST['project_name'], "text"),
@@ -207,18 +215,25 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['thp_id'], "int"),
                        GetSQLValueString($_POST['project_id'], "int"),
                        GetSQLValueString($_POST['trainee_id'], "int")); 
-  	$insertSQL_tac = sprintf("INSERT INTO trainee_account (trainee_acc_id, account_name, trainee_email, keycard_id) VALUES (%s, %s, %s, %s)",
-                       GetSQLValueString($_POST['trainee_acc_id'], "int"),
-                       GetSQLValueString($_POST['account_name'], "text"),
-                       GetSQLValueString($_POST['trainee_email'], "text"),
-                       GetSQLValueString($_POST['keycard_id'], "text")); 
-                  
+    /*
+    $insertSQL_pre = sprintf("INSERT INTO trainee_presentation (presentation_date, presentation_stime , presentation_ftime, room_id, remark) VALUES (%s, %s, %s, %s, %s)",
+                       GetSQLValueString($_POST['presentation_date'], "date(format)"),
+                       GetSQLValueString($_POST['presentation_stime'], "time"),
+                       GetSQLValueString($_POST['presentation_ftime'], "time"),
+                       GetSQLValueString($_POST['room_id'], "int"),
+                       GetSQLValueString($_POST['remark'], "text")); 
+    */             
   	/*
   	$insertSQL_ = sprintf("INSERT INTO xxx (x1, x2, x3) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['x1'], "int"),
                        GetSQLValueString($_POST['x2'], "int"),
                        GetSQLValueString($_POST['x3'], "int")); 
                        */
+
+
+    $insertSQL_shs = sprintf("INSERT INTO supervisor_info_has_student_info (supervisor_info_spv_id, student_info_s_id) VALUES (%s, %s)",
+                       GetSQLValueString($_POST['supervisor_info_spv_id'], "int"),
+                       GetSQLValueString($_POST['student_info_s_id'], "int"));
   
 		  mysqli_select_db($MyConnect, $database_MyConnect);
 		  /*
@@ -232,6 +247,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		  $Result1_sad = mysqli_query($MyConnect, $insertSQL_sad) or die(mysqli_error());	
 		  $Result1_sre = mysqli_query($MyConnect, $insertSQL_sre) or die(mysqli_error());
 		  $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error($MyConnect));
+
 		  
 		 /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error());
 		  $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());	  
@@ -241,16 +257,23 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 		  $Result1_wex = mysqli_query($MyConnect, $insertSQL_wex) or die(mysqli_error());
 		  $Result1_lgIn = mysqli_query($MyConnect, $insertSQL_lgIn) or die(mysqli_error());
-		  $Result1_lgIn_has_lg = mysqli_query($MyConnect, $insertSQL_lgIn_has_lg) or die(mysqli_error());
-		  $Result1_LgIn_has_lv = mysqli_query($MyConnect, $insertSQL_LgIn_has_lv) or die(mysqli_error());
+//		  $Result1_lgIn_has_lg = mysqli_query($MyConnect, $insertSQL_lgIn_has_lg) or die(mysqli_error($MyConnect));
+		  $Result1_LgIn_has_lv = mysqli_query($MyConnect, $insertSQL_LgIn_has_lv) or die(mysqli_error($MyConnect));
 
-		  $Result1_tni = mysqli_query($MyConnect, $insertSQL_tni) or die(mysqli_error($MyConnect));
+      $Result1_tac = mysqli_query($MyConnect, $insertSQL_tac) or die(mysqli_error());
+		  $Result1_tni = mysqli_query($MyConnect, $insertSQL_tni) or die(mysqli_error());
 		  //$Result1_pre = mysqli_query($MyConnect, $insertSQL_pre) or die(mysqli_error());
-      $Result1_bac = mysqli_query($MyConnect, $insertSQL_bac) or die(mysqli_error($MyConnect));
-		  $Result1_bhb = mysqli_query($MyConnect, $insertSQL_bhb) or die(mysqli_error());
-		  $Result1_prj = mysqli_query($MyConnect, $insertSQL_prj) or die(mysqli_error($MyConnect));
-		  $Result1_thp = mysqli_query($MyConnect, $insertSQL_thp) or die(mysqli_error());
-		  $Result1_tac = mysqli_query($MyConnect, $insertSQL_tac) or die(mysqli_error());
+      $Result1_bhb = mysqli_query($MyConnect, $insertSQL_bhb) or die(mysqli_error());
+      $Result1_bac = mysqli_query($MyConnect, $insertSQL_bac) or die(mysqli_error());
+		  $Result1_prj = mysqli_query($MyConnect, $insertSQL_prj) or die(mysqli_error());
+		  $Result1_thp = mysqli_query($MyConnect, $insertSQL_thp) or die(mysqli_error()); 
+      //$Result1_pre = mysqli_query($MyConnect, $insertSQL_pre) or die(mysqli_error($MyConnect));
+
+
+
+
+
+          $Result1_shs = mysqli_query($MyConnect, $insertSQL_shs) or die(mysqli_error($MyConnect));
 		
 		  $insertGoTo = "stu-insert-all.php";
 		  if (isset($_SERVER['QUERY_STRING'])) {
@@ -532,6 +555,29 @@ $totalRows_secSet = mysqli_num_rows($secSet);
 	$tacSet = mysqli_query($MyConnect, $query_tacSet) or die(mysqli_error());
 	$row_tacSet = mysqli_fetch_assoc($tacSet);
 	$totalRows_tacSet = mysqli_num_rows($tacSet);
+/*
+  $query_preSet = "SELECT * FROM trainee_presentation
+    ORDER BY presentation_id DESC";
+  $preSet = mysqli_query($MyConnect, $query_preSet) or die(mysqli_error());
+  $row_preSet = mysqli_fetch_assoc($preSet);
+  $totalRows_preSet = mysqli_num_rows($preSet);
+*/  
+
+
+          $query_spvSet = "SELECT * FROM supervisor_info
+            ORDER BY spv_id DESC";
+          $spvSet = mysqli_query($MyConnect, $query_spvSet) or die(mysqli_error());
+          $row_spvSet = mysqli_fetch_assoc($spvSet);
+          $totalRows_spvSet = mysqli_num_rows($spvSet);
+
+          $query_shiSet = "SELECT * FROM supervisor_info_has_student_info";
+          $shiSet = mysqli_query($MyConnect, $query_shiSet) or die(mysqli_error());
+          $row_shiSet = mysqli_fetch_assoc($shiSet);
+          $totalRows_shiSet = mysqli_num_rows($shiSet);
+
+
+
+
 
 
 

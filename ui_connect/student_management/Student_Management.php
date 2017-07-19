@@ -278,14 +278,14 @@ header{ background: url(../../img/head/headerv.jpg);}
         
 
 	<!-- Page Container -->
-  <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">   
+  <div class="w3-container w3-content" style="max-width:1400px;margin-top:60px">   
 
     <!-- The Grid -->
     <div class="w3-row"> 
             
             
       <!-- Header -->
-      <header class="w3-container w3-theme w3-padding" id="myHeader"> 
+      <header class="w3-container w3-theme w3-padding w3-opacity-min" id="myHeader"> 
 
         <!-- Navigation II--> 
         <div class="w3-left">      
@@ -293,32 +293,197 @@ header{ background: url(../../img/head/headerv.jpg);}
         </div>         
         <!--<i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-opennav"></i> -->
         <div class="w3-left">
-            <h4>&nbsp;</h4>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <h4>Welcome to ..            </h4>
-            <h1 class="w3-xxxlarge w3-animate-bottom ">Student Management System            </h1>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to ..            </h4>
+            <h1 class="w3-xxxlarge w3-animate-bottom " style="text-shadow:3px 2px 0 #444">&nbsp;&nbsp;&nbsp;Student Management System</h1>
             <p><!--<div class="w3-padding-32">
                   <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey" onclick="#" style="font-weight:900;">ห้ามกดเด็ดขาด</button>
               </div>-->        </p>
           
-          <div class="w3-container">
+          <!--<div class="w3-container">
           <a class="w3-button w3-xlarge w3-teal w3-card-4"> &nbsp;+&nbsp; </a>  
-    	  </div>
+    	  </div>-->
         </div>
       </header>
+
+
+<!-- Left Column -->
+        <div class="w3-col l12">
+            <div class="w3-row-padding w3-center w3-margin-top">
+
+                <!-- First Column-->
+                <div class="w3-third">
+                    <div class="w3-card-4 " style="min-height:491px"><!--490-->
+
+                      <!-- add_fast-->
+                      
+                          <div class="w3-half w3-display-container " style="min-height:200px">
+                              <a onclick="document.getElementById('id01').style.display='block', w3_close()" class = "textdecoration">
+                                  <img src="../../img/images/add_fast.jpg" class="w3-hover-opacity" style="width:100%; height: 400px; ">
+
+                                  <div class="w3-display-topleft w3-display-hover"> 
+                                    <div class="w3-panel w3-blue-grey w3-card-4 ">
+                                      <a href="" class = "textdecoration"><p>Fast Process</p></a>
+                                    </div>
+                                  </div>
+                                      
+                              </a>
+                              <div class = "w3-container w3-padding-32 w3-right" >
+                                <h4>C R E A T E</h4>
+                              </div>
+                          </div>
+                      
+                      <!-- add_full-->
+                      
+                          <div class="w3-half w3-display-container" style="min-height:200px">
+                              <a href="
+                              ../../ui_connect/main-connect-ui/stu-insert-all.php">
+                                  <img src="../../img/images/add_full.jpg" class="w3-hover-opacity" style="width:100%; height: 400px; ">
+
+                                  <div class="w3-display-topright w3-display-hover"> 
+                                    <div class="w3-panel w3-blue-grey w3-card-4 ">
+                                      <a href="../../ui_connect/main-connect-ui/stu-insert-all.php"><p>Full Process</p></a>
+                                    </div>
+                                  </div>
+                                      
+                              </a>
+                              <div class = "w3-container w3-padding-32 w3-left" >
+                                <h4>&nbsp;&nbsp;N E W</h4>
+                              </div>
+                          </div>
+                      
+                        
+
+                    </div>
+                </div>
+
+
+
+                <!-- Second Column -->
+                <div class="w3-twothird">
+                    <div class="w3-card-4 " style="min-height:491px">
+
+                      <!-- All -->
+                      <div class="w3-third">
+                          <div class="w3-card-4 " style="min-height:">
+                            <a href="../../ui_connect/main-connect-ui/all-status.php" class = "textdecoration">
+                              <img src="../../img/images/all.jpg" class="w3-hover-opacity" style="width:100%; height: 200px; ">
+                              <div class = "w3-container" >
+                                 <h4> All</h4> 
+                              </div>
+                            </a>   
+                          </div>
+                      </div>
+                      <!-- On Process -->
+                      <div class="w3-third">
+                          <div class="w3-card-4  " style="min-height:">
+                            <!-- On Process i -->
+                            <div class="w3-display-container ">
+                                <div class="" style="min-height:">
+                                  <a href="../../ui_connect/main-connect-ui/onProcess.php" class = "textdecoration">
+                                    <img src="../../img/images/onProi.jpg" class="w3-hover-opacity" style="width:100%; height: 105px; ">
+                                      <div class="w3-display-middle w3-display-hover"> 
+                                        <div class="w3-panel w3-orange w3-card-2 ">
+                                          <a href="../../ui_connect/main-connect-ui/onProcess.php" class = "textdecoration"><p>Incomplet Documentation</p></a>
+                                        </div>
+                                      </div>
+                                  </a>   
+                                </div>
+                            </div>
+                            <!-- On Process ii -->
+                            <div class="w3-display-container">
+                                <div class="" style="min-height:">
+                                  <a href="../../ui_connect/main-connect-ui/onProcess.php" class = "textdecoration">
+                                    <img src="../../img/images/onProii.jpg" class="w3-hover-opacity" style="width:100%; height: 100px; ">
+                                      <div class="w3-display-middle w3-display-hover"> 
+                                        <div class="w3-panel w3-green w3-card-2 ">
+                                          <a href="../../ui_connect/main-connect-ui/onProcess.php" class = "textdecoration"><p>Complet Documentation</p></a>
+                                        </div>
+                                      </div>
+                                  </a>   
+                                </div>
+                            </div>
+                            <a href="../../ui_connect/main-connect-ui/onProcess.php">
+                              <div class = "w3-container" >
+                                 <h4> Stusent on Process</h4> 
+                              </div>
+                            </a>  
+                          </div>
+                      </div>
+                      <!-- Waiting on Board -->
+                      <div class="w3-third">
+                          <div class="w3-card-4 " style="min-height:">
+                            <a href="../../ui_connect/main-connect-ui/waitingOnBoard.php" class = "textdecoration">
+                              <img src="../../img/images/wait.jpg" class="w3-hover-opacity" style="width:100%; height: 200px; ">
+                              <div class = "w3-container" >
+                                 <h4> Student on Board</h4> 
+                              </div>
+                            </a>   
+                          </div>
+                      </div>
+
+          
+                      <!-- Trainee -->
+                      <div class="w3-third">
+                          <div class="w3-card-4 " style="min-height:">
+                            <a href="../../ui_connect/main-connect-ui/trainee.php">
+                              <img src="../../img/images/tni.jpg" class="w3-hover-opacity" style="width:100%; height: 200px; ">
+                              <div class = "w3-container" >
+                                 <h4> Trainee</h4> 
+                              </div>
+                            </a>   
+                          </div>
+                      </div>
+                      <!-- Old Trainee -->
+                      <div class="w3-third">
+                          <div class="w3-card-4 " style="min-height:">
+                            <a href="../../ui_connect/main-connect-ui/endedtrainee.php">
+                              <img src="../../img/images/old.jpg" class="w3-hover-opacity" style="width:100%; height: 200px; ">
+                              <div class = "w3-container" >
+                                 <h4> Ended Trainee</h4> 
+                              </div>
+                            </a>   
+                          </div>
+                      </div>
+                      <!-- Rejected -->
+                      <div class="w3-third">
+                          <div class="w3-card-4 " style="min-height:">
+                            <a href="../../ui_connect/main-connect-ui/rejectedStudent.php">
+                              <img src="../../img/images/rejected.jpg" class="w3-hover-opacity" style="width:100%; height: 200px; ">
+                              <div class = "w3-container" >
+                                 <h4> Rejected Student</h4> 
+                              </div>
+                            </a>   
+                          </div>
+                      </div>
+
+                    </div>
+                </div>
+
+
+                <!--
+                <div class="w3-third">
+                <div class="w3-card-2 w3-padding-top" style="min-height:460px; text-align: center;">
+                    <a href="ui_connect/activity_management/activity.php" class = "textdecoration"><h6 class = "hcol">Activity Management</h6><br></br>
+                        <i class="fa fa-puzzle-piece w3-margin-bottom w3-text-theme" style="font-size:120px"></i></a>
+                            <p>@@@@@@@@@@@@@@@@@@@</p>
+                            <p>@@@@@@@@@@@@@@@@@@@</p>
+                            <p>@@@@@@@@@@@@@@@@@@@</p>
+                            <p>@@@@@@@@@@@@@@@@@@@</p>
+                            <p>@@@@@@@@@@@@@@@@@@@</p>
+                </div>
+            </div> -->
+
+            </div>
+        </div>    
+    
+
+
       
     <!-- End The Grid -->
     </div>
   <!-- End Page Container -->
   </div>
-  
-  
-           
-      
-    
-      
+   
       
     <!-- Filter Table All -->     
     <div id="allRecent">

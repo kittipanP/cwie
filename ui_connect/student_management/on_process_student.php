@@ -113,7 +113,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
                               <td><?php echo $row_studentSet['major_name']; ?></td>
                               <td><?php echo $row_studentSet['uni_name']; ?>
                                     <?php echo $row_studentSet['collage_name']; ?></td>
-                              <td><a href="student_update.php?s_id=<?php echo $row_studentSet['s_id']; ?>"><i class="fa fa-pencil w3-margin-right"></i></a></td>
+                              <td><a href="editting/student-edit.php?s_id=<?php echo $row_studentSet['s_id']; ?>"><i class="fa fa-pencil w3-margin-right"></i></a></td>
                               <td><a href="student_delete.php?s_id=<?php echo $row_studentSet['s_id']; ?>"><i class="fa fa-trash w3-margin-right"></i></a></td>
                             </tr> 
                         <?php } while ($row_studentSet = mysqli_fetch_assoc($studentSet)); ?>               

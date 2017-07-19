@@ -3,7 +3,7 @@ class DBController {
 	/*private $host = "localhost";
 	private $user = "root";
 	private $password = "";
-	private $database = "";*/
+	private $database = "blog_examples";*/
 	
 	function __construct() {
 		$conn = $this->connectDB();
@@ -13,8 +13,8 @@ class DBController {
 	}
 	
 	function connectDB() {
-		$conn = mysqli_connect($this->host,$this->user,$this->password);
-		return $conn;
+		//$conn = mysqli_connect($this->host,$this->user,$this->password);
+		//return $conn;
 	}
 	
 	function selectDB($conn) {
