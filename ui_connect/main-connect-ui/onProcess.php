@@ -100,6 +100,9 @@ Bon-->
       
 
 
+    <!-- alert-sweetAlert2-->   
+    <link rel="stylesheet" href="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/sweetAlert2/ajax-delete/assets/swal2/sweetalert2.min.css" type="text/css" />
 
 
 <link rel="stylesheet" href="src/calendar.css">
@@ -183,9 +186,69 @@ header{ background: url(../../img/head/headerv.jpg);}
 </div>
 
 <!-- Filter Table Trainee -->
-<div id="">
-<?php include '../../ui_connect/student_management/split-by-status/onProcess-table.php' ?>
-</div>
+<div id="load-products">
+<?php //include '../../ui_connect/student_management/split-by-status/onProcess-table.php' ?>
+</div><!-- products will be load here -->
+
+    <!-- alert-sweetAlert2 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../libs/sweetAlert2/ajax-delete/assets/swal2/sweetalert2.min.js"></script>        
+    <script>
+      $(document).ready(function(){
+        
+        readProducts(); /* it will load products when document loads */
+        
+        $(document).on('click', '#delete_product', function(e){
+          
+          var productId = $(this).data('id');
+          SwalDelete(productId);
+          e.preventDefault();
+        });
+        
+      });
+      
+      function SwalDelete(productId){
+        
+        swal({
+          title: 'Are you sure?',
+          text: "It will be deleted permanently!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!',
+          showLoaderOnConfirm: true,
+            
+          preConfirm: function() {
+            return new Promise(function(resolve) {
+                 
+               $.ajax({
+                url: 'delete.php',
+                type: 'POST',
+                  data: 'delete='+productId,
+                  dataType: 'json'
+               })
+               .done(function(response){
+                swal('Deleted!', response.message, response.status);
+              readProducts();
+               })
+               .fail(function(){
+                swal('Oops...', 'Something went wrong with ajax !', 'error');
+               });
+            });
+            },
+          allowOutsideClick: false        
+        }); 
+        
+      }
+      
+      function readProducts(){
+        $('#load-products').load('../../ui_connect/student_management/split-by-status/onProcess-table.php'); 
+      } 
+
+      
+    </script>
   
     
 <?php 
