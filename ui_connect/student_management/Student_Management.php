@@ -126,7 +126,10 @@ Bon-->
       
       
 
-
+<!-- alert-sweetAlert2-->   
+    <link rel="stylesheet" href="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/sweetAlert2/ajax-delete/assets/swal2/sweetalert2.min.css" type="text/css" />
+    
 
 
 <link rel="stylesheet" href="src/calendar.css">
@@ -137,6 +140,12 @@ html,body,h1,h2,h3,h4,h5 {
 }
 header{ background: url(../../img/head/headerv.jpg);}
 </style>
+
+<STYLE type=text/css> 
+A:link {COLOR: #000000 ; TEXT-DECORATION: none} 
+A:visited {COLOR: #000000; TEXT-DECORATION: none} 
+A:hover {COLOR: #000000; TEXT-DECORATION: underline} 
+</STYLE>
 
     <style type="text/css">
 /*        html {
@@ -249,7 +258,7 @@ header{ background: url(../../img/head/headerv.jpg);}
           &nbsp;&nbsp;Create New &nbsp;<i class="fa fa-caret-down"></i></div>
           <div id="demoAcc" class="w3-hide w3-white w3-card-4" style="cursor: pointer;">
             <a onclick="document.getElementById('id01').style.display='block', w3_close()" >&nbsp;&nbsp;<i class="fa fa-flash w3-margin-right" ></i>&nbsp;Fast Process</a>
-            <a href="insert/stu-insert-all.php" class="w3-bar-item w3-button">&nbsp;&nbsp;<i class="fa fa-plus w3-margin-right"></i>Full Process</a>
+            <a href="../../ui_connect/main-connect-ui/stu-insert-all.php" class="w3-bar-item w3-button">&nbsp;&nbsp;<i class="fa fa-plus w3-margin-right"></i>Full Process</a>
           </div>
           <a href="#allRecent" onclick="w3_close()"><i class="fa fa-globe w3-margin-right"></i> All</a>
           <a href="#onProcesss" onclick="w3_close()"><i class="fa fa-address-book w3-margin-right"></i> On Process</a>
@@ -487,30 +496,46 @@ header{ background: url(../../img/head/headerv.jpg);}
       
     <!-- Filter Table All -->     
     <div id="allRecent">
-    	<?php include ("all.php") ?>
+
+      <div id="load-all-status-forMain"></div><!-- load */all-status-forMain.php -->
+
     </div>
+
+
     <!-- Filter Table Onprocess -->
     <div id="onProcesss">
-    	<?php include ("on_process_student.php") ?>
+
+      <div id="load-onProcess-table-forMain"></div><!-- load */onProcess-table-forMain.php -->
+
     </div>
+
     <!-- Filter Table Waiting on Board -->
     <div id="waitingOnBoard">
-    	<?php include 'waiting_on_board.php' ?>
+
+      <div id="load-waitingOnBoard-table-forMain"></div><!-- load */waitingOnBoard-table-forMain.php -->
+
     </div>
+
     <!-- Filter Table Trainee -->
     <div id="trainee">
-    	<?php include 'trainee.php' ?>
+
+      <div id="load-trainee-table-forMain"></div><!-- load */trainee-table-forMain.php -->
     </div>
+
     <!-- Filter Table End Trainee -->
     <div id="oldTrainee">
-    	<?php include 'end_trainee.php' ?>	
+
+      <div id="load-endedTrainee-table-forMain"></div><!-- load */endedTrainee-table-forMain.php -->
     </div>
-	<div id="reject">
- 		<?php include 'reject.php' ?>	
+
+
+	  <div id="reject">
+
+      <div id="load-rejectedStu-table-forMain"></div><!-- load */rejectedStu-table-forMain.php -->
           <p>&nbsp;</p>
           <p>&nbsp;</p>
           <p>&nbsp;</p>
-    </div>
+    </div> 
     
     <!--Calendar-->
     <div id="wdS"></div>
@@ -537,7 +562,72 @@ function myAccFunc() {
 </script>
     
     
-    
+ 
+    <!-- alert-sweetAlert2 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../libs/sweetAlert2/ajax-delete/assets/swal2/sweetalert2.min.js"></script>        
+    <script>
+      $(document).ready(function(){
+        
+        readProducts(); /* it will load products when document loads */
+        
+        $(document).on('click', '#delete_product', function(e){
+          
+          var productId = $(this).data('id');
+          SwalDelete(productId);
+          e.preventDefault();
+        });
+        
+      });
+      
+      function SwalDelete(productId){
+        
+        swal({
+          title: 'Are you sure?',
+          text: "It will be deleted permanently!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!',
+          showLoaderOnConfirm: true,
+            
+          preConfirm: function() {
+            return new Promise(function(resolve) {
+                 
+               $.ajax({
+                url: 'delete.php',
+                type: 'POST',
+                  data: 'delete='+productId,
+                  dataType: 'json'
+               })
+               .done(function(response){
+                swal('Deleted!', response.message, response.status);
+              readProducts();
+               })
+               .fail(function(){
+                swal('Oops...', 'Something went wrong with ajax !', 'error');
+               });
+            });
+            },
+          allowOutsideClick: false        
+        }); 
+        
+      }
+      
+      function readProducts(){
+        $('#load-all-status-forMain').load('../../ui_connect/student_management/split-by-status/all-status-forMain.php'); 
+        $('#load-onProcess-table-forMain').load('../../ui_connect/student_management/split-by-status/onProcess-table-forMain.php');  
+        $('#load-waitingOnBoard-table-forMain').load('../../ui_connect/student_management/split-by-status/waitingOnBoard-table-forMain.php');  
+        $('#load-trainee-table-forMain').load('../../ui_connect/student_management/split-by-status/trainee-table-forMain.php');  
+        $('#load-endedTrainee-table-forMain').load('../../ui_connect/student_management/split-by-status/endedTrainee-table-forMain.php');  
+        $('#load-rejectedStu-table-forMain').load('../../ui_connect/student_management/split-by-status/rejectedStu-table-forMain.php'); 
+      } 
+
+      
+    </script>
+   
     
     
     
