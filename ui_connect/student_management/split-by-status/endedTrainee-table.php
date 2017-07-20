@@ -1,4 +1,4 @@
-<?php require_once('../../Connections/MyConnect.php'); ?>
+
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -33,6 +33,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 
+require_once('../../../Connections/MyConnect.php');
     $maxRows_studentSet = 100;
     $pageNum_studentSet = 0;
     if (isset($_GET['pageNum_studentSet'])) {
@@ -113,8 +114,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
                               <td><?php echo $row_studentSet['major_name']; ?></td>
                               <td><?php echo $row_studentSet['uni_name']; ?>
                                     <?php echo $row_studentSet['collage_name']; ?></td>
-                              <td><a href="editting/student-edit.php?s_id=<?php echo $row_studentSet['s_id']; ?>"><i class="fa fa-pencil w3-margin-right"></i></a></td>
-                              <td><a href="student_delete.php?s_id=<?php echo $row_studentSet['s_id']; ?>"><i class="fa fa-trash w3-margin-right"></i></a></td>
+                              <td><a class="btn btn-default w3-hover-blue" href="stu-update-all.php?s_id=<?php echo $row_studentSet['s_id']; ?>"><i class="fa fa-pencil"></i></a></td>
+                              <td><a  class="btn btn-default w3-hover-red" id="delete_product" data-id="<?php echo $row_studentSet['s_id']; ?>" href="javascript:void(0)"><i class="fa fa-trash "></i></a></td>
                             </tr> 
                         <?php } while ($row_studentSet = mysqli_fetch_assoc($studentSet)); ?>               
                     </table>
