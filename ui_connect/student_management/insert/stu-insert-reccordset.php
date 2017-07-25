@@ -296,7 +296,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		$startRow_studentSet = $pageNum_studentSet * $maxRows_studentSet;
 		
 		mysqli_select_db($MyConnect,$database_MyConnect);
-			$query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name, university_info.uni_name, collage_info.collage_name
+			$query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name , degree_info.degree_name, university_info.uni_name, collage_info.collage_name
 			FROM student_info
 			INNER JOIN title ON title.title_id = student_info.title_title_id
 			INNER JOIN student_status ON student_status.status_id = student_info.status_id

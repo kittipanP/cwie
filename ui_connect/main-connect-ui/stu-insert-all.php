@@ -49,9 +49,11 @@
     <script src='../../libs/jQuery-Customselect/src/jquery-customselect.js'></script>
     <link href='../../libs/jQuery-Customselect/src/jquery-customselect.css?v=<55' rel='stylesheet' />
     
-    <!-- alert-sweetAlert2-->   
+    <!-- alert-sweetAlert2  --> 
+    <!--
     <link rel="stylesheet" href="../../libs/sweetAlert2/assets/bootstrap/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../../libs/sweetAlert2/assets/swal2/sweetalert2.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/sweetAlert2/assets/swal2/sweetalert2.min.css" type="text/css" /> -->
+
 
 
     <!--<link href='../../../libs/jQuery-Customselect/src/jquery-customselect.css?v=<?php echo filemtime('jquery-customselect.css'); ?>' rel='stylesheet' />-->
@@ -76,6 +78,16 @@
 
 <!-- calendar-style -->
 <link rel="stylesheet" href="../../ui_connect/student_management/src/calendar.css">
+
+
+
+
+    <!-- alert-sweetAlert2-->   
+<!--    <link rel="stylesheet" href="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/sweetAlert2/ajax-delete/assets/swal2/sweetalert2.min.css" type="text/css" /> -->
+
+ 
+ <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.6/sweetalert2.css"> 
 
 
 </head>
@@ -203,63 +215,68 @@ header{ background: url(../../img/head/headerv.jpg);}
     <div id="wdE"></div> 
 
     <!-- alert-sweetAlert2 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../../libs/sweetAlert2/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../libs/sweetAlert2/assets/swal2/sweetalert2.min.js"></script>        
-    <script>
-      $(document).ready(function(){
-        
-        readProducts(); /* it will load products when document loads */
-        
-        $(document).on('click', '#delete_product', function(e){
-          
-          var productId = $(this).data('id');
-          SwalDelete(productId);
-          e.preventDefault();
-        });
-        
-      });
-      
-      function SwalDelete(productId){
-        
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <!--<script src="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/js/bootstrap.min.js"></script> -->
+    <!--<script src="../../libs/sweetAlert2/ajax-delete/assets/swal2/sweetalert2.min.js"></script>  -->
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.6/sweetalert2.min.js"></script>      
+    <script> 
+
+      //$(document).ready(function(){
+      function addMore(){
         swal({
-          title: 'Are you sure?',
-          text: "It will be deleted permanently!",
-          type: 'warning',
+          title: 'Submit Major to run ajax request.',
+          input: 'email',
           showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!',
+          confirmButtonText: 'Submit',
           showLoaderOnConfirm: true,
-            
-          preConfirm: function() {
-            return new Promise(function(resolve) {
-                 
-               $.ajax({
-                url: 'delete.php',
-                type: 'POST',
-                  data: 'delete='+productId,
-                  dataType: 'json'
-               })
-               .done(function(response){
-                swal('Deleted!', response.message, response.status);
-              readProducts();
-               })
-               .fail(function(){
-                swal('Oops...', 'Something went wrong with ajax !', 'error');
-               });
-            });
-            },
-          allowOutsideClick: false        
-        }); 
+          preConfirm: function (email) {
+            return new Promise(function (resolve, reject) {
+              setTimeout(function() {
+                $.ajax({
+                    type: 'post',
+                    url: 'check-major.php',
+                    data: {email:email},
+                    success: function(result){
+                      if(result<0){
+                        reject('This eiei is already taken.')
+                      }
+                      else{
+                          $.ajax({
+                              type: 'post',
+                              url: 'addMore.php',
+                              data: {email:email},
+                              success: function(data){
+                                  resolve()
+
+                              }
+
+                          });
+
+                        //resolve()
+                      }
+                    }
+                });
+
+              }, 2000)
+            })
+          },
+          allowOutsideClick: false
+        }).then(function (email) {
+          swal({
+            type: 'success',
+            title: 'Ajax request finished!',
+            html: 'Submitted email: ' + email
+          })
+        }) 
         
       }
-      
-      function readProducts(){
-        $('#load-products').load('read.php'); 
-      }
+      //});
+
       
     </script>
+
 
 
     

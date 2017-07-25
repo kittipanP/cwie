@@ -105,7 +105,7 @@
                     <input type="hidden" name="MM_update" value="form-update" />
                     <input type="hidden" name="scd_s_id" value="<?php echo $row_Recordset1_scd['scd_s_id'];?>" /> <!--do not need-->
                     <input type="hidden" name="s_id" value="<?php echo $row_Recordset1_stu['s_id'];?>" />
-            </form> 
+</form> 
 <?php include "get_university.php";?>
 
 

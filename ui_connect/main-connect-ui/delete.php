@@ -15,7 +15,7 @@
 		
 		if ($stmt) {
 			$response['status']  = 'success';
-			$response['message'] = 'Product Deleted Successfully ...';
+			$response['message'] = 'The Infomation Deleted Successfully ...';
 		} else {
 			$response['status']  = 'error';
 			$response['message'] = 'Unable to delete product ...';

@@ -319,7 +319,12 @@
                         ?>
                         </select>
                       <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add New Major</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
+                      <a id="addMore" onclick="addMore()" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add New Major</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a>
+                      
+                      <!--
+                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add New Major</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a>
+                      -->
+                      </div>
 
 
                         <!--<input type="text" name="major_id" value="" size="32" />-->

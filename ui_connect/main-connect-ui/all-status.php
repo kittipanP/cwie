@@ -192,8 +192,10 @@ header{ background: url(../../img/head/headerv.jpg);}
   
 
     <!-- alert-sweetAlert2 -->
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/js/bootstrap.min.js"></script> -->
     <script src="../../libs/sweetAlert2/ajax-delete/assets/swal2/sweetalert2.min.js"></script>        
     <script>
       $(document).ready(function(){
@@ -219,7 +221,13 @@ header{ background: url(../../img/head/headerv.jpg);}
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Yes, delete it!',
-          showLoaderOnConfirm: true,
+            cancelButtonText: 'No, cancel!',
+  confirmButtonClass: 'btn btn-success',
+  cancelButtonClass: 'btn btn-danger',
+  buttonsStyling: false,
+          //showLoaderOnConfirm: true,
+          //closeOnCancel: true,
+
             
           preConfirm: function() {
             return new Promise(function(resolve) {
@@ -230,6 +238,7 @@ header{ background: url(../../img/head/headerv.jpg);}
                   data: 'delete='+productId,
                   dataType: 'json'
                })
+  
                .done(function(response){
                 swal('Deleted!', response.message, response.status);
               readProducts();
@@ -239,14 +248,35 @@ header{ background: url(../../img/head/headerv.jpg);}
                });
             });
             },
-          allowOutsideClick: false        
-        }); 
+          allowOutsideClick: false      
+        },
+            function (dismiss) {
+              // dismiss can be 'cancel', 'overlay',
+              // 'close', and 'timer'
+              if (dismiss == 'cancel') {
+                swal(
+                  'Cancelled',
+                  'Your imaginary file is safe :)',
+                  'error'
+                )
+              }
+
+
+            }
+        )
+
+
+
+
+
         
       }
       
       function readProducts(){
         $('#load-products').load('../../ui_connect/student_management/split-by-status/all-rec-list-info.php'); 
       } 
+
+
 
       
     </script>
