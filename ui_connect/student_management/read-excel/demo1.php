@@ -26,7 +26,11 @@ mysqli_select_db( $MyConnect , "db_test");
 		for($i=1;$i<=7;$i++){
 			$arr[$i] =  $data->sheets[$s]["cells"][$x][$i];
 		}
+<<<<<<< HEAD
 		$sql = "INSERT INTO tbl_excel(a,b,c,d,e,f) VALUES('%s','%s','%s','%s','%s','%s');";
+=======
+		$sql = "INSERT INTO tbl_excel VALUE('%s','%s','%s','%s','%s','%s','%s');";
+>>>>>>> fix_bug-stu
 		$v = vsprintf($sql,$arr);
 		echo $v;
 		echo  '<br/>';
