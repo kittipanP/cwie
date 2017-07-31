@@ -359,7 +359,7 @@
                         <div align="left">
                         <label for="major_id"> Major : </label>
                         </div>
-                         <select name="major_id" id="" style="width: 100%;">
+                         <select name="major_id" id=""  style="width: 100%;" >
                          <?php 
                          if($row_major_rec['major_id']==null){
                          ?>
@@ -485,7 +485,7 @@
                         <div align="left">  
                         <label for="collage_id"> Collage : </label>                     
                         </div>
-                        <select name="collage_id" id="collageSelect" style="width: 100%;">
+                        <select name="collage_id" id="collageSelect" class="selectpicker" data-live-search="true" title="Please Select Collage !" style="width: 100%;">
                           <option value="">Select Institute Type First</option>
                         </select>
 
@@ -494,7 +494,7 @@
                         <label for="uni_id"> University : </label>                    
                         </div>
                         
-                        <select name="uni_id" id="uniSelect" class="chosen" >                         
+                        <select name="uni_id" id="uniSelect" class="selectpicker" data-live-search="true" title="Please Select University !" >                         
                            <option value="" >Select Institute Type First</option>
                         </select>
                         <!--<input type="text" name="uni_id" value="" size="32" />-->
@@ -658,7 +658,7 @@
                         <input type="hidden" name="lgInfo_id" value="<?php echo $row_lgInSet['lg_info_id']+1?>" size="32" />
 
               
-                         <select name="lg_id" id="" style="width: 100%;">
+                         <select name="lg_id" id="" class="selectpicker" data-live-search="true" title="Please Select Langguage !" style="width: 100%;">
                          <?php 
                          if($row_lhlRec['lg_id']==null){
                          ?>

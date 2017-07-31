@@ -1,6 +1,6 @@
 
 <fieldset>
-<!--
+
                 <a href="../Student_Management.php" class="w3-closebtn" title="Cancel and back to main page"><span class="fa-stack">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-mail-reply fa-stack-1x fa-inverse"></i>
@@ -102,7 +102,10 @@
 
 
                   </div>
-                </div>   
-
--->                   
+                </div>  
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>                 
 </fieldset>

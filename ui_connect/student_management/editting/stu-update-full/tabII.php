@@ -168,9 +168,52 @@
         <div class="w3-col l12">
             <div class="">
 
+
+
+
                 <!-- Transportation Line -->
                 <div class="w3-third">
                   <div class="">
+
+
+                    <div class="w3-row-padding w3-center w3-margin-top">
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Supervisor Line</p></div>
+
+                        <select name="supervisor_info_spv_id" id=""  style="width: 100%;">
+                         <?php 
+                         if($row_shsRec['supervisor_info_spv_id']==null){
+                         ?>
+                            <option value="">Select Supervisor !</option>
+                          <?php
+                          do {  
+                          ?>
+                            <option value="<?php echo htmlentities($row_spvSet['spv_id'], ENT_COMPAT, 'utf-8'); ?>"><?php echo $row_spvSet['spv_fname'] ?>&nbsp;<?php echo $row_spvSet['spv_lname'] ?></option>
+                          <?php
+                          } while ($row_spvSet = mysqli_fetch_assoc($spvSet));
+                            $rows = mysqli_num_rows($spvSet);
+                            if($rows > 0) {
+                                mysqli_data_seek($spvSet, 0);
+                                $row_spvSet = mysqli_fetch_assoc($spvSet);
+                            }
+                         }else{?>
+                            <option value="<?php echo htmlentities($row_shsRec['spv_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_shsRec['spv_fname']?>&nbsp;<?php echo $row_shsRec['spv_lname']?></option>
+                          <?php
+                          do {  
+                          ?>
+                                    <option value="<?php echo htmlentities($row_spvSet['spv_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_spvSet['spv_fname']?>&nbsp;<?php echo $row_spvSet['spv_lname']?></option>
+                                    <?php
+                          } while ($row_spvSet = mysqli_fetch_assoc($spvSet));
+                            $rows = mysqli_num_rows($spvSet);
+                            if($rows > 0) {
+                                mysqli_data_seek($spvSet, 0);
+                                $row_spvSet = mysqli_fetch_assoc($spvSet);
+                            }
+                        }?>
+                        </select> 
+                      
+                    </div> 
+                        
+
 
                     <div class="w3-row-padding w3-center w3-margin-top">
                       <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Transportation Line</p></div>
@@ -390,6 +433,7 @@
                 </div> 
 
                 <div class="w3-row-padding w3-center w3-margin-top">
+<!-- final presentation [S]                
                   <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Final Presentation Information</p></div>
                   <div class="w3-third">
                         <div align="left">
@@ -441,6 +485,7 @@
                         </div>
                         <input type="text" name="presentation_duration" value="" size="32" placeholder="xx-xx-xx" />  
                     </div>
+final presentation [E]-->                    
 <!--                  
                     <div class="w3-col w3-container" style="width:45%">
                         <div align="left">
@@ -466,6 +511,7 @@
       
               </fieldset>
 
+<!-- spv [S]
 <fieldset>
                 <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
                 <h2 class="fs-title">Supervisor Information</h2>
@@ -479,10 +525,10 @@
                     <div>
                         
                         <div align="left">
-                        <label for=""> First Name : </label>
+                        <label for="">Name : </label>
                         </div>
 
-                        <select name="supervisor_info_spv_id" id="" style="width: 100%;">
+                        <select name="supervisor_info_spv_id" id="" class="selectpicker" data-live-search="true" title="Please Select Supervisor !" style="width: 100%;">
                          <?php 
                          if($row_shsRec['supervisor_info_spv_id']==null){
                          ?>
@@ -516,13 +562,12 @@
 
                      
                     </div>
-                  </div>
-<!--      
+                  </div>    
                   <div class="w3-third">
                     <div >
                                             
                         <div align="left">  
-x                        </div>
+                       </div>
                         <input type="text" name="" value="" size="32" placeholder="" />
                         
                         <div align="left">      
@@ -553,10 +598,11 @@ x                        </div>
                         
                     </div>
                   </div>
--->                
+                
                 </div>
           
 </fieldset>
+spv [E]-->
 <!--
 <fieldset>
                 <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>

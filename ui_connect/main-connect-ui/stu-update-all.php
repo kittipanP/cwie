@@ -12,7 +12,7 @@
 <?php include ("../../ui_connect/student_management/editting/stu-update-full/student-editController.php"); ?>
 <?php //require_once('fn-upload.inc.php'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xht305ml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="UTF-8">
@@ -71,10 +71,20 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"> </script>
 
+
   <!-- bootstrap-select --> 
+
+
+  <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap.min.css?v=<?php echo filemtime('bootstrap.min.css'); ?>"> 
+  <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap-select.css?v=<?php echo filemtime('bootstrap-select.css'); ?>"> 
   <script src="../../libs/bootstrap-select/dist/js/jquery.min.js"></script>
   <script src="../../libs/bootstrap-select/dist/js/bootstrap.min.js"></script>
   <script src="../../libs/bootstrap-select/dist/js/bootstrap-select.js"></script> 
+
+<!--
+  <script src="../../libs/bootstrap-select/dist/js/jquery.min.js"></script>
+  <script src="../../libs/bootstrap-select/dist/js/bootstrap.min.js"></script>
+  <script src="../../libs/bootstrap-select/dist/js/bootstrap-select.js"></script> -->
 
 </head>
 
@@ -131,11 +141,11 @@ header{ background: url(../../img/head/headerv.jpg);}
                    
       <div id="TabbedPanels1" class="TabbedPanels">
         <ul class="TabbedPanelsTabGroup">
-          <li class="TabbedPanelsTab" tabindex="0">Sudent Infomation</li>
-          <li class="TabbedPanelsTab" tabindex="0">Trainee Infomation</li>
-          <li class="TabbedPanelsTab" tabindex="0">Old Trainee Infomation</li>
+          <li class="TabbedPanelsTab" tabindex="0">Sudent Information</li>
+          <li class="TabbedPanelsTab" tabindex="0">Trainee Information</li>
+          <li class="TabbedPanelsTab" tabindex="0">Evaluation Score</li>
+          <li class="TabbedPanelsTab" tabindex="0">Files Uplode</li>
         </ul>
-
 
         <div class="TabbedPanelsContentGroup">
           <div class="TabbedPanelsContent">
@@ -148,6 +158,9 @@ header{ background: url(../../img/head/headerv.jpg);}
           </div>
           <div class="TabbedPanelsContent">
               <?php include '../../ui_connect/student_management/editting/stu-update-full/tabIII.php' ?>
+          </div>
+          <div class="TabbedPanelsContent">
+              <?php include '../../ui_connect/student_management/editting/stu-update-full/tabIV.php' ?>
           </div>
         </div>
       </div>
