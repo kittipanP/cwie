@@ -287,7 +287,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 		/*-- Reccordset Student_Info [E]--*/
 		
-		
+/*July 31	
 		$maxRows_studentSet = 10;
 		$pageNum_studentSet = 0;
 		if (isset($_GET['pageNum_studentSet'])) {
@@ -333,7 +333,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
 			$queryString_studentSet = "&" . htmlentities(implode("&", $newParams));
 		  }
 		}
-		$queryString_studentSet = sprintf("&totalRows_studentSet=%d%s", $totalRows_studentSet, $queryString_studentSet);
+		$queryString_studentSet = sprintf("&totalRows_studentSet=%d%s", $totalRows_studentSet, $queryString_studentSet); 
+July 31*/
 
 		
 
@@ -387,6 +388,8 @@ $totalRows_RecordsetStudentInfo = mysqli_num_rows($RecordsetStudentInfo);
 		$row_titleSet = mysqli_fetch_assoc($titleSet);
 		$totalRows_titleSet = mysqli_num_rows($titleSet);
 		/*-- titleSet [E]--*/
+
+
 
 $query_statusSet = "SELECT * FROM student_status";
 $statusSet = mysqli_query($MyConnect, $query_statusSet) or die(mysqli_error());
