@@ -43,7 +43,6 @@ if(isset($_POST["Import"])){
 				$totalRows_studentSet = mysqli_num_rows($studentSet);
 			    /*-- student_infoSet [E]--*/
 
-			    $stu_sid = $row_studentSet['s_id']+1;
 
 
 
@@ -79,12 +78,13 @@ if(isset($_POST["Import"])){
 
 
 
-				/*-- applicationSet [S]--*/
-//				$query_appSet = "SELECT * FROM application WHERE application_dateS = '$emapData[xx]' ";
-//				$Set = mysqli_query($conn, $query_Set) or die(mysqli_error());
-//				$row_Set = mysqli_fetch_assoc($Set);
-//				$totalRows_Set = mysqli_num_rows($Set);
-			    /*-- Set [E]--*/
+				/*-- refference form applicationSet [S]--*/
+				$query_appSet = "SELECT * FROM application 
+						ORDER BY application.application_id DESC";
+				$appSet = mysqli_query($conn, $query_appSet) or die(mysqli_error());
+				$row_appSet = mysqli_fetch_assoc($appSet);
+				$totalRows_appSet = mysqli_num_rows($appSet);
+				/*-- refference form applicationSet [E]--*/
 
 ///			    $emapData[xxx] = $row_xxx['xxxx'];
 
@@ -104,6 +104,9 @@ if(isset($_POST["Import"])){
 
 
 
+			    $stu_sid = $row_studentSet['s_id']+1;
+			    $app_id = $row_appSet['application_id']+1;
+
 
 
 	          //It wiil insert a row to our student_info table from our csv file`
@@ -119,8 +122,23 @@ if(isset($_POST["Import"])){
 	          //It wiil insert a row to our application table from our csv file`
 	           $sql_app = "INSERT into application (`s_id`, `application_dateS`, `application_dateE`) 
 	            	values('$stu_sid','$emapData[10]','$emapData[11]' ) ;";
+	 				
+	 				$sql_res = "INSERT into resume (`resume_id`) 
+		            	values('$app_id') ;";
 
-			    	
+	 				$sql_tsc = "INSERT into transcript (`transcript_id`) 
+		            	values('$app_id') ;";
+
+	 				$sql_vdo = "INSERT into video (`video_id`) 
+		            	values('$app_id') ;";
+
+	 				$sql_vsa = "INSERT into visa (`visa_id`) 
+		            	values('$app_id') ;";
+
+	 				$sql_oth = "INSERT into other_doc (`idother_id`) 
+		            	values('$app_id') ;";
+
+				    	
 /*
 
 	          //It wiil insert a row to our xxx table from our csv file`
@@ -133,6 +151,11 @@ if(isset($_POST["Import"])){
 	          $result = mysqli_query( $conn, $sql) or die(mysqli_error($conn));
 	          $result_edu = mysqli_query( $conn, $sql_edu) or die(mysqli_error($conn));
           	  $result_app = mysqli_query( $conn, $sql_app) or die(mysqli_error($conn));
+          	  		$result_res = mysqli_query( $conn, $sql_res) or die(mysqli_error());
+          	  		$result_tsc = mysqli_query( $conn, $sql_tsc) or die(mysqli_error());
+          	  		$result_vdo = mysqli_query( $conn, $sql_vdo) or die(mysqli_error());
+          	  		$result_vsa = mysqli_query( $conn, $sql_vsa) or die(mysqli_error());
+          	  		$result_oth = mysqli_query( $conn, $sql_oth) or die(mysqli_error());
 
 /*
               $result_xx = mysqli_query( $conn, $xxxx) or die(mysqli_error($conn));
