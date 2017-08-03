@@ -1,5 +1,5 @@
 <?php include ("../../../Connections/Myconnect.php"); ?>
-<?php include ("../../../ui_connect/student_management/insert/stu-insert-reccordset.php"); ?>
+<?php //include ("../../../ui_connect/student_management/insert/stu-insert-reccordset.php"); ?>
 <?
 
 include('Excel/reader.php'); 
@@ -9,6 +9,7 @@ $data->read('xls/import-stu.xls'); //.xls file that will be imported
 
 
 $arr = array();
+$arrEdu = array();
 $s = 0;
 
 /*
@@ -29,6 +30,7 @@ mysqli_query($MyConnect, "SET character_set_connection=utf8"); */
 ////mysqli_select_db($MyConnect, $database_MyConnect);
 //mysqli_select_db( $MyConnect , "cwie_db");
 
+mysqli_select_db($MyConnect, $database_MyConnect);
 	for ($row = 2; $row <= count($data->sheets[$s]["cells"]);$row++) {
 		
 		for($col=1;$col<=7;$col++){
@@ -60,15 +62,46 @@ mysqli_query($MyConnect, "SET character_set_connection=utf8"); */
 			    $arr[$col] = $row_statusSetii['status_id']; //
 
 
+			}elseif ($col == 8){
+				//$arr[$col] = $data->sheets[$s]["cells"][$row][$col];
+
+
+
+			    //$arr[$col] = $row_studentSet['s_id']+1; //
+
+					    /*-- education_infoSet [S]--*/
+				$query_studentSet = "SELECT * FROM student_info
+					ORDER BY student_info.s_id DESC";
+				$studentSet = mysqli_query($MyConnect, $query_studentSet) or die(mysqli_error());
+				$row_studentSet = mysqli_fetch_assoc($studentSet);
+				$totalRows_studentSet = mysqli_num_rows($studentSet);
+			    /*-- education_infoSet [E]--*/
+
+			    $arrEdu[$col] = $row_studentSet['s_id']+$row-1;
+
 			}else{
+
 				$arr[$col] = $data->sheets[$s]["cells"][$row][$col];
 			}
 		}
-		$sql = "INSERT INTO student_info(title_title_id, s_fname,s_lname,thai_fname,thai_lname, status_id, s_dob) VALUES('%s','%s','%s','%s','%s','%s','%s');";
+
+
+		$sql = "INSERT INTO student_info(title_title_id, s_fname,s_lname,thai_fname,thai_lname, status_id, s_dob) VALUES('%s','%s','%s','%s','%s','%s','%s') ;";
+		//$sqlii = "INSERT INTO education_info(s_id, degree_id) VALUES('%s', '%s') ;";
+
 		$v = vsprintf($sql, $arr);
+		//$vii = vsprintf($sqlii, $arrEdu);
 		echo $v;
 		echo  '<br/>';
 		mysqli_query($MyConnect, $v);
+		//mysqli_query($MyConnect, $vii);
+		/*
+		if($insertSQL_stu){
+			echo '<script> language="javascript"';
+			echo 'alert("cooompete")';
+			echo '</script>';
+		} */
+
 
 	} 
 
