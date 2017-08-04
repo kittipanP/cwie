@@ -71,13 +71,12 @@
 			<thead>
 				  	<tr>
 				  		<th>No.</th>
-				  		<th>Title</th>
+				  		
 				  		<th>First Name[EN]</th>
 				  		<th>Last Name[EN]</th>
 				  		<th>First Name[TH]</th>
 				  		<th>Last Name[TH]</th>
 				  		<th>Yesr</th>
-				  		<th>Status</th>
 				 		
 				 
 				  	</tr>	
@@ -99,7 +98,6 @@
 						<td><?php echo $row['thai_fname']; ?></td>
 						<td><?php echo $row['thai_lname']; ?></td>
 						<td><?php echo $row['s_dob']; ?></td>
-						<td><?php echo $row['status_id']; ?></td>
 					
 
 					</tr>
