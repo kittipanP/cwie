@@ -371,10 +371,10 @@ $majorSet = mysqli_query($MyConnect, $query_majorSet) or die(mysqli_error());
 $row_majorSet = mysqli_fetch_assoc($majorSet);
 $totalRows_majorSet = mysqli_num_rows($majorSet);
 
-$query_resumeSet = "SELECT resume_name FROM resume";
+/*$query_resumeSet = "SELECT resume_name FROM resume";
 $resumeSet = mysqli_query($MyConnect, $query_resumeSet) or die(mysqli_error());
 $row_resumeSet = mysqli_fetch_assoc($resumeSet);
-$totalRows_resumeSet = mysqli_num_rows($resumeSet);
+$totalRows_resumeSet = mysqli_num_rows($resumeSet); */
 
 $query_RecordsetStudentInfo = "SELECT * FROM `application`";
 $RecordsetStudentInfo = mysqli_query($MyConnect, $query_RecordsetStudentInfo) or die(mysqli_error());
