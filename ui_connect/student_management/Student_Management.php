@@ -653,7 +653,7 @@ mysqli_free_result($degreeSet);
 
 mysqli_free_result($majorSet);
 
-mysqli_free_result($resumeSet);
+//mysqli_free_result($resumeSet);
 
 mysqli_free_result($RecordsetStudentInfo);
 

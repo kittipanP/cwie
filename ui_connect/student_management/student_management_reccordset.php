@@ -267,12 +267,13 @@ $query_majorSet = "SELECT * FROM major_info";
 $majorSet = mysqli_query($MyConnect, $query_majorSet) or die(mysqli_error());
 $row_majorSet = mysqli_fetch_assoc($majorSet);
 $totalRows_majorSet = mysqli_num_rows($majorSet);
-
+/*
 mysqli_select_db($MyConnect, $database_MyConnect);
 $query_resumeSet = "SELECT resume_name FROM resume";
-$resumeSet = mysqli_query($MyConnect, $query_resumeSet) or die(mysqli_error());
+$resumeSet = mysqli_query($MyConnect, $query_resumeSet) or die(mysqli_error($MyConnect));
 $row_resumeSet = mysqli_fetch_assoc($resumeSet);
-$totalRows_resumeSet = mysqli_num_rows($resumeSet);
+$totalRows_resumeSet = mysqli_num_rows($resumeSet); 
+*/
 
 mysqli_select_db($MyConnect, $database_MyConnect);
 $query_RecordsetStudentInfo = "SELECT * FROM `application`";
