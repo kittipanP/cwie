@@ -10,7 +10,8 @@
                 <div class="w3-row-padding w3-center w3-margin-top">
  
                   <div class="w3-third">
-                    <div>        
+                    <div>
+                        <input type="text" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />        
                       	<input type="hidden" name="s_dob" value="" size="32" />
                         <input type="hidden" name="origin_id" value="" size="32" />
                         <input type="hidden" name="type_id" value="" size="32" />
@@ -300,6 +301,20 @@
                         </select>
                          <!--<input type="text" name="degree_id" value="" size="32" />-->
                          
+
+                        <!--<input type="text" name="major_id" value="" size="32" />-->
+                        
+                      <div align="left"> 	
+                      </div>
+                      
+                      <div align="left">
+                      </div>
+                     
+                    </div>
+                  </div>
+       
+                  <div class="w3-third">
+                    <div >
                         <div align="left">
                         <label for="major_id"> Major : </label>
                         </div>
@@ -325,41 +340,6 @@
                       <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add New Major</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a>
                       -->
                       </div>
-
-
-                        <!--<input type="text" name="major_id" value="" size="32" />-->
-                        
-                      <div align="left"> 	
-                      </div>
-                      
-                      <div align="left">
-                      </div>
-                     
-                    </div>
-                  </div>
-       
-                  <div class="w3-third">
-                    <div >
-                                            
-                        <div align="left">  
-                        <label for="intitute_id"> Institute : </label>                    	
-                      	</div>
-                        <select name="intitute_id" id="insSelect" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; " >
-                            <option value="">Select Institute Type</option>
-                          <?php
-                    do {  
-                    ?>
-                          <option value="<?php echo $row_instituteSet['intitute_id']?>"><?php echo $row_instituteSet['intitute_name']?></option>
-                          <?php
-                    } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
-                      $rows = mysqli_num_rows($instituteSet);
-                      if($rows > 0) {
-                          mysqli_data_seek($instituteSet, 0);
-                          $row_instituteSet = mysqli_fetch_assoc($instituteSet);
-                      }
-                    ?>
-                        </select>
-                        <!--<input type="text" name="intitute_id" value="" size="32" />-->
                        
                         <div align="left">                      	
                       	</div>
@@ -373,31 +353,33 @@
                   <div class="w3-third">
                     <div >
                                             
-                        <div align="left">   
-                        <label for="uni_id"> University : </label>                   	
-                      	</div>
-                        
-                        <select name="uni_id" id="uniSelect" class="selectpicker" data-live-search="true" title="Please Select University !">                        	
-							<!-- <option value="" >Select Institute Type First</option> -->
-						</select>
+                        <div align="left">  
+                        <label for="intitute_id"> Institute : </label>                      
+                        </div>
+                        <select name="intitute_id" id="insSelect" class="selectpicker" data-live-search="true" title="Please Select Institute !" style="width: 100%; " >
+                            <option value="">Select Institute Type</option>
+                          <?php
+                    do {  
+                    ?>
+                          <option value="<?php echo $row_instituteSet['ins_id']?>"><?php echo $row_instituteSet['ins_name']?></option>
+                          <?php
+                    } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
+                      $rows = mysqli_num_rows($instituteSet);
+                      if($rows > 0) {
+                          mysqli_data_seek($instituteSet, 0);
+                          $row_instituteSet = mysqli_fetch_assoc($instituteSet);
+                      }
+                    ?>
+                        </select>
+                        <!--<input type="text" name="intitute_id" value="" size="32" />-->
+                     
                   <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add University</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Institute</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
                       </a>
                   </div>  
 
 
-                        <!--<input type="text" name="uni_id" value="" size="32" />-->
                         
-                        <div align="left">  
-                        <label for="collage_id"> Collage : </label>                   	
-                      	</div>
-                        <select name="collage_id" id="collageSelect" style="width: 100%;" class="selectpicker" data-live-search="true" title="Please Select Collage !">
-                        	<!-- <option value="">Select Institute Type First</option> -->
-                        </select>
-                  <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Collage</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
-                      </a>
-                  </div> 
                         <p id='eiei'></p>
                         <!--<input type="text" name="collage_id" value="" size="32" />-->
                         
@@ -476,7 +458,6 @@
 
               <fieldset>
                 <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
-                <h2 class="fs-title">Other Information</h2>
                 <div align="center">
                     <h3 class="fs-subtitle" >
                         <table>
@@ -490,28 +471,35 @@
                     </h3>
                 </div>
                             
-                             <!-- Used some part of the code from Chris Wright (http://codepen.io/chriswrightdesign/)'s Pen  -->
-                  <!-- Accordion [S] ## Accordion [S] ## Accordion [S] ## Accordion [S]-->                             
-                  <div class="accordion">
-                            <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Work Experience</p></div>
-                            <p></p>
-                            <div class="field_wrapper w3-row-padding w3-center w3-margin-top">
-                          <div class="w3-row">
-                            <div class="w3-col s3 w3-container">      
-                            	 <input type="hidden" name="wex_id" value="" size="32" />
-                                <input type="hidden" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1 ?>" size="32" />
+                        
+
+
+        <!-- third start -->
+        <div class="w3-col l12">
+            <div class="">
+
+                <!-- I/III -->
+                <div class="w3-third">
+                  <div class="">
+
+                    <div class="w3-row-padding w3-center w3-margin-top">
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p> Work Experience</p></div>
+
                                 <div align="left">
                                 <label for=""> Duration : </label>
                                 </div>
+                                <input type="hidden" name="wex_id" value="" size="32" />
+                                <input type="hidden" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1 ?>" size="32" />
                                 <table><tr>
                                 <td><input type="text" name="wex_dateS" value="" size="32" id="dtwexS" placeholder="trigger calendar"/></td>
- 								<td>&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;</td>
                                 <td><input type="text" name="wex_dateE" value="" size="32" id="dtwexE" placeholder="trigger calendar"/></td></tr></table>
-                            </div>
-                            <div class="w3-col s9 w3-container">                  
-          						
+
+
+
+
                                 <div align="left">
-                                <label for=""> Organization/Company : </label>                     	
+                                <label for=""> Organization/Company : </label>                      
                                 </div> 
                                 <input type="text" name="wex_organ" value="" size="32" /> 
                                 
@@ -520,17 +508,72 @@
                                 </div> 
                                 <textarea type="text" name="wex_detail" value="" size="32"></textarea>
                                 <div align="right">
-    							<a href="javascript:void(0);" class="add_button" title="Add field">Add more&nbsp;&nbsp;<i class="fa fa-plus-square "></i></a>
+                  <a href="javascript:void(0);" class="add_button" title="Add field">Add more&nbsp;&nbsp;<i class="fa fa-plus-square "></i></a>
                                 </div>
-                            </div>
-                          </div>
+
+
+                    </div> 
+
+
+                        
+                  </div>
+                </div>
+
+                <!-- II/III-->
+                <div class="w3-third">
+                    <div class="" style="">
+                    <div class="w3-row-padding w3-center w3-margin-top">
+                       
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p> Extracurricular Activity</p></div>
+
+                        <div align="left">
+                          <label for=""> Duration : </label>
+                        </div>
+                          <table><tr>
+                                <td><input type="text" name="ext_dateS" value="" size="32" id="dtextS" placeholder="trigger calendar"/></td>
+                                <td>&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;</td>
+                                <td><input type="text" name="ext_dateE" value="" size="32" id="dtextE" placeholder="trigger calendar"/></td></tr>
+                          </table>
+
+                        <div align="left">
+                        <label for="">Name: </label>
+                        </div>
+                        <input type="text" name="exact_name" value="" size="32" />
+
+                        <div align="left">
+                        <label for="">Details: </label>
+                        </div>
+                        <textarea type="text" name="exact_detail" value="" size="32"></textarea>
+
+                        <input type="hidden" name="exact_id" value="" size="32" />
+                        <input type="hidden" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1 ?>" size="32" />
+                        <div align="right">
+                            <a href="javascript:void(0);" class="add_button" title="Add field">Add more&nbsp;&nbsp;<i class="fa fa-plus-square "></i></a>
                         </div>
 
 
 
-                <div class="w3-row-padding w3-center w3-margin-top">
-                  <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Language Skills</p></div>
-                  <div class="w3-third">
+                    </div> 
+                    </div>
+                </div>
+
+                <!--  III/III-->
+                <div class="w3-third">
+                    <div class=""  style="">
+                    <div class="w3-row-padding w3-center w3-margin-top">    
+
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Co-op Project</p></div>
+
+                      <div align="left">
+                        <label for="">Hobby: </label>
+                        </div>
+                        <textarea type="text" name="hobby_desc" value="" size="32"></textarea>
+                        <input type="hidden" name="hobby_id" value="" size="32" />
+                        <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />
+
+
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Language Skills</p></div>
+                  <div class="w3-half">
                         <input type="hidden" name="lg_info_id" value="" size="32" />
                         <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />
                         <div align="left">
@@ -560,7 +603,7 @@
                   </div>                  
 
                   </div>
-                  <div class="w3-third">
+                  <div class="w3-half">
                         <div align="left">
                         <label for="">Level : </label>
                         </div>
@@ -581,20 +624,26 @@
                           }
                         ?>
                         </select>       
-                  </div>          
-                  <div class="w3-third">
-                        <div align="left">
-                        <label for=""> </label>
-                        </div>
-                        <div align="left">
-                        <label for="">   </label>
-                        </div>
+                  </div> 
 
-                            
-                  </div>
-                </div> 
 
+                    </div>
+                    </div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                    
+                  <div align="right">
+                            <a href="javascript:void(0);" class="add_button" title="Add field">Add more&nbsp;&nbsp;<i class="fa fa-plus-square "></i></a>
                   </div>
+                </div>
+
+            </div>
+
+        <!-- third end -->
+
+        </div>
+
                   <!-- Accordion [E] ## Accordion [E] ## Accordion [E] ## Accordion [E]-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>

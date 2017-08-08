@@ -33,7 +33,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 require_once('../../../Connections/MyConnect.php');
-    $maxRows_studentSet = 100;
+    $maxRows_studentSet = 10;
     $pageNum_studentSet = 0;
     if (isset($_GET['pageNum_studentSet'])) {
       $pageNum_studentSet = $_GET['pageNum_studentSet'];
