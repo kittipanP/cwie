@@ -214,6 +214,9 @@ header{ background: url(../../img/head/headerv.jpg);}
     <div id="wdS"></div>
     <div id="wdE"></div> 
 
+    <div id="extS"></div>
+    <div id="extE"></div>
+
     <!-- alert-sweetAlert2 -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     <!--<script src="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/js/bootstrap.min.js"></script> -->
@@ -499,6 +502,38 @@ var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
                 console.log('data:' + (data || '无'));
             }
         }); 
+
+        //picker -- Extracurricular Activity
+        $('#extS').calendar({
+            trigger: '#dtextS',
+            // offset: [0, 1],
+            zIndex: 999,
+            data: data,
+            onSelected: function (view, date, data) {
+                console.log('event: onSelected')
+            },
+            onClose: function (view, date, data) {
+                console.log('event: onClose')
+                console.log('view:' + view)
+                console.log('date:' + date)
+                console.log('data:' + (data || '无'));
+            }
+        });
+        $('#extE').calendar({
+            trigger: '#dtextE',
+            // offset: [0, 1],
+            zIndex: 999,
+            data: data,
+            onSelected: function (view, date, data) {
+                console.log('event: onSelected')
+            },
+            onClose: function (view, date, data) {
+                console.log('event: onClose')
+                console.log('view:' + view)
+                console.log('date:' + date)
+                console.log('data:' + (data || '无'));
+            }
+        });
 
 
         // Dynamic elements

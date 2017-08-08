@@ -47,7 +47,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['s_lname'], "text"),
                        GetSQLValueString($_POST['thai_fname'], "text"),
                        GetSQLValueString($_POST['thai_lname'], "text"),
-                       GetSQLValueString($_POST['s_dob'], "date"),
+                       GetSQLValueString($_POST['s_dob'], "int"),
                        GetSQLValueString($_POST['remark'], "text"),
                        GetSQLValueString($_POST['origin_id'], "int"),
                        GetSQLValueString($_POST['type_id'], "int"),
@@ -55,97 +55,94 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['ref_id'], "int"),
                        GetSQLValueString($_POST['national_id'], "int"),
                        GetSQLValueString($_POST['title_title_id'], "int"));
-					   
-  	$insertSQL_edt = sprintf("INSERT INTO education_info (education_id, education_name, intitute_id, major_id, degree_id, s_id, uni_id, collage_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-							   GetSQLValueString($_POST['education_id'], "int"),
-							   GetSQLValueString($_POST['education_name'], "text"),
-							   GetSQLValueString($_POST['intitute_id'], "int"),
-							   GetSQLValueString($_POST['major_id'], "int"),
-							   GetSQLValueString($_POST['degree_id'], "int"),
-							   GetSQLValueString($_POST['s_id'], "int"),
-							   GetSQLValueString($_POST['uni_id'], "int"),
-							   GetSQLValueString($_POST['collage_id'], "int"));
-	
-	$insertSQL_sct = sprintf("INSERT INTO student_contact_details (contact_id, scd_s_id, contact_no, email_adress) VALUES (%s, %s, %s, %s)",
-							   GetSQLValueString($_POST['contact_id'], "int"),
-							   GetSQLValueString($_POST['scd_s_id'], "int"),
-							   GetSQLValueString($_POST['contact_no'], "text"),
-							   GetSQLValueString($_POST['email_adress'], "text"));
-		
 
-	$insertSQL_app = sprintf("INSERT INTO `application` (application_id, s_id, application_name, application_dateS, application_dateE) VALUES (%s, %s, %s, %s, %s)",
+
+    $insertSQL_edt = sprintf("INSERT INTO education_info (education_id, edu_institute, major_id, degree_id, s_id) VALUES (%s, %s, %s, %s, %s)",
+                 GetSQLValueString($_POST['education_id'], "int"),
+                 GetSQLValueString($_POST['edu_institute'], "int"),
+                 GetSQLValueString($_POST['major_id'], "int"),
+                 GetSQLValueString($_POST['degree_id'], "int"),
+                 GetSQLValueString($_POST['s_id'], "int"));
+  
+  $insertSQL_sct = sprintf("INSERT INTO student_contact_details (contact_id, scd_s_id, contact_no, email_adress) VALUES (%s, %s, %s, %s)",
+                 GetSQLValueString($_POST['contact_id'], "int"),
+                 GetSQLValueString($_POST['scd_s_id'], "int"),
+                 GetSQLValueString($_POST['contact_no'], "text"),
+                 GetSQLValueString($_POST['email_adress'], "text"));
+    
+
+  $insertSQL_app = sprintf("INSERT INTO `application` (application_id, s_id, application_dateS, application_dateE) VALUES (%s, %s, %s, %s)",
                        GetSQLValueString($_POST['application_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int"),
-                       GetSQLValueString($_POST['application_name'], "text"),
                        GetSQLValueString($_POST['application_dateS'], "date"),
-                       GetSQLValueString($_POST['application_dateE'], "date"));	
-					   
-	$insertSQL_sec = sprintf("INSERT INTO student_emergency_contact (emc_id, emc_fname, emc_lname, emc_relation, emc_contact, contact_id) VALUES (%s, %s, %s, %s, %s, %s)",
-							   GetSQLValueString($_POST['emc_id'], "int"),
-							   GetSQLValueString($_POST['emc_fname'], "text"),
-							   GetSQLValueString($_POST['emc_lname'], "text"),
-							   GetSQLValueString($_POST['emc_relation'], "text"),
-							   GetSQLValueString($_POST['emc_contact'], "text"),
-							   GetSQLValueString($_POST['contact_id'], "int"));
-	
-	$insertSQL_sad = sprintf("INSERT INTO student_address (address_Id, s_id, no, place_name, road_name, sub_district, district, city, zip_code, province_name, country_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-							   GetSQLValueString($_POST['address_Id'], "int"),
-							   GetSQLValueString($_POST['s_id'], "int"),
-							   GetSQLValueString($_POST['no'], "text"),
-							   GetSQLValueString($_POST['place_name'], "text"),
-							   GetSQLValueString($_POST['road_name'], "text"),
-							   GetSQLValueString($_POST['sub_district'], "text"),
-							   GetSQLValueString($_POST['district'], "text"),
-							   GetSQLValueString($_POST['city'], "text"),
-							   GetSQLValueString($_POST['zip_code'], "int"),
-							   GetSQLValueString($_POST['province_name'], "text"),
-							   GetSQLValueString($_POST['country_id'], "int"));
-	
-	$insertSQL_sre = sprintf("INSERT INTO student_relationship (relation_id, s_id, relation_type, relation_fname, relation_lname, relation_occupation, relation_contact) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-							   GetSQLValueString($_POST['relation_id'], "int"),
-							   GetSQLValueString($_POST['s_id'], "int"),
-							   GetSQLValueString($_POST['relation_type'], "text"),
-							   GetSQLValueString($_POST['relation_fname'], "text"),
-							   GetSQLValueString($_POST['relation_lname'], "text"),
-							   GetSQLValueString($_POST['relation_occupation'], "text"),
-							   GetSQLValueString($_POST['relation_contact'], "text"));
-							   
-	$insertSQL_ebg = sprintf("INSERT INTO education_blackgrounf (bg_id, student_info_s_id, bg_durationS, bg_durationE, bg_degree, bg_major, bg_institute_name, bg_gpax) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-							   GetSQLValueString($_POST['bg_id'], "int"),
+                       GetSQLValueString($_POST['application_dateE'], "date")); 
+             
+  $insertSQL_sec = sprintf("INSERT INTO student_emergency_contact (emc_id, emc_fname, emc_lname, emc_relation, emc_contact, contact_id) VALUES (%s, %s, %s, %s, %s, %s)",
+                 GetSQLValueString($_POST['emc_id'], "int"),
+                 GetSQLValueString($_POST['emc_fname'], "text"),
+                 GetSQLValueString($_POST['emc_lname'], "text"),
+                 GetSQLValueString($_POST['emc_relation'], "text"),
+                 GetSQLValueString($_POST['emc_contact'], "text"),
+                 GetSQLValueString($_POST['contact_id'], "int"));
+  
+  $insertSQL_sad = sprintf("INSERT INTO student_address (address_Id, s_id, no, place_name, road_name, sub_district, district, city, zip_code, province_name, country_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                 GetSQLValueString($_POST['address_Id'], "int"),
+                 GetSQLValueString($_POST['s_id'], "int"),
+                 GetSQLValueString($_POST['no'], "text"),
+                 GetSQLValueString($_POST['place_name'], "text"),
+                 GetSQLValueString($_POST['road_name'], "text"),
+                 GetSQLValueString($_POST['sub_district'], "text"),
+                 GetSQLValueString($_POST['district'], "text"),
+                 GetSQLValueString($_POST['city'], "text"),
+                 GetSQLValueString($_POST['zip_code'], "int"),
+                 GetSQLValueString($_POST['province_name'], "text"),
+                 GetSQLValueString($_POST['country_id'], "int"));
+  
+  $insertSQL_sre = sprintf("INSERT INTO student_relationship (relation_id, s_id, relation_type, relation_fname, relation_lname, relation_occupation, relation_contact) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                 GetSQLValueString($_POST['relation_id'], "int"),
+                 GetSQLValueString($_POST['s_id'], "int"),
+                 GetSQLValueString($_POST['relation_type'], "text"),
+                 GetSQLValueString($_POST['relation_fname'], "text"),
+                 GetSQLValueString($_POST['relation_lname'], "text"),
+                 GetSQLValueString($_POST['relation_occupation'], "text"),
+                 GetSQLValueString($_POST['relation_contact'], "text"));
+                 
+  $insertSQL_ebg = sprintf("INSERT INTO education_blackgrounf (bg_id, student_info_s_id, bg_durationS, bg_durationE, bg_degree, bg_major, bg_institute_name, bg_gpax) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                 GetSQLValueString($_POST['bg_id'], "int"),
                  GetSQLValueString($_POST['student_info_s_id'], "int"),
-							   GetSQLValueString($_POST['bg_durationS'], "date"),
-							   GetSQLValueString($_POST['bg_durationE'], "date"),
+                 GetSQLValueString($_POST['bg_durationS'], "date"),
+                 GetSQLValueString($_POST['bg_durationE'], "date"),
                  GetSQLValueString($_POST['bg_degree'], "int"),
-							   GetSQLValueString($_POST['bg_major'], "text"),
-							   GetSQLValueString($_POST['bg_institute_name'], "text"),
-							   GetSQLValueString($_POST['bg_gpax'], "text")); 
-							   
-	/*$insertSQL_vdo = sprintf("INSERT INTO video (video_name, video_file, application_id) VALUES (%s, %s, %s)",
+                 GetSQLValueString($_POST['bg_major'], "text"),
+                 GetSQLValueString($_POST['bg_institute_name'], "text"),
+                 GetSQLValueString($_POST['bg_gpax'], "text")); 
+                 
+  /*$insertSQL_vdo = sprintf("INSERT INTO video (video_name, video_file, application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['video_name'], "text"),
                        GetSQLValueString(upload($_FILES['video_file'],'./vdo-source/'), "text"),
                        GetSQLValueString($_POST['application_id'], "int"));
-					   
-	$insertSQL_res = sprintf("INSERT INTO resume (resume_name, resume_file, application_id) VALUES (%s, %s, %s)",
+             
+  $insertSQL_res = sprintf("INSERT INTO resume (resume_name, resume_file, application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['resume_name'], "text"),
                        GetSQLValueString(upload($_FILES['resume_file'],'./resume-source/'), "text"),
                        GetSQLValueString($_POST['application_id'], "int"));
 
-  	$insertSQL_tra = sprintf("INSERT INTO transcript (transcript_name, transcript_file, application_id) VALUES (%s, %s, %s)",
+    $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_name, transcript_file, application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['transcript_name'], "text"),
-					   GetSQLValueString(upload($_FILES['transcript_file'],'./transcript-source/'), "text"),
+             GetSQLValueString(upload($_FILES['transcript_file'],'./transcript-source/'), "text"),
                        GetSQLValueString($_POST['application_id'], "int"));
 
-  	$insertSQL_vis = sprintf("INSERT INTO visa (visa_name, visa_file, application_application_id) VALUES (%s, %s, %s)",
+    $insertSQL_vis = sprintf("INSERT INTO visa (visa_name, visa_file, application_application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['visa_name'], "text"),
-					   GetSQLValueString(upload($_FILES['visa_file'],'./visa-source/'), "text"),
+             GetSQLValueString(upload($_FILES['visa_file'],'./visa-source/'), "text"),
                        GetSQLValueString($_POST['application_application_id'], "int"));
 
-  	$insertSQL_oth = sprintf("INSERT INTO other_doc (other_name, other_file, application_application_id) VALUES (%s, %s, %s)",
+    $insertSQL_oth = sprintf("INSERT INTO other_doc (other_name, other_file, application_application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['other_name'], "text"),
-					   GetSQLValueString(upload($_FILES['other_file'],'./other-source/'), "text"),
+             GetSQLValueString(upload($_FILES['other_file'],'./other-source/'), "text"),
                        GetSQLValueString($_POST['application_application_id'], "int")); */
 
-  	$insertSQL_wex = sprintf("INSERT INTO work_experience (wex_id, wex_dateS, wex_dateE, wex_organ, wex_detail, student_info_s_id) VALUES (%s, %s, %s, %s, %s, %s)",
+    $insertSQL_wex = sprintf("INSERT INTO work_experience (wex_id, wex_dateS, wex_dateE, wex_organ, wex_detail, student_info_s_id) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['wex_id'], "int"),
                        GetSQLValueString($_POST['wex_dateS'], "date"),
                        GetSQLValueString($_POST['wex_dateE'], "date"),
@@ -153,31 +150,47 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['wex_detail'], "text"),
                        GetSQLValueString($_POST['student_info_s_id'], "int")); 
 
-  	$insertSQL_lgIn = sprintf("INSERT INTO language_info (lg_info_id, s_id) VALUES (%s, %s)",
+
+    $insertSQL_ext = sprintf("INSERT INTO extracurricular_act (exact_id, ext_dateS, ext_dateE, exact_name, exact_detail, student_info_s_id) VALUES (%s, %s, %s, %s, %s, %s)",
+                       GetSQLValueString($_POST['exact_id'], "int"),
+                       GetSQLValueString($_POST['ext_dateS'], "date"),
+                       GetSQLValueString($_POST['ext_dateE'], "date"),
+                       GetSQLValueString($_POST['exact_name'], "text"),
+                       GetSQLValueString($_POST['exact_detail'], "text"),
+                       GetSQLValueString($_POST['student_info_s_id'], "int")); 
+
+
+    $insertSQL_hob = sprintf("INSERT INTO hobby_info (hobby_id, s_id, hobby_desc) VALUES (%s, %s, %s)",
+                       GetSQLValueString($_POST['hobby_id'], "int"),
+                       GetSQLValueString($_POST['s_id'], "int"),
+                       GetSQLValueString($_POST['hobby_desc'], "text")); 
+
+
+    $insertSQL_lgIn = sprintf("INSERT INTO language_info (lg_info_id, s_id) VALUES (%s, %s)",
                        GetSQLValueString($_POST['lg_info_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int"));
 
-  	/*$insertSQL_lgIn_has_lg = sprintf("INSERT INTO lgInfo_has_lg (lgINfo_has_lg_id, lgInfo_id, lg_id) VALUES (%s, %s, %s)",
+    $insertSQL_lgIn_has_lg = sprintf("INSERT INTO lgInfo_has_lg (lgINfo_has_lg_id, lgInfo_id, lg_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['lgINfo_has_lg_id'], "int"),
                        GetSQLValueString($_POST['lgInfo_id'], "int"),
-                       GetSQLValueString($_POST['lg_id'], "int")); */
+                       GetSQLValueString($_POST['lg_id'], "int")); 
 
-  	/*$insertSQL_LgIn_has_lv = sprintf("INSERT INTO lgInfo_has_lv (lgINfo_has_lv_id, lgInfo_id, lv_id) VALUES (%s, %s, %s)",
+    $insertSQL_LgIn_has_lv = sprintf("INSERT INTO lgInfo_has_lv (lgINfo_has_lv_id, lgInfo_id, lv_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['lgINfo_has_lv_id'], "int"),
                        GetSQLValueString($_POST['lgInfo_id'], "int"),
-                       GetSQLValueString($_POST['lv_id'], "int")); */
+                       GetSQLValueString($_POST['lv_id'], "int")); 
 
 
-  	$insertSQL_tni = sprintf("INSERT INTO trainee_info (trainee_id, trainee_code, s_id, job_id, tac_acc_id, location_id, plant_id, dep_id, transportation_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-  						GetSQLValueString($_POST['trainee_id'],"text"),
+    $insertSQL_tni = sprintf("INSERT INTO trainee_info (trainee_id, trainee_code, s_id, job_id, tac_acc_id, location_id, plant_id, dep_id, transportation_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+              GetSQLValueString($_POST['trainee_id'],"text"),
               GetSQLValueString($_POST['trainee_code'],"text"),
-  						GetSQLValueString($_POST['s_id'],"int"),
-  						GetSQLValueString($_POST['job_id'],"int"),
+              GetSQLValueString($_POST['s_id'],"int"),
+              GetSQLValueString($_POST['job_id'],"int"),
               GetSQLValueString($_POST['tac_acc_id'],"int"),
               GetSQLValueString($_POST['location_id'],"int"),
               GetSQLValueString($_POST['plant_id'],"int"),
-  						GetSQLValueString($_POST['dep_id'],"int"),
-  						GetSQLValueString($_POST['transportation_id'],"int"));
+              GetSQLValueString($_POST['dep_id'],"int"),
+              GetSQLValueString($_POST['transportation_id'],"int"));
 
     $insertSQL_tac = sprintf("INSERT INTO trainee_account (trainee_acc_id, account_name, trainee_email, keycard_id) VALUES (%s, %s, %s, %s)",
                        GetSQLValueString($_POST['trainee_acc_id'], "int"),
@@ -185,7 +198,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['trainee_email'], "text"),
                        GetSQLValueString($_POST['keycard_id'], "text")); 
 
-  	/*$insertSQL_pre = sprintf("INSERT INTO trainee_presentation (presentation_id, presentation_date, presentation_stime, presentation_ftime, presentation_duration, remark, presentation_score, created_details, room_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+    /*$insertSQL_pre = sprintf("INSERT INTO trainee_presentation (presentation_id, presentation_date, presentation_stime, presentation_ftime, presentation_duration, remark, presentation_score, created_details, room_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['presentation_id'], "int"),
                        GetSQLValueString($_POST['presentation_date'], "date"),
                        GetSQLValueString($_POST['presentation_stime'], "time"),
@@ -207,12 +220,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['bac_name'], "text"),
                        GetSQLValueString($_POST['trainee_id'], "int"),
                        GetSQLValueString($_POST['bnk_has_id'], "int"));
-  	$insertSQL_prj = sprintf("INSERT INTO trainee_project (project_id, project_name, project_detail) VALUES (%s, %s, %s)",
+    $insertSQL_prj = sprintf("INSERT INTO trainee_project (project_id, project_name, project_detail) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['project_id'], "int"),
                        GetSQLValueString($_POST['project_name'], "text"),
                        GetSQLValueString($_POST['project_detail'], "text")); 
-  	$insertSQL_thp = sprintf("INSERT INTO trainee_has_project (thp_id, project_id, trainee_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['thp_id'], "int"),
+    $insertSQL_thp = sprintf("INSERT INTO trainee_has_project (project_id, trainee_id) VALUES (%s, %s)",
                        GetSQLValueString($_POST['project_id'], "int"),
                        GetSQLValueString($_POST['trainee_id'], "int")); 
     /*
@@ -223,8 +235,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['room_id'], "int"),
                        GetSQLValueString($_POST['remark'], "text")); 
     */             
-  	/*
-  	$insertSQL_ = sprintf("INSERT INTO xxx (x1, x2, x3) VALUES (%s, %s, %s)",
+    /*
+    $insertSQL_ = sprintf("INSERT INTO xxx (x1, x2, x3) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['x1'], "int"),
                        GetSQLValueString($_POST['x2'], "int"),
                        GetSQLValueString($_POST['x3'], "int")); 
@@ -234,46 +246,72 @@ if (isset($_SERVER['QUERY_STRING'])) {
     $insertSQL_shs = sprintf("INSERT INTO supervisor_info_has_student_info (supervisor_info_spv_id, student_info_s_id) VALUES (%s, %s)",
                        GetSQLValueString($_POST['supervisor_info_spv_id'], "int"),
                        GetSQLValueString($_POST['student_info_s_id'], "int"));
+
+
+
+
+    $insertSQL_eva = sprintf("INSERT INTO evaluation (eva_id, eva_onlineTest, eva_leonard, eva_preTest, eva_postTest, eva_finalPre_score, eva_finalPre_comment, stu_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                       GetSQLValueString($_POST['eva_id'], "int"),
+                       GetSQLValueString($_POST['eva_onlineTest'], "int"),
+                       GetSQLValueString($_POST['eva_leonard'], "int"),
+                       GetSQLValueString($_POST['eva_preTest'], "int"),
+                       GetSQLValueString($_POST['eva_postTest'], "int"),
+                       GetSQLValueString($_POST['eva_finalPre_score'], "int"),
+                       GetSQLValueString($_POST['eva_finalPre_comment'], "text"),
+                       GetSQLValueString($_POST['stu_id'], "int")); 
+
+
+					   
+
   
 		  mysqli_select_db($MyConnect, $database_MyConnect);
 		  /*
 		  $Result1_ = mysqli_query($MyConnect, $insertSQL_) or die(mysqli_error());
 		  */
 		  $Result1_stu = mysqli_query($MyConnect, $insertSQL_stu) or die(mysqli_error($MyConnect));
-		  $Result1_edt = mysqli_query($MyConnect, $insertSQL_edt) or die(mysqli_error());
-		  $Result1_sct = mysqli_query($MyConnect, $insertSQL_sct) or die(mysqli_error($MyConnect));
-		  $Result1_app = mysqli_query($MyConnect, $insertSQL_app) or die(mysqli_error());
-		  $Result1_sec = mysqli_query($MyConnect, $insertSQL_sec) or die(mysqli_error());
-		  $Result1_sad = mysqli_query($MyConnect, $insertSQL_sad) or die(mysqli_error());	
-		  $Result1_sre = mysqli_query($MyConnect, $insertSQL_sre) or die(mysqli_error());
-		  $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error($MyConnect));
 
-		  
-		 /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error());
-		  $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());	  
-		  $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die(mysqli_error());
-		  $Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
-		  $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());*/
+      $Result1_edt = mysqli_query($MyConnect, $insertSQL_edt) or die(mysqli_error($MyConnect));
+      $Result1_sct = mysqli_query($MyConnect, $insertSQL_sct) or die(mysqli_error($MyConnect));
+      $Result1_app = mysqli_query($MyConnect, $insertSQL_app) or die(mysqli_error($MyConnect));
+      $Result1_sec = mysqli_query($MyConnect, $insertSQL_sec) or die(mysqli_error());
+      $Result1_sad = mysqli_query($MyConnect, $insertSQL_sad) or die(mysqli_error()); 
+      $Result1_sre = mysqli_query($MyConnect, $insertSQL_sre) or die(mysqli_error());
+      $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error($MyConnect));
 
-		  $Result1_wex = mysqli_query($MyConnect, $insertSQL_wex) or die(mysqli_error());
-		  $Result1_lgIn = mysqli_query($MyConnect, $insertSQL_lgIn) or die(mysqli_error());
-//		  $Result1_lgIn_has_lg = mysqli_query($MyConnect, $insertSQL_lgIn_has_lg) or die(mysqli_error($MyConnect));
-//		  $Result1_LgIn_has_lv = mysqli_query($MyConnect, $insertSQL_LgIn_has_lv) or die(mysqli_error($MyConnect));
+      
+     /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error());
+      $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());   
+      $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die(mysqli_error());
+      $Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
+      $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());*/
+
+      $Result1_wex = mysqli_query($MyConnect, $insertSQL_wex) or die(mysqli_error());
+      $Result1_ext = mysqli_query($MyConnect, $insertSQL_ext) or die(mysqli_error($MyConnect));
+      $Result1_hob = mysqli_query($MyConnect, $insertSQL_hob) or die(mysqli_error($MyConnect));
+      $Result1_lgIn = mysqli_query($MyConnect, $insertSQL_lgIn) or die(mysqli_error());
+      $Result1_lgIn_has_lg = mysqli_query($MyConnect, $insertSQL_lgIn_has_lg) or die(mysqli_error($MyConnect));
+      $Result1_LgIn_has_lv = mysqli_query($MyConnect, $insertSQL_LgIn_has_lv) or die(mysqli_error($MyConnect));
 
       $Result1_tac = mysqli_query($MyConnect, $insertSQL_tac) or die(mysqli_error());
-		  $Result1_tni = mysqli_query($MyConnect, $insertSQL_tni) or die(mysqli_error());
-		  //$Result1_pre = mysqli_query($MyConnect, $insertSQL_pre) or die(mysqli_error());
+      $Result1_tni = mysqli_query($MyConnect, $insertSQL_tni) or die(mysqli_error());
+      //$Result1_pre = mysqli_query($MyConnect, $insertSQL_pre) or die(mysqli_error());
       $Result1_bhb = mysqli_query($MyConnect, $insertSQL_bhb) or die(mysqli_error());
       $Result1_bac = mysqli_query($MyConnect, $insertSQL_bac) or die(mysqli_error());
-		  $Result1_prj = mysqli_query($MyConnect, $insertSQL_prj) or die(mysqli_error());
-		  $Result1_thp = mysqli_query($MyConnect, $insertSQL_thp) or die(mysqli_error()); 
+      $Result1_prj = mysqli_query($MyConnect, $insertSQL_prj) or die(mysqli_error());
+      $Result1_thp = mysqli_query($MyConnect, $insertSQL_thp) or die(mysqli_error($MyConnect)); 
       //$Result1_pre = mysqli_query($MyConnect, $insertSQL_pre) or die(mysqli_error($MyConnect));
+
+
+      $Result1_eva = mysqli_query($MyConnect, $insertSQL_eva) or die(mysqli_error());
 
 
 
 
 
           $Result1_shs = mysqli_query($MyConnect, $insertSQL_shs) or die(mysqli_error($MyConnect));
+
+
+
 		
 		  $insertGoTo = "stu-insert-all.php";
 		  if (isset($_SERVER['QUERY_STRING'])) {
@@ -287,7 +325,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 		/*-- Reccordset Student_Info [E]--*/
 		
-/*July 31	
+
 		$maxRows_studentSet = 10;
 		$pageNum_studentSet = 0;
 		if (isset($_GET['pageNum_studentSet'])) {
@@ -334,7 +372,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		  }
 		}
 		$queryString_studentSet = sprintf("&totalRows_studentSet=%d%s", $totalRows_studentSet, $queryString_studentSet); 
-July 31*/
+
 
 		
 
@@ -401,7 +439,7 @@ $educationSet = mysqli_query($MyConnect, $query_educationSet) or die(mysqli_erro
 $row_educationSet = mysqli_fetch_assoc($educationSet);
 $totalRows_educationSet = mysqli_num_rows($educationSet);
 
-$query_instituteSet = "SELECT * FROM intitute_type";
+$query_instituteSet = "SELECT * FROM institute";
 $instituteSet = mysqli_query($MyConnect, $query_instituteSet) or die(mysqli_error());
 $row_instituteSet = mysqli_fetch_assoc($instituteSet);
 $totalRows_instituteSet = mysqli_num_rows($instituteSet);
@@ -415,12 +453,13 @@ $query_collageSet = "SELECT * FROM collage_info";
 $collageSet = mysqli_query($MyConnect, $query_collageSet) or die(mysqli_error());
 $row_collageSet = mysqli_fetch_assoc($collageSet);
 $totalRows_collageSet = mysqli_num_rows($collageSet);
-
-/*mysqli_select_db($MyConnect, $database_MyConnect);
-$query_studentSet = "SELECT * FROM student_info";
-$studentSet = mysqli_query($MyConnect, $query_studentSet) or die(mysqli_error());
+/*
+mysqli_select_db($MyConnect, $database_MyConnect);
+$query_newstudentnSet = "SELECT * FROM student_info
+  ORDER BY student_info.s_id DESC";
+$studentSet = mysqli_query($MyConnect, $query_studentSet) or die(mysqli_error($MyConnect));
 $row_studentSet = mysqli_fetch_assoc($studentSet);
-$totalRows_studentSet = mysqli_num_rows($studentSet);*/
+$totalRows_studentSet = mysqli_num_rows($studentSet); */
 
 $query_stu_addressSet = "SELECT * FROM student_address";
 $stu_addressSet = mysqli_query($MyConnect, $query_stu_addressSet) or die(mysqli_error());
@@ -580,6 +619,10 @@ $totalRows_secSet = mysqli_num_rows($secSet);
 
 
 
+  $query_chaSet = "SELECT * FROM characteristic";
+  $chaSet = mysqli_query($MyConnect, $query_chaSet) or die(mysqli_error());
+  $row_chaSet = mysqli_fetch_assoc($chaSet);
+  $totalRows_chaSet = mysqli_num_rows($chaSet);
 
 
 
