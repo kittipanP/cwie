@@ -300,6 +300,26 @@ if(isset($_POST["Import"])){
 	           $sql_spv = "INSERT into supervisor_info_has_student_info (`supervisor_info_spv_id`, `student_info_s_id`) 
 	            	values('$emapData[11]','$stu_sid') ;";
 
+	          //It wiil insert a row to xxx table from our csv file`
+	           $sql_eva = "INSERT into evaluation (`eva_finalPre_score`, `stu_id`) 
+	            	values('$emapData[20]','$stu_sid') ;";
+
+
+
+	            // reserve
+			   	$sql_add= "INSERT into student_address (`s_id`) 
+		         	values('$stu_sid') ;";
+			   	$sql_rel = "INSERT into student_relationship (`s_id`) 
+		         	values('$stu_sid') ;";
+			   	$sql_edb = "INSERT into education_blackgrounf (`student_info_s_id`) 
+		         	values('$stu_sid') ;";
+			   	$sql_ext = "INSERT into extracurricular_act (`student_info_s_id`) 
+		         	values('$stu_sid') ;";
+			   	$sql_hob = "INSERT into hobby_info (`s_id`) 
+		         	values('$stu_sid') ;";
+			   	$sql_wex = "INSERT into work_experience (`student_info_s_id`) 
+		         	values('$stu_sid') ;";
+
 
 
 				    	
@@ -334,6 +354,17 @@ if(isset($_POST["Import"])){
 	          	$result_scd = mysqli_query( $conn, $sql_scd) or die(mysqli_error($conn));
 	          		$result_ = mysqli_query( $conn, $sql_sec) or die(mysqli_error($conn));
 	          	$result_spv = mysqli_query( $conn, $sql_spv) or die(mysqli_error($conn));
+	          	$result_eva = mysqli_query( $conn, $sql_eva) or die(mysqli_error($conn));
+
+	          		//reserve
+	          	  	$result_add = mysqli_query( $conn, $sql_add) or die(mysqli_error());
+	          	  	$result_rel = mysqli_query( $conn, $sql_rel) or die(mysqli_error());
+	          	  	$result_edb = mysqli_query( $conn, $sql_edb) or die(mysqli_error());
+	          	  	$result_ext = mysqli_query( $conn, $sql_ext) or die(mysqli_error());
+	          	  	$result_hob = mysqli_query( $conn, $sql_hob) or die(mysqli_error());
+	          	  	$result_wex = mysqli_query( $conn, $sql_wex) or die(mysqli_error());
+
+
 
 
 
