@@ -356,8 +356,8 @@
                         <div align="left">  
                         <label for="intitute_id"> Institute : </label>                      
                         </div>
-                        <select name="intitute_id" id="insSelect" class="selectpicker" data-live-search="true" title="Please Select Institute !" style="width: 100%; " >
-                            <option value="">Select Institute Type</option>
+                        <select name="edu_institute" id="insSelect" class="selectpicker" data-live-search="true" title="Please Select Institute !" style="width: 100%; " >
+                            <!--<option value="">Select Institute Type</option> -->
                           <?php
                     do {  
                     ?>
