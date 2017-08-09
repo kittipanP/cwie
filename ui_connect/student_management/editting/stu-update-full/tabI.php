@@ -355,11 +355,26 @@
                         }?>
                         </select>
                          <!--<input type="text" name="degree_id" value="" size="32" />-->
-                         
+                        
+
+                        <!--<input type="text" name="major_id" value="" size="32" />-->
+                        
+                      <div align="left">  
+                      </div>
+                      
+                      <div align="left">
+                      </div>
+                     
+                    </div>
+                  </div>
+       
+                  <div class="w3-third">
+                    <div >
+                                 
                         <div align="left">
                         <label for="major_id"> Major : </label>
                         </div>
-                         <select name="major_id" id=""  style="width: 100%;" >
+                         <select name="major_id" id="" class="selectpicker" data-live-search="true"  style="width: 100%;" >
                          <?php 
                          if($row_major_rec['major_id']==null){
                          ?>
@@ -393,57 +408,6 @@
 
                       <div align="right">
                       <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Major</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
-
-
-                        <!--<input type="text" name="major_id" value="" size="32" />-->
-                        
-                      <div align="left">  
-                      </div>
-                      
-                      <div align="left">
-                      </div>
-                     
-                    </div>
-                  </div>
-       
-                  <div class="w3-third">
-                    <div >
-                                            
-                        <div align="left">  
-                        <label for="intitute_id"> Institute : </label>                      
-                        </div>
-                         <select name="intitute_id" id="" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; " >
-                         <?php 
-                         if($row_institute_rec['intitute_id']==null){
-                         ?>
-                            <option value="">Select Institute Type !</option>
-                          <?php
-                          do {  
-                          ?>
-                            <option value="<?php echo htmlentities($row_instituteSet['intitute_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_instituteSet['intitute_name']?></option>
-                          <?php
-                          } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
-                            $rows = mysqli_num_rows($instituteSet);
-                            if($rows > 0) {
-                                mysqli_data_seek($instituteSet, 0);
-                                $row_instituteSet = mysqli_fetch_assoc($instituteSet);
-                            }
-                         }else{?>
-                            <option value="<?php echo htmlentities($row_institute_rec['intitute_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_institute_rec['intitute_name']?></option>
-                          <?php
-                          do {  
-                          ?>
-                                    <option value="<?php echo htmlentities($row_instituteSet['intitute_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_instituteSet['intitute_name']?></option>
-                                    <?php
-                          } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
-                            $rows = mysqli_num_rows($instituteSet);
-                            if($rows > 0) {
-                                mysqli_data_seek($instituteSet, 0);
-                                $row_instituteSet = mysqli_fetch_assoc($instituteSet);
-                            }
-                        }?>
-                        </select> 
-
 
 
 
@@ -481,25 +445,51 @@
                   </div>
                         
                   <div class="w3-third">
-                    <div >                        
-                        <div align="left">  
-                        <label for="collage_id"> Collage : </label>                     
-                        </div>
-                        <select name="collage_id" id="collageSelect" class="selectpicker" data-live-search="true" title="Please Select Collage !" style="width: 100%;">
-                          <option value="">Select Institute Type First</option>
-                        </select>
+                    <div >             
 
-                                            
-                        <div align="left">   
-                        <label for="uni_id"> University : </label>                    
+
+
+
+            
+                        <div align="left">  
+                        <label for="intitute_id"> Institute : </label>                      
                         </div>
-                        
-                        <select name="uni_id" id="uniSelect" class="selectpicker" data-live-search="true" title="Please Select University !" >                         
-                           <option value="" >Select Institute Type First</option>
-                        </select>
-                        <!--<input type="text" name="uni_id" value="" size="32" />-->
-                        <p id='eiei'></p>
-                        <!--<input type="text" name="collage_id" value="" size="32" />-->
+                         <select name="edu_institute" id="" class="selectpicker" data-live-search="true" onChange="(getUniversity(this.value) , getUniversityii(this.value))" style="width: 100%; " >
+                         <?php 
+                         if($row_institute_rec['edu_institute']==null){
+                         ?>
+                            <option value="">Select Institute Type !</option>
+                          <?php
+                          do {  
+                          ?>
+                            <option value="<?php echo htmlentities($row_instituteSet['ins_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_instituteSet['ins_name']?></option>
+                          <?php
+                          } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
+                            $rows = mysqli_num_rows($instituteSet);
+                            if($rows > 0) {
+                                mysqli_data_seek($instituteSet, 0);
+                                $row_instituteSet = mysqli_fetch_assoc($instituteSet);
+                            }
+                         }else{?>
+                            <option value="<?php echo htmlentities($row_institute_rec['ins_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_institute_rec['ins_name']?></option>
+                          <?php
+                          do {  
+                          ?>
+                                    <option value="<?php echo htmlentities($row_instituteSet['ins_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_instituteSet['ins_name']?></option>
+                                    <?php
+                          } while ($row_instituteSet = mysqli_fetch_assoc($instituteSet));
+                            $rows = mysqli_num_rows($instituteSet);
+                            if($rows > 0) {
+                                mysqli_data_seek($instituteSet, 0);
+                                $row_instituteSet = mysqli_fetch_assoc($instituteSet);
+                            }
+                        }?>
+                        </select> 
+
+
+                      <div align="right">
+                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Institute</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
+
                         
                     </div>
                   </div>
@@ -592,7 +582,6 @@
 
               <fieldset>
                 <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-padding-top">&times;</span>
-                <h2 class="fs-title">Other Information</h2>
                 <div align="center">
                     <h3 class="fs-subtitle" >
                         <table>
@@ -605,15 +594,21 @@
                     
                     </h3>
                 </div>
-                            
-                             <!-- Used some part of the code from Chris Wright (http://codepen.io/chriswrightdesign/)'s Pen  -->
-                  <!-- Accordion [S] ## Accordion [S] ## Accordion [S] ## Accordion [S]-->                             
-                  <div class="accordion">
-                            <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Work Experience</p></div>
-                            <p></p>
-                            <div class="field_wrapper w3-row-padding w3-center w3-margin-top">
-                          <div class="w3-row">
-                            <div class="w3-col s3 w3-container">      
+                  
+
+
+
+        <!-- third start -->
+        <div class="w3-col l12">
+            <div class="">
+
+                <!-- I/III -->
+                <div class="w3-third">
+                  <div class="">
+
+                    <div class="w3-row-padding w3-center w3-margin-top">
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p> Work Experience</p></div>
+     
                                <input type="hidden" name="wex_id" value="" size="32" />
                                 <input type="hidden" name="student_info_s_id" value="" size="32" />
                                 <div align="left">
@@ -623,9 +618,7 @@
                                 <td><input type="text" name="wex_dateS" value="<?php echo htmlentities($row_wex_rec['wex_dateS'], ENT_COMPAT, 'utf-8'); ?>" size="32" id="dtwexS" placeholder="trigger calendar"/></td>
                 <td>&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;</td>
                                 <td><input type="text" name="wex_dateE" value="<?php echo htmlentities($row_wex_rec['wex_dateE'], ENT_COMPAT, 'utf-8'); ?>" size="32" id="dtwexE" placeholder="trigger calendar"/></td></tr></table>
-                            </div>
-                            <div class="w3-col s9 w3-container">                  
-                      
+                            
                                 <div align="left">
                                 <label for=""> Organization/Company : </label>                      
                                 </div> 
@@ -639,15 +632,69 @@
                                 <div align="right">
                   <a href="javascript:void(0);" class="add_button" title="Add field">Add more&nbsp;&nbsp;<i class="fa fa-plus-square "></i></a>
                                 </div>
-                            </div>
-                          </div>
+
+                    </div> 
+
+
+                        
+                  </div>
+                </div>
+
+                <!-- II/III-->
+                <div class="w3-third">
+                    <div class="" style="">
+                    <div class="w3-row-padding w3-center w3-margin-top">
+                       
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p> Extracurricular Activity</p></div>
+
+                        <div align="left">
+                          <label for=""> Duration : </label>
+                        </div>
+                          <table><tr>
+                                <td><input type="text" name="ext_dateS" value="<?php echo htmlentities($row_ext_rec['ext_dateS'], ENT_COMPAT, 'utf-8'); ?>" size="32" id="dtextS" placeholder="trigger calendar"/></td>
+                                <td>&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;</td>
+                                <td><input type="text" name="ext_dateE" value="<?php echo htmlentities($row_ext_rec['ext_dateE'], ENT_COMPAT, 'utf-8'); ?>" size="32" id="dtextE" placeholder="trigger calendar"/></td></tr>
+                          </table>
+
+                        <div align="left">
+                        <label for="">Name: </label>
+                        </div>
+                        <input type="text" name="exact_name" value="<?php echo htmlentities($row_ext_rec['exact_name'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+
+                        <div align="left">
+                        <label for="">Details: </label>
+                        </div>
+                        <textarea name="exact_detail" value="" size="32" placeholder=""><?php echo htmlentities($row_ext_rec['exact_detail'], ENT_COMPAT, 'utf-8'); ?></textarea>
+
+                        <input type="hidden" name="exact_id" value="" size="32" />
+                        <input type="hidden" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1 ?>" size="32" />
+                        <div align="right">
+                            <a href="javascript:void(0);" class="add_button" title="Add field">Add more&nbsp;&nbsp;<i class="fa fa-plus-square "></i></a>
                         </div>
 
 
 
-                <div class="w3-row-padding w3-center w3-margin-top">
-                  <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Language Skills</p></div>
-                  <div class="w3-third">
+                    </div> 
+                    </div>
+                </div>
+
+                <!--  III/III-->
+                <div class="w3-third">
+                    <div class=""  style="">
+                    <div class="w3-row-padding w3-center w3-margin-top">    
+
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Student Personality</p></div>
+
+                      <div align="left">
+                        <label for=""></label>
+                        </div>
+                        <textarea type="text" name="hobby_desc" value="" size="32" placeholder="..." ><?php echo htmlentities($row_hob_rec['hobby_desc'], ENT_COMPAT, 'utf-8'); ?></textarea>
+                        <input type="hidden" name="hobby_id" value="" size="32" />
+                        <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />
+
+
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Language Skills</p></div>
+                  <div class="w3-half">
                         <input type="hidden" name="lg_info_id" value="" size="32" />
                         <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />
                         <div align="left">
@@ -656,13 +703,11 @@
                         <!-- <input type="text" name="" value="" size="32" /> -->
                         <input type="hidden" name="lgINfo_has_lg_id" value="" size="32" />
                         <input type="hidden" name="lgInfo_id" value="<?php echo $row_lgInSet['lg_info_id']+1?>" size="32" />
-
-              
-                         <select name="lg_id" id="" class="selectpicker" data-live-search="true" title="Please Select Langguage !" style="width: 100%;">
+                         <select name="lg_id" id="" class="selectpicker" data-live-search="true" style="width: 100%; " >
                          <?php 
-                         if($row_lhlRec['lg_id']==null){
+                         if($row_lgIn_rec['lg_id']==null){
                          ?>
-                            <option value="">Select Language !</option>
+                            <option value="">Select Institute Type !</option>
                           <?php
                           do {  
                           ?>
@@ -675,7 +720,7 @@
                                 $row_lgSet = mysqli_fetch_assoc($lgSet);
                             }
                          }else{?>
-                            <option value="<?php echo htmlentities($row_lgRec['lg_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_lgRec['lg_name']?></option>
+                            <option value="<?php echo htmlentities($row_lg_rec['lg_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_lg_rec['lg_name']?></option>
                           <?php
                           do {  
                           ?>
@@ -688,35 +733,38 @@
                                 $row_lgSet = mysqli_fetch_assoc($lgSet);
                             }
                         }?>
-                        </select>
-                
+                        </select> 
+ 
+                  <div align="right">
+                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Language</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      </a>
+                  </div>                  
 
                   </div>
-                  <div class="w3-third">
+                  <div class="w3-half">
                         <div align="left">
                         <label for="">Level : </label>
                         </div>
                         <input type="hidden" name="lgINfo_has_lv_id" value="" size="32" />
-                        <input type="hidden" name="lgInfo_id" value="<?php echo $row_lgInSet['lg_info_id']+1?>" size="32" /> 
-              
-                         <select name="lv_id" id="" style="width: 100%;">
+                        <input type="hidden" name="lgInfo_id" value="<?php echo $row_lgInSet['lg_info_id']+1?>" size="32" />
+                         <select name="lv_id" id="" class="selectpicker" data-live-search="true" style="width: 100%; " >
                          <?php 
-                         if($row_lhvRec['lv_id']==null){
+                         if($row_lgIn_rec['lv_id']==null){
                          ?>
-                            <option value="">Select Level of Language !</option>
+                            <option value="">Select Institute Type !</option>
                           <?php
                           do {  
                           ?>
                             <option value="<?php echo htmlentities($row_lvSet['lv_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_lvSet['lv_name']?></option>
                           <?php
                           } while ($row_lvSet = mysqli_fetch_assoc($lvSet));
-                            $rows = mysqli_num_rows($lgSet);
+                            $rows = mysqli_num_rows($lvSet);
                             if($rows > 0) {
-                                mysqli_data_seek($lgSet, 0);
+                                mysqli_data_seek($lvSet, 0);
                                 $row_lvSet = mysqli_fetch_assoc($lvSet);
                             }
                          }else{?>
-                            <option value="<?php echo htmlentities($row_lvRec['lv_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_lvRec['lv_name']?></option>
+                            <option value="<?php echo htmlentities($row_lv_rec['lv_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_lv_rec['lv_name']?></option>
                           <?php
                           do {  
                           ?>
@@ -730,18 +778,39 @@
                             }
                         }?>
                         </select>      
-                  </div>          
-                  <div class="w3-third">
-                        <div align="left">
-                        <label for=""> </label>
-                        </div>
-                        <div align="left">
-                        <label for="">   </label>
-                        </div>
+                  </div> 
 
-                            
+
+                    </div>
+                    </div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                    
+                  <div align="right">
+                            <a href="javascript:void(0);" class="add_button" title="Add field">Add more&nbsp;&nbsp;<i class="fa fa-plus-square "></i></a>
                   </div>
-                </div> 
+                </div>
+
+            </div>
+
+        <!-- third end -->
+        </div>
+
+
+
+
+
+
+                  <p>&nbsp;</p>          
+                             <!-- Used some part of the code from Chris Wright (http://codepen.io/chriswrightdesign/)'s Pen  -->
+                  <!-- Accordion [S] ## Accordion [S] ## Accordion [S] ## Accordion [S]-->                             
+                  <div class="accordion">
+                            
+                            
+
+
+
 
                   </div>
                   <!-- Accordion [E] ## Accordion [E] ## Accordion [E] ## Accordion [E]-->
