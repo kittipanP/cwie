@@ -166,10 +166,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['hobby_desc'], "text")); 
 
 
-    $insertSQL_lgIn = sprintf("INSERT INTO language_info (lg_info_id, s_id) VALUES (%s, %s)",
+    $insertSQL_lgIn = sprintf("INSERT INTO language_info (lg_id, lv_id, lg_info_id, s_id) VALUES (%s, %s, %s, %s)", 
+                       GetSQLValueString($_POST['lg_id'], "int"),
+                       GetSQLValueString($_POST['lv_id'], "int"),
                        GetSQLValueString($_POST['lg_info_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int"));
-
+    /*
     $insertSQL_lgIn_has_lg = sprintf("INSERT INTO lgInfo_has_lg (lgINfo_has_lg_id, lgInfo_id, lg_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['lgINfo_has_lg_id'], "int"),
                        GetSQLValueString($_POST['lgInfo_id'], "int"),
@@ -178,7 +180,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
     $insertSQL_LgIn_has_lv = sprintf("INSERT INTO lgInfo_has_lv (lgINfo_has_lv_id, lgInfo_id, lv_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['lgINfo_has_lv_id'], "int"),
                        GetSQLValueString($_POST['lgInfo_id'], "int"),
-                       GetSQLValueString($_POST['lv_id'], "int")); 
+                       GetSQLValueString($_POST['lv_id'], "int")); */
 
 
     $insertSQL_tni = sprintf("INSERT INTO trainee_info (trainee_id, trainee_code, s_id, job_id, tac_acc_id, location_id, plant_id, dep_id, transportation_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -289,8 +291,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
       $Result1_ext = mysqli_query($MyConnect, $insertSQL_ext) or die(mysqli_error($MyConnect));
       $Result1_hob = mysqli_query($MyConnect, $insertSQL_hob) or die(mysqli_error($MyConnect));
       $Result1_lgIn = mysqli_query($MyConnect, $insertSQL_lgIn) or die(mysqli_error());
-      $Result1_lgIn_has_lg = mysqli_query($MyConnect, $insertSQL_lgIn_has_lg) or die(mysqli_error($MyConnect));
-      $Result1_LgIn_has_lv = mysqli_query($MyConnect, $insertSQL_LgIn_has_lv) or die(mysqli_error($MyConnect));
+      //$Result1_lgIn_has_lg = mysqli_query($MyConnect, $insertSQL_lgIn_has_lg) or die(mysqli_error($MyConnect));
+      //$Result1_LgIn_has_lv = mysqli_query($MyConnect, $insertSQL_LgIn_has_lv) or die(mysqli_error($MyConnect));
 
       $Result1_tac = mysqli_query($MyConnect, $insertSQL_tac) or die(mysqli_error());
       $Result1_tni = mysqli_query($MyConnect, $insertSQL_tni) or die(mysqli_error());
@@ -525,7 +527,7 @@ $totalRows_secSet = mysqli_num_rows($secSet);
 		$lgInSet = mysqli_query($MyConnect, $query_lgInSet) or die(mysqli_error());
 		$row_lgInSet = mysqli_fetch_assoc($lgInSet);
 		$totalRows_lgInSet = mysqli_num_rows($lgInSet);	
-
+    
 		$query_lgLvSet = "SELECT * FROM language_lv";
 		$lgLvSet = mysqli_query($MyConnect, $query_lgLvSet) or die(mysqli_error());
 		$row_lgLvSet = mysqli_fetch_assoc($lgLvSet);
