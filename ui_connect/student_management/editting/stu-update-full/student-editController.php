@@ -110,17 +110,13 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
     $updateSQL_edu = sprintf("UPDATE education_info
       LEFT JOIN major_info ON major_info.major_id = education_info.major_id
       LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
-      LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
-      LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id
-      LEFT JOIN intitute_type ON intitute_type.intitute_id = education_info.intitute_id
+      LEFT JOIN institute ON institute.ins_id = education_info.edu_institute
       INNER JOIN student_info ON student_info.s_id=education_info.s_id
-      SET education_info.intitute_id=%s, education_info.major_id=%s, education_info.degree_id=%s, education_info.uni_id=%s, education_info.collage_id=%s
+      SET education_info.edu_institute=%s, education_info.major_id=%s, education_info.degree_id=%s
       WHERE education_info.s_id=$prm ",
-                 GetSQLValueString($_POST['intitute_id'], "int"),
+                 GetSQLValueString($_POST['edu_institute'], "int"),
                  GetSQLValueString($_POST['major_id'], "int"),
                  GetSQLValueString($_POST['degree_id'], "int"),
-                 GetSQLValueString($_POST['uni_id'], "int"),
-                 GetSQLValueString($_POST['collage_id'], "int"),
                  GetSQLValueString($_POST['education_name'], "text"),
                  GetSQLValueString($_POST['education_id'], "int"),
                  GetSQLValueString($_POST['s_id'], "int"));  
@@ -143,7 +139,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
     $updateSQL_wex = sprintf("UPDATE work_experience  
       LEFT JOIN student_info ON student_info.s_id=work_experience.student_info_s_id
       SET wex_dateS=%s, wex_dateE=%s, wex_organ=%s, wex_detail=%s
-      WHERE student_info.s_id = $prm",
+      WHERE work_experience.student_info_s_id = $prm",
                        GetSQLValueString($_POST['wex_dateS'], "date"),
                        GetSQLValueString($_POST['wex_dateE'], "date"),
                        GetSQLValueString($_POST['wex_organ'], "text"),
@@ -151,21 +147,40 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
                        GetSQLValueString($_POST['wex_id'], "int"),
                        GetSQLValueString($_POST['student_info_s_id'], "int"));
 
-    /*$updateSQL_lhl = sprintf("UPDATE lgInfo_has_lg  
-      LEFT JOIN lgInfo_has_lg ON lgInfo_has_lg.lg_id = language.lg_id
+
+    $updateSQL_ext = sprintf("UPDATE extracurricular_act  
+      LEFT JOIN student_info ON student_info.s_id=extracurricular_act.student_info_s_id
+      SET ext_dateS=%s, ext_dateE=%s, exact_name=%s, exact_detail=%s
+      WHERE extracurricular_act.student_info_s_id = $prm",
+                       GetSQLValueString($_POST['ext_dateS'], "date"),
+                       GetSQLValueString($_POST['ext_dateE'], "date"),
+                       GetSQLValueString($_POST['exact_name'], "text"),
+                       GetSQLValueString($_POST['exact_detail'], "text"),
+                       GetSQLValueString($_POST['exact_id'], "int"),
+                       GetSQLValueString($_POST['student_info_s_id'], "int"));
+
+
+    $updateSQL_hob = sprintf("UPDATE hobby_info  
+      LEFT JOIN student_info ON student_info.s_id=hobby_info.s_id
+      SET hobby_desc=%s
+      WHERE hobby_info.s_id = $prm",
+                       GetSQLValueString($_POST['hobby_desc'], "text"),
+                       GetSQLValueString($_POST['hobby_id'], "int"),
+                       GetSQLValueString($_POST['s_id'], "int"));
+
+
+/*
+    $updateSQL_lhl = sprintf("UPDATE lgInfo_has_lg  
       LEFT JOIN language_info ON language_info.lg_info_id = lgInfo_has_lg.lgInfo_id
       INNER JOIN student_info ON student_info.s_id = language_info.s_id
-      SET lg_id=%s
+      SET lgInfo_has_lg.lg_id=%s
       WHERE student_info.s_id = $prm",
-                       GetSQLValueString($_POST['lg_id'], "int"),
-                       GetSQLValueString($_POST['lgINfo_has_lg_id'], "int"),
-                       GetSQLValueString($_POST['lgInfo_id'], "int")); */
+                       GetSQLValueString($_POST['lg_id'], "int")); 
 
-    /*$updateSQL_lhv = sprintf("UPDATE lgInfo_has_lv  
-      LEFT JOIN language_lv ON language_lv.lv_id = lgInfo_has_lv.lv_id 
-      LEFT JOIN language_info ON language_info.lg_info_id = lgInfo_has_lv.lgInfo_id
+    $updateSQL_lhv = sprintf("UPDATE lgInfo_has_lv  
+      LEFT JOIN language_info ON language_info.lg_info_id = lgInfo_has_lv.lgINfo_has_lv_id
       INNER JOIN student_info ON student_info.s_id = language_info.s_id
-      SET lv_id=%s
+      SET lgInfo_has_lv.lv_id=%s
       WHERE student_info.s_id = $prm",
                        GetSQLValueString($_POST['lv_id'], "int"),
                        GetSQLValueString($_POST['lgINfo_has_lv_id'], "int"),
@@ -232,7 +247,41 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
       WHERE student_info.s_id = $prm",
                        GetSQLValueString($_POST['supervisor_info_spv_id'], "int"));
 
+    $updateSQL_lgi = sprintf("UPDATE language_info  
+      INNER JOIN student_info ON student_info.s_id = language_info.s_id
+      SET language_info.lg_id=%s, language_info.lv_id=%s
+      WHERE student_info.s_id = $prm",
+                       GetSQLValueString($_POST['lg_id'], "int"),
+                       GetSQLValueString($_POST['lv_id'], "int"),
+                       GetSQLValueString($_POST['lg_info_id'], "int"),
+                       GetSQLValueString($_POST['s_id'], "int"));
 
+
+
+    $updateSQL_app = sprintf("UPDATE application  
+      INNER JOIN student_info ON student_info.s_id = application.s_id
+      SET application_dateS=%s, application_dateE=%s
+      WHERE student_info.s_id = $prm",
+                       GetSQLValueString($_POST['application_dateS'], "date"),
+                       GetSQLValueString($_POST['application_dateE'], "date"),
+                       GetSQLValueString($_POST['application_id'], "int"),
+                       GetSQLValueString($_POST['s_id'], "int")); 
+
+
+
+
+    $updateSQL_eva = sprintf("UPDATE evaluation 
+      INNER JOIN student_info ON student_info.s_id = evaluation.stu_id
+      SET eva_onlineTest=%s, eva_leonard=%s, eva_preTest=%s, eva_postTest=%s, eva_finalPre_score=%s, eva_finalPre_comment=%s
+      WHERE student_info.s_id = $prm",
+                       GetSQLValueString($_POST['eva_onlineTest'], "int"),
+                       GetSQLValueString($_POST['eva_leonard'], "int"),
+                       GetSQLValueString($_POST['eva_preTest'], "int"),
+                       GetSQLValueString($_POST['eva_postTest'], "int"),
+                       GetSQLValueString($_POST['eva_finalPre_score'], "int"),
+                       GetSQLValueString($_POST['eva_finalPre_comment'], "text"),
+                       GetSQLValueString($_POST['eva_id'], "int"),
+                       GetSQLValueString($_POST['stu_id'], "int")); 
 
 
 
@@ -242,9 +291,11 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $Result1_sec = mysqli_query($MyConnect, $updateSQL_sec) or die(mysqli_error());
   $Result1_sad = mysqli_query($MyConnect, $updateSQL_sad) or die(mysqli_error());
   $Result1_sre = mysqli_query($MyConnect, $updateSQL_sre) or die(mysqli_error());
-  $Result1_edu = mysqli_query($MyConnect, $updateSQL_edu) or die(mysqli_error());
+  $Result1_edu = mysqli_query($MyConnect, $updateSQL_edu) or die(mysqli_error($MyConnect));
   $Result1_edb = mysqli_query($MyConnect, $updateSQL_edb) or die(mysqli_error($MyConnect));
   $Result1_wex = mysqli_query($MyConnect, $updateSQL_wex) or die(mysqli_error());
+  $Result1_ext = mysqli_query($MyConnect, $updateSQL_ext) or die(mysqli_error());
+  $Result1_hob = mysqli_query($MyConnect, $updateSQL_hob) or die(mysqli_error());
   //$Result1_lhl = mysqli_query($MyConnect, $updateSQL_lhl) or die(mysqli_error($MyConnect));
   //$Result1_lhv = mysqli_query($MyConnect, $updateSQL_lhv) or die(mysqli_error($MyConnect));
 
@@ -252,8 +303,12 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $Result1_tac = mysqli_query($MyConnect, $updateSQL_tac) or die(mysqli_error());
   $Result1_bac = mysqli_query($MyConnect, $updateSQL_bac) or die(mysqli_error());
   $Result1_thp = mysqli_query($MyConnect, $updateSQL_thp) or die(mysqli_error());
+  $Result1_app = mysqli_query($MyConnect, $updateSQL_app) or die(mysqli_error());
+  $Result1_eva = mysqli_query($MyConnect, $updateSQL_eva) or die(mysqli_error());
 
   $Result1_shs = mysqli_query($MyConnect, $updateSQL_shs) or die(mysqli_error($MyConnect));
+  $Result1_lgi = mysqli_query($MyConnect, $updateSQL_lgi) or die(mysqli_error());
+
 
 
 
@@ -380,14 +435,14 @@ $majorSet = mysqli_query($MyConnect, $query_majorSet) or die(mysqli_error());
 $row_majorSet = mysqli_fetch_assoc($majorSet);
 $totalRows_majorSet = mysqli_num_rows($majorSet); 
 
-$query_institute_rec = "SELECT * FROM intitute_type 
+$query_institute_rec = "SELECT * FROM institute 
 LEFT JOIN education_info ON education_info.s_id=$thisstu
 LEFT JOIN student_info ON student_info.s_id=$thisstu
-WHERE intitute_type.intitute_id=education_info.intitute_id";
+WHERE institute.ins_id=education_info.edu_institute";
 $institute_rec = mysqli_query($MyConnect, $query_institute_rec) or die(mysqli_error($MyConnect));
 $row_institute_rec = mysqli_fetch_assoc($institute_rec);
 $totalRows_institute_rec = mysqli_num_rows($institute_rec);
-$query_instituteSet = "SELECT * FROM intitute_type";
+$query_instituteSet = "SELECT * FROM institute";
 $instituteSet = mysqli_query($MyConnect, $query_instituteSet) or die(mysqli_error());
 $row_instituteSet = mysqli_fetch_assoc($instituteSet);
 $totalRows_instituteSet = mysqli_num_rows($instituteSet); 
@@ -427,70 +482,90 @@ $totalRows_edb_rec = mysqli_num_rows($edb_rec);
 
 $query_wex_rec = "SELECT * FROM work_experience 
   LEFT JOIN student_info ON student_info.s_id=work_experience.student_info_s_id
-  WHERE  student_info_s_id=$thisstu";
+  WHERE  work_experience.student_info_s_id=$thisstu";
 $wex_rec = mysqli_query($MyConnect, $query_wex_rec) or die(mysqli_error());
 $row_wex_rec = mysqli_fetch_assoc($wex_rec);
 $totalRows_wex_rec = mysqli_num_rows($wex_rec);
+
+
+$query_ext_rec = "SELECT * FROM extracurricular_act 
+  LEFT JOIN student_info ON student_info.s_id=extracurricular_act.student_info_s_id
+  WHERE  extracurricular_act.student_info_s_id=$thisstu";
+$ext_rec = mysqli_query($MyConnect, $query_ext_rec) or die(mysqli_error());
+$row_ext_rec = mysqli_fetch_assoc($ext_rec);
+$totalRows_ext_rec = mysqli_num_rows($ext_rec);
+
+
+$query_hob_rec = "SELECT * FROM hobby_info 
+  LEFT JOIN student_info ON student_info.s_id=hobby_info.s_id
+  WHERE  hobby_info.s_id=$thisstu";
+$hob_rec = mysqli_query($MyConnect, $query_hob_rec) or die(mysqli_error());
+$row_hob_rec = mysqli_fetch_assoc($hob_rec);
+$totalRows_hob_rec = mysqli_num_rows($hob_rec);
                   
-                    /*$query_lgInSet = "SELECT * FROM language_info
+                    $query_lgInSet = "SELECT * FROM language_info
                       ORDER BY lg_info_id DESC";
                     $lgInSet = mysqli_query($MyConnect, $query_lgInSet) or die(mysqli_error());
                     $row_lgInSet = mysqli_fetch_assoc($lgInSet);
-                    $totalRows_lgInSet = mysqli_num_rows($lgInSet); */
+                    $totalRows_lgInSet = mysqli_num_rows($lgInSet); 
+                    $query_lgIn_rec = "SELECT * FROM language_info 
+                      LEFT JOIN student_info ON student_info.s_id = language_info.s_id
+                      WHERE student_info.s_id = $thisstu";
+                    $lgIn_rec = mysqli_query($MyConnect, $query_lgIn_rec) or die(mysqli_error());
+                    $row_lgIn_rec = mysqli_fetch_assoc($lgIn_rec);
+                    $totalRows_lgIn_rec = mysqli_num_rows($lgIn_rec); 
 
                     $query_lhlSet = "SELECT * FROM lgInfo_has_lg";
                     $lhlSet = mysqli_query($MyConnect, $query_lhlSet) or die(mysqli_error());
                     $row_lhlSet = mysqli_fetch_assoc($lhlSet);
                     $totalRows_lhlSet = mysqli_num_rows($lhlSet);     
-                    $query_lhlRec = "SELECT lgInfo_has_lg.lgInfo_id, lgInfo_has_lg.lg_id FROM lgInfo_has_lg
+                    $query_lhl_rec = "SELECT lgInfo_has_lg.lgInfo_id, lgInfo_has_lg.lg_id FROM lgInfo_has_lg
                       LEFT JOIN language ON language.lg_id = lgInfo_has_lg.lg_id 
                       LEFT JOIN language_info ON language_info.lg_info_id = lgInfo_has_lg.lgInfo_id
                       INNER JOIN student_info ON student_info.s_id = language_info.s_id
                       WHERE student_info.s_id = $thisstu";
-                    $lhlRec = mysqli_query($MyConnect, $query_lhlRec) or die(mysqli_error());
-                    $row_lhlRec = mysqli_fetch_assoc($lhlRec);
-                    $totalRows_lhlRec= mysqli_num_rows($lhlRec); 
+                    $lhl_rec = mysqli_query($MyConnect, $query_lhl_rec) or die(mysqli_error());
+                    $row_lhl_rec = mysqli_fetch_assoc($lhl_rec);
+                    $totalRows_lhl_rec= mysqli_num_rows($lhl_rec); 
 
 
                     $query_lgSet = "SELECT * FROM language";
                     $lgSet = mysqli_query($MyConnect, $query_lgSet) or die(mysqli_error());
                     $row_lgSet = mysqli_fetch_assoc($lgSet);
                     $totalRows_lgSet = mysqli_num_rows($lgSet); 
-                    $query_lgRec = "SELECT * FROM language 
-                      LEFT JOIN lgInfo_has_lg ON lgInfo_has_lg.lg_id = language.lg_id
-                      LEFT JOIN language_info ON language_info.lg_info_id = lgInfo_has_lg.lgInfo_id
+                    $query_lg_rec = "SELECT * FROM language 
+                      LEFT JOIN language_info ON language_info.lg_id = language.lg_id
                       LEFT JOIN student_info ON student_info.s_id = language_info.s_id
                       WHERE student_info.s_id = $thisstu";
-                    $lgRec = mysqli_query($MyConnect, $query_lgRec) or die(mysqli_error());
-                    $row_lgRec = mysqli_fetch_assoc($lgRec);
-                    $totalRows_lgRec = mysqli_num_rows($lgRec); 
+                    $lg_rec = mysqli_query($MyConnect, $query_lg_rec) or die(mysqli_error());
+                    $row_lg_rec = mysqli_fetch_assoc($lg_rec);
+                    $totalRows_lg_rec = mysqli_num_rows($lg_rec); 
 
                     $query_lhvSet = "SELECT * FROM lgInfo_has_lv";
                     $lhvSet = mysqli_query($MyConnect, $query_lhvSet) or die(mysqli_error());
                     $row_lhvSet = mysqli_fetch_assoc($lhvSet);
                     $totalRows_lhvSet = mysqli_num_rows($lhvSet);     
-                    $query_lhvRec = "SELECT lgInfo_has_lv.lgInfo_id, lgInfo_has_lv.lv_id FROM lgInfo_has_lv
+                    $query_lhv_rec = "SELECT lgInfo_has_lv.lgInfo_id, lgInfo_has_lv.lv_id FROM lgInfo_has_lv
                       LEFT JOIN language_lv ON language_lv.lv_id = lgInfo_has_lv.lv_id 
                       LEFT JOIN language_info ON language_info.lg_info_id = lgInfo_has_lv.lgInfo_id
                       INNER JOIN student_info ON student_info.s_id = language_info.s_id
                       WHERE student_info.s_id = $thisstu";
-                    $lhvRec = mysqli_query($MyConnect, $query_lhvRec) or die(mysqli_error());
-                    $row_lhvRec = mysqli_fetch_assoc($lhvRec);
-                    $totalRows_lhvRec= mysqli_num_rows($lhvRec); 
+                    $lhv_rec = mysqli_query($MyConnect, $query_lhv_rec) or die(mysqli_error());
+                    $row_lhv_rec = mysqli_fetch_assoc($lhv_rec);
+                    $totalRows_lhv_rec= mysqli_num_rows($lhv_rec); 
 
 
                     $query_lvSet = "SELECT * FROM language_lv";
                     $lvSet = mysqli_query($MyConnect, $query_lvSet) or die(mysqli_error());
                     $row_lvSet = mysqli_fetch_assoc($lvSet);
                     $totalRows_lvSet = mysqli_num_rows($lvSet); 
-                    $query_lvRec = "SELECT * FROM language_lv 
-                      LEFT JOIN lgInfo_has_lv ON lgInfo_has_lv.lv_id = language_lv.lv_id
-                      LEFT JOIN language_info ON language_info.lg_info_id = lgInfo_has_lv.lgInfo_id
+                    $query_lv_rec = "SELECT * FROM language_lv 
+                      LEFT JOIN language_info ON language_info.lv_id = language_lv.lv_id
                       LEFT JOIN student_info ON student_info.s_id = language_info.s_id
                       WHERE student_info.s_id = $thisstu";
-                    $lvRec = mysqli_query($MyConnect, $query_lvRec) or die(mysqli_error());
-                    $row_lvRec = mysqli_fetch_assoc($lvRec);
-                    $totalRows_lvRec = mysqli_num_rows($lvRec); 
+                    $lv_rec = mysqli_query($MyConnect, $query_lv_rec) or die(mysqli_error());
+                    $row_lv_rec = mysqli_fetch_assoc($lv_rec);
+                    $totalRows_lv_rec = mysqli_num_rows($lv_rec); 
 
   $query_tniRec = "SELECT * FROM trainee_info
       LEFT JOIN department_info ON department_info.dep_id = trainee_info.dep_id
@@ -611,7 +686,7 @@ $totalRows_wex_rec = mysqli_num_rows($wex_rec);
           $row_spvSet = mysqli_fetch_assoc($spvSet);
           $totalRows_spvSet = mysqli_num_rows($spvSet);
 
-          $query_shsRec = "SELECT shs.supervisor_info_spv_id, shs.student_info_s_id, supervisor_info.spv_fname, supervisor_info.spv_lname FROM supervisor_info_has_student_info AS shs
+          $query_shsRec = "SELECT * FROM supervisor_info_has_student_info AS shs
               RIGHT JOIN student_info ON student_info.s_id = shs.student_info_s_id
               RIGHT JOIN supervisor_info ON supervisor_info.spv_id = shs.supervisor_info_spv_id
               WHERE student_info.s_id = $thisstu";
@@ -621,8 +696,35 @@ $totalRows_wex_rec = mysqli_num_rows($wex_rec);
 
 
 
+  $query_appRec = "SELECT * FROM application 
+      INNER JOIN student_info ON student_info.s_id = application.s_id
+      WHERE student_info.s_id = $thisstu";
+  $appRec = mysqli_query($MyConnect, $query_appRec) or die(mysqli_error());
+  $row_appRec = mysqli_fetch_assoc($appRec);
+  $totalRows_appRec = mysqli_num_rows($appRec); 
+        
 
 
+  $query_evaRec = "SELECT * FROM evaluation 
+      INNER JOIN student_info ON student_info.s_id = evaluation.stu_id
+      LEFT JOIN characteristic ON characteristic.ch_id = evaluation.eva_leonard
+      WHERE student_info.s_id = $thisstu";
+  $evaRec = mysqli_query($MyConnect, $query_evaRec) or die(mysqli_error($MyConnect));
+  $row_evaRec = mysqli_fetch_assoc($evaRec);
+  $totalRows_evaRec = mysqli_num_rows($evaRec); 
+        
+
+  $query_chaSet = "SELECT * FROM characteristic";
+  $chaSet = mysqli_query($MyConnect, $query_chaSet) or die(mysqli_error());
+  $row_chaSet = mysqli_fetch_assoc($chaSet);
+  $totalRows_chaSet = mysqli_num_rows($chaSet);
+
+/*
+
+
+
+
+*/
 
 
 

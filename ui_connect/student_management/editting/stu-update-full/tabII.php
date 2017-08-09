@@ -264,12 +264,12 @@
                         <div align="left">
                         <label for="">Starting Date : </label>
                         </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
+                        <input type="text" name="application_dateS" value="<?php echo htmlentities($row_appRec['application_dateS'], ENT_COMPAT, 'utf-8');?>" size="32" placeholder="" />
 
                         <div align="left">
                         <label for="">Ending Date : </label>
                         </div>
-                        <input type="text" name="" value="" size="32" placeholder="" />
+                        <input type="text" name="application_dateE" value="<?php echo htmlentities($row_appRec['application_dateE'], ENT_COMPAT, 'utf-8');?>" size="32" placeholder="" />
 
                     </div> 
                     </div>
