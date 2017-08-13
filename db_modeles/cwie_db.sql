@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 09, 2017 at 04:39 AM
+-- Generation Time: Aug 11, 2017 at 11:03 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -610,7 +610,8 @@ INSERT INTO `application` (`application_id`, `s_id`, `application_dateS`, `appli
 (572, 1829, NULL, NULL),
 (573, 1830, NULL, NULL),
 (574, 1831, NULL, NULL),
-(575, 1832, '2016-10-30', '2016-10-30');
+(575, 1832, '2016-10-30', '2016-10-30'),
+(576, 1833, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -859,7 +860,8 @@ INSERT INTO `bank_acc_info` (`bac_id`, `bac_no`, `bac_name`, `trainee_id`, `bnk_
 (211, NULL, NULL, 471, 305),
 (212, NULL, NULL, 472, 306),
 (215, NULL, NULL, 473, 309),
-(216, 4294967295, 'กิตติ rrrrrr prasert ch', 474, 310);
+(216, 4294967295, 'กิตติ rrrrrr prasert ch', 474, 310),
+(218, NULL, NULL, 475, 335);
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1191,29 @@ INSERT INTO `bank_has_banch` (`bnk_has_bch_id`, `bnk_id`, `bch_id`) VALUES
 (310, 1, 6),
 (311, 2, NULL),
 (312, 2, NULL),
-(313, 2, NULL);
+(313, 2, NULL),
+(314, 1, 1),
+(315, 1, 1),
+(316, 1, 1),
+(317, 1, 2),
+(318, 1, 3),
+(319, 1, 11),
+(320, 1, 6),
+(321, 1, 6),
+(322, 1, 6),
+(323, 1, 1),
+(324, 1, 17),
+(325, 1, 1),
+(326, 1, 2),
+(327, 1, 3),
+(328, 1, 11),
+(329, 1, 6),
+(330, 1, 6),
+(331, 1, 6),
+(332, 1, 1),
+(333, 1, 17),
+(334, 2, NULL),
+(335, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -1278,27 +1302,6 @@ INSERT INTO `characteristic` (`ch_id`, `ch_type`, `ch_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `collage_info`
---
-
-CREATE TABLE `collage_info` (
-  `collage_id` int(11) NOT NULL,
-  `collage_name` varchar(100) NOT NULL,
-  `country_id` int(11) DEFAULT NULL,
-  `idintitute_type_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `collage_info`
---
-
-INSERT INTO `collage_info` (`collage_id`, `collage_name`, `country_id`, `idintitute_type_id`) VALUES
-(1, 'AYUTTHAYA TECHNICAL COLLEGE', NULL, 2),
-(2, 'Nongkhai Technical College', 1, 2);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `country_list`
 --
 
@@ -1338,28 +1341,6 @@ INSERT INTO `degree_info` (`degree_id`, `degree_name`) VALUES
 (4, 'High Vocational Certificate'),
 (5, 'Vocational Certificate'),
 (6, 'Senior High School');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `degree_info_has_collage_info`
---
-
-CREATE TABLE `degree_info_has_collage_info` (
-  `degree_id` int(11) NOT NULL,
-  `institute_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `degree_info_has_university_info`
---
-
-CREATE TABLE `degree_info_has_university_info` (
-  `degree_id` int(11) NOT NULL,
-  `uni_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1441,7 +1422,8 @@ INSERT INTO `education_blackgrounf` (`bg_id`, `bg_durationS`, `bg_durationE`, `b
 (25, NULL, NULL, NULL, NULL, NULL, NULL, 1829),
 (29, NULL, NULL, NULL, NULL, NULL, NULL, 1830),
 (30, NULL, NULL, NULL, NULL, NULL, NULL, 1831),
-(31, '2016-10-30', '2017-08-09', 'sinech', 'Chumpholphonphisaich', 5, 4.0122, 1832);
+(31, '2016-10-30', '2017-08-09', 'sinech', 'Chumpholphonphisaich', 5, 4.0122, 1832),
+(33, NULL, NULL, NULL, NULL, NULL, NULL, 1833);
 
 -- --------------------------------------------------------
 
@@ -1465,620 +1447,11 @@ CREATE TABLE `education_info` (
 --
 
 INSERT INTO `education_info` (`education_id`, `edu_institute`, `intitute_id`, `major_id`, `degree_id`, `s_id`, `uni_id`, `collage_id`) VALUES
-(326, 4, 1, 13, 6, 1166, NULL, NULL),
-(327, 2, 1, 2, 5, 1167, NULL, NULL),
-(328, 5, 1, 3, 4, 1168, NULL, NULL),
-(329, 2, 1, 4, 3, 1169, NULL, NULL),
-(330, 3, 1, 5, 2, 1170, NULL, NULL),
-(331, 3, 1, 6, 1, 1171, NULL, NULL),
-(332, 1, 1, 6, 3, 1172, NULL, NULL),
-(333, 1, 1, 8, 3, 1173, NULL, NULL),
-(334, 1, 1, 10, 3, 1174, NULL, NULL),
-(335, 4, NULL, 13, 6, 1175, NULL, NULL),
-(336, 2, NULL, 2, 5, 1176, NULL, NULL),
-(337, 5, NULL, 3, 4, 1177, NULL, NULL),
-(338, 2, NULL, 4, 3, 1178, NULL, NULL),
-(339, 3, NULL, 5, 2, 1179, NULL, NULL),
-(340, 3, NULL, 6, 1, 1180, NULL, NULL),
-(341, 1, NULL, 6, 3, 1181, NULL, NULL),
-(342, 1, NULL, 8, 3, 1182, NULL, NULL),
-(343, 1, NULL, 10, 3, 1183, NULL, NULL),
-(344, 4, NULL, 13, 6, 1184, NULL, NULL),
-(345, 2, NULL, 2, 5, 1185, NULL, NULL),
-(346, 5, NULL, 3, 4, 1186, NULL, NULL),
-(347, 2, NULL, 4, 3, 1187, NULL, NULL),
-(348, 3, NULL, 5, 2, 1188, NULL, NULL),
-(349, 3, NULL, 6, 1, 1189, NULL, NULL),
-(350, 1, NULL, 6, 3, 1190, NULL, NULL),
-(351, 1, NULL, 8, 3, 1191, NULL, NULL),
-(352, 1, NULL, 10, 3, 1192, NULL, NULL),
-(353, 4, NULL, 13, 6, 1193, NULL, NULL),
-(354, 2, NULL, 2, 5, 1194, NULL, NULL),
-(355, 5, NULL, 3, 4, 1195, NULL, NULL),
-(356, 2, NULL, 4, 3, 1196, NULL, NULL),
-(357, 3, NULL, 5, 2, 1197, NULL, NULL),
-(358, 3, NULL, 6, 1, 1198, NULL, NULL),
-(359, 1, NULL, 6, 3, 1199, NULL, NULL),
-(360, 1, NULL, 8, 3, 1200, NULL, NULL),
-(361, 1, NULL, 10, 3, 1201, NULL, NULL),
-(362, 4, NULL, 13, 6, 1202, NULL, NULL),
-(363, 2, NULL, 2, 5, 1203, NULL, NULL),
-(364, 5, NULL, 3, 4, 1204, NULL, NULL),
-(365, 2, NULL, 4, 3, 1205, NULL, NULL),
-(366, 3, NULL, 5, 2, 1206, NULL, NULL),
-(367, 3, NULL, 6, 1, 1207, NULL, NULL),
-(368, 1, NULL, 6, 3, 1208, NULL, NULL),
-(369, 1, NULL, 8, 3, 1209, NULL, NULL),
-(370, 1, NULL, 10, 3, 1210, NULL, NULL),
-(371, 4, NULL, 13, 6, 1211, NULL, NULL),
-(372, 2, NULL, 2, 5, 1212, NULL, NULL),
-(373, 5, NULL, 3, 4, 1213, NULL, NULL),
-(374, 2, NULL, 4, 3, 1214, NULL, NULL),
-(375, 3, NULL, 5, 2, 1215, NULL, NULL),
-(376, 3, NULL, 6, 1, 1216, NULL, NULL),
-(377, 1, NULL, 6, 3, 1217, NULL, NULL),
-(378, 1, NULL, 8, 3, 1218, NULL, NULL),
-(379, 1, NULL, 10, 3, 1219, NULL, NULL),
-(380, 4, NULL, 13, 6, 1220, NULL, NULL),
-(381, 2, NULL, 2, 5, 1221, NULL, NULL),
-(382, 5, NULL, 3, 4, 1222, NULL, NULL),
-(383, 2, NULL, 4, 3, 1223, NULL, NULL),
-(384, 3, NULL, 5, 2, 1224, NULL, NULL),
-(385, 3, NULL, 6, 1, 1225, NULL, NULL),
-(386, 1, NULL, 6, 3, 1226, NULL, NULL),
-(387, 1, NULL, 8, 3, 1227, NULL, NULL),
-(388, 1, NULL, 10, 3, 1228, NULL, NULL),
-(389, 4, NULL, 13, 6, 1229, NULL, NULL),
-(390, 2, NULL, 2, 5, 1230, NULL, NULL),
-(391, 5, NULL, 3, 4, 1231, NULL, NULL),
-(392, 2, NULL, 4, 3, 1232, NULL, NULL),
-(393, 3, NULL, 5, 2, 1233, NULL, NULL),
-(394, 3, NULL, 6, 1, 1234, NULL, NULL),
-(395, 1, NULL, 6, 3, 1235, NULL, NULL),
-(396, 1, NULL, 8, 3, 1236, NULL, NULL),
-(397, 1, NULL, 10, 3, 1237, NULL, NULL),
-(398, 4, NULL, 13, 6, 1238, NULL, NULL),
-(399, 2, NULL, 2, 5, 1239, NULL, NULL),
-(400, 5, NULL, 3, 4, 1240, NULL, NULL),
-(401, 2, NULL, 4, 3, 1241, NULL, NULL),
-(402, 3, NULL, 5, 2, 1242, NULL, NULL),
-(403, 3, NULL, 6, 1, 1243, NULL, NULL),
-(404, 1, NULL, 6, 3, 1244, NULL, NULL),
-(405, 1, NULL, 8, 3, 1245, NULL, NULL),
-(406, 1, NULL, 10, 3, 1246, NULL, NULL),
-(407, 4, NULL, 13, 6, 1247, NULL, NULL),
-(408, 2, NULL, 2, 5, 1248, NULL, NULL),
-(409, 5, NULL, 3, 4, 1249, NULL, NULL),
-(410, 2, NULL, 4, 3, 1250, NULL, NULL),
-(411, 3, NULL, 5, 2, 1251, NULL, NULL),
-(412, 3, NULL, 6, 1, 1252, NULL, NULL),
-(413, 1, NULL, 6, 3, 1253, NULL, NULL),
-(414, 1, NULL, 8, 3, 1254, NULL, NULL),
-(415, 1, NULL, 10, 3, 1255, NULL, NULL),
-(417, 4, NULL, 13, 6, 1259, NULL, NULL),
-(418, 2, NULL, 2, 5, 1260, NULL, NULL),
-(419, 5, NULL, 3, 4, 1261, NULL, NULL),
-(420, 2, NULL, 4, 3, 1262, NULL, NULL),
-(421, 3, NULL, 5, 2, 1263, NULL, NULL),
-(422, 3, NULL, 6, 1, 1264, NULL, NULL),
-(423, 1, NULL, 6, 3, 1265, NULL, NULL),
-(424, 1, NULL, 8, 3, 1266, NULL, NULL),
-(425, 1, NULL, 1, 3, 1267, NULL, NULL),
-(426, 4, NULL, 13, 6, 1268, NULL, NULL),
-(427, 2, NULL, 2, 5, 1269, NULL, NULL),
-(428, 5, NULL, 3, 4, 1270, NULL, NULL),
-(429, 2, NULL, 4, 3, 1271, NULL, NULL),
-(430, 3, NULL, 5, 2, 1272, NULL, NULL),
-(431, 3, NULL, 6, 1, 1273, NULL, NULL),
-(432, 1, NULL, 6, 3, 1274, NULL, NULL),
-(433, 1, NULL, 8, 3, 1275, NULL, NULL),
-(435, 4, NULL, 13, 6, 1277, NULL, NULL),
-(436, 2, NULL, 2, 5, 1278, NULL, NULL),
-(437, 5, NULL, 3, 4, 1279, NULL, NULL),
-(438, 2, NULL, 4, 3, 1280, NULL, NULL),
-(439, 3, NULL, 5, 2, 1281, NULL, NULL),
-(440, 3, NULL, 6, 1, 1282, NULL, NULL),
-(441, 1, NULL, 6, 3, 1283, NULL, NULL),
-(442, 1, NULL, 8, 3, 1284, NULL, NULL),
-(444, 4, NULL, 13, 6, 1286, NULL, NULL),
-(445, 2, NULL, 2, 5, 1287, NULL, NULL),
-(446, 5, NULL, 3, 4, 1288, NULL, NULL),
-(447, 2, NULL, 4, 3, 1289, NULL, NULL),
-(448, 3, NULL, 5, 2, 1290, NULL, NULL),
-(449, 3, NULL, 6, 1, 1291, NULL, NULL),
-(450, 1, NULL, 6, 3, 1292, NULL, NULL),
-(451, 1, NULL, 8, 3, 1293, NULL, NULL),
-(453, 4, NULL, 13, 6, 1295, NULL, NULL),
-(454, 2, NULL, 2, 5, 1296, NULL, NULL),
-(455, 5, NULL, 3, 4, 1297, NULL, NULL),
-(456, 2, NULL, 4, 3, 1298, NULL, NULL),
-(457, 3, NULL, 5, 2, 1299, NULL, NULL),
-(458, 3, NULL, 6, 1, 1300, NULL, NULL),
-(459, 1, NULL, 6, 3, 1301, NULL, NULL),
-(460, 1, NULL, 8, 3, 1302, NULL, NULL),
-(462, 4, NULL, 13, 6, 1304, NULL, NULL),
-(463, 2, NULL, 2, 5, 1305, NULL, NULL),
-(464, 5, NULL, 3, 4, 1306, NULL, NULL),
-(465, 2, NULL, 4, 3, 1307, NULL, NULL),
-(466, 3, NULL, 5, 2, 1308, NULL, NULL),
-(467, 3, NULL, 6, 1, 1309, NULL, NULL),
-(468, 1, NULL, 6, 3, 1310, NULL, NULL),
-(469, 1, NULL, 8, 3, 1311, NULL, NULL),
-(470, 1, NULL, 1, 3, 1312, NULL, NULL),
-(471, 4, NULL, 13, 6, 1313, NULL, NULL),
-(472, 2, NULL, 2, 5, 1314, NULL, NULL),
-(473, 5, NULL, 3, 4, 1315, NULL, NULL),
-(474, 2, NULL, 4, 3, 1316, NULL, NULL),
-(475, 3, NULL, 5, 2, 1317, NULL, NULL),
-(476, 3, NULL, 6, 1, 1318, NULL, NULL),
-(477, 1, NULL, 6, 3, 1319, NULL, NULL),
-(478, 1, NULL, 8, 3, 1320, NULL, NULL),
-(479, 7, NULL, 1, 3, 1321, NULL, NULL),
-(480, 4, NULL, 13, 6, 1322, NULL, NULL),
-(481, 2, NULL, 2, 5, 1323, NULL, NULL),
-(482, 5, NULL, 3, 4, 1324, NULL, NULL),
-(483, 2, NULL, 4, 3, 1325, NULL, NULL),
-(484, 3, NULL, 5, 2, 1326, NULL, NULL),
-(485, 3, NULL, 6, 1, 1327, NULL, NULL),
-(486, 1, NULL, 6, 3, 1328, NULL, NULL),
-(487, 1, NULL, 8, 3, 1329, NULL, NULL),
-(488, 7, NULL, 1, 3, 1330, NULL, NULL),
-(490, 4, NULL, 13, 6, 1335, NULL, NULL),
-(491, 2, NULL, 2, 5, 1336, NULL, NULL),
-(492, 5, NULL, 3, 4, 1337, NULL, NULL),
-(493, 2, NULL, 4, 3, 1338, NULL, NULL),
-(494, 3, NULL, 5, 2, 1339, NULL, NULL),
-(495, 3, NULL, 6, 1, 1340, NULL, NULL),
-(496, 1, NULL, 6, 3, 1341, NULL, NULL),
-(497, 1, NULL, 8, 3, 1342, NULL, NULL),
-(498, 4, NULL, 13, 6, 1343, NULL, NULL),
-(499, 4, NULL, 13, 6, 1344, NULL, NULL),
-(500, 2, NULL, 2, 5, 1345, NULL, NULL),
-(501, 5, NULL, 3, 4, 1346, NULL, NULL),
-(502, 2, NULL, 4, 3, 1347, NULL, NULL),
-(503, 3, NULL, 5, 2, 1348, NULL, NULL),
-(504, 3, NULL, 6, 1, 1349, NULL, NULL),
-(505, 1, NULL, 6, 3, 1350, NULL, NULL),
-(506, 1, NULL, 8, 3, 1351, NULL, NULL),
-(507, 4, NULL, 13, 6, 1352, NULL, NULL),
-(508, 2, NULL, 2, 5, 1353, NULL, NULL),
-(509, 5, NULL, 3, 4, 1354, NULL, NULL),
-(510, 2, NULL, 4, 3, 1355, NULL, NULL),
-(511, 3, NULL, 5, 2, 1356, NULL, NULL),
-(512, 3, NULL, 6, 1, 1357, NULL, NULL),
-(513, 1, NULL, 6, 3, 1358, NULL, NULL),
-(514, 1, NULL, 8, 3, 1359, NULL, NULL),
-(515, 4, NULL, 13, 6, 1360, NULL, NULL),
-(516, 2, NULL, 2, 5, 1361, NULL, NULL),
-(517, 5, NULL, 3, 4, 1362, NULL, NULL),
-(518, 2, NULL, 4, 3, 1363, NULL, NULL),
-(519, 3, NULL, 5, 2, 1364, NULL, NULL),
-(520, 3, NULL, 6, 1, 1365, NULL, NULL),
-(521, 1, NULL, 6, 3, 1366, NULL, NULL),
-(522, 1, NULL, 8, 3, 1367, NULL, NULL),
-(523, 7, NULL, 1, 3, 1368, NULL, NULL),
-(524, 4, NULL, 13, 6, 1369, NULL, NULL),
-(525, 4, NULL, 13, 6, 1370, NULL, NULL),
-(526, 4, NULL, 13, 6, 1371, NULL, NULL),
-(527, 4, NULL, 13, 6, 1372, NULL, NULL),
-(528, 4, NULL, 13, 6, 1373, NULL, NULL),
-(529, 4, NULL, 13, 6, 1374, NULL, NULL),
-(530, 2, NULL, 2, 5, 1375, NULL, NULL),
-(531, 5, NULL, 3, 4, 1376, NULL, NULL),
-(532, 2, NULL, 4, 3, 1377, NULL, NULL),
-(533, 3, NULL, 5, 2, 1378, NULL, NULL),
-(534, 3, NULL, 6, 1, 1379, NULL, NULL),
-(535, 1, NULL, 6, 3, 1380, NULL, NULL),
-(536, 1, NULL, 8, 3, 1381, NULL, NULL),
-(537, 7, NULL, 1, 3, 1382, NULL, NULL),
-(538, 4, NULL, 13, 6, 1383, NULL, NULL),
-(539, 2, NULL, 2, 5, 1384, NULL, NULL),
-(540, 5, NULL, 3, 4, 1385, NULL, NULL),
-(541, 2, NULL, 4, 3, 1386, NULL, NULL),
-(542, 3, NULL, 5, 2, 1387, NULL, NULL),
-(543, 3, NULL, 6, 1, 1388, NULL, NULL),
-(544, 1, NULL, 6, 3, 1389, NULL, NULL),
-(545, 1, NULL, 8, 3, 1390, NULL, NULL),
-(546, 7, NULL, 1, 3, 1391, NULL, NULL),
-(547, 4, NULL, 13, 6, 1392, NULL, NULL),
-(548, 2, NULL, 2, 5, 1393, NULL, NULL),
-(549, 5, NULL, 3, 4, 1394, NULL, NULL),
-(550, 2, NULL, 4, 3, 1395, NULL, NULL),
-(551, 3, NULL, 5, 2, 1396, NULL, NULL),
-(552, 3, NULL, 6, 1, 1397, NULL, NULL),
-(553, 1, NULL, 6, 3, 1398, NULL, NULL),
-(554, 1, NULL, 8, 3, 1399, NULL, NULL),
-(556, 4, NULL, 13, 6, 1401, NULL, NULL),
-(557, 2, NULL, 2, 5, 1402, NULL, NULL),
-(558, 5, NULL, 3, 4, 1403, NULL, NULL),
-(559, 2, NULL, 4, 3, 1404, NULL, NULL),
-(560, 3, NULL, 5, 2, 1405, NULL, NULL),
-(561, 3, NULL, 6, 1, 1406, NULL, NULL),
-(562, 1, NULL, 6, 3, 1407, NULL, NULL),
-(563, 1, NULL, 8, 3, 1408, NULL, NULL),
-(564, 7, NULL, 1, 3, 1409, NULL, NULL),
-(565, 4, NULL, 13, 6, 1410, NULL, NULL),
-(566, 2, NULL, 2, 5, 1411, NULL, NULL),
-(567, 5, NULL, 3, 4, 1412, NULL, NULL),
-(568, 2, NULL, 4, 3, 1413, NULL, NULL),
-(569, 3, NULL, 5, 2, 1414, NULL, NULL),
-(570, 3, NULL, 6, 1, 1415, NULL, NULL),
-(571, 1, NULL, 6, 3, 1416, NULL, NULL),
-(572, 1, NULL, 8, 3, 1417, NULL, NULL),
-(573, 7, NULL, 1, 3, 1418, NULL, NULL),
-(574, 4, NULL, 13, 6, 1419, NULL, NULL),
-(575, 2, NULL, 2, 5, 1420, NULL, NULL),
-(576, 5, NULL, 3, 4, 1421, NULL, NULL),
-(577, 2, NULL, 4, 3, 1422, NULL, NULL),
-(578, 3, NULL, 5, 2, 1423, NULL, NULL),
-(579, 3, NULL, 6, 1, 1424, NULL, NULL),
-(580, 1, NULL, 6, 3, 1425, NULL, NULL),
-(581, 1, NULL, 8, 3, 1426, NULL, NULL),
-(582, 7, NULL, 1, 3, 1427, NULL, NULL),
-(583, 4, NULL, 13, 6, 1428, NULL, NULL),
-(584, 2, NULL, 2, 5, 1429, NULL, NULL),
-(585, 5, NULL, 3, 4, 1430, NULL, NULL),
-(586, 2, NULL, 4, 3, 1431, NULL, NULL),
-(587, 3, NULL, 5, 2, 1432, NULL, NULL),
-(588, 3, NULL, 6, 1, 1433, NULL, NULL),
-(589, 1, NULL, 6, 3, 1434, NULL, NULL),
-(590, 1, NULL, 8, 3, 1435, NULL, NULL),
-(591, 7, NULL, 1, 3, 1436, NULL, NULL),
-(592, 4, NULL, 13, 6, 1437, NULL, NULL),
-(593, 2, NULL, 2, 5, 1438, NULL, NULL),
-(594, 5, NULL, 3, 4, 1439, NULL, NULL),
-(595, 2, NULL, 4, 3, 1440, NULL, NULL),
-(596, 3, NULL, 5, 2, 1441, NULL, NULL),
-(597, 3, NULL, 6, 1, 1442, NULL, NULL),
-(598, 1, NULL, 6, 3, 1443, NULL, NULL),
-(599, 1, NULL, 8, 3, 1444, NULL, NULL),
-(600, 7, NULL, 1, 3, 1445, NULL, NULL),
-(601, 4, NULL, 13, 6, 1446, NULL, NULL),
-(602, 2, NULL, 2, 5, 1447, NULL, NULL),
-(603, 5, NULL, 3, 4, 1448, NULL, NULL),
-(604, 2, NULL, 4, 3, 1449, NULL, NULL),
-(605, 3, NULL, 5, 2, 1450, NULL, NULL),
-(606, 3, NULL, 6, 1, 1451, NULL, NULL),
-(607, 1, NULL, 6, 3, 1452, NULL, NULL),
-(608, 1, NULL, 8, 3, 1453, NULL, NULL),
-(609, 7, NULL, 1, 3, 1454, NULL, NULL),
-(610, 4, NULL, 13, 6, 1455, NULL, NULL),
-(611, 2, NULL, 2, 5, 1456, NULL, NULL),
-(612, 5, NULL, 3, 4, 1457, NULL, NULL),
-(613, 2, NULL, 4, 3, 1458, NULL, NULL),
-(614, 3, NULL, 5, 2, 1459, NULL, NULL),
-(615, 3, NULL, 6, 1, 1460, NULL, NULL),
-(616, 1, NULL, 6, 3, 1461, NULL, NULL),
-(617, 1, NULL, 8, 3, 1462, NULL, NULL),
-(618, 7, NULL, 1, 3, 1463, NULL, NULL),
-(619, 4, NULL, 13, 6, 1464, NULL, NULL),
-(620, 2, NULL, 2, 5, 1465, NULL, NULL),
-(621, 5, NULL, 3, 4, 1466, NULL, NULL),
-(622, 2, NULL, 4, 3, 1467, NULL, NULL),
-(623, 3, NULL, 5, 2, 1468, NULL, NULL),
-(624, 3, NULL, 6, 1, 1469, NULL, NULL),
-(625, 1, NULL, 6, 3, 1470, NULL, NULL),
-(626, 1, NULL, 8, 3, 1471, NULL, NULL),
-(627, 7, NULL, 1, 3, 1472, NULL, NULL),
-(628, 4, NULL, 13, 6, 1473, NULL, NULL),
-(629, 2, NULL, 2, 5, 1474, NULL, NULL),
-(630, 5, NULL, 3, 4, 1475, NULL, NULL),
-(631, 2, NULL, 4, 3, 1476, NULL, NULL),
-(632, 3, NULL, 5, 2, 1477, NULL, NULL),
-(633, 3, NULL, 6, 1, 1478, NULL, NULL),
-(634, 1, NULL, 6, 3, 1479, NULL, NULL),
-(635, 1, NULL, 8, 3, 1480, NULL, NULL),
-(636, 7, NULL, 1, 3, 1481, NULL, NULL),
-(637, 4, NULL, 13, 6, 1482, NULL, NULL),
-(638, 2, NULL, 2, 5, 1483, NULL, NULL),
-(639, 5, NULL, 3, 4, 1484, NULL, NULL),
-(640, 2, NULL, 4, 3, 1485, NULL, NULL),
-(641, 3, NULL, 5, 2, 1486, NULL, NULL),
-(642, 3, NULL, 6, 1, 1487, NULL, NULL),
-(643, 1, NULL, 6, 3, 1488, NULL, NULL),
-(644, 1, NULL, 8, 3, 1489, NULL, NULL),
-(645, 7, NULL, 1, 3, 1490, NULL, NULL),
-(646, 4, NULL, 13, 6, 1491, NULL, NULL),
-(647, 2, NULL, 2, 5, 1492, NULL, NULL),
-(648, 5, NULL, 3, 4, 1493, NULL, NULL),
-(649, 2, NULL, 4, 3, 1494, NULL, NULL),
-(650, 3, NULL, 5, 2, 1495, NULL, NULL),
-(651, 3, NULL, 6, 1, 1496, NULL, NULL),
-(652, 1, NULL, 6, 3, 1497, NULL, NULL),
-(653, 1, NULL, 8, 3, 1498, NULL, NULL),
-(654, 7, NULL, 1, 3, 1499, NULL, NULL),
-(656, 4, NULL, 13, 6, 1502, NULL, NULL),
-(657, 2, NULL, 2, 5, 1503, NULL, NULL),
-(658, 5, NULL, 3, 4, 1504, NULL, NULL),
-(659, 2, NULL, 4, 3, 1505, NULL, NULL),
-(660, 3, NULL, 5, 2, 1506, NULL, NULL),
-(661, 3, NULL, 6, 1, 1507, NULL, NULL),
-(662, 1, NULL, 6, 3, 1508, NULL, NULL),
-(663, 1, NULL, 8, 3, 1509, NULL, NULL),
-(664, 7, NULL, 1, 3, 1510, NULL, NULL),
-(666, 4, NULL, 13, 6, 1513, NULL, NULL),
-(667, 2, NULL, 2, 5, 1514, NULL, NULL),
-(668, 5, NULL, 3, 4, 1515, NULL, NULL),
-(669, 2, NULL, 4, 3, 1516, NULL, NULL),
-(670, 3, NULL, 5, 2, 1517, NULL, NULL),
-(671, 3, NULL, 6, 1, 1518, NULL, NULL),
-(672, 1, NULL, 6, 3, 1519, NULL, NULL),
-(673, 1, NULL, 8, 3, 1520, NULL, NULL),
-(674, 7, NULL, 1, 3, 1521, NULL, NULL),
-(676, 4, NULL, 13, 6, 1524, NULL, NULL),
-(677, 2, NULL, 2, 5, 1525, NULL, NULL),
-(678, 5, NULL, 3, 4, 1526, NULL, NULL),
-(679, 2, NULL, 4, 3, 1527, NULL, NULL),
-(680, 3, NULL, 5, 2, 1528, NULL, NULL),
-(681, 3, NULL, 6, 1, 1529, NULL, NULL),
-(682, 1, NULL, 6, 3, 1530, NULL, NULL),
-(683, 1, NULL, 8, 3, 1531, NULL, NULL),
-(684, 7, NULL, 1, 3, 1532, NULL, NULL),
-(686, 4, NULL, 13, 6, 1535, NULL, NULL),
-(687, 2, NULL, 2, 5, 1536, NULL, NULL),
-(688, 5, NULL, 3, 4, 1537, NULL, NULL),
-(689, 2, NULL, 4, 3, 1538, NULL, NULL),
-(690, 3, NULL, 5, 2, 1539, NULL, NULL),
-(691, 3, NULL, 6, 1, 1540, NULL, NULL),
-(692, 1, NULL, 6, 3, 1541, NULL, NULL),
-(693, 1, NULL, 8, 3, 1542, NULL, NULL),
-(694, 7, NULL, 1, 3, 1543, NULL, NULL),
-(696, 4, NULL, 13, 6, 1546, NULL, NULL),
-(697, 2, NULL, 2, 5, 1547, NULL, NULL),
-(698, 5, NULL, 3, 4, 1548, NULL, NULL),
-(699, 2, NULL, 4, 3, 1549, NULL, NULL),
-(700, 3, NULL, 5, 2, 1550, NULL, NULL),
-(701, 3, NULL, 6, 1, 1551, NULL, NULL),
-(702, 1, NULL, 6, 3, 1552, NULL, NULL),
-(703, 1, NULL, 8, 3, 1553, NULL, NULL),
-(704, 7, NULL, 1, 3, 1554, NULL, NULL),
-(706, 4, NULL, 13, 6, 1557, NULL, NULL),
-(708, 4, NULL, 13, 6, 1560, NULL, NULL),
-(710, 4, NULL, 13, 6, 1565, NULL, NULL),
-(711, 2, NULL, 2, 5, 1566, NULL, NULL),
-(712, 5, NULL, 3, 4, 1567, NULL, NULL),
-(713, 2, NULL, 4, 3, 1568, NULL, NULL),
-(714, 3, NULL, 5, 2, 1569, NULL, NULL),
-(715, 3, NULL, 6, 1, 1570, NULL, NULL),
-(716, 1, NULL, 6, 3, 1571, NULL, NULL),
-(717, 1, NULL, 8, 3, 1572, NULL, NULL),
-(718, 7, NULL, 1, 3, 1573, NULL, NULL),
-(719, 4, NULL, 13, 6, 1574, NULL, NULL),
-(720, 2, NULL, 2, 5, 1575, NULL, NULL),
-(721, 5, NULL, 3, 4, 1576, NULL, NULL),
-(722, 2, NULL, 4, 3, 1577, NULL, NULL),
-(723, 3, NULL, 5, 2, 1578, NULL, NULL),
-(724, 3, NULL, 6, 1, 1579, NULL, NULL),
-(725, 1, NULL, 6, 3, 1580, NULL, NULL),
-(726, 1, NULL, 8, 3, 1581, NULL, NULL),
-(727, 7, NULL, 1, 3, 1582, NULL, NULL),
-(728, 4, NULL, 13, 6, 1583, NULL, NULL),
-(729, 2, NULL, 2, 5, 1584, NULL, NULL),
-(730, 5, NULL, 3, 4, 1585, NULL, NULL),
-(731, 2, NULL, 4, 3, 1586, NULL, NULL),
-(732, 3, NULL, 5, 2, 1587, NULL, NULL),
-(733, 3, NULL, 6, 1, 1588, NULL, NULL),
-(734, 1, NULL, 6, 3, 1589, NULL, NULL),
-(735, 1, NULL, 8, 3, 1590, NULL, NULL),
-(736, 7, NULL, 1, 3, 1591, NULL, NULL),
-(737, 4, NULL, 13, 6, 1592, NULL, NULL),
-(738, 2, NULL, 2, 5, 1593, NULL, NULL),
-(739, 5, NULL, 3, 4, 1594, NULL, NULL),
-(740, 2, NULL, 4, 3, 1595, NULL, NULL),
-(741, 3, NULL, 5, 2, 1596, NULL, NULL),
-(742, 3, NULL, 6, 1, 1597, NULL, NULL),
-(743, 1, NULL, 6, 3, 1598, NULL, NULL),
-(744, 1, NULL, 8, 3, 1599, NULL, NULL),
-(745, 7, NULL, 1, 3, 1600, NULL, NULL),
-(746, 4, NULL, 13, 6, 1601, NULL, NULL),
-(747, 2, NULL, 2, 5, 1602, NULL, NULL),
-(748, 5, NULL, 3, 4, 1603, NULL, NULL),
-(749, 2, NULL, 4, 3, 1604, NULL, NULL),
-(750, 3, NULL, 5, 2, 1605, NULL, NULL),
-(751, 3, NULL, 6, 1, 1606, NULL, NULL),
-(752, 1, NULL, 6, 3, 1607, NULL, NULL),
-(753, 1, NULL, 8, 3, 1608, NULL, NULL),
-(754, 7, NULL, 1, 3, 1609, NULL, NULL),
-(755, 4, NULL, 13, 6, 1610, NULL, NULL),
-(756, 2, NULL, 2, 5, 1611, NULL, NULL),
-(757, 5, NULL, 3, 4, 1612, NULL, NULL),
-(758, 2, NULL, 4, 3, 1613, NULL, NULL),
-(759, 3, NULL, 5, 2, 1614, NULL, NULL),
-(760, 3, NULL, 6, 1, 1615, NULL, NULL),
-(761, 1, NULL, 6, 3, 1616, NULL, NULL),
-(762, 1, NULL, 8, 3, 1617, NULL, NULL),
-(763, 7, NULL, 1, 3, 1618, NULL, NULL),
-(764, 4, NULL, 13, 6, 1619, NULL, NULL),
-(765, 4, NULL, 13, 6, 1620, NULL, NULL),
-(766, 4, NULL, 13, 6, 1621, NULL, NULL),
-(767, 4, NULL, 13, 6, 1622, NULL, NULL),
-(768, 4, NULL, 13, 6, 1623, NULL, NULL),
-(769, 4, NULL, 13, 6, 1624, NULL, NULL),
-(770, 4, NULL, 13, 6, 1625, NULL, NULL),
-(771, 2, NULL, 2, 5, 1626, NULL, NULL),
-(772, 5, NULL, 3, 4, 1627, NULL, NULL),
-(773, 2, NULL, 4, 3, 1628, NULL, NULL),
-(774, 3, NULL, 5, 2, 1629, NULL, NULL),
-(775, 3, NULL, 6, 1, 1630, NULL, NULL),
-(776, 1, NULL, 6, 3, 1631, NULL, NULL),
-(777, 1, NULL, 8, 3, 1632, NULL, NULL),
-(778, 7, NULL, 1, 3, 1633, NULL, NULL),
-(779, 4, NULL, 13, 6, 1634, NULL, NULL),
-(780, 2, NULL, 2, 5, 1635, NULL, NULL),
-(781, 5, NULL, 3, 4, 1636, NULL, NULL),
-(782, 2, NULL, 4, 3, 1637, NULL, NULL),
-(783, 3, NULL, 5, 2, 1638, NULL, NULL),
-(784, 3, NULL, 6, 1, 1639, NULL, NULL),
-(785, 1, NULL, 6, 3, 1640, NULL, NULL),
-(786, 1, NULL, 8, 3, 1641, NULL, NULL),
-(787, 7, NULL, 1, 3, 1642, NULL, NULL),
-(788, 4, NULL, 13, 6, 1643, NULL, NULL),
-(789, 4, NULL, 13, 6, 1644, NULL, NULL),
-(790, 2, NULL, 2, 5, 1645, NULL, NULL),
-(791, 5, NULL, 3, 4, 1646, NULL, NULL),
-(792, 2, NULL, 4, 3, 1647, NULL, NULL),
-(793, 3, NULL, 5, 2, 1648, NULL, NULL),
-(794, 3, NULL, 6, 1, 1649, NULL, NULL),
-(795, 1, NULL, 6, 3, 1650, NULL, NULL),
-(796, 1, NULL, 8, 3, 1651, NULL, NULL),
-(798, 4, NULL, 13, 6, 1653, NULL, NULL),
-(799, 2, NULL, 2, 5, 1654, NULL, NULL),
-(800, 5, NULL, 3, 4, 1655, NULL, NULL),
-(801, 2, NULL, 4, 3, 1656, NULL, NULL),
-(802, 3, NULL, 5, 2, 1657, NULL, NULL),
-(803, 3, NULL, 6, 1, 1658, NULL, NULL),
-(804, 1, NULL, 6, 3, 1659, NULL, NULL),
-(805, 1, NULL, 8, 3, 1660, NULL, NULL),
-(806, 7, NULL, 1, 3, 1661, NULL, NULL),
-(807, 4, NULL, 13, 6, 1662, NULL, NULL),
-(808, 2, NULL, 2, 5, 1663, NULL, NULL),
-(809, 5, NULL, 3, 4, 1664, NULL, NULL),
-(810, 2, NULL, 4, 3, 1665, NULL, NULL),
-(811, 3, NULL, 5, 2, 1666, NULL, NULL),
-(812, 3, NULL, 6, 1, 1667, NULL, NULL),
-(813, 1, NULL, 6, 3, 1668, NULL, NULL),
-(814, 1, NULL, 8, 3, 1669, NULL, NULL),
-(815, 7, NULL, 1, 3, 1670, NULL, NULL),
-(816, 4, NULL, 13, 6, 1671, NULL, NULL),
-(817, 4, NULL, 13, 6, 1672, NULL, NULL),
-(818, 2, NULL, 2, 5, 1673, NULL, NULL),
-(819, 5, NULL, 3, 4, 1674, NULL, NULL),
-(820, 2, NULL, 4, 3, 1675, NULL, NULL),
-(821, 3, NULL, 5, 2, 1676, NULL, NULL),
-(822, 3, NULL, 6, 1, 1677, NULL, NULL),
-(823, 1, NULL, 6, 3, 1678, NULL, NULL),
-(824, 1, NULL, 8, 3, 1679, NULL, NULL),
-(825, 7, NULL, 1, 3, 1680, NULL, NULL),
-(826, 4, NULL, 13, 6, 1681, NULL, NULL),
-(827, 2, NULL, 2, 5, 1682, NULL, NULL),
-(828, 5, NULL, 3, 4, 1683, NULL, NULL),
-(829, 2, NULL, 4, 3, 1684, NULL, NULL),
-(830, 3, NULL, 5, 2, 1685, NULL, NULL),
-(831, 3, NULL, 6, 1, 1686, NULL, NULL),
-(832, 1, NULL, 6, 3, 1687, NULL, NULL),
-(833, 1, NULL, 8, 3, 1688, NULL, NULL),
-(834, 7, NULL, 1, 3, 1689, NULL, NULL),
-(835, 4, NULL, 13, 6, 1690, NULL, NULL),
-(836, 2, NULL, 2, 5, 1691, NULL, NULL),
-(837, 5, NULL, 3, 4, 1692, NULL, NULL),
-(838, 2, NULL, 4, 3, 1693, NULL, NULL),
-(839, 3, NULL, 5, 2, 1694, NULL, NULL),
-(840, 3, NULL, 6, 1, 1695, NULL, NULL),
-(841, 1, NULL, 6, 3, 1696, NULL, NULL),
-(842, 1, NULL, 8, 3, 1697, NULL, NULL),
-(843, 7, NULL, 1, 3, 1698, NULL, NULL),
-(844, 4, NULL, 13, 6, 1699, NULL, NULL),
-(845, 4, NULL, 13, 6, 1700, NULL, NULL),
-(846, 4, NULL, 13, 6, 1701, NULL, NULL),
-(847, 4, NULL, 13, 6, 1702, NULL, NULL),
-(848, 2, NULL, 2, 5, 1703, NULL, NULL),
-(849, 5, NULL, 3, 4, 1704, NULL, NULL),
-(850, 2, NULL, 4, 3, 1705, NULL, NULL),
-(851, 3, NULL, 5, 2, 1706, NULL, NULL),
-(852, 3, NULL, 6, 1, 1707, NULL, NULL),
-(853, 1, NULL, 6, 3, 1708, NULL, NULL),
-(854, 1, NULL, 8, 3, 1709, NULL, NULL),
-(855, 7, NULL, 1, 3, 1710, NULL, NULL),
-(856, 4, NULL, 13, 6, 1711, NULL, NULL),
-(857, 2, NULL, 2, 5, 1712, NULL, NULL),
-(858, 4, NULL, 13, 6, 1713, NULL, NULL),
-(859, 4, NULL, 13, 6, 1714, NULL, NULL),
-(860, 4, NULL, 13, 6, 1715, NULL, NULL),
-(861, 4, NULL, 13, 6, 1716, NULL, NULL),
-(862, 4, NULL, 13, 6, 1717, NULL, NULL),
-(863, 4, NULL, 13, 6, 1718, NULL, NULL),
-(864, 2, NULL, 2, 5, 1719, NULL, NULL),
-(865, 5, NULL, 3, 4, 1720, NULL, NULL),
-(866, 2, NULL, 4, 3, 1721, NULL, NULL),
-(867, 3, NULL, 5, 2, 1722, NULL, NULL),
-(868, 3, NULL, 6, 1, 1723, NULL, NULL),
-(869, 1, NULL, 6, 3, 1724, NULL, NULL),
-(870, 1, NULL, 8, 3, 1725, NULL, NULL),
-(871, 7, NULL, 1, 3, 1726, NULL, NULL),
-(872, 4, NULL, 13, 6, 1727, NULL, NULL),
-(873, 2, NULL, 2, 5, 1728, NULL, NULL),
-(874, 5, NULL, 3, 4, 1729, NULL, NULL),
-(875, 2, NULL, 4, 3, 1730, NULL, NULL),
-(876, 3, NULL, 5, 2, 1731, NULL, NULL),
-(877, 3, NULL, 6, 1, 1732, NULL, NULL),
-(878, 1, NULL, 6, 3, 1733, NULL, NULL),
-(879, 1, NULL, 8, 3, 1734, NULL, NULL),
-(880, 7, NULL, 1, 3, 1735, NULL, NULL),
-(881, 4, NULL, 13, 6, 1736, NULL, NULL),
-(882, 4, NULL, 13, 6, 1737, NULL, NULL),
-(883, 4, NULL, 13, 6, 1738, NULL, NULL),
-(884, 4, NULL, 13, 6, 1739, NULL, NULL),
-(885, 4, NULL, 13, 6, 1740, NULL, NULL),
-(886, 2, NULL, 2, 5, 1741, NULL, NULL),
-(887, 5, NULL, 3, 4, 1742, NULL, NULL),
-(888, 2, NULL, 4, 3, 1743, NULL, NULL),
-(889, 3, NULL, 5, 2, 1744, NULL, NULL),
-(890, 3, NULL, 6, 1, 1745, NULL, NULL),
-(891, 1, NULL, 6, 3, 1746, NULL, NULL),
-(892, 1, NULL, 8, 3, 1747, NULL, NULL),
-(893, 7, NULL, 1, 3, 1748, NULL, NULL),
-(894, 4, NULL, 13, 6, 1749, NULL, NULL),
-(895, 2, NULL, 2, 5, 1750, NULL, NULL),
-(896, 5, NULL, 3, 4, 1751, NULL, NULL),
-(897, 2, NULL, 4, 3, 1752, NULL, NULL),
-(898, 3, NULL, 5, 2, 1753, NULL, NULL),
-(899, 3, NULL, 6, 1, 1754, NULL, NULL),
-(900, 1, NULL, 6, 3, 1755, NULL, NULL),
-(901, 1, NULL, 8, 3, 1756, NULL, NULL),
-(902, 7, NULL, 1, 3, 1757, NULL, NULL),
-(903, 4, NULL, 13, 6, 1758, NULL, NULL),
-(904, 2, NULL, 2, 5, 1759, NULL, NULL),
-(905, 5, NULL, 3, 4, 1760, NULL, NULL),
-(906, 2, NULL, 4, 3, 1761, NULL, NULL),
-(907, 3, NULL, 5, 2, 1762, NULL, NULL),
-(908, 3, NULL, 6, 1, 1763, NULL, NULL),
-(909, 1, NULL, 6, 3, 1764, NULL, NULL),
-(910, 1, NULL, 8, 3, 1765, NULL, NULL),
-(913, 4, NULL, 13, 6, 1768, NULL, NULL),
-(914, 4, NULL, 13, 6, 1769, NULL, NULL),
-(915, 4, NULL, 13, 6, 1770, NULL, NULL),
-(916, 4, NULL, 13, 6, 1771, NULL, NULL),
-(917, 2, NULL, 2, 5, 1772, NULL, NULL),
-(918, 5, NULL, 3, 4, 1773, NULL, NULL),
-(919, 2, NULL, 4, 3, 1774, NULL, NULL),
-(920, 3, NULL, 5, 2, 1775, NULL, NULL),
-(921, 3, NULL, 6, 1, 1776, NULL, NULL),
-(922, 1, NULL, 6, 3, 1777, NULL, NULL),
-(923, 1, NULL, 8, 3, 1778, NULL, NULL),
-(924, 7, NULL, 1, 3, 1779, NULL, NULL),
-(925, 4, NULL, 13, 6, 1780, NULL, NULL),
-(926, 2, NULL, 2, 5, 1781, NULL, NULL),
-(927, 5, NULL, 3, 4, 1782, NULL, NULL),
-(928, 2, NULL, 4, 3, 1783, NULL, NULL),
-(929, 3, NULL, 5, 2, 1784, NULL, NULL),
-(930, 3, NULL, 6, 1, 1785, NULL, NULL),
-(931, 1, NULL, 6, 3, 1786, NULL, NULL),
-(932, 1, NULL, 8, 3, 1787, NULL, NULL),
-(933, 7, NULL, 1, 3, 1788, NULL, NULL),
-(934, 4, NULL, 13, 6, 1789, NULL, NULL),
-(935, 2, NULL, 2, 5, 1790, NULL, NULL),
-(936, 5, NULL, 3, 4, 1791, NULL, NULL),
-(937, 2, NULL, 4, 3, 1792, NULL, NULL),
-(938, 3, NULL, 5, 2, 1793, NULL, NULL),
-(939, 3, NULL, 6, 1, 1794, NULL, NULL),
-(940, 1, NULL, 6, 3, 1795, NULL, NULL),
-(941, 1, NULL, 8, 3, 1796, NULL, NULL),
-(942, 7, NULL, 1, 3, 1797, NULL, NULL),
-(943, 4, NULL, 13, 6, 1798, NULL, NULL),
-(944, 2, NULL, 2, 5, 1799, NULL, NULL),
-(945, 5, NULL, 3, 4, 1800, NULL, NULL),
-(946, 2, NULL, 4, 3, 1801, NULL, NULL),
-(947, 3, NULL, 5, 2, 1802, NULL, NULL),
-(948, 3, NULL, 6, 1, 1803, NULL, NULL),
-(949, 1, NULL, 6, 3, 1804, NULL, NULL),
-(950, 1, NULL, 8, 3, 1805, NULL, NULL),
-(951, 7, NULL, 1, 3, 1806, NULL, NULL),
 (953, NULL, NULL, NULL, NULL, 1812, NULL, NULL),
 (954, NULL, NULL, NULL, NULL, 1813, NULL, NULL),
 (955, NULL, NULL, NULL, NULL, 1814, NULL, NULL),
 (956, NULL, NULL, NULL, NULL, 1815, NULL, NULL),
 (957, NULL, NULL, NULL, NULL, 1816, NULL, NULL),
-(958, NULL, NULL, 10, 1, 1817, NULL, NULL),
 (959, NULL, NULL, NULL, NULL, 1818, NULL, NULL),
 (960, NULL, NULL, NULL, NULL, 1819, NULL, NULL),
 (961, NULL, NULL, NULL, NULL, 1820, NULL, NULL),
@@ -2093,7 +1466,7 @@ INSERT INTO `education_info` (`education_id`, `edu_institute`, `intitute_id`, `m
 (970, NULL, NULL, NULL, NULL, 1829, NULL, NULL),
 (974, NULL, NULL, NULL, NULL, 1830, NULL, NULL),
 (975, NULL, NULL, NULL, NULL, 1831, NULL, NULL),
-(976, 2, 1, 13, 3, 1832, NULL, NULL);
+(977, 1, NULL, 13, 2, 1833, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2161,7 +1534,8 @@ INSERT INTO `evaluation` (`eva_id`, `eva_onlineTest`, `eva_leonard`, `eva_preTes
 (17, NULL, NULL, NULL, NULL, 0, NULL, 1805),
 (18, NULL, NULL, NULL, NULL, 0, NULL, 1806),
 (19, 11, 1, 22, 33, 44, 'sgdrbdrthdrtdrtb', 1831),
-(20, 22, 2, 33, 44, 55, 'kakkk', 1832);
+(20, 22, 2, 33, 44, 55, 'kakkk', 1832),
+(22, NULL, NULL, NULL, NULL, NULL, NULL, 1833);
 
 -- --------------------------------------------------------
 
@@ -2200,7 +1574,8 @@ INSERT INTO `extracurricular_act` (`exact_id`, `ext_dateS`, `ext_dateE`, `exact_
 (15, NULL, NULL, NULL, NULL, 1829),
 (19, NULL, NULL, NULL, NULL, 1830),
 (20, NULL, NULL, NULL, NULL, 1831),
-(21, '2017-08-15', '2017-08-20', 'camp ch', 'dddetails ch', 1832);
+(21, '2017-08-15', '2017-08-20', 'camp ch', 'dddetails ch', 1832),
+(23, NULL, NULL, NULL, NULL, 1833);
 
 -- --------------------------------------------------------
 
@@ -2230,7 +1605,8 @@ INSERT INTO `hobby_info` (`hobby_id`, `s_id`, `hobby_desc`) VALUES
 (9, 1806, NULL),
 (13, 1830, NULL),
 (14, 1831, NULL),
-(15, 1832, 'bonbonkk ch');
+(15, 1832, 'bonbonkk ch'),
+(17, 1833, NULL);
 
 -- --------------------------------------------------------
 
@@ -2305,25 +1681,6 @@ CREATE TABLE `interview_info` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `intitute_type`
---
-
-CREATE TABLE `intitute_type` (
-  `intitute_id` int(11) NOT NULL,
-  `intitute_name` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `intitute_type`
---
-
-INSERT INTO `intitute_type` (`intitute_id`, `intitute_name`) VALUES
-(2, 'COLLAGE'),
-(1, 'UNIVERSITY');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `language`
 --
 
@@ -2366,7 +1723,8 @@ CREATE TABLE `language_info` (
 --
 
 INSERT INTO `language_info` (`lg_info_id`, `lg_id`, `lv_id`, `s_id`) VALUES
-(18, 1, 2, 1832);
+(18, 1, 2, 1832),
+(20, NULL, NULL, 1833);
 
 -- --------------------------------------------------------
 
@@ -2389,30 +1747,6 @@ INSERT INTO `language_lv` (`lv_id`, `lv_name`) VALUES
 (3, 'Good'),
 (4, 'Very Good'),
 (5, 'Excellent');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `lgInfo_has_lg`
---
-
-CREATE TABLE `lgInfo_has_lg` (
-  `lgINfo_has_lg_id` int(11) NOT NULL,
-  `lgInfo_id` int(11) DEFAULT NULL,
-  `lg_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `lgInfo_has_lv`
---
-
-CREATE TABLE `lgInfo_has_lv` (
-  `lgINfo_has_lv_id` int(11) NOT NULL,
-  `lgInfo_id` int(11) DEFAULT NULL,
-  `lv_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2474,39 +1808,20 @@ CREATE TABLE `major_info` (
 
 INSERT INTO `major_info` (`major_id`, `major_name`) VALUES
 (1, ''),
-(2, 'INFORMATION & COMMUNICATION TECHNOLOGY'),
-(3, 'ENVIRONMENTAL ENGINEERING'),
-(4, 'MECHATRONICS'),
-(5, 'MECHANICAL ENGINEERING'),
-(6, 'INDUSTRIAL ENGINEERING'),
-(7, 'INDUSTRIAL ENGINEERING'),
-(8, 'OCCUPATIONAL HEALH AND SAFETY'),
+(34, '3334444'),
+(33, '666666'),
 (9, 'AERONAUTICAL ENGINEERING'),
+(13, 'COMPUTER ENGIEERING'),
+(3, 'ENVIRONMENTAL ENGINEERING'),
+(6, 'INDUSTRIAL ENGINEERING'),
+(2, 'INFORMATION & COMMUNICATION TECHNOLOGY'),
+(5, 'MECHANICAL ENGINEERING'),
+(4, 'MECHATRONICS'),
+(8, 'OCCUPATIONAL HEALH AND SAFETY'),
 (10, 'SOFTWARE ENGINEERING'),
+(32, 'some eng'),
 (11, 'TEST REFESH ADD NEWW'),
-(13, 'COMPUTER ENGIEERING');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `major_info_has_collage_info`
---
-
-CREATE TABLE `major_info_has_collage_info` (
-  `major_id` int(11) NOT NULL,
-  `institute_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `major_info_has_university_info`
---
-
-CREATE TABLE `major_info_has_university_info` (
-  `major_id` int(11) NOT NULL,
-  `uni_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(15, 'Text Add Major');
 
 -- --------------------------------------------------------
 
@@ -3060,7 +2375,27 @@ INSERT INTO `other_doc` (`idother_id`, `other_file`, `application_application_id
 (553, NULL, NULL),
 (554, NULL, NULL),
 (555, NULL, NULL),
-(556, NULL, NULL);
+(556, NULL, NULL),
+(576, NULL, NULL),
+(578, NULL, NULL),
+(579, NULL, NULL),
+(580, NULL, NULL),
+(581, NULL, NULL),
+(582, NULL, NULL),
+(583, NULL, NULL),
+(584, NULL, NULL),
+(585, NULL, NULL),
+(586, NULL, NULL),
+(587, NULL, NULL),
+(588, NULL, NULL),
+(589, NULL, NULL),
+(590, NULL, NULL),
+(591, NULL, NULL),
+(592, NULL, NULL),
+(593, NULL, NULL),
+(594, NULL, NULL),
+(595, NULL, NULL),
+(596, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3722,7 +3057,27 @@ INSERT INTO `resume` (`resume_id`, `resume_file`, `application_id`) VALUES
 (553, NULL, NULL),
 (554, NULL, NULL),
 (555, NULL, NULL),
-(556, NULL, NULL);
+(556, NULL, NULL),
+(576, NULL, NULL),
+(578, NULL, NULL),
+(579, NULL, NULL),
+(580, NULL, NULL),
+(581, NULL, NULL),
+(582, NULL, NULL),
+(583, NULL, NULL),
+(584, NULL, NULL),
+(585, NULL, NULL),
+(586, NULL, NULL),
+(587, NULL, NULL),
+(588, NULL, NULL),
+(589, NULL, NULL),
+(590, NULL, NULL),
+(591, NULL, NULL),
+(592, NULL, NULL),
+(593, NULL, NULL),
+(594, NULL, NULL),
+(595, NULL, NULL),
+(596, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3864,7 +3219,8 @@ INSERT INTO `student_address` (`address_Id`, `s_id`, `no`, `place_name`, `road_n
 (25, 1829, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2),
 (29, 1830, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2),
 (30, 1831, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2),
-(31, 1832, '108 Moo 19ch', 'Sermsookch', 'ch', 'Jhumphonch', 'Phonphisaich', NULL, NULL, 'Nong Khaich', 1);
+(31, 1832, '108 Moo 19ch', 'Sermsookch', 'ch', 'Jhumphonch', 'Phonphisaich', NULL, NULL, 'Nong Khaich', 1),
+(33, 1833, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -4076,7 +3432,8 @@ INSERT INTO `student_contact_details` (`contact_id`, `scd_s_id`, `contact_no`, `
 (198, 1829, NULL, NULL),
 (199, 1830, NULL, NULL),
 (200, 1831, NULL, NULL),
-(201, 1832, '084722217422', 'kittipan.prasertsang@gmail.comch');
+(201, 1832, '084722217422', 'kittipan.prasertsang@gmail.comch'),
+(202, 1833, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -4260,7 +3617,8 @@ INSERT INTO `student_emergency_contact` (`emc_id`, `emc_fname`, `emc_lname`, `em
 (164, NULL, NULL, NULL, NULL, 198),
 (168, NULL, NULL, NULL, NULL, 199),
 (169, NULL, NULL, NULL, NULL, 200),
-(170, 'BONGKOCHch', 'PRASERTSANGch', 'MOTHERch', '086223864622', 201);
+(170, 'BONGKOCHch', 'PRASERTSANGch', 'MOTHERch', '086223864622', 201),
+(172, NULL, NULL, NULL, NULL, 202);
 
 -- --------------------------------------------------------
 
@@ -5367,7 +4725,8 @@ INSERT INTO `student_info` (`s_id`, `s_fname`, `s_lname`, `thai_fname`, `thai_ln
 (1829, 'hob', 'hob', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1),
 (1830, 'cha', 'cha', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1),
 (1831, 'chaiiwww', 'chaii', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1),
-(1832, 'KITTIPANch', 'PRASERTSANGch', 'กิตติพันธ์ch', 'ประเสริฐสังข์ch', NULL, NULL, NULL, 'eieich', NULL, NULL, NULL, NULL, 1, 1);
+(1832, 'KITTIPANch', 'PRASERTSANGch', 'กิตติพันธ์ch', 'ประเสริฐสังข์ch', NULL, NULL, NULL, 'eieich', NULL, NULL, NULL, NULL, 1, 1),
+(1833, 'ff', 'ff', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -5462,7 +4821,8 @@ INSERT INTO `student_relationship` (`relation_id`, `s_id`, `relation_type`, `rel
 (25, 1829, NULL, NULL, NULL, NULL, NULL),
 (29, 1830, NULL, NULL, NULL, NULL, NULL),
 (30, 1831, NULL, NULL, NULL, NULL, NULL),
-(31, 1832, 'Motherch', 'Bongkochch', 'Prasertsangch', 'Godch', '099899022');
+(31, 1832, 'Motherch', 'Bongkochch', 'Prasertsangch', 'Godch', '099899022'),
+(33, 1833, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -5504,22 +4864,6 @@ CREATE TABLE `student_type` (
 INSERT INTO `student_type` (`type_id`, `type_name`) VALUES
 (1, 'Applicant'),
 (2, 'Trainee');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `supervisor_contact`
---
-
-CREATE TABLE `supervisor_contact` (
-  `spv_contact_id` int(11) NOT NULL,
-  `spv_id` int(11) NOT NULL,
-  `spv_ext` int(11) DEFAULT NULL,
-  `spv_email` varchar(50) DEFAULT NULL,
-  `spv_mobile` varchar(12) DEFAULT NULL,
-  `dep_id` int(11) DEFAULT NULL,
-  `bldg_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5575,6 +4919,7 @@ INSERT INTO `supervisor_info_has_student_info` (`supervisor_info_spv_id`, `stude
 (NULL, 1825),
 (NULL, 1826),
 (NULL, 1831),
+(NULL, 1833),
 (1, 1672),
 (1, 1673),
 (1, 1674),
@@ -5691,22 +5036,6 @@ INSERT INTO `supervisor_info_has_student_info` (`supervisor_info_spv_id`, `stude
 (3, 1788),
 (3, 1797),
 (3, 1806);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test_info`
---
-
-CREATE TABLE `test_info` (
-  `test_id` int(11) NOT NULL,
-  `test_name` varchar(20) NOT NULL,
-  `s_id` int(11) DEFAULT NULL,
-  `test_time` time DEFAULT NULL,
-  `test_date` date DEFAULT NULL,
-  `test_room` varchar(15) DEFAULT NULL,
-  `test_score` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5843,7 +5172,9 @@ INSERT INTO `trainee_account` (`trainee_acc_id`, `account_name`, `trainee_email`
 (95, NULL, 'kittipan.prasertsang@wdc.com ch', '000666666 ch'),
 (96, NULL, NULL, NULL),
 (97, NULL, NULL, NULL),
-(98, NULL, NULL, NULL);
+(98, NULL, NULL, NULL),
+(99, NULL, NULL, NULL),
+(100, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -6020,7 +5351,8 @@ INSERT INTO `trainee_has_project` (`project_id`, `trainee_id`) VALUES
 (193, 471),
 (194, 472),
 (197, 473),
-(198, 474);
+(198, 474),
+(224, 475);
 
 -- --------------------------------------------------------
 
@@ -6496,7 +5828,8 @@ INSERT INTO `trainee_info` (`trainee_id`, `trainee_code`, `s_id`, `job_id`, `dep
 (471, NULL, 1825, NULL, NULL, NULL, NULL, NULL, NULL, 90),
 (472, NULL, 1826, NULL, NULL, NULL, NULL, NULL, NULL, 91),
 (473, NULL, 1831, NULL, NULL, NULL, NULL, NULL, NULL, 94),
-(474, 'RSMCB16_888 ', 1832, NULL, 3, 4, NULL, 1, 2, 95);
+(474, 'RSMCB16_888 ', 1832, NULL, 3, 4, NULL, 1, 2, 95),
+(475, NULL, 1833, NULL, NULL, NULL, NULL, NULL, NULL, 100);
 
 -- --------------------------------------------------------
 
@@ -6913,7 +6246,30 @@ INSERT INTO `trainee_project` (`project_id`, `project_name`, `project_detail`) V
 (198, 'smart CWIE ch', 'eiei deta ch'),
 (199, NULL, NULL),
 (200, NULL, NULL),
-(201, NULL, NULL);
+(201, NULL, NULL),
+(202, 'Automated HGA Insertion Tail Life Recovery', NULL),
+(203, 'Automated HGA Insertion Tail Life Recovery', NULL),
+(204, 'Automated HGA Insertion Tail Life Recovery', NULL),
+(205, 'Automated HGA Insertion Tail Life Recovery', NULL),
+(206, 'Web Server _Project', NULL),
+(207, 'Ergonomics', NULL),
+(208, '', NULL),
+(209, 'AVI mechanical design project', NULL),
+(210, 'Development of Inventory Management Systems : Department of Branded Product', NULL),
+(211, 'Development of Inventory Management Systems : Department of Branded Product', NULL),
+(212, 'Changing traffic improvement in clean room_of B4', NULL),
+(213, 'Changing traffic improvement in clean room_of B4', NULL),
+(214, 'Automated HGA Insertion Tail Life Recovery', NULL),
+(215, 'Web Server _Project', NULL),
+(216, 'Ergonomics', NULL),
+(217, '', NULL),
+(218, 'AVI mechanical design project', NULL),
+(219, 'Development of Inventory Management Systems : Department of Branded Product', NULL),
+(220, 'Development of Inventory Management Systems : Department of Branded Product', NULL),
+(221, 'Changing traffic improvement in clean room_of B4', NULL),
+(222, 'Changing traffic improvement in clean room_of B4', NULL),
+(223, NULL, NULL),
+(224, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -7535,30 +6891,27 @@ INSERT INTO `transcript` (`transcript_id`, `transcript_file`, `application_id`) 
 (553, NULL, NULL),
 (554, NULL, NULL),
 (555, NULL, NULL),
-(556, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `university_info`
---
-
-CREATE TABLE `university_info` (
-  `uni_id` int(11) NOT NULL,
-  `uni_name` varchar(100) NOT NULL,
-  `country_id` int(11) DEFAULT NULL,
-  `intitute_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `university_info`
---
-
-INSERT INTO `university_info` (`uni_id`, `uni_name`, `country_id`, `intitute_id`) VALUES
-(1, '', NULL, NULL),
-(2, 'RANGSIT UNIVERSITY', NULL, 1),
-(3, 'BANGKOK UNIVERSITY', NULL, 1),
-(4, 'SURANAREE UNIVERSITY OF TECHNOLOGY', NULL, 1);
+(556, NULL, NULL),
+(576, NULL, NULL),
+(578, NULL, NULL),
+(579, NULL, NULL),
+(580, NULL, NULL),
+(581, NULL, NULL),
+(582, NULL, NULL),
+(583, NULL, NULL),
+(584, NULL, NULL),
+(585, NULL, NULL),
+(586, NULL, NULL),
+(587, NULL, NULL),
+(588, NULL, NULL),
+(589, NULL, NULL),
+(590, NULL, NULL),
+(591, NULL, NULL),
+(592, NULL, NULL),
+(593, NULL, NULL),
+(594, NULL, NULL),
+(595, NULL, NULL),
+(596, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8113,7 +7466,27 @@ INSERT INTO `video` (`video_id`, `video_file`, `application_id`) VALUES
 (553, NULL, NULL),
 (554, NULL, NULL),
 (555, NULL, NULL),
-(556, NULL, NULL);
+(556, NULL, NULL),
+(576, NULL, NULL),
+(578, NULL, NULL),
+(579, NULL, NULL),
+(580, NULL, NULL),
+(581, NULL, NULL),
+(582, NULL, NULL),
+(583, NULL, NULL),
+(584, NULL, NULL),
+(585, NULL, NULL),
+(586, NULL, NULL),
+(587, NULL, NULL),
+(588, NULL, NULL),
+(589, NULL, NULL),
+(590, NULL, NULL),
+(591, NULL, NULL),
+(592, NULL, NULL),
+(593, NULL, NULL),
+(594, NULL, NULL),
+(595, NULL, NULL),
+(596, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8668,7 +8041,27 @@ INSERT INTO `visa` (`visa_id`, `visa_file`, `application_application_id`) VALUES
 (553, NULL, NULL),
 (554, NULL, NULL),
 (555, NULL, NULL),
-(556, NULL, NULL);
+(556, NULL, NULL),
+(576, NULL, NULL),
+(578, NULL, NULL),
+(579, NULL, NULL),
+(580, NULL, NULL),
+(581, NULL, NULL),
+(582, NULL, NULL),
+(583, NULL, NULL),
+(584, NULL, NULL),
+(585, NULL, NULL),
+(586, NULL, NULL),
+(587, NULL, NULL),
+(588, NULL, NULL),
+(589, NULL, NULL),
+(590, NULL, NULL),
+(591, NULL, NULL),
+(592, NULL, NULL),
+(593, NULL, NULL),
+(594, NULL, NULL),
+(595, NULL, NULL),
+(596, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8717,7 +8110,8 @@ INSERT INTO `work_experience` (`wex_id`, `wex_dateS`, `wex_dateE`, `wex_organ`, 
 (25, NULL, NULL, NULL, NULL, 1829),
 (29, NULL, NULL, NULL, NULL, 1830),
 (30, NULL, NULL, NULL, NULL, 1831),
-(31, '2017-08-08', '2017-08-10', 'wdchssss', 'asistant engchssss', 1832);
+(31, '2017-08-08', '2017-08-10', 'wdchssss', 'asistant engchssss', 1832),
+(33, NULL, NULL, NULL, NULL, 1833);
 
 --
 -- Indexes for dumped tables
@@ -8774,14 +8168,6 @@ ALTER TABLE `characteristic`
   ADD PRIMARY KEY (`ch_id`);
 
 --
--- Indexes for table `collage_info`
---
-ALTER TABLE `collage_info`
-  ADD PRIMARY KEY (`collage_id`),
-  ADD KEY `country_id_idx` (`country_id`),
-  ADD KEY `fk_cpllage_info_intitute_type1_idx` (`idintitute_type_id`);
-
---
 -- Indexes for table `country_list`
 --
 ALTER TABLE `country_list`
@@ -8793,22 +8179,6 @@ ALTER TABLE `country_list`
 --
 ALTER TABLE `degree_info`
   ADD PRIMARY KEY (`degree_id`);
-
---
--- Indexes for table `degree_info_has_collage_info`
---
-ALTER TABLE `degree_info_has_collage_info`
-  ADD PRIMARY KEY (`degree_id`,`institute_id`),
-  ADD KEY `fk_degree_info_has_cpllage_info_cpllage_info1_idx` (`institute_id`),
-  ADD KEY `fk_degree_info_has_cpllage_info_degree_info1_idx` (`degree_id`);
-
---
--- Indexes for table `degree_info_has_university_info`
---
-ALTER TABLE `degree_info_has_university_info`
-  ADD PRIMARY KEY (`degree_id`,`uni_id`),
-  ADD KEY `fk_degree_info_has_university_info_university_info1_idx` (`uni_id`),
-  ADD KEY `fk_degree_info_has_university_info_degree_info1_idx` (`degree_id`);
 
 --
 -- Indexes for table `department_info`
@@ -8894,13 +8264,6 @@ ALTER TABLE `interview_info`
   ADD KEY `application_id_idx` (`applicantion_id`);
 
 --
--- Indexes for table `intitute_type`
---
-ALTER TABLE `intitute_type`
-  ADD PRIMARY KEY (`intitute_id`),
-  ADD UNIQUE KEY `intitute_name_UNIQUE` (`intitute_name`);
-
---
 -- Indexes for table `language`
 --
 ALTER TABLE `language`
@@ -8922,22 +8285,6 @@ ALTER TABLE `language_lv`
   ADD PRIMARY KEY (`lv_id`);
 
 --
--- Indexes for table `lgInfo_has_lg`
---
-ALTER TABLE `lgInfo_has_lg`
-  ADD PRIMARY KEY (`lgINfo_has_lg_id`),
-  ADD KEY `fk_lgInfo_id` (`lgInfo_id`),
-  ADD KEY `fk_lg_id` (`lg_id`);
-
---
--- Indexes for table `lgInfo_has_lv`
---
-ALTER TABLE `lgInfo_has_lv`
-  ADD PRIMARY KEY (`lgINfo_has_lv_id`),
-  ADD KEY `fk_lgInfo_id` (`lgInfo_id`),
-  ADD KEY `fk_lv_id` (`lv_id`);
-
---
 -- Indexes for table `location`
 --
 ALTER TABLE `location`
@@ -8954,23 +8301,8 @@ ALTER TABLE `login_info`
 -- Indexes for table `major_info`
 --
 ALTER TABLE `major_info`
-  ADD PRIMARY KEY (`major_id`);
-
---
--- Indexes for table `major_info_has_collage_info`
---
-ALTER TABLE `major_info_has_collage_info`
-  ADD PRIMARY KEY (`major_id`,`institute_id`),
-  ADD KEY `fk_major_info_has_cpllage_info_cpllage_info1_idx` (`institute_id`),
-  ADD KEY `fk_major_info_has_cpllage_info_major_info1_idx` (`major_id`);
-
---
--- Indexes for table `major_info_has_university_info`
---
-ALTER TABLE `major_info_has_university_info`
-  ADD PRIMARY KEY (`major_id`,`uni_id`),
-  ADD KEY `fk_major_info_has_university_info_university_info1_idx` (`uni_id`),
-  ADD KEY `fk_major_info_has_university_info_major_info1_idx` (`major_id`);
+  ADD PRIMARY KEY (`major_id`),
+  ADD UNIQUE KEY `major_name` (`major_name`);
 
 --
 -- Indexes for table `other_doc`
@@ -9104,17 +8436,6 @@ ALTER TABLE `student_type`
   ADD PRIMARY KEY (`type_id`);
 
 --
--- Indexes for table `supervisor_contact`
---
-ALTER TABLE `supervisor_contact`
-  ADD PRIMARY KEY (`spv_contact_id`),
-  ADD UNIQUE KEY `s_spv_email_address_UNIQUE` (`spv_email`),
-  ADD UNIQUE KEY `s_spv_contact_no_UNIQUE` (`spv_mobile`),
-  ADD KEY `s_spv_id_idx` (`spv_id`),
-  ADD KEY `dep_id_idx` (`dep_id`),
-  ADD KEY `bldg_id_idx` (`bldg_id`);
-
---
 -- Indexes for table `supervisor_info`
 --
 ALTER TABLE `supervisor_info`
@@ -9129,13 +8450,6 @@ ALTER TABLE `supervisor_info_has_student_info`
   ADD PRIMARY KEY (`student_info_s_id`) USING BTREE,
   ADD KEY `fk_supervisor_info_has_student_info_student_info1_idx` (`student_info_s_id`),
   ADD KEY `fk_supervisor_info_has_student_info_supervisor_info1_idx` (`supervisor_info_spv_id`);
-
---
--- Indexes for table `test_info`
---
-ALTER TABLE `test_info`
-  ADD PRIMARY KEY (`test_id`),
-  ADD KEY `s_id_idx` (`s_id`);
 
 --
 -- Indexes for table `title`
@@ -9257,14 +8571,6 @@ ALTER TABLE `transcript`
   ADD KEY `application_id_idx` (`application_id`);
 
 --
--- Indexes for table `university_info`
---
-ALTER TABLE `university_info`
-  ADD PRIMARY KEY (`uni_id`),
-  ADD KEY `country_id_idx` (`country_id`),
-  ADD KEY `fk_university_info_intitute_type1_idx` (`intitute_id`);
-
---
 -- Indexes for table `video`
 --
 ALTER TABLE `video`
@@ -9303,12 +8609,12 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `bank_acc_info`
 --
 ALTER TABLE `bank_acc_info`
-  MODIFY `bac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
+  MODIFY `bac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 --
 -- AUTO_INCREMENT for table `bank_has_banch`
 --
 ALTER TABLE `bank_has_banch`
-  MODIFY `bnk_has_bch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=314;
+  MODIFY `bnk_has_bch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
 --
 -- AUTO_INCREMENT for table `bnk_banch`
 --
@@ -9324,11 +8630,6 @@ ALTER TABLE `building_info`
 --
 ALTER TABLE `characteristic`
   MODIFY `ch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `collage_info`
---
-ALTER TABLE `collage_info`
-  MODIFY `collage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `country_list`
 --
@@ -9348,12 +8649,12 @@ ALTER TABLE `department_info`
 -- AUTO_INCREMENT for table `education_blackgrounf`
 --
 ALTER TABLE `education_blackgrounf`
-  MODIFY `bg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `bg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `education_info`
 --
 ALTER TABLE `education_info`
-  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=980;
+  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=978;
 --
 -- AUTO_INCREMENT for table `email_info`
 --
@@ -9363,17 +8664,17 @@ ALTER TABLE `email_info`
 -- AUTO_INCREMENT for table `evaluation`
 --
 ALTER TABLE `evaluation`
-  MODIFY `eva_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `eva_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `extracurricular_act`
 --
 ALTER TABLE `extracurricular_act`
-  MODIFY `exact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `exact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `hobby_info`
 --
 ALTER TABLE `hobby_info`
-  MODIFY `hobby_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `hobby_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `immigration_office`
 --
@@ -9390,11 +8691,6 @@ ALTER TABLE `institute`
 ALTER TABLE `institute_type`
   MODIFY `itp_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `intitute_type`
---
-ALTER TABLE `intitute_type`
-  MODIFY `intitute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
@@ -9410,16 +8706,6 @@ ALTER TABLE `language_info`
 ALTER TABLE `language_lv`
   MODIFY `lv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `lgInfo_has_lg`
---
-ALTER TABLE `lgInfo_has_lg`
-  MODIFY `lgINfo_has_lg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `lgInfo_has_lv`
---
-ALTER TABLE `lgInfo_has_lv`
-  MODIFY `lgINfo_has_lv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
 -- AUTO_INCREMENT for table `login_info`
 --
 ALTER TABLE `login_info`
@@ -9428,12 +8714,12 @@ ALTER TABLE `login_info`
 -- AUTO_INCREMENT for table `major_info`
 --
 ALTER TABLE `major_info`
-  MODIFY `major_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `major_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `other_doc`
 --
 ALTER TABLE `other_doc`
-  MODIFY `idother_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=557;
+  MODIFY `idother_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=597;
 --
 -- AUTO_INCREMENT for table `plant_info`
 --
@@ -9448,7 +8734,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT for table `resume`
 --
 ALTER TABLE `resume`
-  MODIFY `resume_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=557;
+  MODIFY `resume_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=597;
 --
 -- AUTO_INCREMENT for table `room`
 --
@@ -9473,7 +8759,7 @@ ALTER TABLE `sent_email`
 -- AUTO_INCREMENT for table `student_address`
 --
 ALTER TABLE `student_address`
-  MODIFY `address_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `address_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `student_contact_details`
 --
@@ -9483,7 +8769,7 @@ ALTER TABLE `student_contact_details`
 -- AUTO_INCREMENT for table `student_emergency_contact`
 --
 ALTER TABLE `student_emergency_contact`
-  MODIFY `emc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `emc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 --
 -- AUTO_INCREMENT for table `student_info`
 --
@@ -9503,7 +8789,7 @@ ALTER TABLE `student_reference_info`
 -- AUTO_INCREMENT for table `student_relationship`
 --
 ALTER TABLE `student_relationship`
-  MODIFY `relation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `relation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `student_status`
 --
@@ -9515,20 +8801,10 @@ ALTER TABLE `student_status`
 ALTER TABLE `student_type`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `supervisor_contact`
---
-ALTER TABLE `supervisor_contact`
-  MODIFY `spv_contact_id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `supervisor_info`
 --
 ALTER TABLE `supervisor_info`
   MODIFY `spv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `test_info`
---
-ALTER TABLE `test_info`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `title`
 --
@@ -9538,7 +8814,7 @@ ALTER TABLE `title`
 -- AUTO_INCREMENT for table `trainee_account`
 --
 ALTER TABLE `trainee_account`
-  MODIFY `trainee_acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `trainee_acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
 -- AUTO_INCREMENT for table `trainee_activity`
 --
@@ -9578,7 +8854,7 @@ ALTER TABLE `trainee_presentation`
 -- AUTO_INCREMENT for table `trainee_project`
 --
 ALTER TABLE `trainee_project`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
 --
 -- AUTO_INCREMENT for table `trainee_transportation`
 --
@@ -9598,27 +8874,22 @@ ALTER TABLE `training_course`
 -- AUTO_INCREMENT for table `transcript`
 --
 ALTER TABLE `transcript`
-  MODIFY `transcript_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=557;
---
--- AUTO_INCREMENT for table `university_info`
---
-ALTER TABLE `university_info`
-  MODIFY `uni_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `transcript_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=597;
 --
 -- AUTO_INCREMENT for table `video`
 --
 ALTER TABLE `video`
-  MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=557;
+  MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=597;
 --
 -- AUTO_INCREMENT for table `visa`
 --
 ALTER TABLE `visa`
-  MODIFY `visa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=557;
+  MODIFY `visa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=597;
 --
 -- AUTO_INCREMENT for table `work_experience`
 --
 ALTER TABLE `work_experience`
-  MODIFY `wex_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `wex_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- Constraints for dumped tables
 --
@@ -9654,27 +8925,6 @@ ALTER TABLE `bnk_banch`
 --
 ALTER TABLE `building_info`
   ADD CONSTRAINT `fkbui_plant_id` FOREIGN KEY (`plant_id`) REFERENCES `plant_info` (`plant_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `collage_info`
---
-ALTER TABLE `collage_info`
-  ADD CONSTRAINT `fk_cpllage_info_intitute_type1` FOREIGN KEY (`idintitute_type_id`) REFERENCES `intitute_type` (`intitute_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fkcol_country_id` FOREIGN KEY (`country_id`) REFERENCES `country_list` (`country_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `degree_info_has_collage_info`
---
-ALTER TABLE `degree_info_has_collage_info`
-  ADD CONSTRAINT `fk_degree_info_has_cpllage_info_cpllage_info1` FOREIGN KEY (`institute_id`) REFERENCES `collage_info` (`collage_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_degree_info_has_cpllage_info_degree_info1` FOREIGN KEY (`degree_id`) REFERENCES `degree_info` (`degree_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `degree_info_has_university_info`
---
-ALTER TABLE `degree_info_has_university_info`
-  ADD CONSTRAINT `fk_degree_info_has_university_info_degree_info1` FOREIGN KEY (`degree_id`) REFERENCES `degree_info` (`degree_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_degree_info_has_university_info_university_info1` FOREIGN KEY (`uni_id`) REFERENCES `university_info` (`uni_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `department_info`
@@ -9740,34 +8990,6 @@ ALTER TABLE `language_info`
   ADD CONSTRAINT `fklg_info_s_id` FOREIGN KEY (`s_id`) REFERENCES `student_info` (`s_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fklg_lg` FOREIGN KEY (`lg_id`) REFERENCES `language` (`lg_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fklg_lv` FOREIGN KEY (`lv_id`) REFERENCES `language_lv` (`lv_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `lgInfo_has_lg`
---
-ALTER TABLE `lgInfo_has_lg`
-  ADD CONSTRAINT `fk_lgInfo_id` FOREIGN KEY (`lgInfo_id`) REFERENCES `language_info` (`lg_info_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_lg_id` FOREIGN KEY (`lg_id`) REFERENCES `language` (`lg_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `lgInfo_has_lv`
---
-ALTER TABLE `lgInfo_has_lv`
-  ADD CONSTRAINT `fklglv_lgInfo_id` FOREIGN KEY (`lgInfo_id`) REFERENCES `language_info` (`lg_info_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fklglv_lv_id` FOREIGN KEY (`lv_id`) REFERENCES `language_lv` (`lv_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `major_info_has_collage_info`
---
-ALTER TABLE `major_info_has_collage_info`
-  ADD CONSTRAINT `fk_major_info_has_cpllage_info_cpllage_info1` FOREIGN KEY (`institute_id`) REFERENCES `collage_info` (`collage_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_major_info_has_cpllage_info_major_info1` FOREIGN KEY (`major_id`) REFERENCES `major_info` (`major_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `major_info_has_university_info`
---
-ALTER TABLE `major_info_has_university_info`
-  ADD CONSTRAINT `fk_major_info_has_university_info_major_info1` FOREIGN KEY (`major_id`) REFERENCES `major_info` (`major_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_major_info_has_university_info_university_info1` FOREIGN KEY (`uni_id`) REFERENCES `university_info` (`uni_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `other_doc`
@@ -9852,14 +9074,6 @@ ALTER TABLE `student_relationship`
   ADD CONSTRAINT `fkrel_s_id` FOREIGN KEY (`s_id`) REFERENCES `student_info` (`s_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `supervisor_contact`
---
-ALTER TABLE `supervisor_contact`
-  ADD CONSTRAINT `fksvc_bldg_id` FOREIGN KEY (`bldg_id`) REFERENCES `building_info` (`bldg_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fksvc_dep_id` FOREIGN KEY (`dep_id`) REFERENCES `department_info` (`dep_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fksvc_spv_id` FOREIGN KEY (`spv_id`) REFERENCES `supervisor_info` (`spv_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `supervisor_info`
 --
 ALTER TABLE `supervisor_info`
@@ -9872,12 +9086,6 @@ ALTER TABLE `supervisor_info`
 ALTER TABLE `supervisor_info_has_student_info`
   ADD CONSTRAINT `fk_supervisor_info_has_student_info_student_info1` FOREIGN KEY (`student_info_s_id`) REFERENCES `student_info` (`s_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_supervisor_info_has_student_info_supervisor_info1` FOREIGN KEY (`supervisor_info_spv_id`) REFERENCES `supervisor_info` (`spv_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `test_info`
---
-ALTER TABLE `test_info`
-  ADD CONSTRAINT `fktes_s_id` FOREIGN KEY (`s_id`) REFERENCES `student_info` (`s_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trainee_has_project`
@@ -9937,13 +9145,6 @@ ALTER TABLE `training_course`
 --
 ALTER TABLE `transcript`
   ADD CONSTRAINT `fktra_application_id` FOREIGN KEY (`application_id`) REFERENCES `application` (`application_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `university_info`
---
-ALTER TABLE `university_info`
-  ADD CONSTRAINT `fk_university_info_intitute_type1` FOREIGN KEY (`intitute_id`) REFERENCES `intitute_type` (`intitute_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fkuni_country_id` FOREIGN KEY (`country_id`) REFERENCES `country_list` (`country_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `video`

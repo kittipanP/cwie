@@ -10,7 +10,6 @@ $MyConnect = mysqli_connect($hostname_MyConnect, $username_MyConnect, $password_
 mysqli_set_charset($MyConnect, "utf-8");
 //mysqli_query("Set Names UTF8");
 
-
 mysqli_query($MyConnect, "SET character_set_results=utf8");
 mysqli_query($MyConnect, "SET character_set_client=utf8");
 mysqli_query($MyConnect, "SET character_set_connection=utf8"); 
