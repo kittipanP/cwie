@@ -646,7 +646,7 @@ function myAccFunc() {
 </html>
 
 <?php
-mysqli_free_result($countrySet);
+//mysqli_free_result($countrySet);
 
 
 mysqli_free_result($degreeSet);
@@ -661,13 +661,13 @@ mysqli_free_result($titleSet);
 
 mysqli_free_result($statusSet);
 
-mysqli_free_result($universitySet);
+//mysqli_free_result($universitySet);
 
 mysqli_free_result($educationSet);
 
-mysqli_free_result($collageSet);
+//mysqli_free_result($collageSet);
   
-mysqli_free_result($instituteSet);
+//mysqli_free_result($itpSet);
 
 /*mysqli_free_result($studentSet);*/
 

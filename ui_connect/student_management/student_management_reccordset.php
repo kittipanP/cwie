@@ -192,18 +192,16 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		$startRow_studentSet = $pageNum_studentSet * $maxRows_studentSet;
 		
 		mysqli_select_db($MyConnect,$database_MyConnect);
-			$query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name, university_info.uni_name, collage_info.collage_name
+			$query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name
 			FROM student_info
 			INNER JOIN title ON title.title_id = student_info.title_title_id
 			INNER JOIN student_status ON student_status.status_id = student_info.status_id
 			LEFT JOIN education_info ON student_info.s_id = education_info.s_id
 			LEFT JOIN major_info ON major_info.major_id = education_info.major_id
 			LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
-			LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
-			LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id
 			ORDER BY student_info.s_id DESC";
 		$query_limit_studentSet = sprintf("%s LIMIT %d, %d", $query_studentSet, $startRow_studentSet, $maxRows_studentSet);
-		$studentSet = mysqli_query($MyConnect, $query_limit_studentSet) or die(mysqli_error());
+		$studentSet = mysqli_query($MyConnect, $query_limit_studentSet) or die(mysqli_error($MyConnect));
 		$row_studentSet = mysqli_fetch_assoc($studentSet);
 		
 		if (isset($_GET['totalRows_studentSet'])) {
@@ -238,7 +236,7 @@ mysqli_select_db($MyConnect, $database_MyConnect);
 $query_countrySet = "SELECT * FROM country_list";
 $countrySet = mysqli_query($MyConnect, $query_countrySet) or die(mysqli_error());
 $row_countrySet = mysqli_fetch_assoc($countrySet);
-$totalRows_countrySet = mysqli_num_rows($countrySet);
+$totalRows_countrySet = mysqli_num_rows($countrySet); 
 
 
 /*if (isset($_GET['totalRows_countrySet'])) {
@@ -302,12 +300,9 @@ $educationSet = mysqli_query($MyConnect, $query_educationSet) or die(mysqli_erro
 $row_educationSet = mysqli_fetch_assoc($educationSet);
 $totalRows_educationSet = mysqli_num_rows($educationSet);
 
-mysqli_select_db($MyConnect, $database_MyConnect);
-$query_instituteSet = "SELECT * FROM intitute_type";
-$instituteSet = mysqli_query($MyConnect, $query_instituteSet) or die(mysqli_error());
-$row_instituteSet = mysqli_fetch_assoc($instituteSet);
-$totalRows_instituteSet = mysqli_num_rows($instituteSet);
+//mysqli_select_db($MyConnect, $database_MyConnect);
 
+/*
 mysqli_select_db($MyConnect, $database_MyConnect);
 $query_universitySet = "SELECT * FROM university_info";
 $universitySet = mysqli_query($MyConnect, $query_universitySet) or die(mysqli_error());
@@ -319,6 +314,7 @@ $query_collageSet = "SELECT * FROM collage_info";
 $collageSet = mysqli_query($MyConnect, $query_collageSet) or die(mysqli_error());
 $row_collageSet = mysqli_fetch_assoc($collageSet);
 $totalRows_collageSet = mysqli_num_rows($collageSet);
+*/
 
 /*mysqli_select_db($MyConnect, $database_MyConnect);
 $query_studentSet = "SELECT * FROM student_info";
