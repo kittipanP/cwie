@@ -10,19 +10,19 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 		/*-- Reccordset  [S]--*/
-		if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "majorForm")) {
+		if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "bchForm")) {
 
 
-  	$insertSQL_maj = sprintf("INSERT INTO major_info (major_id, major_name) VALUES (%s, %s)",
-                       GetSQLValueString($_POST['major_id'], "int"),
-                       GetSQLValueString($_POST['major_name'], "text"));
+  	$insertSQL_bch = sprintf("INSERT INTO bnk_banch (bch_name, province_id) VALUES (%s, %s)",
+                       GetSQLValueString($_POST['bch_name'], "text"),
+                       GetSQLValueString($_POST['province_id'], "int"));
 
 	
 		  mysqli_select_db($MyConnect, $database_MyConnect);
 		  /*
 		  $Result1_ = mysqli_query($MyConnect, $insertSQL_) or die(mysqli_error());
 		  */
-		  $Result1_maj = mysqli_query($MyConnect, $insertSQL_maj) or die(mysqli_error($MyConnect));
+		  $Result1_bch = mysqli_query($MyConnect, $insertSQL_bch) or die(mysqli_error($MyConnect));
 
 
       $insertGoTo = "stu-insert-all.php";
@@ -32,12 +32,6 @@ if (isset($_SERVER['QUERY_STRING'])) {
       $insertGoTo .= $_SERVER['QUERY_STRING'];
       }
       header(sprintf("Location: %s", $insertGoTo));
-        
-      
-
-
-
-
 
 		}
 

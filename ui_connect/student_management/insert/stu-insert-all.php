@@ -207,16 +207,18 @@ header{ background: url(../../../img/head/headerv.jpg);}
 </div>
 
   <!-- major-add [S]-->
-  <div id="major-add" class="w3-modal w3-animate-opacity">
+  <div id="major-addd" class="w3-modal w3-animate-opacity">
     <div class="w3-modal-content w3-card-4">
       <header class="w3-container w3-teal"> 
         <span onclick="document.getElementById('major-add').style.display='none'" 
         class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
-        <h3>Reccord New Major</h3>
+        <h3>Reccord New Majorrrr</h3>
       </header>
       <div class="w3-container">
-        <p>Some text..</p>
-        <p>Some text..</p>
+
+
+                         <input type="text" name="education_id" value="" size="32" />
+
       </div>
     </div>
   </div>

@@ -5,8 +5,6 @@
                   <i class="fa fa-mail-reply fa-stack-1x fa-inverse"></i>
                 </span></a>
                 <h2 class="fs-title">Personal Detail</h2>
-                <h3 class="fs-subtitle">This is step 1</h3>
-                        
                 <div class="w3-row-padding w3-center w3-margin-top">
  
                   <div class="w3-third">
@@ -488,7 +486,7 @@
 
 
                       <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Institute</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
+                      <a onclick="document.getElementById('ins-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Institute</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
 
                         
                     </div>
@@ -736,7 +734,7 @@
                         </select> 
  
                   <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Language</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      <a onclick="document.getElementById('lg-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Language</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
                       </a>
                   </div>                  
 

@@ -10,6 +10,13 @@
 ?>
 
 <?php include ("../../ui_connect/student_management/insert/stu-insert-reccordset.php"); ?>
+
+<?php 
+  //add-new-row-sql
+  //include ("../../ui_connect/student_management/insert/add-new-row/sql/add-major-sql.php"); 
+  include ("../../ui_connect/student_management/insert/add-new-row/add-new-row-sql.php");
+
+?>
 <?php //require_once('fn-upload.inc.php'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,6 +41,10 @@
 
       <!-- style full form-->
       <link rel="stylesheet" href="../../libs/css/style-fullform.css?v=0214i" type="text/css">
+
+
+      <!-- style add form-->
+      <link rel="stylesheet" href="../../libs/css/style-addform.css?v=0214i" type="text/css">
 
 
 
@@ -190,21 +201,155 @@ header{ background: url(../../img/head/headerv.jpg);}
 <!-- End Page Container -->
 </div>
 
+<!-- ##########  div add a new row to database [S] ########## -->
   <!-- major-add [S]-->
   <div id="major-add" class="w3-modal w3-animate-opacity">
-    <div class="w3-modal-content w3-card-4">
-      <header class="w3-container w3-teal"> 
+    <div class="w3-modal-content w3-card-4" style="max-width:600px " >
+      <header class="w3-container w3-teal" style="background: url(../../img/head/headervii.jpg)"> 
         <span onclick="document.getElementById('major-add').style.display='none'" 
         class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
         <h3>Reccord New Major</h3>
       </header>
-      <div class="w3-container">
-        <p>Some text..</p>
-        <p>Some text..</p>
-      </div>
+
+              <?php include '../../ui_connect/student_management/insert/add-new-row/form-insert/add-major-form.php' ?>   
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+          <!-- for Explanation && Example-->
+
+      </div>           
+
     </div>
   </div>
   <!-- major-add [E]-->
+
+
+  <!--  institute-add [S]-->
+  <div id="ins-add" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4" style="max-width:600px ">
+      <header class="w3-container w3-teal" style="background: url(../../img/head/headervii.jpg)"> 
+        <span onclick="document.getElementById('ins-add').style.display='none'" 
+        class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
+        <h3>Reccord New Institute</h3>
+      </header>
+
+              <?php include '../../ui_connect/student_management/insert/add-new-row/form-insert/add-ins-form.php' ?>              
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+          <!-- for Explanation && Example-->
+
+      </div> 
+            
+    </div>
+  </div>
+  <!-- institute-add [E]-->
+
+
+  <!--  language-add [S]-->
+  <div id="lg-add" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4" style="max-width:600px ">
+      <header class="w3-container w3-teal" style="background: url(../../img/head/headervii.jpg)"> 
+        <span onclick="document.getElementById('lg-add').style.display='none'" 
+        class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
+        <h3>Reccord New Language</h3>
+      </header>
+
+              <?php include '../../ui_connect/student_management/insert/add-new-row/form-insert/add-lg-form.php' ?>              
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+          <!-- for Explanation && Example-->
+
+      </div> 
+            
+    </div>
+  </div>
+  <!-- Language-add [E]-->
+
+
+  <!--  Supervisor-add [S]-->
+  <div id="spv-add" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4" style="max-width:600px ">
+      <header class="w3-container w3-teal" style="background: url(../../img/head/headervii.jpg)"> 
+        <span onclick="document.getElementById('spv-add').style.display='none'" 
+        class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
+        <h3>Reccord New Supervisor</h3>
+      </header>
+
+              <?php include '../../ui_connect/student_management/insert/add-new-row/form-insert/add-spv-form.php' ?>              
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+          <!-- for Explanation && Example-->
+
+      </div> 
+            
+    </div>
+  </div>
+  <!-- Supervisor-add [E]-->
+
+
+  <!--  Transportation Line - add [S]-->
+  <div id="tsp-add" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4" style="max-width:600px ">
+      <header class="w3-container w3-teal" style="background: url(../../img/head/headervii.jpg)"> 
+        <span onclick="document.getElementById('tsp-add').style.display='none'" 
+        class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
+        <h3>Reccord New Transportation Line</h3>
+      </header>
+
+              <?php include '../../ui_connect/student_management/insert/add-new-row/form-insert/add-tsp-form.php' ?>              
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+          <!-- for Explanation && Example-->
+
+      </div> 
+            
+    </div>
+  </div>
+  <!-- Transportation Line - add [E]-->
+
+
+  <!-- Bank Branch -add [S]-->
+  <div id="bch-add" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4" style="max-width:600px ">
+      <header class="w3-container w3-teal" style="background: url(../../img/head/headervii.jpg)"> 
+        <span onclick="document.getElementById('bch-add').style.display='none'" 
+        class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
+        <h3>Reccord New Bank Branch</h3>
+      </header>
+
+              <?php include '../../ui_connect/student_management/insert/add-new-row/form-insert/add-bch-form.php' ?>              
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+          <!-- for Explanation && Example-->
+
+      </div> 
+            
+    </div>
+  </div>
+  <!-- Bank Branch -add [E]-->
+
+
+  <!--  Department-add [S]-->
+  <div id="dep-add" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4" style="max-width:600px ">
+      <header class="w3-container w3-teal" style="background: url(../../img/head/headervii.jpg)"> 
+        <span onclick="document.getElementById('dep-add').style.display='none'" 
+        class="w3-button w3-large w3-display-topright" style="cursor: pointer">&times;&nbsp</span>
+        <h3>Reccord New Department</h3>
+      </header>
+
+              <?php include '../../ui_connect/student_management/insert/add-new-row/form-insert/add-dep-form.php' ?>              
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+          <!-- for Explanation && Example-->
+
+      </div> 
+            
+    </div>
+  </div>
+  <!-- Department-add [E]-->
+
+
+<!-- ##########  div add a new row to database [E] ########## -->
 
 
     <div id="edbS"></div>
