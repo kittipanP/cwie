@@ -4,7 +4,7 @@
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-mail-reply fa-stack-1x fa-inverse"></i>
                 </span></a>
-                <h2 class="fs-title">xxxxxXXXXxxxxx</h2>
+                <h2 class="fs-title">TRAINEE INFORMATION</h2>
                 <div align="center">
                     
                 </div>
@@ -123,7 +123,7 @@
                         <div align="left">
                         <label for=""> Department : </label>
                         </div>
-                         <select name="dep_id" id="" style="width: 100%;">
+                         <select name="dep_id" id="" class="selectpicker" data-live-search="true" style="width: 100%;">
                          <?php 
                          if($row_tniRec['dep_id']==null){
                          ?>
@@ -155,6 +155,10 @@
                         }?>
                         </select>
 
+
+                      <div align="right">
+                      <a onclick="document.getElementById('dep-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Department</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
+
                     </div>
                   </div>
                  
@@ -177,9 +181,9 @@
 
 
                     <div class="w3-row-padding w3-center w3-margin-top">
-                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Supervisor Line</p></div>
+                      <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Supervisor Information</p></div>
 
-                        <select name="supervisor_info_spv_id" id=""  style="width: 100%;">
+                        <select name="supervisor_info_spv_id" id="" class="selectpicker" data-live-search="true" style="width: 100%;">
                          <?php 
                          if($row_shsRec['supervisor_info_spv_id']==null){
                          ?>
@@ -210,6 +214,10 @@
                             }
                         }?>
                         </select> 
+
+
+                      <div align="right">
+                      <a onclick="document.getElementById('spv-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Supervisor</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
                       
                     </div> 
                         
@@ -218,7 +226,7 @@
                     <div class="w3-row-padding w3-center w3-margin-top">
                       <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Transportation Line</p></div>
                       
-                            <select name="transportation_id" id="" style="width: 100%;">
+                            <select name="transportation_id" id="" class="selectpicker" data-live-search="true" style="width: 100%;">
                              <?php 
                              if($row_tniRec['transportation_id']==null){
                              ?>
@@ -226,7 +234,7 @@
                               <?php
                               do {  
                               ?>
-                                <option value="<?php echo htmlentities($row_tspSet['transportation_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_tspSet['transportation_point']?></option>
+                                <option value="<?php echo htmlentities($row_tspSet['transportation_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_tspSet['transportation_line']?></option>
                               <?php
                               } while ($row_tspSet = mysqli_fetch_assoc($tspSet));
                                 $rows = mysqli_num_rows($tspSet);
@@ -235,11 +243,11 @@
                                     $row_tspSet = mysqli_fetch_assoc($tspSet);
                                 }
                              }else{?>
-                                <option value="<?php echo htmlentities($row_tni_tspRec['transportation_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_tni_tspRec['transportation_point']?></option>
+                                <option value="<?php echo htmlentities($row_tni_tspRec['transportation_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_tni_tspRec['transportation_line']?></option>
                               <?php
                               do {  
                               ?>
-                                        <option value="<?php echo htmlentities($row_tspSet['transportation_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_tspSet['transportation_point']?></option>
+                                        <option value="<?php echo htmlentities($row_tspSet['transportation_id'], ENT_COMPAT, 'utf-8');?>"><?php echo $row_tspSet['transportation_line']?></option>
                                         <?php
                               } while ($row_tspSet = mysqli_fetch_assoc($tspSet));
                                 $rows = mysqli_num_rows($tspSet);
@@ -249,6 +257,10 @@
                                 }
                             }?>
                             </select>
+
+
+                      <div align="right">
+                      <a onclick="document.getElementById('tsp-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Transportation Line</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
                     </div> 
                         
                   </div>
@@ -391,7 +403,7 @@
                         <div align="left">
                         <label for=""> Branch : </label>
                         </div>
-                        <select name="bch_id" id="" style="width: 100%;">
+                        <select name="bch_id" id="" class="selectpicker" data-live-search="true" style="width: 100%;">
                          <?php 
                          if($row_bacRec['bch_id']==null){
                          ?>
@@ -422,6 +434,10 @@
                             }
                         }?>
                         </select> 
+
+
+                      <div align="right">
+                      <a onclick="document.getElementById('bch-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Branch</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" /></a></div>
                   </div>          
                   <div class="w3-third"> 
                         <div align="left">

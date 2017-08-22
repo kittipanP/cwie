@@ -395,9 +395,6 @@ $totalRows_Recordset1_sre = mysqli_num_rows($Recordset1_sre);
 $query_Recordset1_edu = sprintf("SELECT * FROM education_info 
   LEFT JOIN major_info ON major_info.major_id = education_info.major_id
   LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
-  LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
-  LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id
-  LEFT JOIN intitute_type ON intitute_type.intitute_id = education_info.intitute_id
   WHERE education_info.s_id=$thisstu", GetSQLValueString($colname_Recordset1_stu, "int"));
 $Recordset1_edu = mysqli_query($MyConnect, $query_Recordset1_edu) or die(mysqli_error());
 $row_Recordset1_edu = mysqli_fetch_assoc($Recordset1_edu);
@@ -446,7 +443,7 @@ $query_instituteSet = "SELECT * FROM institute";
 $instituteSet = mysqli_query($MyConnect, $query_instituteSet) or die(mysqli_error());
 $row_instituteSet = mysqli_fetch_assoc($instituteSet);
 $totalRows_instituteSet = mysqli_num_rows($instituteSet); 
-
+/*170816
 $query_uni_rec = "SELECT * FROM university_info 
 LEFT JOIN education_info ON education_info.s_id=$thisstu
 LEFT JOIN student_info ON student_info.s_id=$thisstu
@@ -471,7 +468,8 @@ $totalRows_col_rec = mysqli_num_rows($col_rec);
 $query_collageSet = "SELECT * FROM collage_info";
 $collageSet = mysqli_query($MyConnect, $query_collageSet) or die(mysqli_error());
 $row_collageSet = mysqli_fetch_assoc($collageSet);
-$totalRows_collageSet = mysqli_num_rows($collageSet);
+$totalRows_collageSet = mysqli_num_rows($collageSet); 
+170816*/
 
 $query_edb_rec = "SELECT * FROM education_blackgrounf 
       WHERE  education_blackgrounf.student_info_s_id=$thisstu";
@@ -514,9 +512,9 @@ $totalRows_hob_rec = mysqli_num_rows($hob_rec);
                     $lgIn_rec = mysqli_query($MyConnect, $query_lgIn_rec) or die(mysqli_error());
                     $row_lgIn_rec = mysqli_fetch_assoc($lgIn_rec);
                     $totalRows_lgIn_rec = mysqli_num_rows($lgIn_rec); 
-
+/*170816
                     $query_lhlSet = "SELECT * FROM lgInfo_has_lg";
-                    $lhlSet = mysqli_query($MyConnect, $query_lhlSet) or die(mysqli_error());
+                    $lhlSet = mysqli_query($MyConnect, $query_lhlSet) or die(mysqli_error($MyConnect));
                     $row_lhlSet = mysqli_fetch_assoc($lhlSet);
                     $totalRows_lhlSet = mysqli_num_rows($lhlSet);     
                     $query_lhl_rec = "SELECT lgInfo_has_lg.lgInfo_id, lgInfo_has_lg.lg_id FROM lgInfo_has_lg
@@ -527,7 +525,7 @@ $totalRows_hob_rec = mysqli_num_rows($hob_rec);
                     $lhl_rec = mysqli_query($MyConnect, $query_lhl_rec) or die(mysqli_error());
                     $row_lhl_rec = mysqli_fetch_assoc($lhl_rec);
                     $totalRows_lhl_rec= mysqli_num_rows($lhl_rec); 
-
+170816*/
 
                     $query_lgSet = "SELECT * FROM language";
                     $lgSet = mysqli_query($MyConnect, $query_lgSet) or die(mysqli_error());
@@ -540,7 +538,7 @@ $totalRows_hob_rec = mysqli_num_rows($hob_rec);
                     $lg_rec = mysqli_query($MyConnect, $query_lg_rec) or die(mysqli_error());
                     $row_lg_rec = mysqli_fetch_assoc($lg_rec);
                     $totalRows_lg_rec = mysqli_num_rows($lg_rec); 
-
+/*170816
                     $query_lhvSet = "SELECT * FROM lgInfo_has_lv";
                     $lhvSet = mysqli_query($MyConnect, $query_lhvSet) or die(mysqli_error());
                     $row_lhvSet = mysqli_fetch_assoc($lhvSet);
@@ -553,7 +551,7 @@ $totalRows_hob_rec = mysqli_num_rows($hob_rec);
                     $lhv_rec = mysqli_query($MyConnect, $query_lhv_rec) or die(mysqli_error());
                     $row_lhv_rec = mysqli_fetch_assoc($lhv_rec);
                     $totalRows_lhv_rec= mysqli_num_rows($lhv_rec); 
-
+170816*/
 
                     $query_lvSet = "SELECT * FROM language_lv";
                     $lvSet = mysqli_query($MyConnect, $query_lvSet) or die(mysqli_error());
@@ -718,6 +716,44 @@ $totalRows_hob_rec = mysqli_num_rows($hob_rec);
   $chaSet = mysqli_query($MyConnect, $query_chaSet) or die(mysqli_error());
   $row_chaSet = mysqli_fetch_assoc($chaSet);
   $totalRows_chaSet = mysqli_num_rows($chaSet);
+
+
+
+/*
+          $query_spvSet = "SELECT * FROM supervisor_info
+            ORDER BY spv_id DESC";
+          $spvSet = mysqli_query($MyConnect, $query_spvSet) or die(mysqli_error());
+          $row_spvSet = mysqli_fetch_assoc($spvSet);
+          $totalRows_spvSet = mysqli_num_rows($spvSet);
+
+          $query_shiSet = "SELECT * FROM supervisor_info_has_student_info";
+          $shiSet = mysqli_query($MyConnect, $query_shiSet) or die(mysqli_error());
+          $row_shiSet = mysqli_fetch_assoc($shiSet);
+          $totalRows_shiSet = mysqli_num_rows($shiSet); */
+
+
+
+  
+$query_itpSet = "SELECT * FROM institute_type";
+$itpSet = mysqli_query($MyConnect, $query_itpSet) or die(mysqli_error());
+$row_itpSet = mysqli_fetch_assoc($itpSet);
+$totalRows_itpSet = mysqli_num_rows($itpSet);
+
+
+$query_bldSet = "SELECT * FROM building_info";
+$bldSet = mysqli_query($MyConnect, $query_bldSet) or die(mysqli_error());
+$row_bldSet = mysqli_fetch_assoc($bldSet);
+$totalRows_bldSet = mysqli_num_rows($bldSet);
+
+
+$query_pvnSet = "SELECT * FROM province";
+$pvnSet = mysqli_query($MyConnect, $query_pvnSet) or die(mysqli_error());
+$row_pvnSet = mysqli_fetch_assoc($pvnSet);
+$totalRows_pvnSet = mysqli_num_rows($pvnSet);
+
+
+
+
 
 /*
 
