@@ -107,7 +107,7 @@
                     ?>
                         </select>
                   <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Department</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      <a onclick="document.getElementById('dep-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Department</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
                       </a>
                   </div> 
 
@@ -146,7 +146,7 @@
                           ?>
                         </select>
                   <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Suppervisor</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      <a onclick="document.getElementById('spv-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Suppervisor</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
                       </a>
                   </div> 
 
@@ -161,7 +161,7 @@
                                 <?php
                           do {  
                           ?>
-                                <option value="<?php echo $row_tspSet['transportation_id']?>"><?php echo $row_tspSet['transportation_point']?></option>
+                                <option value="<?php echo $row_tspSet['transportation_id']?>"><?php echo $row_tspSet['transportation_line']?></option>
                                 <?php
                           } while ($row_tspSet = mysqli_fetch_assoc($tspSet));
                             $rows = mysqli_num_rows($tspSet);
@@ -172,7 +172,7 @@
                           ?>
                               </select>
                         <div align="right">
-                            <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Transportation Line</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                            <a onclick="document.getElementById('tsp-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Transportation Line</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
                             </a>
                         </div>
 
@@ -293,7 +293,7 @@
                     ?>
                         </select> 
                   <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Branch</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      <a onclick="document.getElementById('bch-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Branch</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
                       </a>
                   </div> 
                   </div>          

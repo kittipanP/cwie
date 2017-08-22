@@ -336,15 +336,13 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		$startRow_studentSet = $pageNum_studentSet * $maxRows_studentSet;
 		
 		mysqli_select_db($MyConnect,$database_MyConnect);
-			$query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name , degree_info.degree_name, university_info.uni_name, collage_info.collage_name
+			$query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name , degree_info.degree_name
 			FROM student_info
 			INNER JOIN title ON title.title_id = student_info.title_title_id
 			INNER JOIN student_status ON student_status.status_id = student_info.status_id
 			LEFT JOIN education_info ON student_info.s_id = education_info.s_id
 			LEFT JOIN major_info ON major_info.major_id = education_info.major_id
 			LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
-			LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
-			LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id
 			ORDER BY student_info.s_id DESC";
 		$query_limit_studentSet = sprintf("%s LIMIT %d, %d", $query_studentSet, $startRow_studentSet, $maxRows_studentSet);
 		$studentSet = mysqli_query($MyConnect, $query_limit_studentSet) or die(mysqli_error());
@@ -445,7 +443,7 @@ $query_instituteSet = "SELECT * FROM institute";
 $instituteSet = mysqli_query($MyConnect, $query_instituteSet) or die(mysqli_error());
 $row_instituteSet = mysqli_fetch_assoc($instituteSet);
 $totalRows_instituteSet = mysqli_num_rows($instituteSet);
-
+/*170814
 $query_universitySet = "SELECT * FROM university_info";
 $universitySet = mysqli_query($MyConnect, $query_universitySet) or die(mysqli_error());
 $row_universitySet = mysqli_fetch_assoc($universitySet);
@@ -455,6 +453,7 @@ $query_collageSet = "SELECT * FROM collage_info";
 $collageSet = mysqli_query($MyConnect, $query_collageSet) or die(mysqli_error());
 $row_collageSet = mysqli_fetch_assoc($collageSet);
 $totalRows_collageSet = mysqli_num_rows($collageSet);
+*/
 /*
 mysqli_select_db($MyConnect, $database_MyConnect);
 $query_newstudentnSet = "SELECT * FROM student_info
@@ -625,6 +624,24 @@ $totalRows_secSet = mysqli_num_rows($secSet);
   $chaSet = mysqli_query($MyConnect, $query_chaSet) or die(mysqli_error());
   $row_chaSet = mysqli_fetch_assoc($chaSet);
   $totalRows_chaSet = mysqli_num_rows($chaSet);
+
+  
+$query_itpSet = "SELECT * FROM institute_type";
+$itpSet = mysqli_query($MyConnect, $query_itpSet) or die(mysqli_error());
+$row_itpSet = mysqli_fetch_assoc($itpSet);
+$totalRows_itpSet = mysqli_num_rows($itpSet);
+
+
+$query_bldSet = "SELECT * FROM building_info";
+$bldSet = mysqli_query($MyConnect, $query_bldSet) or die(mysqli_error());
+$row_bldSet = mysqli_fetch_assoc($bldSet);
+$totalRows_bldSet = mysqli_num_rows($bldSet);
+
+
+$query_pvnSet = "SELECT * FROM province";
+$pvnSet = mysqli_query($MyConnect, $query_pvnSet) or die(mysqli_error());
+$row_pvnSet = mysqli_fetch_assoc($pvnSet);
+$totalRows_pvnSet = mysqli_num_rows($pvnSet);
 
 
 
