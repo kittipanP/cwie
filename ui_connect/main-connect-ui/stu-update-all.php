@@ -77,13 +77,13 @@
 
 
   <!-- bootstrap-select --> 
-
-
   <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap.min.css?v=<?php echo filemtime('bootstrap.min.css'); ?>"> 
   <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap-select.css?v=<?php echo filemtime('bootstrap-select.css'); ?>"> 
   <script src="../../libs/bootstrap-select/dist/js/jquery.min.js"></script>
   <script src="../../libs/bootstrap-select/dist/js/bootstrap.min.js"></script>
   <script src="../../libs/bootstrap-select/dist/js/bootstrap-select.js"></script> 
+
+  
 
 <!--
   <script src="../../libs/bootstrap-select/dist/js/jquery.min.js"></script>
