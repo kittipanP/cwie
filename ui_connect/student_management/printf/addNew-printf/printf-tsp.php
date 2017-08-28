@@ -77,12 +77,10 @@ require_once('../../../Connections/MyConnect.php');
         <div class="w3-container w3-card-2 w3-white w3-round w3-margin" id="">
 
 
-                  <!-- Add Suppervisor -->
-                  <div align="right">
-                      <a onclick="document.getElementById('tsp-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Suppervisor</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
-                      </a>
-                  </div>
-
+                        <div align="right">
+                            <a onclick="document.getElementById('tsp-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Transportation Line</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                            </a>
+                        </div>
 
                       <p>Search for a name in the input field.</p>
                     

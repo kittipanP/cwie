@@ -79,13 +79,11 @@ require_once('../../../Connections/MyConnect.php');
         <div class="w3-container w3-card-2 w3-white w3-round w3-margin" id="">
 
 
-                  <!-- Add Suppervisor -->
                   <div align="right">
-                      <a onclick="document.getElementById('ins-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Suppervisor</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
+                      <a onclick="document.getElementById('ins-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Institute</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
                       </a>
-                  </div>
-
-
+                  </div> 
+                  
                       <p>Search for a name in the input field.</p>
                     
                     <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for names.." id="insInput" onkeyup="insKey()">
