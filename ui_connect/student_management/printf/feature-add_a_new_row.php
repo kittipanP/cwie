@@ -77,9 +77,7 @@
   <div id="xxx2" class="w3-container city" style="display:none">
     <h2>Major Information</h2>
     <p>xxx2 xxxxxxxxxxxxxxxxxxxxxxxxx.</p> 
-                      <div align="right">
-                      <a onclick="document.getElementById('major-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Major</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
-                      </a>
+                      
 
                   <?php require_once '../../../ui_connect/student_management/printf/addNew-printf/printf-major.php'; ?>
                       
@@ -92,54 +90,30 @@
   <div id="xxx3" class="w3-container city" style="display:none">
     <h2>Institute Information</h2>
     <p>xxx3 xxxxxxxxxxxxxxxxxxxxxxxxx.</p>
-                  <div align="right">
-                      <a onclick="document.getElementById('ins-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Institute</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
-                      </a>
-                  </div> 
 
                   <?php require_once '../../../ui_connect/student_management/printf/addNew-printf/printf-ins.php'; ?>
   </div>
   <div id="xxx4" class="w3-container city" style="display:none">
     <h2>Language Information</h2>
     <p>xxx4 xxxxxxxxxxxxxxxxxxxxxxxxx.</p>
-                  <div align="right">
-                      <a onclick="document.getElementById('lg-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Language</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
-                      </a>
-                  </div>  
-
 
                   <?php require_once '../../../ui_connect/student_management/printf/addNew-printf/printf-lg.php'; ?>          
   </div>
   <div id="xxx5" class="w3-container city" style="display:none">
     <h2>Department Information</h2>
     <p>xxx5 xxxxxxxxxxxxxxxxxxxxxxxxx.</p>
-                  <div align="right">
-                      <a onclick="document.getElementById('dep-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Department</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
-                      </a>
-                  </div> 
-
 
                   <?php require_once '../../../ui_connect/student_management/printf/addNew-printf/printf-dep.php'; ?>
   </div>
   <div id="xxx6" class="w3-container city" style="display:none">
     <h2>Transportation Information</h2>
     <p>xxx6 xxxxxxxxxxxxxxxxxxxxxxxxx.</p>
-                        <div align="right">
-                            <a onclick="document.getElementById('tsp-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Transportation Line</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
-                            </a>
-                        </div>
-
 
                   <?php require_once '../../../ui_connect/student_management/printf/addNew-printf/printf-tsp.php'; ?>
   </div>
   <div id="xxx7" class="w3-container city" style="display:none">
     <h2>Bank Branch Information</h2>
     <p>xxx7 xxxxxxxxxxxxxxxxxxxxxxxxx.</p>
-                  <div align="right">
-                      <a onclick="document.getElementById('bch-add').style.display='block'" class="w3-button " style="text-decoration:none; cursor: pointer;" ><i>Add Branch</i>&nbsp;&nbsp;<img src="../../img/icon/plus-icon.png" width="19" height="19" />
-                      </a>
-                  </div> 
-
 
                   <?php require_once '../../../ui_connect/student_management/printf/addNew-printf/printf-bch.php'; ?>
   </div>

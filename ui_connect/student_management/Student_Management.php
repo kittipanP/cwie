@@ -652,6 +652,7 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
     <?php require_once '../../ui_connect/student_management/insert/add-new-row/get_add-new-row.php'; ?>
 
 <!-- ##########  div add a new row to database [E] ########## -->
+
     
     
     <!-- Nav Acc-->
@@ -734,6 +735,12 @@ function myAccFunc() {
   
         $('#load-importExcel').load('../../ui_connect/student_management/insert/import/excel/importExcel.php'); 
         $('#load-addNew').load('../../ui_connect/student_management/printf/feature-add_a_new_row.php'); 
+
+
+
+        $('#load-edit-spv-form').load('../../ui_connect/student_management/editting/add-new-row/form-editting/edit-spv-form.php'); 
+
+
 
 
       } 
