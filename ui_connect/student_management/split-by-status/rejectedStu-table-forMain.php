@@ -86,7 +86,7 @@ require_once('../../../Connections/MyConnect.php');
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
         <div class="w3-container w3-card-2 w3-white w3-round w3-margin" id="onProcess">
-                      <h2>Recent Student on Process Lists</h2>
+                      <h2>Recent Rejected Student Lists</h2>
                       <p>Search for a name in the input field.</p>
                     
                     <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for names.." id="onProcessiiInput" onkeyup="onProcessFnii()">

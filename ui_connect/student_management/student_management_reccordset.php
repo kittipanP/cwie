@@ -384,7 +384,54 @@ $query_secSet = "SELECT * FROM student_emergency_contact
 	ORDER BY student_emergency_contact.contact_id DESC";
 $secSet = mysqli_query($MyConnect, $query_secSet) or die(mysqli_error());
 $row_secSet = mysqli_fetch_assoc($secSet);
-$totalRows_secSet = mysqli_num_rows($secSet);		
+$totalRows_secSet = mysqli_num_rows($secSet);
+
+
+
+
+
+
+          $query_spvSet = "SELECT * FROM supervisor_info
+            ORDER BY spv_id DESC";
+          $spvSet = mysqli_query($MyConnect, $query_spvSet) or die(mysqli_error());
+          $row_spvSet = mysqli_fetch_assoc($spvSet);
+          $totalRows_spvSet = mysqli_num_rows($spvSet);
+
+          $query_shiSet = "SELECT * FROM supervisor_info_has_student_info";
+          $shiSet = mysqli_query($MyConnect, $query_shiSet) or die(mysqli_error());
+          $row_shiSet = mysqli_fetch_assoc($shiSet);
+          $totalRows_shiSet = mysqli_num_rows($shiSet);
+
+
+
+  $query_chaSet = "SELECT * FROM characteristic";
+  $chaSet = mysqli_query($MyConnect, $query_chaSet) or die(mysqli_error());
+  $row_chaSet = mysqli_fetch_assoc($chaSet);
+  $totalRows_chaSet = mysqli_num_rows($chaSet);
+
+  
+$query_itpSet = "SELECT * FROM institute_type";
+$itpSet = mysqli_query($MyConnect, $query_itpSet) or die(mysqli_error());
+$row_itpSet = mysqli_fetch_assoc($itpSet);
+$totalRows_itpSet = mysqli_num_rows($itpSet);
+
+
+$query_bldSet = "SELECT * FROM building_info";
+$bldSet = mysqli_query($MyConnect, $query_bldSet) or die(mysqli_error());
+$row_bldSet = mysqli_fetch_assoc($bldSet);
+$totalRows_bldSet = mysqli_num_rows($bldSet);
+
+
+$query_pvnSet = "SELECT * FROM province";
+$pvnSet = mysqli_query($MyConnect, $query_pvnSet) or die(mysqli_error());
+$row_pvnSet = mysqli_fetch_assoc($pvnSet);
+$totalRows_pvnSet = mysqli_num_rows($pvnSet);	
+
+
+	$query_depSet = "SELECT * FROM department_info";
+	$depSet = mysqli_query($MyConnect, $query_depSet) or die(mysqli_error());
+	$row_depSet = mysqli_fetch_assoc($depSet);
+	$totalRows_depSet = mysqli_num_rows($depSet);		
 
 		
 

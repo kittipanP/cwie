@@ -6,6 +6,8 @@
     //Session Query
     require_once '../../ui_connect/login/query/session.php';
 
+
+
 ?>
 <?php
 /*
@@ -97,6 +99,15 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
 	//include ("../admin/for-admin.php");
 
 ?>
+
+
+<?php 
+
+  require_once('../../ui_connect/student_management/insert/add-new-row/get_add-new-row-for-main.php');
+
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -104,42 +115,65 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
 <meta charset="UTF-8">
 <title>Student Management</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../libs/css/w3.css">
-<link rel="stylesheet" href="../../libs/css/w3-theme-blue-grey.css">
-<link rel='stylesheet' href='../../libs/css/css?family=Open+Sans'>
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<link rel="stylesheet" href="../../libs/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css">
-<link href="../../libs/css/font-awesome.min.css" rel="stylesheet">
-
-<link rel="icon" type="image/png" href="../../img/images/wd.png"/>
- 
-  <!-- For Multi Form -->
-<!--Bon	<link rel="stylesheet" href="../../libs/css/reset.min.css"> 
-	<link rel="stylesheet" href="../../libs/css/style.css?ver=2001" type="text/css">
-Bon-->
-  	<!--<link rel="stylesheet" href="../../libs/css/style-msform.css?v=<?php echo filemtime('style-msform.css'); ?>" type="text/css">-->
-    <link rel="stylesheet" href="../../libs/css/style-msform.css?v=0214i" type="text/css">
-    
-    	<!-- According-Form-->
-      <!--<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>-->
-      <link rel="stylesheet" href="../../libs/css/style-according.css?v=0228i" type="text/css">
-      
-      
-
-<!-- alert-sweetAlert2-->   
-    <link rel="stylesheet" href="../../libs/sweetAlert2/ajax-delete/assets/bootstrap/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../../libs/sweetAlert2/ajax-delete/assets/swal2/sweetalert2.min.css" type="text/css" />
-    
 
 
-<link rel="stylesheet" href="src/calendar.css">
+<!-- include main links -->
+<?php include ('../../web_elements/links/main-links.php'); ?>
+
+
+  <!-- bootstrap-select --> 
+  <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap.min.css?v=<?php echo filemtime('bootstrap.min.css'); ?>"> 
+  <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap-select.css?v=<?php echo filemtime('bootstrap-select.css'); ?>"> 
+  <script src="../../libs/bootstrap-select/dist/js/jquery.min.js"></script>
+  <script src="../../libs/bootstrap-select/dist/js/bootstrap.min.js"></script>
+  <script src="../../libs/bootstrap-select/dist/js/bootstrap-select.js"></script>
+
+
+
 </head>
 
 <style>
-html,body,h1,h2,h3,h4,h5 {	
+html,body,h1,h2,h3,h4,h5 {font-family: "Lato", sans-serif;}
+header{ background: url(../../img/head/headerv.jpg);} 
+
+body, html {
+    height: 500px;
+    color: #777;
+    line-height: 1.8;
 }
-header{ background: url(../../img/head/headerv.jpg);}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Import Excel) */
+.bgimg-1 {
+    background-image: url('../../img/bg/inner-banner-bg.png');
+    min-height: 100%;
+}
+
+/* Second image (Add a new row feature management) */
+.bgimg-2 {
+    background-image: url("../../img/bg/dash3dbg.png");
+    min-height: 100%;
+
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2 {
+        background-attachment: scroll;
+    }
+}
 </style>
+
+
 
 <STYLE type=text/css> 
 A:link {COLOR: #000000 ; TEXT-DECORATION: none} 
@@ -260,12 +294,16 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
             <a onclick="document.getElementById('id01').style.display='block', w3_close()" >&nbsp;&nbsp;<i class="fa fa-flash w3-margin-right" ></i>&nbsp;Fast Process</a>
             <a href="../../ui_connect/main-connect-ui/stu-insert-all.php" class="w3-bar-item w3-button">&nbsp;&nbsp;<i class="fa fa-plus w3-margin-right"></i>Full Process</a>
           </div>
+
+
+          <a href="#import" onclick="w3_close()"><i class="fa fa-file-excel-o w3-margin-right"></i> Import Data</a>
+          <a href="#addNew" onclick="w3_close()"><i class="fa fa-database w3-margin-right"></i> Database Elements Management</a>
           <a href="#allRecent" onclick="w3_close()"><i class="fa fa-globe w3-margin-right"></i> All</a>
           <a href="#onProcesss" onclick="w3_close()"><i class="fa fa-address-book w3-margin-right"></i> On Process</a>
           <a href="#waitingOnBoard" onclick="w3_close()"><i class="fa fa-thumbs-up w3-margin-right"></i> Waiting on Board</a>
           <a href="#reject" onclick="w3_close()"><i class="fa fa-ban w3-margin-right"></i> Reject</a>
           <a href="#trainee" onclick="w3_close()"><i class="fa fa-id-card w3-margin-right"></i>Trainee</a>
-          <a href="#oldTrainee" onclick="w3_close()"><i class="fa fa-list w3-margin-right"></i>Old Trainee</a>
+          <a href="#oldTrainee"  onclick="w3_close()"><i class="fa fa-list w3-margin-right"></i>Old Trainee</a>
     </nav>
     <!-- Navigation II [E] ## Navigation II [E] ## Navigation II [E] ## Navigation II [E] ## Navigation II [E] ## Navigation II [E] -->
         
@@ -492,7 +530,13 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
     </div>
   <!-- End Page Container -->
   </div>
-   
+ 
+
+
+        </p>
+
+
+
       
     <!-- Filter Table All -->     
     <div id="allRecent">
@@ -532,10 +576,68 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
 	  <div id="reject">
 
       <div id="load-rejectedStu-table-forMain"></div><!-- load */rejectedStu-table-forMain.php -->
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
+          
     </div> 
+
+
+    <!-- First Parallax Image with Portfolio Text -->
+    <div class="bgimg-1 w3-display-container w3-opacity-min">
+      <div class="w3-display-middle">
+        <span class="w3-xxlarge w3-text-white w3-wide">IMPORT EXCEL TO DATABASE</span>
+      </div>
+    </div>
+        <div id="import">
+
+          <div id="load-importExcel"></div><!-- load */importExcel.php -->
+
+        </div> 
+
+
+    <!-- Second Parallax Image with Portfolio Text -->
+    <div class="bgimg-2 w3-display-container w3-opacity-min">
+      <div class="w3-display-middle">
+        <span class="w3-xxlarge w3-text-white w3-wide">ADD A NEW ROW</span>
+      </div>
+    </div>
+        <div id="addNew">
+
+          <div id="load-addNew"></div><!-- load */importExcel.php -->
+
+        </div> 
+
+        <p>
+          
+        </p>
+
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
     
     <!--Calendar-->
     <div id="wdS"></div>
@@ -544,6 +646,12 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
     <div id="wexE"></div>
     
 	
+<!-- ##########  div add a new row to database [S] ########## -->
+
+    <!-- get add new row-->
+    <?php require_once '../../ui_connect/student_management/insert/add-new-row/get_add-new-row.php'; ?>
+
+<!-- ##########  div add a new row to database [E] ########## -->
     
     
     <!-- Nav Acc-->
@@ -623,10 +731,17 @@ function myAccFunc() {
         $('#load-trainee-table-forMain').load('../../ui_connect/student_management/split-by-status/trainee-table-forMain.php');  
         $('#load-endedTrainee-table-forMain').load('../../ui_connect/student_management/split-by-status/endedTrainee-table-forMain.php');  
         $('#load-rejectedStu-table-forMain').load('../../ui_connect/student_management/split-by-status/rejectedStu-table-forMain.php'); 
+  
+        $('#load-importExcel').load('../../ui_connect/student_management/insert/import/excel/importExcel.php'); 
+        $('#load-addNew').load('../../ui_connect/student_management/printf/feature-add_a_new_row.php'); 
+
+
       } 
 
       
     </script>
+
+
    
     
     
