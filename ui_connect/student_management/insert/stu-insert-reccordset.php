@@ -118,14 +118,15 @@ if (isset($_SERVER['QUERY_STRING'])) {
                  GetSQLValueString($_POST['bg_institute_name'], "text"),
                  GetSQLValueString($_POST['bg_gpax'], "text")); 
                  
-  /*$insertSQL_vdo = sprintf("INSERT INTO video (video_name, video_file, application_id) VALUES (%s, %s, %s)",
+  
+             
+    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES (%s, %s)",
+                       GetSQLValueString(upload($_FILES['resume_file'],'./resume-source/'), "text"),
+                       GetSQLValueString($_POST['application_id'], "int"));
+/*
+    $insertSQL_vdo = sprintf("INSERT INTO video (video_name, video_file, application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['video_name'], "text"),
                        GetSQLValueString(upload($_FILES['video_file'],'./vdo-source/'), "text"),
-                       GetSQLValueString($_POST['application_id'], "int"));
-             
-  $insertSQL_res = sprintf("INSERT INTO resume (resume_name, resume_file, application_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['resume_name'], "text"),
-                       GetSQLValueString(upload($_FILES['resume_file'],'./resume-source/'), "text"),
                        GetSQLValueString($_POST['application_id'], "int"));
 
     $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_name, transcript_file, application_id) VALUES (%s, %s, %s)",
@@ -282,8 +283,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
       $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error($MyConnect));
 
       
-     /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error());
-      $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());   
+      $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());  
+     /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error()); 
       $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die(mysqli_error());
       $Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
       $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());*/
