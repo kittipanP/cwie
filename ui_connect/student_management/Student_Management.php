@@ -613,31 +613,6 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
     
     <!--Calendar-->
     <div id="wdS"></div>
@@ -736,13 +711,6 @@ function myAccFunc() {
         $('#load-importExcel').load('../../ui_connect/student_management/insert/import/excel/importExcel.php'); 
         $('#load-addNew').load('../../ui_connect/student_management/printf/feature-add_a_new_row.php'); 
 
-
-
-        $('#load-edit-spv-form').load('../../ui_connect/student_management/editting/add-new-row/form-editting/edit-spv-form.php'); 
-
-
-
-
       } 
 
       
@@ -751,16 +719,12 @@ function myAccFunc() {
 
    
     
+<?php 
+    //Footer
+    require_once '../../web_elements/footer.php'; 
+?>     
     
     
-<!-- Footer -->
-    <footer class="w3-container w3-theme-d3 w3-padding-16">
-      <h5>Footer</h5>
-    </footer>
-    
-    <footer class="w3-container w3-theme-d5">
-       <p>By <a href="http://www.facebook.com/Bon.KP" target="_blank">บอนไง จะใครล่ะ ^^</a></p>
-    </footer>
  
 <?php include ("js-script/js-script.php"); ?>    
 
