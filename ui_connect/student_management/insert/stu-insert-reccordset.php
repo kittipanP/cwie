@@ -41,7 +41,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 		/*-- Reccordset Student_Info [S]--*/
 		if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+  	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id, s_nickname) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['s_id'], "int"),
                        GetSQLValueString($_POST['s_fname'], "text"),
                        GetSQLValueString($_POST['s_lname'], "text"),
@@ -54,7 +54,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['status_id'], "int"),
                        GetSQLValueString($_POST['ref_id'], "int"),
                        GetSQLValueString($_POST['national_id'], "int"),
-                       GetSQLValueString($_POST['title_title_id'], "int"));
+                       GetSQLValueString($_POST['title_title_id'], "int"),
+                       GetSQLValueString($_POST['s_nickname'], "text"));
 
 
     $insertSQL_edt = sprintf("INSERT INTO education_info (education_id, edu_institute, major_id, degree_id, s_id) VALUES (%s, %s, %s, %s, %s)",
