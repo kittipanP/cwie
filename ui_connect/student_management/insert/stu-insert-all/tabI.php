@@ -11,7 +11,7 @@
  
                   <div class="w3-third">
                     <div>
-                        <input type="text" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />        
+                        <input type="hidden" name="s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" />        
                       	<input type="hidden" name="s_dob" value="" size="32" />
                         <input type="hidden" name="origin_id" value="" size="32" />
                         <input type="hidden" name="type_id" value="" size="32" />
@@ -39,11 +39,11 @@
                       <div align="left">
                       	<label for="s_fname"> First Name : </label>
                       </div>
-                      <input id="inputFirstname" class="" type="text" name="s_fname" value="" size="32" placeholder="KITTIPAN" />
+                      <input id="inputFirstname" class="" type="text" name="s_fname" value="" size="32" placeholder="KITTIPAN" required/>
                       <div align="left">
                       	<label for="s_lname"> Last Name : </label>
                       </div>
-                      <input id="inputLastname" type="text" name="s_lname" value="" size="32" placeholder="PRASERTSANG"/>
+                      <input id="inputLastname" type="text" name="s_lname" value="" size="32" placeholder="PRASERTSANG" required/>
                     </div>
                   </div>
        
@@ -100,7 +100,6 @@
                   </div>
                  
                 </div>          
-                  <div class="accordion">
                         <div class="w3-row-padding w3-center w3-margin-top">
         				  <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p>Emergency Cantact Data</p></div>
                           <div class="w3-third">
@@ -251,9 +250,7 @@
                                 </div>
                               </div>
                             </div>	    
-                      
-                  </div>
-                  <!-- Accordion [E] ## Accordion [E] ## Accordion [E] ## Accordion [E]-->        
+                            
 				      
               </fieldset>
 
@@ -388,8 +385,7 @@
                     </div>
                   </div>
                  
-                </div>                     
-                  <div class="accordion">
+                </div>                   
                             <p></p>
                       	<div class="w3-row-padding w3-center w3-margin-top">
 
@@ -453,8 +449,6 @@
                             </div>
                           </div>
                         </div>
-                  </div>
-                  <!-- Accordion [E] ## Accordion [E] ## Accordion [E] ## Accordion [E]-->
 
               </fieldset>
 
