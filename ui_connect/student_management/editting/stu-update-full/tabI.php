@@ -65,22 +65,43 @@
                         <label for="thai_lname"> Thai Last Name : </label>
                         </div>
                         <input type="text" name="thai_lname" value="<?php echo htmlentities($row_Recordset1_stu['thai_lname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
-                        <div align="left">
-                        <label for="statusSelect"> Student status : </label>
-                        </div>
-                        <select name="status_id" style="width: 100%;">
-                            <option  name="title_title_id" value="<?php echo htmlentities($row_status_rec['status_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_status_rec['status_desc']?></option>
-                          <?php do {  ?>
-                            <option  name="title_title_id" value="<?php echo htmlentities($row_statusSet['status_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_statusSet['status_desc']?></option>
-                            <?php
-                                } while ($row_statusSet = mysqli_fetch_assoc($statusSet));
-                                  $rows = mysqli_num_rows($statusSet);
-                                  if($rows > 0) {
-                                  mysqli_data_seek($statusSet, 0);
-                                  $row_statusSet = mysqli_fetch_assoc($statusSet);
-                                  }
-                            ?>
-                        </select> 
+
+
+                        <dev class="">
+                            <del class=" w3-half">
+                                <div align="left">
+                                <label for="thai_lname">  Nick Name : </label>
+                                </div>
+                        <input type="text" name="s_nickname" value="<?php echo htmlentities($row_Recordset1_stu['s_nickname'], ENT_COMPAT, 'utf-8'); ?>" size="32" />
+                              
+                            </dev>
+                        </dev>
+
+
+
+
+                        <dev class="w3-row-padding w3-center ">
+                            <dev class="w3-half">
+
+                                    
+                                <div align="left">
+                                <label for="statusSelect"> Student status : </label>
+                                </div>
+                                <select name="status_id" style="width: 100%;">
+                                    <option  name="title_title_id" value="<?php echo htmlentities($row_status_rec['status_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_status_rec['status_desc']?></option>
+                                  <?php do {  ?>
+                                    <option  name="title_title_id" value="<?php echo htmlentities($row_statusSet['status_id'], ENT_COMPAT, 'utf-8')?>"><?php echo $row_statusSet['status_desc']?></option>
+                                    <?php
+                                        } while ($row_statusSet = mysqli_fetch_assoc($statusSet));
+                                          $rows = mysqli_num_rows($statusSet);
+                                          if($rows > 0) {
+                                          mysqli_data_seek($statusSet, 0);
+                                          $row_statusSet = mysqli_fetch_assoc($statusSet);
+                                          }
+                                    ?>
+                                </select> 
+                            </dev>
+                        </dev>
                     </div>
                   </div>
                         
