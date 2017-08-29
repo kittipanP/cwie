@@ -359,7 +359,7 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
 
                 <!-- First Column-->
                 <div class="w3-third">
-                    <div class="w3-card-4 " style="min-height:491px"><!--490-->
+                    <div class="w3-card-4 " style="min-height:470px"><!--490-->
 
                       <!-- add_fast-->
                       
@@ -407,7 +407,7 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
 
                 <!-- Second Column -->
                 <div class="w3-twothird">
-                    <div class="w3-card-4 " style="min-height:491px">
+                    <div class="w3-card-4" style="min-height:470px">
 
                       <!-- All -->
                       <div class="w3-third">
@@ -430,7 +430,7 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
                                     <img src="../../img/images/onProi.jpg" class="w3-hover-opacity" style="width:100%; height: 105px; ">
                                       <div class="w3-display-middle w3-display-hover"> 
                                         <div class="w3-panel w3-orange w3-card-2 ">
-                                          <a href="../../ui_connect/main-connect-ui/onProcess.php" class = "textdecoration"><p>Incomplet Documentation</p></a>
+                                          <a href="../../ui_connect/main-connect-ui/onProcess.php" class = "textdecoration"><p>Incomplete Documentation</p></a>
                                         </div>
                                       </div>
                                   </a>   
@@ -443,7 +443,7 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
                                     <img src="../../img/images/onProii.jpg" class="w3-hover-opacity" style="width:100%; height: 100px; ">
                                       <div class="w3-display-middle w3-display-hover"> 
                                         <div class="w3-panel w3-green w3-card-2 ">
-                                          <a href="../../ui_connect/main-connect-ui/onProcess.php" class = "textdecoration"><p>Complet Documentation</p></a>
+                                          <a href="../../ui_connect/main-connect-ui/onProcess.php" class = "textdecoration"><p>Complete Documentation</p></a>
                                         </div>
                                       </div>
                                   </a>   
@@ -451,7 +451,7 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
                             </div>
                             <a href="../../ui_connect/main-connect-ui/onProcess.php">
                               <div class = "w3-container" >
-                                 <h4> Stusent on Process</h4> 
+                                 <h4> Student on Process</h4> 
                               </div>
                             </a>  
                           </div>
