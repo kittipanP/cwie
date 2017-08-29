@@ -2,3 +2,5 @@
 *.xlsx
 *.sql
 *.mwb
+ui_connect/main-connect-ui/resume-source/*
+ui_connect/main-connect-ui/fn-upload.inc.php
