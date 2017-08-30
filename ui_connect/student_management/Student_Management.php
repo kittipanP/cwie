@@ -100,6 +100,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
 
 ?>
 
+<?php //include ("../../ui_connect/student_management/insert/stu-insert-reccordset.php"); ?>
 
 <?php 
 
@@ -314,7 +315,9 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
         <div class="w3-container">
 
           <div id="id01" class="w3-modal">
-            <?php include 'multiple-step-form-insert.php' ?></div>
+
+            <?php include 'insert/multi-i/insert-msForm.php' ?></div>
+            <?php //include 'multiple-step-form-insert.php' ?></div>
           <div id="stu-edit" class="w3-modal">
              </div>
         </div>
