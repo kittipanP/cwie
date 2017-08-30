@@ -65,7 +65,7 @@ body {
 
 #addform select {
 	text-align: right;
-	padding: 15px;
+	padding: 5px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	margin-bottom: 10px;
@@ -77,7 +77,7 @@ body {
 	font-size: 13px;
 }
 #addform option {
-	padding: 15px;
+	padding: 5px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	margin-bottom: 10px;

@@ -18,13 +18,13 @@
 
 
       <!-- style muti-form-->
-      <link rel="stylesheet" href="../../libs/css/style-msform.css?v=0214i" type="text/css">
+      <link rel="stylesheet" href="../../libs/css/style-msform.css?v=0830" type="text/css">
 
       <!-- style full form-->
       <link rel="stylesheet" href="../../libs/css/style-fullform.css?v=0214i" type="text/css">
 
       <!-- style add form-->
-      <link rel="stylesheet" href="../../libs/css/style-addform.css?v=0214i" type="text/css">
+      <link rel="stylesheet" href="../../libs/css/style-addform.css?v=0830" type="text/css">
 
 
       <!-- According-->

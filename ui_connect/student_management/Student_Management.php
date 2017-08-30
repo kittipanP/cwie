@@ -314,7 +314,9 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
         <div class="w3-container">
 
           <div id="id01" class="w3-modal">
-            <?php include 'multiple-step-form-insert.php' ?></div>
+
+            <?php include 'insert/multi-i/insert-msForm.php' ?></div>
+            <?php //include 'multiple-step-form-insert.php' ?></div>
           <div id="stu-edit" class="w3-modal">
              </div>
         </div>
