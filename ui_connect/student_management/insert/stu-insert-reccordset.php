@@ -606,7 +606,7 @@ $totalRows_secSet = mysqli_num_rows($secSet);
   $preSet = mysqli_query($MyConnect, $query_preSet) or die(mysqli_error());
   $row_preSet = mysqli_fetch_assoc($preSet);
   $totalRows_preSet = mysqli_num_rows($preSet);
-*/  
+*/   
 
 
           $query_spvSet = "SELECT * FROM supervisor_info
