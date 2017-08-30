@@ -100,6 +100,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
 
 ?>
 
+<?php //include ("../../ui_connect/student_management/insert/stu-insert-reccordset.php"); ?>
 
 <?php 
 

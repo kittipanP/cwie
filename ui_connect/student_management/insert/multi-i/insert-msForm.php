@@ -860,7 +860,7 @@ test-->
                         <input type="hidden" name="tac_acc_id" value="<?php echo $row_tacSet['trainee_acc_id']+1?>" size="32" placeholder="" />
                         
 
-                        <input type="hidden" name="supervisor_info_spv_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" placeholder="" />
+                        <input type="hidden" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" placeholder="" />
    
                         <input type="hidden" name="project_id" value="" size="32" placeholder="" /> 
             
