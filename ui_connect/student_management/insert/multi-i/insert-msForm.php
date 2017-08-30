@@ -939,14 +939,13 @@ test-->
 
 
 <!-- From tab III [S] From tab III [S] From tab III [S] From tab III [S] From tab III [S] From tab III [S]-->
-
-
+                        <input type="hidden" name="eva_id" value="" size="32" placeholder="" />
+                        <input type="hidden" name="stu_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" placeholder="" />
 <!-- From tab III [E] From tab III [E] From tab III [E] From tab III [E] From tab III [E] From tab III [E]-->
                                             
 
 
 <!-- From tab IV [S] From tab IV [S] From tab IV [S] From tab IV [S] From tab IV [S] From tab IV [S]-->
-
 
 <!-- From tab IV [E] From tab IV [E] From tab IV [E] From tab IV [E] From tab IV [E] From tab IV [E]-->
                                       
