@@ -191,12 +191,12 @@
                         <div align="left">
                         <label for="">Starting Date: </label>
                         </div>
-                        <input type="text" name="" value="" size="32" placeholder="trigger calendar" id="dtwdS"/>
+                        <input type="text" name="application_dateS" value="" size="32" placeholder="trigger calendar" id="dtwdS"/>
 
                         <div align="left">
                         <label for="">Ending Date: </label>
                         </div>
-                        <input type="text" name="" value="" size="32" placeholder="trigger calendar" id="dtwdE"/>
+                        <input type="text" name="application_dateE" value="" size="32" placeholder="trigger calendar" id="dtwdE"/>
 
 
 
