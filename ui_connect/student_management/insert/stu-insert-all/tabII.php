@@ -129,7 +129,7 @@
                     <div class="w3-row-padding w3-center w3-margin-top">
                       <div class="w3-panel w3-gray w3-card-8 w3-center-align"><p> Supervisor Information</p></div>
 
-                        <input type="hidden" name="supervisor_info_spv_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" placeholder="" />
+                        <input type="hidden" name="student_info_s_id" value="<?php echo $row_studentSet['s_id']+1?>" size="32" placeholder="" />
                         <select name="supervisor_info_spv_id" id="" style="width: 100%; " class="selectpicker" data-live-search="true" title="Please Select Suppervisor !">
                                   <!-- <option value="">Select Supervisor</option> -->
                                 <?php
@@ -191,12 +191,12 @@
                         <div align="left">
                         <label for="">Starting Date: </label>
                         </div>
-                        <input type="text" name="" value="" size="32" placeholder="trigger calendar" id="dtwdS"/>
+                        <input type="text" name="application_dateS" value="" size="32" placeholder="trigger calendar" id="dtwdS"/>
 
                         <div align="left">
                         <label for="">Ending Date: </label>
                         </div>
-                        <input type="text" name="" value="" size="32" placeholder="trigger calendar" id="dtwdE"/>
+                        <input type="text" name="application_dateE" value="" size="32" placeholder="trigger calendar" id="dtwdE"/>
 
 
 

@@ -42,13 +42,14 @@ require_once('../../../Connections/MyConnect.php');
     $startRow_studentSet = $pageNum_studentSet * $maxRows_studentSet;
     
     mysqli_select_db($MyConnect, $database_MyConnect);
-      $query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name
+      $query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name, institute.ins_name
       FROM student_info
       INNER JOIN title ON title.title_id = student_info.title_title_id
       INNER JOIN student_status ON student_status.status_id = student_info.status_id
       LEFT JOIN education_info ON student_info.s_id = education_info.s_id
       LEFT JOIN major_info ON major_info.major_id = education_info.major_id
       LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+      LEFT JOIN institute ON institute.ins_id = education_info.edu_institute
       WHERE (student_status.status_id = '4')
       ORDER BY student_info.s_id DESC";
     $query_limit_studentSet = sprintf("%s LIMIT %d, %d", $query_studentSet, $startRow_studentSet, $maxRows_studentSet);
@@ -110,8 +111,7 @@ require_once('../../../Connections/MyConnect.php');
                               <td><?php echo $row_studentSet['s_lname']; ?></td>
                               <td><?php echo $row_studentSet['degree_name']; ?></td>
                               <td><?php echo $row_studentSet['major_name']; ?></td>
-                              <td><?php //echo $row_studentSet['uni_name']; ?>
-                                    <?php //echo $row_studentSet['collage_name']; ?></td>
+                              <td><?php echo $row_studentSet['ins_name']; ?></td>
                               <td><a class="btn btn-default w3-hover-blue" href="stu-update-all.php?s_id=<?php echo $row_studentSet['s_id']; ?>"><i class="fa fa-pencil"></i></a></td>
                               <td><a  class="btn btn-default w3-hover-red" id="delete_product" data-id="<?php echo $row_studentSet['s_id']; ?>" href="javascript:void(0)"><i class="fa fa-trash "></i></a></td>
                             </tr> 

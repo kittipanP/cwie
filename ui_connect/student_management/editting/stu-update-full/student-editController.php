@@ -44,7 +44,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   }
 
   $updateSQL_stu = sprintf("UPDATE student_info AS stu
-    SET stu.s_fname=%s, stu.s_lname=%s, stu.thai_fname=%s, stu.thai_lname=%s, stu.s_dob=%s, stu.remark=%s, stu.origin_id=%s, stu.type_id=%s, stu.status_id=%s, stu.ref_id=%s, stu.national_id=%s, stu.title_title_id=%s 
+    SET stu.s_fname=%s, stu.s_lname=%s, stu.thai_fname=%s, stu.thai_lname=%s, stu.s_dob=%s, stu.remark=%s, stu.origin_id=%s, stu.type_id=%s, stu.status_id=%s, stu.ref_id=%s, stu.national_id=%s, stu.title_title_id=%s, stu.s_nickname=%s 
     WHERE stu.s_id=%s",
                        GetSQLValueString($_POST['s_fname'], "text"),
                        GetSQLValueString($_POST['s_lname'], "text"),
@@ -58,6 +58,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
                        GetSQLValueString($_POST['ref_id'], "int"),
                        GetSQLValueString($_POST['national_id'], "int"),
                        GetSQLValueString($_POST['title_title_id'], "int"),
+                       GetSQLValueString($_POST['s_nickname'], "text"),
                        GetSQLValueString($_POST['s_id'], "int"));
 
     $updateSQL_scd = sprintf("UPDATE student_contact_details 
