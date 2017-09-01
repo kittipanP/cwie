@@ -26,13 +26,17 @@
         <div class="w3-row"> 
 
             <!-- Header -->
+<!--AUG 1, 2017 [S]
             <header class="w3-container w3-theme w3-padding w3-round" id="myHeader">
                 <div class="w3-center">
                     <h1 class="w3-xxlarge w3-animate-left">Welcome To</h1>
                     <h1 class="w3-xxxlarge w3-animate-right">Trainee Management System</h1>
                 </div>
             </header>
+AUG 1, 2017 [E]-->
             <p>&nbsp;</p>
+             <p>&nbsp;</p>
+              <p>&nbsp;</p>
              <p>&nbsp;</p>
               <p>&nbsp;</p>
                
@@ -81,7 +85,7 @@
 
 <?php 
     //Footer
-    require_once '../../web_elements/footer.php'; ?> 
+//AUG 1, 2017    require_once '../../web_elements/footer.php'; ?> 
 
 <?php
     //Script for toggling menu bar on small screen
