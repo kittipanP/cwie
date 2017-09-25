@@ -43,6 +43,43 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $prmii = $_GET['s_id'];
   }
 
+  //Set ว/ด/ป เวลา ให้เป็นของประเทศไทย
+    date_default_timezone_set('Asia/Bangkok');
+  //สร้างตัวแปรวันที่เพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลด
+  $date1 = date("Ymd_his");
+  //สร้างตัวแปรสุ่มตัวเลขเพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลดไม่ให้ชื่อไฟล์ซ้ำกัน
+  $numrand = (mt_rand());
+
+
+
+
+/*-- Profile PICTURE --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $app_pic = (isset($_REQUEST['app_pic']) ? $_REQUEST['app_pic'] : '');
+  
+  $app_upload=$_FILES['app_pic'];
+  if($app_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $app_path="pics-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $app_type = strrchr($_FILES['app_pic']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $app_newname =$numrand.$date1.$app_type;
+
+  $app_path_copy=$app_path.$app_newname;
+  $app_path_link="pics-source/".$app_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $app = move_uploaded_file($_FILES['app_pic']['tmp_name'],$app_path_copy);  
+  if($app){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $app_newnameii = $numrand.$date1.$app_type;
+  } 
+  
+  }
+
+
+
   $updateSQL_stu = sprintf("UPDATE student_info AS stu
     SET stu.s_fname=%s, stu.s_lname=%s, stu.thai_fname=%s, stu.thai_lname=%s, stu.s_dob=%s, stu.remark=%s, stu.origin_id=%s, stu.type_id=%s, stu.status_id=%s, stu.ref_id=%s, stu.national_id=%s, stu.title_title_id=%s, stu.s_nickname=%s 
     WHERE stu.s_id=%s",
@@ -261,7 +298,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
 
     $updateSQL_app = sprintf("UPDATE application  
       INNER JOIN student_info ON student_info.s_id = application.s_id
-      SET application_dateS=%s, application_dateE=%s
+      SET application_dateS=%s, application_dateE=%s, app_pic='$app_newnameii'
       WHERE student_info.s_id = $prm",
                        GetSQLValueString($_POST['application_dateS'], "date"),
                        GetSQLValueString($_POST['application_dateE'], "date"),
@@ -304,7 +341,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $Result1_tac = mysqli_query($MyConnect, $updateSQL_tac) or die(mysqli_error());
   $Result1_bac = mysqli_query($MyConnect, $updateSQL_bac) or die(mysqli_error());
   $Result1_thp = mysqli_query($MyConnect, $updateSQL_thp) or die(mysqli_error());
-  $Result1_app = mysqli_query($MyConnect, $updateSQL_app) or die(mysqli_error());
+  $Result1_app = mysqli_query($MyConnect, $updateSQL_app) or die(mysqli_error($MyConnect));
   $Result1_eva = mysqli_query($MyConnect, $updateSQL_eva) or die(mysqli_error());
 
   $Result1_shs = mysqli_query($MyConnect, $updateSQL_shs) or die(mysqli_error($MyConnect));
