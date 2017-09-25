@@ -104,6 +104,32 @@ if (isset($_SERVER['QUERY_STRING'])) {
   }
 
 
+/*-- VISA --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $visa_file = (isset($_REQUEST['visa_file']) ? $_REQUEST['visa_file'] : '');
+  
+  $vis_upload=$_FILES['visa_file'];
+  if($vis_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $vis_path="visa-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $vis_type = strrchr($_FILES['visa_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $vis_newname =$numrand.$date1.$vis_type;
+
+  $vis_path_copy=$vis_path.$vis_newname;
+  $vis_path_link="transcript-source/".$vis_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $vis = move_uploaded_file($_FILES['visa_file']['tmp_name'],$vis_path_copy);  
+  if($vis){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $vis_newnameii = $numrand.$date1.$vis_type;
+  } 
+  
+  }
+
+
   	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id, s_nickname) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['s_id'], "int"),
                        GetSQLValueString($_POST['s_fname'], "text"),
@@ -200,12 +226,10 @@ if (isset($_SERVER['QUERY_STRING'])) {
 */
     $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_file, application_id) VALUES ('$tsp_newnameii', '%s')",
                        GetSQLValueString($_POST['application_id'], "int"));
-/*
-    $insertSQL_vis = sprintf("INSERT INTO visa (visa_name, visa_file, application_application_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['visa_name'], "text"),
-             GetSQLValueString(upload($_FILES['visa_file'],'./visa-source/'), "text"),
-                       GetSQLValueString($_POST['application_application_id'], "int"));
 
+    $insertSQL_vis = sprintf("INSERT INTO visa (visa_file, application_application_id) VALUES ('$vis_newnameii', '%s')",
+                       GetSQLValueString($_POST['application_application_id'], "int"));
+/*
     $insertSQL_oth = sprintf("INSERT INTO other_doc (other_name, other_file, application_application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['other_name'], "text"),
              GetSQLValueString(upload($_FILES['other_file'],'./other-source/'), "text"),
@@ -354,8 +378,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
       //$Result1_resii = mysqli_query($MyConnect, $insertSQL_resii) or die ("Error in query: $insertSQL_res " . mysqli_error($MyConnect));
      // $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error()); 
       $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die ("Error in query: $insertSQL_tra " . mysqli_error($MyConnect));
-      /*$Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
-      $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());*/
+      $Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
+      //$Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());
 
       $Result1_wex = mysqli_query($MyConnect, $insertSQL_wex) or die(mysqli_error());
       $Result1_ext = mysqli_query($MyConnect, $insertSQL_ext) or die(mysqli_error($MyConnect));
