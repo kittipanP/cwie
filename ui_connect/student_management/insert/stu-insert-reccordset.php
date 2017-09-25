@@ -60,18 +60,19 @@ if (isset($_SERVER['QUERY_STRING'])) {
   if($res_upload <> '') { 
 
   //โฟลเดอร์ที่เก็บไฟล์
-  $path="resume-source/";
+  $res_path="resume-source/";
   //ตัวขื่อกับนามสกุลภาพออกจากกัน
-  $type = strrchr($_FILES['resume_file']['name'],".");
+  $res_type = strrchr($_FILES['resume_file']['name'],".");
   //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
-  $newname =$numrand.$date1.$type;
+  $res_newname =$numrand.$date1.$type;
 
-  $path_copy=$path.$newname;
-  $path_link="resume-source/".$newname;
+  $res_path_copy=$res_path.$res_newname;
+  $res_path_link="resume-source/".$res_newname;
   //คัดลอกไฟล์ไปยังโฟลเดอร์
-  $res = move_uploaded_file($_FILES['resume_file']['tmp_name'],$path_copy);  
+  $res = move_uploaded_file($_FILES['resume_file']['tmp_name'],$res_path_copy);  
   if($res){
-    $res_newname = $numrand.$date1.$type;
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $res_newnameii = $numrand.$date1.$res_type;
   }
   
   }
@@ -94,8 +95,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
   $tsp_path_copy=$tsp_path.$tsp_newname;
   $tsp_path_link="transcript-source/".$tsp_newname;
   //คัดลอกไฟล์ไปยังโฟลเดอร์
-  move_uploaded_file($_FILES['transcript_file']['tmp_name'],$tsp_path_copy);  
-    
+  $tsp = move_uploaded_file($_FILES['transcript_file']['tmp_name'],$tsp_path_copy);  
+  if($tsp){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $tsp_newnameii = $numrand.$date1.$tsp_type;
+  } 
   
   }
 
@@ -179,7 +183,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                  
   
             
-    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES ('$res_newname', '%s')",
+    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES ('$res_newnameii', '%s')",
                        GetSQLValueString($_POST['application_id'], "int"));
     
 /*
@@ -194,7 +198,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString(upload($_FILES['video_file'],'./vdo-source/'), "text"),
                        GetSQLValueString($_POST['application_id'], "int"));
 */
-    $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_file, application_id) VALUES ('$tsp_newname', '%s')",
+    $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_file, application_id) VALUES ('$tsp_newnameii', '%s')",
                        GetSQLValueString($_POST['application_id'], "int"));
 /*
     $insertSQL_vis = sprintf("INSERT INTO visa (visa_name, visa_file, application_application_id) VALUES (%s, %s, %s)",
