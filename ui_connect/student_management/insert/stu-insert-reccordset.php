@@ -56,8 +56,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
   //รับชื่อไฟล์จากฟอร์ม 
   $resume_file = (isset($_REQUEST['resume_file']) ? $_REQUEST['resume_file'] : '');
   
-  $upload=$_FILES['resume_file'];
-  if($upload <> '') { 
+  $res_upload=$_FILES['resume_file'];
+  if($res_upload <> '') { 
 
   //โฟลเดอร์ที่เก็บไฟล์
   $path="resume-source/";
@@ -69,30 +69,32 @@ if (isset($_SERVER['QUERY_STRING'])) {
   $path_copy=$path.$newname;
   $path_link="resume-source/".$newname;
   //คัดลอกไฟล์ไปยังโฟลเดอร์
-  move_uploaded_file($_FILES['resume_file']['tmp_name'],$path_copy);  
-    
+  $res = move_uploaded_file($_FILES['resume_file']['tmp_name'],$path_copy);  
+  if($res){
+    $res_newname = $numrand.$date1.$type;
+  }
   
   }
 
 
 /*-- TRANSCRIPT --*/
   //รับชื่อไฟล์จากฟอร์ม 
-  $resume_file = (isset($_REQUEST['resume_file']) ? $_REQUEST['resume_file'] : '');
+  $transcript_file = (isset($_REQUEST['transcript_file']) ? $_REQUEST['transcript_file'] : '');
   
-  $upload=$_FILES['resume_file'];
-  if($upload <> '') { 
+  $tsp_upload=$_FILES['transcript_file'];
+  if($tsp_upload <> '') { 
 
   //โฟลเดอร์ที่เก็บไฟล์
-  $path="resume-source/";
+  $tsp_path="transcript-source/";
   //ตัวขื่อกับนามสกุลภาพออกจากกัน
-  $type = strrchr($_FILES['resume_file']['name'],".");
+  $tsp_type = strrchr($_FILES['transcript_file']['name'],".");
   //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
-  $newname =$numrand.$date1.$type;
+  $tsp_newname =$numrand.$date1.$tsp_type;
 
-  $path_copy=$path.$newname;
-  $path_link="resume-source/".$newname;
+  $tsp_path_copy=$tsp_path.$tsp_newname;
+  $tsp_path_link="transcript-source/".$tsp_newname;
   //คัดลอกไฟล์ไปยังโฟลเดอร์
-  move_uploaded_file($_FILES['resume_file']['tmp_name'],$path_copy);  
+  move_uploaded_file($_FILES['transcript_file']['tmp_name'],$tsp_path_copy);  
     
   
   }
@@ -177,7 +179,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                  
   
             
-    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES ('$newname', '%s')",
+    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES ('$res_newname', '%s')",
                        GetSQLValueString($_POST['application_id'], "int"));
     
 /*
@@ -191,12 +193,10 @@ if (isset($_SERVER['QUERY_STRING'])) {
                        GetSQLValueString($_POST['video_name'], "text"),
                        GetSQLValueString(upload($_FILES['video_file'],'./vdo-source/'), "text"),
                        GetSQLValueString($_POST['application_id'], "int"));
-
-    $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_name, transcript_file, application_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['transcript_name'], "text"),
-             GetSQLValueString(upload($_FILES['transcript_file'],'./transcript-source/'), "text"),
+*/
+    $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_file, application_id) VALUES ('$tsp_newname', '%s')",
                        GetSQLValueString($_POST['application_id'], "int"));
-
+/*
     $insertSQL_vis = sprintf("INSERT INTO visa (visa_name, visa_file, application_application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['visa_name'], "text"),
              GetSQLValueString(upload($_FILES['visa_file'],'./visa-source/'), "text"),
@@ -348,9 +348,9 @@ if (isset($_SERVER['QUERY_STRING'])) {
       
       $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die ("Error in query: $insertSQL_res " . mysqli_error($MyConnect));
       //$Result1_resii = mysqli_query($MyConnect, $insertSQL_resii) or die ("Error in query: $insertSQL_res " . mysqli_error($MyConnect));
-     /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error()); 
-      $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die(mysqli_error());
-      $Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
+     // $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error()); 
+      $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die ("Error in query: $insertSQL_tra " . mysqli_error($MyConnect));
+      /*$Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
       $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());*/
 
       $Result1_wex = mysqli_query($MyConnect, $insertSQL_wex) or die(mysqli_error());
