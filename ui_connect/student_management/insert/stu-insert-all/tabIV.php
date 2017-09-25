@@ -118,10 +118,7 @@
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left"> Profile Picture</td>
-                          <td><input type="file" name="" value="" size="32" /></td>
-                        </tr>
-                        <tr valign="baseline">
-                          <td><input type="hidden" name="application_application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
+                          <td><input type="file" name="app_pic" value="" size="32" /></td>
                         </tr>
                       </table>   
                     </div>

@@ -155,6 +155,31 @@ if (isset($_SERVER['QUERY_STRING'])) {
   
   }
 
+/*-- Profile PICTURE --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $app_pic = (isset($_REQUEST['app_pic']) ? $_REQUEST['app_pic'] : '');
+  
+  $app_upload=$_FILES['app_pic'];
+  if($app_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $app_path="pics-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $app_type = strrchr($_FILES['app_pic']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $app_newname =$numrand.$date1.$app_type;
+
+  $app_path_copy=$app_path.$app_newname;
+  $app_path_link="pics-source/".$app_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $app = move_uploaded_file($_FILES['app_pic']['tmp_name'],$app_path_copy);  
+  if($app){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $app_newnameii = $numrand.$date1.$app_type;
+  } 
+  
+  }
+
   	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id, s_nickname) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['s_id'], "int"),
                        GetSQLValueString($_POST['s_fname'], "text"),
@@ -186,7 +211,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                  GetSQLValueString($_POST['email_adress'], "text"));
     
 
-  $insertSQL_app = sprintf("INSERT INTO `application` (application_id, s_id, application_dateS, application_dateE) VALUES (%s, %s, %s, %s)",
+  $insertSQL_app = sprintf(" INSERT INTO application (application_id, s_id, application_dateS, application_dateE, app_pic) VALUES (%s, %s, %s, %s, '$app_newnameii' ) ",
                        GetSQLValueString($_POST['application_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int"),
                        GetSQLValueString($_POST['application_dateS'], "date"),
