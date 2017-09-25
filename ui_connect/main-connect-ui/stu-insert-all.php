@@ -3,7 +3,6 @@
     //Session Query
     require_once '../../ui_connect/login/query/session.php';
 ?>
-<?php include("fn-upload.inc.php"); ?>
 <?php require_once('../../Connections/MyConnect.php'); ?>
 
 

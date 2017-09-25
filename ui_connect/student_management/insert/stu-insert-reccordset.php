@@ -42,13 +42,40 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		/*-- Reccordset Student_Info [S]--*/
 		if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 
+
           //Set ว/ด/ป เวลา ให้เป็นของประเทศไทย
     date_default_timezone_set('Asia/Bangkok');
   //สร้างตัวแปรวันที่เพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลด
   $date1 = date("Ymd_his");
   //สร้างตัวแปรสุ่มตัวเลขเพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลดไม่ให้ชื่อไฟล์ซ้ำกัน
   $numrand = (mt_rand());
+
+
+
+/*-- RESUME --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $resume_file = (isset($_REQUEST['resume_file']) ? $_REQUEST['resume_file'] : '');
   
+  $upload=$_FILES['resume_file'];
+  if($upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $path="resume-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $type = strrchr($_FILES['resume_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $newname =$numrand.$date1.$type;
+
+  $path_copy=$path.$newname;
+  $path_link="resume-source/".$newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  move_uploaded_file($_FILES['resume_file']['tmp_name'],$path_copy);  
+    
+  
+  }
+
+
+/*-- TRANSCRIPT --*/
   //รับชื่อไฟล์จากฟอร์ม 
   $resume_file = (isset($_REQUEST['resume_file']) ? $_REQUEST['resume_file'] : '');
   
