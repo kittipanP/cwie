@@ -41,6 +41,36 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 		/*-- Reccordset Student_Info [S]--*/
 		if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
+
+          //Set ว/ด/ป เวลา ให้เป็นของประเทศไทย
+    date_default_timezone_set('Asia/Bangkok');
+  //สร้างตัวแปรวันที่เพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลด
+  $date1 = date("Ymd_his");
+  //สร้างตัวแปรสุ่มตัวเลขเพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลดไม่ให้ชื่อไฟล์ซ้ำกัน
+  $numrand = (mt_rand());
+  
+  //รับชื่อไฟล์จากฟอร์ม 
+  $resume_file = (isset($_REQUEST['resume_file']) ? $_REQUEST['resume_file'] : '');
+  
+  $upload=$_FILES['resume_file'];
+  if($upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $path="resume-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $type = strrchr($_FILES['resume_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $newname =$numrand.$date1.$type;
+
+  $path_copy=$path.$newname;
+  $path_link="resume-source/".$newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  move_uploaded_file($_FILES['resume_file']['tmp_name'],$path_copy);  
+    
+  
+  }
+
+
   	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id, s_nickname) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['s_id'], "int"),
                        GetSQLValueString($_POST['s_fname'], "text"),
@@ -119,10 +149,16 @@ if (isset($_SERVER['QUERY_STRING'])) {
                  GetSQLValueString($_POST['bg_gpax'], "text")); 
                  
   
-/*            
-    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES (%s, %s)",
-                       GetSQLValueString(upload($_FILES['resume_file'],'./resume-source/'), "text"),
-                       GetSQLValueString($_POST['application_id'], "int")); */
+            
+    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES ('$newname', '%s')",
+                       GetSQLValueString($_POST['application_id'], "int"));
+    
+/*
+    "INSERT INTO resume 
+          (resume_file) 
+          VALUES
+          ('$newname')
+      "; */
 /*
     $insertSQL_vdo = sprintf("INSERT INTO video (video_name, video_file, application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['video_name'], "text"),
@@ -283,7 +319,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
       $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error($MyConnect));
 
       
-     // $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());  
+      $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die ("Error in query: $insertSQL_res " . mysqli_error($MyConnect));
+      //$Result1_resii = mysqli_query($MyConnect, $insertSQL_resii) or die ("Error in query: $insertSQL_res " . mysqli_error($MyConnect));
      /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error()); 
       $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die(mysqli_error());
       $Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
@@ -324,7 +361,6 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		  }
 		  header(sprintf("Location: %s", $insertGoTo));
 		}
-
 
 
 		/*-- Reccordset Student_Info [E]--*/
@@ -735,4 +771,5 @@ mysqli_free_result($stu_contactSet);
 mysqli_free_result($secSet);*/
 
 
+mysqli_close($MyConnect);
 ?>

@@ -3,11 +3,10 @@
     //Session Query
     require_once '../../ui_connect/login/query/session.php';
 ?>
+<?php include("fn-upload.inc.php"); ?>
 <?php require_once('../../Connections/MyConnect.php'); ?>
 
-<?php 
 
-?>
 
 <?php include ("../../ui_connect/student_management/insert/stu-insert-reccordset.php"); ?>
 
@@ -17,7 +16,6 @@
   include ("../../ui_connect/student_management/insert/add-new-row/add-new-row-sql.php");
 
 ?>
-<?php //require_once('fn-upload.inc.php'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -108,7 +106,7 @@ header{ background: url(../../img/head/headerv.jpg);}
 
 <p>&nbsp;</p>
 
-    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="fullform" enctype="multipart/form-data">
+    <form action="<?php echo $editFormAction; ?>" method="post" enctype="multipart/form-data" name="form1" id="fullform" >
 
       <div id="TabbedPanels1" class="TabbedPanels">
         <ul class="TabbedPanelsTabGroup">
