@@ -23,7 +23,7 @@
                        <table style="width: 100%;">
                        <p>&nbsp;</p>
                         <tr valign="baseline">
-                          <td><input type="hidden" name="resume_name" value="" size="32" id="outputFullnameiv" readonly /></td>
+                          <!--<td><input type="hidden" name="resume_name" value="" size="32" id="outputFullnameiv" readonly /></td> -->
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Resume</td>
