@@ -46,9 +46,6 @@
                         </tr>
               
                         <tr valign="baseline">
-                          <td><input type="hidden" name="transcript_name" value="" size="32" id="outputFullnamev" readonly /></td>
-                        </tr>
-                        <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Transcript : </td>
                           <td><input type="file" name="transcript_file" value="" size="32" /></td>
                         </tr>
