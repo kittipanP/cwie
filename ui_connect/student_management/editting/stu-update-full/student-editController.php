@@ -43,6 +43,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $prmii = $_GET['s_id'];
   }
 
+
   //Set ว/ด/ป เวลา ให้เป็นของประเทศไทย
     date_default_timezone_set('Asia/Bangkok');
   //สร้างตัวแปรวันที่เพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลด
@@ -51,6 +52,109 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $numrand = (mt_rand());
 
 
+
+/*-- RESUME --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $resume_file = (isset($_REQUEST['resume_file']) ? $_REQUEST['resume_file'] : '');
+  
+  $res_upload=$_FILES['resume_file'];
+  if($res_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $res_path="resume-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $res_type = strrchr($_FILES['resume_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $res_newname =$numrand.$date1.$type;
+
+  $res_path_copy=$res_path.$res_newname;
+  $res_path_link="resume-source/".$res_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $res = move_uploaded_file($_FILES['resume_file']['tmp_name'],$res_path_copy);  
+  if($res){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $res_newnameii = $numrand.$date1.$res_type;
+  }
+  
+  }
+
+
+/*-- TRANSCRIPT --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $transcript_file = (isset($_REQUEST['transcript_file']) ? $_REQUEST['transcript_file'] : '');
+  
+  $tsp_upload=$_FILES['transcript_file'];
+  if($tsp_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $tsp_path="transcript-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $tsp_type = strrchr($_FILES['transcript_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $tsp_newname =$numrand.$date1.$tsp_type;
+
+  $tsp_path_copy=$tsp_path.$tsp_newname;
+  $tsp_path_link="transcript-source/".$tsp_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $tsp = move_uploaded_file($_FILES['transcript_file']['tmp_name'],$tsp_path_copy);  
+  if($tsp){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $tsp_newnameii = $numrand.$date1.$tsp_type;
+  } 
+  
+  }
+
+
+/*-- VISA --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $visa_file = (isset($_REQUEST['visa_file']) ? $_REQUEST['visa_file'] : '');
+  
+  $vis_upload=$_FILES['visa_file'];
+  if($vis_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $vis_path="visa-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $vis_type = strrchr($_FILES['visa_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $vis_newname =$numrand.$date1.$vis_type;
+
+  $vis_path_copy=$vis_path.$vis_newname;
+  $vis_path_link="transcript-source/".$vis_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $vis = move_uploaded_file($_FILES['visa_file']['tmp_name'],$vis_path_copy);  
+  if($vis){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $vis_newnameii = $numrand.$date1.$vis_type;
+  } 
+  
+  }
+
+
+/*-- OTHER DOCUMENTS --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $other_file = (isset($_REQUEST['other_file']) ? $_REQUEST['other_file'] : '');
+  
+  $oth_upload=$_FILES['other_file'];
+  if($oth_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $oth_path="other-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $oth_type = strrchr($_FILES['other_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $oth_newname =$numrand.$date1.$oth_type;
+
+  $oth_path_copy=$oth_path.$oth_newname;
+  $oth_path_link="other-source/".$oth_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $oth = move_uploaded_file($_FILES['other_file']['tmp_name'],$oth_path_copy);  
+  if($oth){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $oth_newnameii = $numrand.$date1.$oth_type;
+  } 
+  
+  }
 
 
 /*-- Profile PICTURE --*/
@@ -305,6 +409,36 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
                        GetSQLValueString($_POST['application_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int")); 
 
+    $updateSQL_res = sprintf("UPDATE resume 
+      INNER JOIN application ON application.application_id = resume.application_id 
+      INNER JOIN student_info ON student_info.s_id = application.s_id
+      SET resume_file = '$res_newnameii'
+      WHERE student_info.s_id = $prm"); 
+
+    $updateSQL_tsp = sprintf("UPDATE transcript 
+      INNER JOIN application ON application.application_id = transcript.application_id 
+      INNER JOIN student_info ON student_info.s_id = application.s_id
+      SET transcript_file = '$tsp_newnameii'
+      WHERE student_info.s_id = $prm"); 
+
+    $updateSQL_vis = sprintf("UPDATE visa 
+      INNER JOIN application ON application.application_id = visa.application_application_id 
+      INNER JOIN student_info ON student_info.s_id = application.s_id
+      SET visa_file = '$vis_newnameii'
+      WHERE student_info.s_id = $prm"); 
+
+    $updateSQL_oth = sprintf("UPDATE other_doc 
+      INNER JOIN application ON application.application_id = other_doc.application_application_id 
+      INNER JOIN student_info ON student_info.s_id = application.s_id
+      SET other_file = '$oth_newnameii'
+      WHERE student_info.s_id = $prm"); 
+/*
+    $updateSQL_vdo = sprintf("UPDATE video 
+      INNER JOIN application ON application.application_id = video.application_id 
+      INNER JOIN student_info ON student_info.s_id = application.s_id
+      SET video_file = %s
+      WHERE student_info.s_id = $prm"); */
+
 
 
 
@@ -341,7 +475,11 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form-update")) {
   $Result1_tac = mysqli_query($MyConnect, $updateSQL_tac) or die(mysqli_error());
   $Result1_bac = mysqli_query($MyConnect, $updateSQL_bac) or die(mysqli_error());
   $Result1_thp = mysqli_query($MyConnect, $updateSQL_thp) or die(mysqli_error());
-  $Result1_app = mysqli_query($MyConnect, $updateSQL_app) or die(mysqli_error($MyConnect));
+  $Result1_app = mysqli_query($MyConnect, $updateSQL_app) or die(mysqli_error());
+  $Result1_res = mysqli_query($MyConnect, $updateSQL_res) or die(mysqli_error());
+  $Result1_tsp = mysqli_query($MyConnect, $updateSQL_tsp) or die(mysqli_error($MyConnect));
+  $Result1_vis = mysqli_query($MyConnect, $updateSQL_vis) or die(mysqli_error());
+  $Result1_oth = mysqli_query($MyConnect, $updateSQL_oth) or die(mysqli_error());
   $Result1_eva = mysqli_query($MyConnect, $updateSQL_eva) or die(mysqli_error());
 
   $Result1_shs = mysqli_query($MyConnect, $updateSQL_shs) or die(mysqli_error($MyConnect));
@@ -734,6 +872,11 @@ $totalRows_hob_rec = mysqli_num_rows($hob_rec);
 
   $query_appRec = "SELECT * FROM application 
       INNER JOIN student_info ON student_info.s_id = application.s_id
+      INNER JOIN resume ON resume.application_id = application.application_id
+      INNER JOIN transcript ON transcript.application_id = application.application_id
+      INNER JOIN visa ON visa.application_application_id = application.application_id
+      INNER JOIN other_doc ON other_doc.application_application_id = application.application_id
+      LEFT JOIN video ON video.application_id = application.application_id
       WHERE student_info.s_id = $thisstu";
   $appRec = mysqli_query($MyConnect, $query_appRec) or die(mysqli_error());
   $row_appRec = mysqli_fetch_assoc($appRec);

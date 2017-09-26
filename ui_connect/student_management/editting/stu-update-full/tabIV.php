@@ -27,7 +27,7 @@
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Resume</td>
-                          <td><input type="file" name="resume_file" value="" size="32" /></td>
+                          <td><div align="right"><?php echo $row_appRec['resume_file'];?></div><input type="file" name="resume_file" value="" size="32" /><br></td>
                         </tr>
                         <tr valign="baseline">
                           <td><input type="hidden" name="application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
@@ -42,7 +42,7 @@
                           <td><input type="file" name="video_file" value="" size="32" /></td>
                         </tr>
                         <tr valign="baseline">
-                          <td><input type="hidden" name="application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
+                          <td><input type="hidden" name="application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /><br></td>
                         </tr>
               
                         <tr valign="baseline">
@@ -50,7 +50,7 @@
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Transcript : </td>
-                          <td><input type="file" name="transcript_file" value="" size="32" /></td>
+                          <td><div align="right"><?php echo $row_appRec['transcript_file'];?></div><input type="file" name="transcript_file" value="" size="32" /><br></td>
                         </tr>
                         <tr valign="baseline">
                           <td><input type="hidden" name="application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
@@ -61,7 +61,7 @@
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Visa : </td>
-                          <td><input type="file" name="visa_file" value="" size="32" /></td>
+                          <td><div align="right"><?php echo $row_appRec['visa_file'];?></div><input type="file" name="visa_file" value="" size="32" /><br></td>
                         </tr>
                         <tr valign="baseline">
                           <td><input type="hidden" name="application_application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
@@ -104,7 +104,7 @@
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Other Documents</td>
-                          <td><input type="file" name="other_file" value="" size="32" /></td>
+                          <td><div align="right"><?php echo $row_appRec['other_file'];?></div><input type="file" name="other_file" value="" size="32" /></td>
                         </tr>
                         <tr valign="baseline">
                           <td><input type="hidden" name="application_application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
