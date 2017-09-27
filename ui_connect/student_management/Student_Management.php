@@ -92,10 +92,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
 }
 ?>
 <?php require_once('../../Connections/MyConnect.php'); ?>
-<?php include("fn-upload.inc.php"); 
+<?php //include("fn-upload.inc.php"); 
 ?>
 <?php include ("student_management_reccordset.php");
-      include ("printf/allController.php");
+      //include ("printf/allController.php");
 	//include ("../admin/for-admin.php");
 
 ?>

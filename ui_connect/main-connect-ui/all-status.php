@@ -3,69 +3,18 @@
     //Session Query
     require_once '../../ui_connect/login/query/session.php';
 ?>
-<?php require_once('../../Connections/MyConnect.php'); ?>
+<?php //require_once('../../Connections/MyConnect.php'); ?>
 <?php //include("fn-upload.inc.php"); 
 ?>
-<?php include ("../../ui_connect/student_management/student_management_reccordset.php");
+<?php //include ("../../ui_connect/student_management/student_management_reccordset.php");
       //include ("printf/allController.php");
     //include ("../admin/for-admin.php");
 
 ?>
-<?php
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 8) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
-
-  $theValue = function_exists("mysqli_real_escape_string") ?mysqli_real_escape_string(dbconnect(), $theValue) :mysqli_escape_string(dbconnect(), $theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
-
-
-
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
-
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
-  $insertSQL = sprintf("INSERT INTO work_experience (wex_id, wex_dateS, wex_dateE, wex_organ, wex_detail, student_info_s_id) VALUES (%s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['wex_id'], "int"),
-                       GetSQLValueString($_POST['wex_dateS'], "date"),
-                       GetSQLValueString($_POST['wex_dateE'], "date"),
-                       GetSQLValueString($_POST['wex_organ'], "text"),
-                       GetSQLValueString($_POST['wex_detail'], "text"),
-                       GetSQLValueString($_POST['student_info_s_id'], "int"));
-
- mysqli_select_db($MyConnect, $database_MyConnect);
-  $Result1 =mysqli_query($MyConnect, $insertSQL) or die(mysqli_error());
-}
-?><?php require_once('../../Connections/MyConnect.php'); ?>
+<?php //require_once('../../Connections/MyConnect.php'); ?>
 <?php //include("fn-upload.inc.php"); 
 ?>
-<?php include ("../../ui_connect/student_management/student_management_reccordset.php");
+<?php //include ("../../ui_connect/student_management/student_management_reccordset.php");
       //include ("printf/allController.php");
     //include ("../admin/for-admin.php");
 

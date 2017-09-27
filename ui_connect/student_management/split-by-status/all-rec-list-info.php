@@ -33,15 +33,15 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 require_once('../../../Connections/MyConnect.php');
-    $maxRows_studentSet = 100;
-    $pageNum_studentSet = 0;
-    if (isset($_GET['pageNum_studentSet'])) {
-      $pageNum_studentSet = $_GET['pageNum_studentSet'];
+    $maxRows_studentSet_all = 10;
+    $pageNum_studentSet_all = 0;
+    if (isset($_GET['pageNum_studentSet_all'])) {
+      $pageNum_studentSet_all = $_GET['pageNum_studentSet_all'];
     }
-    $startRow_studentSet = $pageNum_studentSet * $maxRows_studentSet;
+    $startRow_studentSet_all = $pageNum_studentSet_all * $maxRows_studentSet_all;
     
     mysqli_select_db($MyConnect, $database_MyConnect);
-      $query_studentSet = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name, institute.ins_name
+      $query_studentSet_all = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name, institute.ins_name
       FROM student_info
       INNER JOIN title ON title.title_id = student_info.title_title_id
       INNER JOIN student_status ON student_status.status_id = student_info.status_id
@@ -50,24 +50,24 @@ require_once('../../../Connections/MyConnect.php');
       LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
       LEFT JOIN institute ON institute.ins_id = education_info.edu_institute
       ORDER BY student_info.s_id DESC";
-    $query_limit_studentSet = sprintf("%s LIMIT %d, %d", $query_studentSet, $startRow_studentSet, $maxRows_studentSet);
-    $studentSet = mysqli_query($MyConnect, $query_limit_studentSet) or die(mysqli_error());
-    $row_studentSet = mysqli_fetch_assoc($studentSet);
+    $query_limit_studentSet_all = sprintf("%s LIMIT %d, %d", $query_studentSet_all, $startRow_studentSet_all, $maxRows_studentSet_all);
+    $studentSet_all = mysqli_query($MyConnect, $query_limit_studentSet_all) or die(mysqli_error());
+    $row_studentSet = mysqli_fetch_assoc($studentSet_all);
     
     if (isset($_GET['totalRows_studentSet_onProcess'])) {
       $totalRows_studentSet_onProcess = $_GET['totalRows_studentSet_onProcess'];
     } else {
-      $all_studentSet = mysqli_query(dbconnect(), $query_studentSet);
+      $all_studentSet = mysqli_query(dbconnect(), $query_studentSet_all);
       $totalRows_studentSet_onProcess = mysqli_num_rows($all_studentSet);
     }
-    $totalPages_studentSet = ceil($totalRows_studentSet_onProcess/$maxRows_studentSet)-1;
+    $totalPages_studentSet = ceil($totalRows_studentSet_onProcess/$maxRows_studentSet_all)-1;
     
     $queryString_studentSet = "";
     if (!empty($_SERVER['QUERY_STRING'])) {
       $params = explode("&", $_SERVER['QUERY_STRING']);
       $newParams = array();
       foreach ($params as $param) {
-      if (stristr($param, "pageNum_studentSet") == false && 
+      if (stristr($param, "pageNum_studentSet_all") == false && 
         stristr($param, "totalRows_studentSet_onProcess") == false) {
         array_push($newParams, $param);
       }
@@ -116,21 +116,21 @@ require_once('../../../Connections/MyConnect.php');
                               <a class="btn btn-sm btn-danger" id="delete_product" data-id="<?php echo $product_id; ?>" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>
                               -->
                             </tr> 
-                        <?php } while ($row_studentSet = mysqli_fetch_assoc($studentSet)); ?>               
+                        <?php } while ($row_studentSet = mysqli_fetch_assoc($studentSet_all)); ?>               
                     </table>
                       
                       <p>&nbsp;</p>
                       <div class="w3-center">
                     <ul class="w3-pagination">
-                      <li><a class="w3-green" href="<?php printf("%s?pageNum_studentSet=%d%s", $currentPage, 0, $queryString_studentSet); ?>">&laquo;</a></li>
+                      <li><a class="w3-green" href="#">&laquo;</a></li>
                       <li>
                         <?php
                             for($all_page=0;$all_page<=$totalPages_studentSet;$all_page++){
-                                echo '<a href="?pageNum_studentSet=',$all_page,'">',($all_page+1),'</a>';
+                                echo '<a href="?pageNum_studentSet_all=',$all_page,'">',($all_page+1),'</a>';
                                 }
                         ?>
                       </li>
-                      <li><a class="w3-green" onclick="w3_close()" href="<?php printf("%s?pageNum_studentSet=%d%s", $currentPage, $totalPages_studentSet, $queryString_studentSet); ?>">&raquo;</a></li>
+                      <li><a class="w3-green" onclick="w3_close()" href="#">&raquo;</a></li>
                     </ul>
          </div>
     <p>&nbsp;</p>
@@ -165,5 +165,5 @@ require_once('../../../Connections/MyConnect.php');
 
 <!--
 <?php
-//mysqli_free_result($studentSet);
+//mysqli_free_result($studentSet_all);
 ?> -->

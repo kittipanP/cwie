@@ -27,7 +27,7 @@
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Resume</td>
-                          <td><div align="right"><?php echo $row_appRec['resume_file'];?></div><input type="file" name="resume_file" value="" size="32" /><br></td>
+                          <td><div align="right"><?php echo $row_appRec['resume_file'];?></div><input type="file" name="resume_file" value="<?php echo htmlentities($row_Recordset1_stu['ref_id'], ENT_COMPAT, 'utf-8'); ?>" size="32" /><br></td>
                         </tr>
                         <tr valign="baseline">
                           <td><input type="hidden" name="application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
