@@ -68,12 +68,7 @@
       $queryString_studentSet = "&" . htmlentities(implode("&", $newParams));
       }
     }
-    $queryString_studentSet = sprintf("&totalRows_studentSet_onProcess=%d%s", $totalRows_studentSet_onProcess, 
-
-
-
-
-      $queryString_studentSet);
+    $queryString_studentSet = sprintf("&totalRows_studentSet_onProcess=%d%s", $totalRows_studentSet_onProcess, $queryString_studentSet);
 
 
 
@@ -227,17 +222,13 @@ header{ background: url(../../img/head/headerv.jpg);}
 
                         <?php do { ?>
                             <tr>
-                            <?php
+                              <?php
 
-                              
-                             
-
-                            if($row_studentSet['s_id'] < $stu_id){
+                              if($row_studentSet['s_id'] < $stu_id){
                                     $b = ($b-1);
                                   } 
-                              
                           
-                            ?>
+                              ?>
                               <td><?php echo $b; ?></td>
                               <td><?php echo $row_studentSet['title_name']; ?></td>
                               <td><?php echo $row_studentSet['s_fname']; ?></td>
