@@ -180,7 +180,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
   
   }
 
-  	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id, s_nickname) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+  	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id, s_nickname, stu_timestamp) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())",
                        GetSQLValueString($_POST['s_id'], "int"),
                        GetSQLValueString($_POST['s_fname'], "text"),
                        GetSQLValueString($_POST['s_lname'], "text"),
