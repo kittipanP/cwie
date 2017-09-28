@@ -68,7 +68,15 @@
       $queryString_studentSet = "&" . htmlentities(implode("&", $newParams));
       }
     }
-    $queryString_studentSet = sprintf("&totalRows_studentSet_onProcess=%d%s", $totalRows_studentSet_onProcess, $queryString_studentSet);
+    $queryString_studentSet = sprintf("&totalRows_studentSet_onProcess=%d%s", $totalRows_studentSet_onProcess, 
+
+
+
+
+      $queryString_studentSet);
+
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -196,7 +204,8 @@ header{ background: url(../../img/head/headerv.jpg);}
                     <table class="w3-table-all w3-margin-top w3-hoverable" id="onProcessiiTable">
                         <tr>
                           
-                          <th style="width:5%;">Title</th>
+                          <th style="width:2%;">No.</th>
+                          <th style="width:3%;">Title</th>
                           <th style="width:10%;">First Name</th>
                           <th style="width:10%;">Last Name</th>
                           <th style="width:11%;">Degree</th>
@@ -205,8 +214,31 @@ header{ background: url(../../img/head/headerv.jpg);}
                           <th style="width:5%;">Edit</th>
                           <th style="width:5%;">Delete</th>
                         </tr>
+                        <?php 
+                        $rows_all = $totalRows_studentSet_onProcess;
+                        $stu_id=$row_studentSet['s_id'];
+
+
+                            for($cur_page=0;$cur_page<=$pageNum_studentSet_all;$cur_page++){
+                                  $a = ($rows_all - ($pageNum_studentSet_all*$maxRows_studentSet_all));
+                                }
+                            $b = $a;
+                        ?>
+
                         <?php do { ?>
                             <tr>
+                            <?php
+
+                              
+                             
+
+                            if($row_studentSet['s_id'] < $stu_id){
+                                    $b = ($b-1);
+                                  } 
+                              
+                          
+                            ?>
+                              <td><?php echo $b; ?></td>
                               <td><?php echo $row_studentSet['title_name']; ?></td>
                               <td><?php echo $row_studentSet['s_fname']; ?></td>
                               <td><?php echo $row_studentSet['s_lname']; ?></td>
