@@ -98,7 +98,8 @@ require_once('../../../Connections/MyConnect.php');
                             <tr>
                               <td>No</td>
                               <td><?php echo $row_majorforMain['major_name']; ?></td>
-                              <td><a class="btn btn-default w3-hover-blue" href="../main-connect-ui/stu-update-all.php?major_id=<?php echo $row_majorforMain['major_id']; ?>"><i class="fa fa-pencil"></i></a></td>
+                              <td><a class="btn btn-default w3-hover-blue" href="#<?php echo $row_majorforMain['major_id']; ?>"><i class="fa fa-pencil"></i></a>
+                              <!--<a class="btn btn-default w3-hover-blue" href="../main-connect-ui/stu-update-all.php?major_id=<?php echo $row_majorforMain['major_id']; ?>"><i class="fa fa-pencil"></i></a>--></td>
                               <td><a  class="btn btn-default w3-hover-red" id="delete_product" data-id="<?php echo $row_majorforMain['major_id']; ?>" href="javascript:void(0)"><i class="fa fa-trash "></i></a></td>
                               <!--
                               <a class="btn btn-sm btn-danger" id="delete_product" data-id="<?php echo $product_id; ?>" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>

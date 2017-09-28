@@ -5,9 +5,7 @@
 ?>
 <?php require_once('../../Connections/MyConnect.php'); ?>
 
-<?php 
 
-?>
 
 <?php include ("../../ui_connect/student_management/insert/stu-insert-reccordset.php"); ?>
 
@@ -17,7 +15,6 @@
   include ("../../ui_connect/student_management/insert/add-new-row/add-new-row-sql.php");
 
 ?>
-<?php //require_once('fn-upload.inc.php'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -49,8 +46,8 @@
 
 
   <!-- bootstrap-select --> 
-  <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap.min.css?v=<?php echo filemtime('bootstrap.min.css'); ?>"> 
-  <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap-select.css?v=<?php echo filemtime('bootstrap-select.css'); ?>"> 
+  <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap.min.css?v=0928">
+  <link rel="stylesheet" href="../../libs/bootstrap-select/dist/css/bootstrap-select.css?v=0928"> 
   <script src="../../libs/bootstrap-select/dist/js/jquery.min.js"></script>
   <script src="../../libs/bootstrap-select/dist/js/bootstrap.min.js"></script>
   <script src="../../libs/bootstrap-select/dist/js/bootstrap-select.js"></script> 
@@ -108,7 +105,7 @@ header{ background: url(../../img/head/headerv.jpg);}
 
 <p>&nbsp;</p>
 
-    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="fullform" enctype="multipart/form-data">
+    <form action="<?php echo $editFormAction; ?>" method="post" enctype="multipart/form-data" name="form1" id="fullform" >
 
       <div id="TabbedPanels1" class="TabbedPanels">
         <ul class="TabbedPanelsTabGroup">

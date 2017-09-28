@@ -23,7 +23,7 @@
                        <table style="width: 100%;">
                        <p>&nbsp;</p>
                         <tr valign="baseline">
-                          <td><input type="hidden" name="resume_name" value="" size="32" id="outputFullnameiv" readonly /></td>
+                          <!--<td><input type="hidden" name="resume_name" value="" size="32" id="outputFullnameiv" readonly /></td> -->
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Resume</td>
@@ -45,9 +45,6 @@
                           <td><input type="hidden" name="application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
                         </tr>
               
-                        <tr valign="baseline">
-                          <td><input type="hidden" name="transcript_name" value="" size="32" id="outputFullnamev" readonly /></td>
-                        </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left">Transcript : </td>
                           <td><input type="file" name="transcript_file" value="" size="32" /></td>
@@ -121,10 +118,7 @@
                         </tr>
                         <tr valign="baseline">
                           <td nowrap="nowrap" align="left"> Profile Picture</td>
-                          <td><input type="file" name="" value="" size="32" /></td>
-                        </tr>
-                        <tr valign="baseline">
-                          <td><input type="hidden" name="application_application_id" value="<?php echo $row_appSet['application_id']+1?>" size="32" /></td>
+                          <td><input type="file" name="app_pic" value="" size="32" /></td>
                         </tr>
                       </table>   
                     </div>

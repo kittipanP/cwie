@@ -339,7 +339,7 @@ if(isset($_POST["Import"])){
 
 	          	$result_edu = mysqli_query( $conn, $sql_edu) or die(mysqli_error($conn));
 	          	$result_app = mysqli_query( $conn, $sql_app) or die(mysqli_error($conn));
-	          	  	$result_res = mysqli_query( $conn, $sql_res) or die(mysqli_error());
+	          	  	$result_res = mysqli_query( $conn, $sql_res) or die(mysqli_error($conn));
 	          	  	$result_tsc = mysqli_query( $conn, $sql_tsc) or die(mysqli_error());
 	       	 		$result_vdo = mysqli_query( $conn, $sql_vdo) or die(mysqli_error());
 	           		$result_vsa = mysqli_query( $conn, $sql_vsa) or die(mysqli_error());

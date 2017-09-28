@@ -41,7 +41,146 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 		/*-- Reccordset Student_Info [S]--*/
 		if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id, s_nickname) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+
+
+          //Set ว/ด/ป เวลา ให้เป็นของประเทศไทย
+    date_default_timezone_set('Asia/Bangkok');
+  //สร้างตัวแปรวันที่เพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลด
+  $date1 = date("Ymd_his");
+  //สร้างตัวแปรสุ่มตัวเลขเพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลดไม่ให้ชื่อไฟล์ซ้ำกัน
+  $numrand = (mt_rand());
+
+
+
+/*-- RESUME --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $resume_file = (isset($_REQUEST['resume_file']) ? $_REQUEST['resume_file'] : '');
+  
+  $res_upload=$_FILES['resume_file'];
+  if($res_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $res_path="resume-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $res_type = strrchr($_FILES['resume_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $res_newname =$numrand.$date1.$type;
+
+  $res_path_copy=$res_path.$res_newname;
+  $res_path_link="resume-source/".$res_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $res = move_uploaded_file($_FILES['resume_file']['tmp_name'],$res_path_copy);  
+  if($res){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $res_newnameii = $numrand.$date1.$res_type;
+  }
+  
+  }
+
+
+/*-- TRANSCRIPT --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $transcript_file = (isset($_REQUEST['transcript_file']) ? $_REQUEST['transcript_file'] : '');
+  
+  $tsp_upload=$_FILES['transcript_file'];
+  if($tsp_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $tsp_path="transcript-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $tsp_type = strrchr($_FILES['transcript_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $tsp_newname =$numrand.$date1.$tsp_type;
+
+  $tsp_path_copy=$tsp_path.$tsp_newname;
+  $tsp_path_link="transcript-source/".$tsp_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $tsp = move_uploaded_file($_FILES['transcript_file']['tmp_name'],$tsp_path_copy);  
+  if($tsp){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $tsp_newnameii = $numrand.$date1.$tsp_type;
+  } 
+  
+  }
+
+
+/*-- VISA --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $visa_file = (isset($_REQUEST['visa_file']) ? $_REQUEST['visa_file'] : '');
+  
+  $vis_upload=$_FILES['visa_file'];
+  if($vis_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $vis_path="visa-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $vis_type = strrchr($_FILES['visa_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $vis_newname =$numrand.$date1.$vis_type;
+
+  $vis_path_copy=$vis_path.$vis_newname;
+  $vis_path_link="transcript-source/".$vis_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $vis = move_uploaded_file($_FILES['visa_file']['tmp_name'],$vis_path_copy);  
+  if($vis){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $vis_newnameii = $numrand.$date1.$vis_type;
+  } 
+  
+  }
+
+
+/*-- OTHER DOCUMENTS --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $other_file = (isset($_REQUEST['other_file']) ? $_REQUEST['other_file'] : '');
+  
+  $oth_upload=$_FILES['other_file'];
+  if($oth_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $oth_path="other-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $oth_type = strrchr($_FILES['other_file']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $oth_newname =$numrand.$date1.$oth_type;
+
+  $oth_path_copy=$oth_path.$oth_newname;
+  $oth_path_link="other-source/".$oth_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $oth = move_uploaded_file($_FILES['other_file']['tmp_name'],$oth_path_copy);  
+  if($oth){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $oth_newnameii = $numrand.$date1.$oth_type;
+  } 
+  
+  }
+
+/*-- Profile PICTURE --*/
+  //รับชื่อไฟล์จากฟอร์ม 
+  $app_pic = (isset($_REQUEST['app_pic']) ? $_REQUEST['app_pic'] : '');
+  
+  $app_upload=$_FILES['app_pic'];
+  if($app_upload <> '') { 
+
+  //โฟลเดอร์ที่เก็บไฟล์
+  $app_path="pics-source/";
+  //ตัวขื่อกับนามสกุลภาพออกจากกัน
+  $app_type = strrchr($_FILES['app_pic']['name'],".");
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+  $app_newname =$numrand.$date1.$app_type;
+
+  $app_path_copy=$app_path.$app_newname;
+  $app_path_link="pics-source/".$app_newname;
+  //คัดลอกไฟล์ไปยังโฟลเดอร์
+  $app = move_uploaded_file($_FILES['app_pic']['tmp_name'],$app_path_copy);  
+  if($app){
+  //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
+    $app_newnameii = $numrand.$date1.$app_type;
+  } 
+  
+  }
+
+  	$insertSQL_stu = sprintf("INSERT INTO student_info (s_id, s_fname, s_lname, thai_fname, thai_lname, s_dob, remark, origin_id, type_id, status_id, ref_id, national_id, title_title_id, s_nickname, stu_timestamp) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())",
                        GetSQLValueString($_POST['s_id'], "int"),
                        GetSQLValueString($_POST['s_fname'], "text"),
                        GetSQLValueString($_POST['s_lname'], "text"),
@@ -72,7 +211,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
                  GetSQLValueString($_POST['email_adress'], "text"));
     
 
-  $insertSQL_app = sprintf("INSERT INTO `application` (application_id, s_id, application_dateS, application_dateE) VALUES (%s, %s, %s, %s)",
+  $insertSQL_app = sprintf(" INSERT INTO application (application_id, s_id, application_dateS, application_dateE, app_pic) VALUES (%s, %s, %s, %s, '$app_newnameii' ) ",
                        GetSQLValueString($_POST['application_id'], "int"),
                        GetSQLValueString($_POST['s_id'], "int"),
                        GetSQLValueString($_POST['application_dateS'], "date"),
@@ -119,30 +258,30 @@ if (isset($_SERVER['QUERY_STRING'])) {
                  GetSQLValueString($_POST['bg_gpax'], "text")); 
                  
   
-/*            
-    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES (%s, %s)",
-                       GetSQLValueString(upload($_FILES['resume_file'],'./resume-source/'), "text"),
-                       GetSQLValueString($_POST['application_id'], "int")); */
+            
+    $insertSQL_res = sprintf("INSERT INTO resume (resume_file, application_id) VALUES ('$res_newnameii', '%s')",
+                       GetSQLValueString($_POST['application_id'], "int"));
+    
+/*
+    "INSERT INTO resume 
+          (resume_file) 
+          VALUES
+          ('$newname')
+      "; */
 /*
     $insertSQL_vdo = sprintf("INSERT INTO video (video_name, video_file, application_id) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['video_name'], "text"),
                        GetSQLValueString(upload($_FILES['video_file'],'./vdo-source/'), "text"),
                        GetSQLValueString($_POST['application_id'], "int"));
-
-    $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_name, transcript_file, application_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['transcript_name'], "text"),
-             GetSQLValueString(upload($_FILES['transcript_file'],'./transcript-source/'), "text"),
+*/
+    $insertSQL_tra = sprintf("INSERT INTO transcript (transcript_file, application_id) VALUES ('$tsp_newnameii', '%s')",
                        GetSQLValueString($_POST['application_id'], "int"));
 
-    $insertSQL_vis = sprintf("INSERT INTO visa (visa_name, visa_file, application_application_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['visa_name'], "text"),
-             GetSQLValueString(upload($_FILES['visa_file'],'./visa-source/'), "text"),
+    $insertSQL_vis = sprintf("INSERT INTO visa (visa_file, application_application_id) VALUES ('$vis_newnameii', '%s')",
                        GetSQLValueString($_POST['application_application_id'], "int"));
 
-    $insertSQL_oth = sprintf("INSERT INTO other_doc (other_name, other_file, application_application_id) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['other_name'], "text"),
-             GetSQLValueString(upload($_FILES['other_file'],'./other-source/'), "text"),
-                       GetSQLValueString($_POST['application_application_id'], "int")); */
+    $insertSQL_oth = sprintf("INSERT INTO other_doc (other_file, application_application_id) VALUES ('$oth_newnameii', '%s')",
+                       GetSQLValueString($_POST['application_application_id'], "int")); 
 
     $insertSQL_wex = sprintf("INSERT INTO work_experience (wex_id, wex_dateS, wex_dateE, wex_organ, wex_detail, student_info_s_id) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['wex_id'], "int"),
@@ -283,11 +422,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
       $Result1_ebg = mysqli_query($MyConnect, $insertSQL_ebg) or die(mysqli_error($MyConnect));
 
       
-     // $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die(mysqli_error());  
-     /* $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error()); 
-      $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die(mysqli_error());
+      $Result1_res = mysqli_query($MyConnect, $insertSQL_res) or die ("Error in query: $insertSQL_res " . mysqli_error($MyConnect));
+      //$Result1_resii = mysqli_query($MyConnect, $insertSQL_resii) or die ("Error in query: $insertSQL_res " . mysqli_error($MyConnect));
+     // $Result1_vdo = mysqli_query($MyConnect, $insertSQL_vdo) or die(mysqli_error()); 
+      $Result1_tra = mysqli_query($MyConnect, $insertSQL_tra) or die ("Error in query: $insertSQL_tra " . mysqli_error($MyConnect));
       $Result1_vis = mysqli_query($MyConnect, $insertSQL_vis) or die(mysqli_error());
-      $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());*/
+      $Result1_oth = mysqli_query($MyConnect, $insertSQL_oth) or die(mysqli_error());
 
       $Result1_wex = mysqli_query($MyConnect, $insertSQL_wex) or die(mysqli_error());
       $Result1_ext = mysqli_query($MyConnect, $insertSQL_ext) or die(mysqli_error($MyConnect));
@@ -324,7 +464,6 @@ if (isset($_SERVER['QUERY_STRING'])) {
 		  }
 		  header(sprintf("Location: %s", $insertGoTo));
 		}
-
 
 
 		/*-- Reccordset Student_Info [E]--*/
@@ -735,4 +874,5 @@ mysqli_free_result($stu_contactSet);
 mysqli_free_result($secSet);*/
 
 
+mysqli_close($MyConnect);
 ?>
