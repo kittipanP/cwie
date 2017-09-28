@@ -3,7 +3,7 @@
     //Session Query
     require_once '../../ui_connect/login/query/session.php';
 ?>
-<?php //require_once('../../Connections/MyConnect.php'); ?>
+<?php require_once('../../Connections/MyConnect.php'); ?>
 <?php //include("fn-upload.inc.php"); 
 ?>
 <?php //include ("../../ui_connect/student_management/student_management_reccordset.php");
@@ -17,6 +17,65 @@
 <?php //include ("../../ui_connect/student_management/student_management_reccordset.php");
       //include ("printf/allController.php");
     //include ("../admin/for-admin.php");
+
+?>
+
+<?php
+
+
+
+//require_once('../../../Connections/MyConnect.php');
+    $maxRows_studentSet_all = 100;
+    $pageNum_studentSet_all = 0;
+    if (isset($_GET['pageNum_studentSet_all'])) {
+      $pageNum_studentSet_all = $_GET['pageNum_studentSet_all'];
+    }
+    $startRow_studentSet_all = $pageNum_studentSet_all * $maxRows_studentSet_all;
+    
+    mysqli_select_db($MyConnect, $database_MyConnect);
+      $query_studentSet_all = "SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name, institute.ins_name
+      FROM student_info
+      INNER JOIN title ON title.title_id = student_info.title_title_id
+      INNER JOIN student_status ON student_status.status_id = student_info.status_id
+      LEFT JOIN education_info ON student_info.s_id = education_info.s_id
+      LEFT JOIN major_info ON major_info.major_id = education_info.major_id
+      LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+      LEFT JOIN institute ON institute.ins_id = education_info.edu_institute
+      ORDER BY student_info.s_id DESC";
+    $query_limit_studentSet_all = sprintf("%s LIMIT %d, %d", $query_studentSet_all, $startRow_studentSet_all, $maxRows_studentSet_all);
+    $studentSet_all = mysqli_query($MyConnect, $query_limit_studentSet_all) or die(mysqli_error());
+    $row_studentSet = mysqli_fetch_assoc($studentSet_all);
+    
+    if (isset($_GET['totalRows_studentSet_onProcess'])) {
+      $totalRows_studentSet_onProcess = $_GET['totalRows_studentSet_onProcess'];
+    } else {
+      $all_studentSet = mysqli_query(dbconnect(), $query_studentSet_all);
+      $totalRows_studentSet_onProcess = mysqli_num_rows($all_studentSet);
+    }
+    $totalPages_studentSet = ceil($totalRows_studentSet_onProcess/$maxRows_studentSet_all)-1;
+    
+    $queryString_studentSet = "";
+    if (!empty($_SERVER['QUERY_STRING'])) {
+      $params = explode("&", $_SERVER['QUERY_STRING']);
+      $newParams = array();
+      foreach ($params as $param) {
+      if (stristr($param, "pageNum_studentSet_all") == false && 
+        stristr($param, "totalRows_studentSet_onProcess") == false) {
+        array_push($newParams, $param);
+      }
+      }
+      if (count($newParams) != 0) {
+      $queryString_studentSet = "&" . htmlentities(implode("&", $newParams));
+      }
+    }
+    $queryString_studentSet = sprintf("&totalRows_studentSet_onProcess=%d%s", $totalRows_studentSet_onProcess, 
+
+
+
+
+      $queryString_studentSet);
+
+
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -135,7 +194,85 @@ header{ background: url(../../img/head/headerv.jpg);}
 </div>
 
 <!-- Filter Table Trainee -->
-<div id="load-products">
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+        <div class="w3-container w3-card-2 w3-white w3-round w3-margin" id="onProcess">
+                      <h2>Recent All Student Lists</h2>
+                      <p>Search for a name in the input field.</p>
+                    
+                    <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for names.." id="onProcessiiInput" onkeyup="onProcessFnii()">
+                    
+                    <table class="w3-table-all w3-margin-top w3-hoverable" id="onProcessiiTable">
+                        <tr>
+                          
+                          <th style="width:2%;">No.</th>
+                          <th style="width:3%;">Title</th>
+                          <th style="width:10%;">First Name</th>
+                          <th style="width:10%;">Last Name</th>
+                          <th style="width:11%;">Degree</th>
+                          <th style="width:24%;">Major</th>
+                          <th style="width:30%;">University</th>
+                          <th style="width:5%;">Edit</th>
+                          <th style="width:5%;">Delete</th>
+                        </tr>
+                        <?php 
+                        $rows_all = $totalRows_studentSet_onProcess;
+                        $stu_id=$row_studentSet['s_id'];
+
+
+                            for($cur_page=0;$cur_page<=$pageNum_studentSet_all;$cur_page++){
+                                  $a = ($rows_all - ($pageNum_studentSet_all*$maxRows_studentSet_all));
+                                }
+                            $b = $a;
+                        ?>
+
+                        <?php do { ?>
+                            <tr>
+                            <?php
+
+                              
+                             
+
+                            if($row_studentSet['s_id'] < $stu_id){
+                                    $b = ($b-1);
+                                  } 
+                              
+                          
+                            ?>
+                              <td><?php echo $b; ?></td>
+                              <td><?php echo $row_studentSet['title_name']; ?></td>
+                              <td><?php echo $row_studentSet['s_fname']; ?></td>
+                              <td><?php echo $row_studentSet['s_lname']; ?></td>
+                              <td><?php echo $row_studentSet['degree_name']; ?></td>
+                              <td><?php echo $row_studentSet['major_name']; ?></td>
+                              <td><?php echo $row_studentSet['ins_name']; ?></td>
+                              <td><a class="btn btn-default w3-hover-blue" href="stu-update-all.php?s_id=<?php echo $row_studentSet['s_id']; ?>"><i class="fa fa-pencil"></i></a></td>
+                              <td><a  class="btn btn-default w3-hover-red" id="delete_product" data-id="<?php echo $row_studentSet['s_id']; ?>" href="javascript:void(0)"><i class="fa fa-trash "></i></a></td>
+                              <!--
+                              <a class="btn btn-sm btn-danger" id="delete_product" data-id="<?php echo $product_id; ?>" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>
+                              -->
+                            </tr> 
+                        <?php } while ($row_studentSet = mysqli_fetch_assoc($studentSet_all)); ?>               
+                    </table>
+                      
+                      <p>&nbsp;</p>
+                      <div class="w3-center">
+                    <ul class="w3-pagination">
+                      <li><a class="w3-green" href="<?php printf("%s?pageNum_studentSet_all=%d%s", $currentPage, 0, $queryString_studentSet); ?>">&laquo;</a></li>
+                      <li>
+                        <?php
+                            for($all_page=0;$all_page<=$totalPages_studentSet;$all_page++){
+                                echo '<a href="?pageNum_studentSet_all=',$all_page,'">',($all_page+1),'</a>';
+                                }
+                        ?>
+                      </li>
+                      <li><a class="w3-green" onclick="w3_close()" href="<?php printf("%s?pageNum_studentSet_all=%d%s", $currentPage, $totalPages_studentSet, $queryString_studentSet); ?>">&raquo;</a></li>
+                    </ul>
+         </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </div>
+
+</div> 
 <?php //include '../../ui_connect/student_management/split-by-status/all-rec-list-info.php' ?>
 </div>
   
@@ -221,14 +358,37 @@ header{ background: url(../../img/head/headerv.jpg);}
         
       }
       
-      function readProducts(){
-        $('#load-products').load('../../ui_connect/student_management/split-by-status/all-rec-list-info.php'); 
-      } 
+      
 
 
 
       
     </script>
+
+
+    <script>
+
+    function onProcessFnii() {
+      var input, filter, table, tr, td, i,j;
+      input = document.getElementById("onProcessiiInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("onProcessiiTable");
+      tr = table.getElementsByTagName("tr");
+      
+      
+        for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          } else {
+          tr[i].style.display = "none";
+          }
+        }
+        }
+      
+    }
+  </script>
       
 <?php 
     //Footer
