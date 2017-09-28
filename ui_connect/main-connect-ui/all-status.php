@@ -225,7 +225,7 @@ header{ background: url(../../img/head/headerv.jpg);}
                       <p>&nbsp;</p>
                       <div class="w3-center">
                     <ul class="w3-pagination">
-                      <li><a class="w3-green" href="#">&laquo;</a></li>
+                      <li><a class="w3-green" href="<?php printf("%s?pageNum_studentSet_all=%d%s", $currentPage, 0, $queryString_studentSet); ?>">&laquo;</a></li>
                       <li>
                         <?php
                             for($all_page=0;$all_page<=$totalPages_studentSet;$all_page++){
@@ -233,7 +233,7 @@ header{ background: url(../../img/head/headerv.jpg);}
                                 }
                         ?>
                       </li>
-                      <li><a class="w3-green" onclick="w3_close()" href="#">&raquo;</a></li>
+                      <li><a class="w3-green" onclick="w3_close()" href="<?php printf("%s?pageNum_studentSet_all=%d%s", $currentPage, $totalPages_studentSet, $queryString_studentSet); ?>">&raquo;</a></li>
                     </ul>
          </div>
     <p>&nbsp;</p>
