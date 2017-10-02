@@ -231,7 +231,7 @@ header{ background: url(../../img/head/headerv.jpg);}
                               ?>
                               <td><?php echo $b; ?></td>
                               <td><?php echo $row_studentSet['title_name']; ?></td>
-                              <td><?php echo $row_studentSet['s_fname']; ?></td>
+                              <td><a href="portfolio.php?s_id=<?php echo $row_studentSet['s_id']; ?>" ><?php echo $row_studentSet['s_fname']; ?></a></td>
                               <td><?php echo $row_studentSet['s_lname']; ?></td>
                               <td><?php echo $row_studentSet['degree_name']; ?></td>
                               <td><?php echo $row_studentSet['major_name']; ?></td>

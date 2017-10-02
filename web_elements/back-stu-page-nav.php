@@ -30,3 +30,4 @@
         <li><a class="w3-padding-large" href="../../ui_connect/Email_Management/Email_Management.php">E-mail Management</a></li>
         <li><a class="w3-padding-large" href="../../ui_connect/activity_management/activity.php">Events Management</a></li>
     </ul></div>
+?>
