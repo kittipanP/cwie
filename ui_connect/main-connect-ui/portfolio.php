@@ -43,7 +43,7 @@ include ("../../ui_connect/student_management/editting/stu-update-full/student-e
 ?>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Portfolio</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -54,6 +54,10 @@ include ("../../ui_connect/student_management/editting/stu-update-full/student-e
 
 <link rel="stylesheet" href="../../libs/css/w3.css">
 <link rel="stylesheet" href="../../libs/css/w3-theme-blue-grey.css">
+
+
+<link rel="icon" type="image/png" href="../../img/images/wd.png"/>
+
 
 
 
