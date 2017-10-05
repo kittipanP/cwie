@@ -40,6 +40,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 include ("../../ui_connect/student_management/editting/stu-update-full/student-editController.php");
 
 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -189,7 +191,6 @@ text-indent: 30px;
             </div>  
             <p>&nbsp;</p>
             <p>&nbsp;</p>
-
     <div class="w3-third w3-container w3-margin-bottom">
 
       <img src="/w3images/mountains.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
@@ -266,6 +267,16 @@ text-indent: 30px;
     <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
     <hr>
     
+
+
+
+            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-pie-chart fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Skills and Evaluation Results </h2>
+            <div class="w3-container">
+              <?php include '../../ui_connect/student_management/portfolio/printf/evaluation.php' ?>
+            </div>  
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+
     <h4>Technical Skills</h4>
     <!-- Progress bars / Skills -->
     <p>Photography</p>
