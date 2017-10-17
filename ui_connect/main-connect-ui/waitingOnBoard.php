@@ -249,7 +249,8 @@ header{ background: url(../../img/head/headerv.jpg);}
                     <table class="w3-table-all w3-margin-top w3-hoverable" id="onProcessiiTable">
                         <tr>
                           
-                          <th style="width:5%;">Title</th>
+                          <th style="width:2%;">No.</th>
+                          <th style="width:3%;">Title</th>
                           <th style="width:10%;">First Name</th>
                           <th style="width:10%;">Last Name</th>
                           <th style="width:11%;">Degree</th>
@@ -258,8 +259,26 @@ header{ background: url(../../img/head/headerv.jpg);}
                           <th style="width:5%;">Edit</th>
                           <th style="width:5%;">Delete</th>
                         </tr>
+                        <?php 
+                        $rows_all = $totalRows_studentSet_onProcess;
+                        $stu_id=$row_studentSet['s_id'];
+
+
+                            for($cur_page=0;$cur_page<=$pageNum_studentSet;$cur_page++){
+                                  $a = ($rows_all - ($pageNum_studentSet*$maxRows_studentSet));
+                                }
+                            $b = $a;
+                        ?>
                         <?php do { ?>
                             <tr>
+                              <?php
+
+                              if($row_studentSet['s_id'] < $stu_id){
+                                    $b = ($b-1);
+                                  } 
+                          
+                              ?>
+                              <td><?php echo $b; ?></td>
                               <td><?php echo $row_studentSet['title_name']; ?></td>
                               <td><?php echo $row_studentSet['s_fname']; ?></td>
                               <td><?php echo $row_studentSet['s_lname']; ?></td>
@@ -361,6 +380,31 @@ header{ background: url(../../img/head/headerv.jpg);}
 
       
     </script>
+
+    
+    <script>
+
+    function onProcessFnii() {
+      var input, filter, table, tr, td, i,j;
+      input = document.getElementById("onProcessiiInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("onProcessiiTable");
+      tr = table.getElementsByTagName("tr");
+      
+      
+        for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          } else {
+          tr[i].style.display = "none";
+          }
+        }
+        }
+      
+    }
+  </script>
 
   
     
