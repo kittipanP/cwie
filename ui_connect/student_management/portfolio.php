@@ -41,7 +41,7 @@ if (isset($_GET['s_id'])) {
   $colname_Recordset1_stu = $_GET['s_id'];
 }
 mysqli_select_db($MyConnect, $database_MyConnect);
-$query_Recordset1_stu = sprintf("SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name, university_info.uni_name, collage_info.collage_name, student_contact_details.email_adress, student_contact_details.contact_no
+$query_Recordset1_stu = sprintf("SELECT student_info.s_id, title.title_name, student_info.s_fname, student_info.s_lname, student_status.status_desc, major_info.major_name, degree_info.degree_name,student_contact_details.email_adress, student_contact_details.contact_no
 			FROM student_info
 			INNER JOIN title ON title.title_id = student_info.title_title_id
 			INNER JOIN student_status ON student_status.status_id = student_info.status_id
@@ -49,8 +49,7 @@ $query_Recordset1_stu = sprintf("SELECT student_info.s_id, title.title_name, stu
 			LEFT JOIN education_info ON student_info.s_id = education_info.s_id
 			LEFT JOIN major_info ON major_info.major_id = education_info.major_id
 			LEFT JOIN degree_info ON degree_info.degree_id = education_info.degree_id
-			LEFT JOIN university_info ON university_info.uni_id = education_info.uni_id
-			LEFT JOIN collage_info ON collage_info.collage_id = education_info.collage_id WHERE student_info.s_id = %s", GetSQLValueString($colname_Recordset1_stu, "int"));
+      WHERE student_info.s_id = %s", GetSQLValueString($colname_Recordset1_stu, "int"));
 $Recordset1_stu = mysqli_query($MyConnect, $query_Recordset1_stu) or die(mysqli_error($MyConnect));
 $row_Recordset1_stu = mysqli_fetch_assoc($Recordset1_stu);
 $totalRows_Recordset1_stu = mysqli_num_rows($Recordset1_stu);
