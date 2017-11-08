@@ -1,0 +1,41 @@
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('../../img/bg/my_passport_ssd.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.left {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+	/*background-color: #F06;*/
+	padding: 50px;
+	float: left;
+	height: auto;
+	width: 30%;
+}
+.right {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	/*background-color: #609;*/
+  float: right;
+	padding: 50px;
+	height: auto;
+	width: 70%;
+}
+
+.leftpie {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+	padding: 20px;
+	float: left;
+	height: auto;
+	width: 50%;
+}
+.rightbar {
+	font-family: Georgia, "Times New Roman", Times, serif;
+  float: right;
+	padding: 20px;
+	height: auto;
+	width: 50%;
+}

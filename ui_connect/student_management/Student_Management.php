@@ -238,7 +238,7 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
             <!--Student Icon-->
             <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Stusent Management" onclick="w3_open()"><i class="fa fa-group"></i></a></li>
             <!--Report Icon-->
-            <li class="w3-hide-small"><a href="../../ui_connect/Report/Report.php" class="w3-padding-large w3-hover-white" title="Report"><i class="fa fa-bar-chart-o"></i></a></li>
+            <li class="w3-hide-small"><a href="../../indexofreport.php" class="w3-padding-large w3-hover-white" title="Report"><i class="fa fa-bar-chart-o"></i></a></li>
             <!--Report Icon-->
             <li class="w3-hide-small"><a href="../../ui_connect/Email_Management/Email_Management.php" class="w3-padding-large w3-hover-white" title="E-mail Management"><i class="fa fa-envelope"></i></a></li>
             <!-- Activity Icon-->
@@ -279,7 +279,7 @@ A:hover {COLOR: #000000; TEXT-DECORATION: underline}
     <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
       <ul class="w3-navbar w3-left-align w3-large w3-theme">
           <li><a class="w3-padding-large" href="#">Student Management</a></li>
-          <li><a class="w3-padding-large" href="../../ui_connect/Report/Report.php">Report</a></li>
+          <li><a class="w3-padding-large" href="../../indexofreport.php">Report</a></li>
           <li><a class="w3-padding-large" href="../../ui_connect/Email_Management/Email_Management.php">E-mail Management</a></li>
           <li ><a class="w3-padding-large " href="../../ui_connect/my_profile/my_profile.php">My Profile</a></li>
       </ul>

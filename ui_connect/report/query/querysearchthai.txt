@@ -1,0 +1,132 @@
+
+SELECT department_info.dep_name
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+
++studentname====================
+SELECT student_info.s_fname,department_info.dep_name
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+
++plant==========================
+SELECT student_info.s_fname, department_info.dep_name, plant_info.plant_name
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+
++location==========================
+SELECT student_info.s_id,student_info.s_fname, department_info.dep_name, plant_info.plant_name, location.location_name
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+INNER JOIN location ON location.location_id = trainee_info.location_id
+
++status==========================
+SELECT student_info.s_id, student_status.status_desc, student_info.s_fname, department_info.dep_name, plant_info.plant_name, location.location_name
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+INNER JOIN location ON location.location_id = trainee_info.location_id
+INNER JOIN student_status ON student_status.status_id = student_info.status_id
+
++degree===========================
+SELECT student_info.s_id, degree_info.degree_name, student_status.status_desc, student_info.s_fname, department_info.dep_name, plant_info.plant_name, location.location_name
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+INNER JOIN location ON location.location_id = trainee_info.location_id
+INNER JOIN student_status ON student_status.status_id = student_info.status_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id 
+INNER JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+
++major============================
+SELECT student_info.s_id, student_info.s_fname, degree_info.degree_name, major_info.major_name, student_status.status_desc, department_info.dep_name, plant_info.plant_name, location.location_name
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+INNER JOIN location ON location.location_id = trainee_info.location_id
+INNER JOIN student_status ON student_status.status_id = student_info.status_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id 
+INNER JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+INNER JOIN major_info ON major_info.major_id = education_info.major_id
+ORDER BY student_info.s_id ASC
+
++university======================
+SELECT student_info.s_id, student_info.s_fname, degree_info.degree_name, major_info.major_name, institute.ins_name, student_status.status_desc, department_info.dep_name, plant_info.plant_name, location.location_name
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+INNER JOIN location ON location.location_id = trainee_info.location_id
+INNER JOIN student_status ON student_status.status_id = student_info.status_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id 
+INNER JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+INNER JOIN major_info ON major_info.major_id = education_info.major_id
+INNER JOIN institute ON institute.ins_id = education_info.ins_id
+ORDER BY student_info.s_id ASC
+
++year=================
+SELECT student_info.s_id, student_info.s_fname, degree_info.degree_name, major_info.major_name, institute.ins_name, student_status.status_desc, department_info.dep_name, plant_info.plant_name, location.location_name, application.application_dateS
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+INNER JOIN location ON location.location_id = trainee_info.location_id
+INNER JOIN student_status ON student_status.status_id = student_info.status_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id 
+INNER JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+INNER JOIN major_info ON major_info.major_id = education_info.major_id
+INNER JOIN institute ON institute.ins_id = education_info.ins_id
+INNER JOIN application ON application.s_id = student_info.s_id
+ORDER BY application.application_dateS ASC
+
+
+
+
+test 1 condition
+SELECT student_info.s_id, student_info.s_fname, degree_info.degree_name, major_info.major_name, institute.ins_name, student_status.status_desc, department_info.dep_name, plant_info.plant_name, location.location_name, application.application_dateS, COUNT(*) AS num
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+INNER JOIN location ON location.location_id = trainee_info.location_id
+INNER JOIN student_status ON student_status.status_id = student_info.status_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id 
+INNER JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+INNER JOIN major_info ON major_info.major_id = education_info.major_id
+INNER JOIN institute ON institute.ins_id = education_info.ins_id
+INNER JOIN application ON application.s_id = student_info.s_id
+WHERE ins_name LIKE '%SURANAREE UNIVERSITY OF TECHNOLOGY%'
+GROUP BY location_name
+
+test 2 conditions
+SELECT student_info.s_id, student_info.s_fname, degree_info.degree_name, major_info.major_name, institute.ins_name, student_status.status_desc, department_info.dep_name, plant_info.plant_name, location.location_name, application.application_dateS, COUNT(*) AS num
+FROM department_info
+INNER JOIN trainee_info ON trainee_info.dep_id = department_info.dep_id
+INNER JOIN student_info ON student_info.s_id = trainee_info.s_id
+INNER JOIN plant_info ON plant_info.plant_id = trainee_info.plant_id
+INNER JOIN location ON location.location_id = trainee_info.location_id
+INNER JOIN student_status ON student_status.status_id = student_info.status_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id 
+INNER JOIN degree_info ON degree_info.degree_id = education_info.degree_id
+INNER JOIN major_info ON major_info.major_id = education_info.major_id
+INNER JOIN institute ON institute.ins_id = education_info.ins_id
+INNER JOIN application ON application.s_id = student_info.s_id
+WHERE major_name LIKE '%ENGILSH%' AND application_dateS LIKE '%2017%' 
+GROUP BY status_desc 
+
+
+
+
+
+
+
+
+
+

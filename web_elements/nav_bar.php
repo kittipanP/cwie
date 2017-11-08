@@ -13,7 +13,7 @@
         <!--Student Icon-->
         <li class="w3-hide-small"><a href="../../ui_connect/Student_Management/Student_Management.php" class="w3-padding-large w3-hover-white" title="Student Management"><i class="fa fa-group"></i></a></li>
         <!--Report Icon-->
-        <li class="w3-hide-small"><a href="../../ui_connect/Report/Report.php" class="w3-padding-large w3-hover-white" title="Report"><i class="fa fa-bar-chart-o"></i></a></li>
+        <li class="w3-hide-small"><a href="../../indexofreport.php" class="w3-padding-large w3-hover-white" title="Report"><i class="fa fa-bar-chart-o"></i></a></li>
         <!--Report Icon-->
         <li class="w3-hide-small"><a href="../../ui_connect/Email_Management/Email_Management.php" class="w3-padding-large w3-hover-white" title="E-mail Management"><i class="fa fa-envelope"></i></a></li>
         <!-- Activity Icon-->
