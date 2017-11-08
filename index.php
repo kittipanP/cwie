@@ -81,7 +81,7 @@ header{ background: url(img/head/headerv.jpg);}
                 <!-- Report Management-->
                 <div class="w3-third">
                     <div class="w3-card-2" style="min-height:200px">
-                        <a href="ui_connect/report/Report.php" >
+                        <a href="indexofreport.php" >
                             <img src="img/images/reportii.jpg" class="w3-hover-opacity" style="width:100%; height: 385px;"></a>
                             
                                 <div class = "w3-container">
