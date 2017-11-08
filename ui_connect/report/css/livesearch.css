@@ -1,0 +1,110 @@
+
+/*CSS For search boxes*/
+
+body{
+  color: #000000;
+}
+/*
+* {
+    margin:0;
+    padding:0;
+    font:12pt Arial;
+}
+*/
+#dropdown{
+  width:800px;
+  height: 43px;
+  border:0.2em solid rgb(26, 188, 156);
+  font-size: 1.2em;
+}
+.field {
+  display:flex;
+  position:realtive;
+  margin:1.0em auto;
+  width:70%;
+  flex-direction:row;
+  box-shadow:
+   1px 1px 0 rgb(22, 160, 133),
+   2px 2px 0 rgb(22, 160, 133),
+   3px 3px 0 rgb(22, 160, 133),
+   4px 4px 0 rgb(22, 160, 133),
+   5px 5px 0 rgb(22, 160, 133),
+   6px 6px 0 rgb(22, 160, 133),
+   7px 7px 0 rgb(22, 160, 133);
+}
+
+.field>input[type=text],
+.field>button {
+  display:block;
+  font:1.2em;
+
+}
+
+.field>input[type=text] {
+  flex:1;
+  padding:0.6em;
+  border:0.2em solid rgb(26, 188, 156);
+  border-radius: 0px;
+}
+
+.field>button {
+  padding:0.8em 1.3em;
+  background-color:rgb(26, 188, 156);
+  color:white;
+  border:none;
+}
+
+/*CSS For select box year*/
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: block;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  /*background: #2c3e50; */
+  overflow: hidden;
+  border-radius: .25em;
+}
+select {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+select::-ms-expand {
+  display: none;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #34495e;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+.select::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}

@@ -1,0 +1,80 @@
+ /* <- Demo Stuff Start */
+ a {
+   text-decoration: none;
+ }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 0 auto;
+  min-height: 10vh;
+}
+.btn {
+  flex: 2 2 auto;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 400% auto;
+  color: black;
+  font-weight: bold;
+
+ /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 0px;
+ }
+
+
+
+/* Demo Stuff End -> */
+
+/* <- Magic Stuff Start */
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+}
+
+.btn-1 {
+  background-image: linear-gradient(to right, 	#f25a78 0%, #fde6eb 50%, 	#f25a78 100%);
+}
+
+.btn-2 {
+  background-image: linear-gradient(to right, 	#ff9c59 0%, #ffe1c8 50%, 	#ff9c59 100%);
+}
+
+.btn-3 {
+  background-image: linear-gradient(to right, #53fb5f 0%, #e0ffb3 50%, #53fb5f 100%);
+}
+
+.btn-4 {
+  background-image: linear-gradient(to right, #9270ff 0%, #c2e9fb 50%, #9270ff 100%);
+}
+
+.btn-5 {
+  background-image: linear-gradient(to right, #ff0033 0%, #fcb69f 50%, #ff0033 100%);
+}
+
+.btn-6 {
+  background-image: linear-gradient(to right, #65abf3 0%, #7dedf5 50%, #65abf3 100%);
+}
+.btn-7 {
+  background-image: linear-gradient(to right, #333333 0%, #aea5a5 50%, #333333 100%);
+}
+.btn-8 {
+  background-image: linear-gradient(to right, #fbbc05 0%, #f0e364 50%, #fbbc05 100%);
+}
+
+.btn-9 {
+  background-image: linear-gradient(to right, #00a1ff 0%, #fbfbfb 50%, #00a1ff 100%);
+}
+
+.btn-10 {
+  background-image: linear-gradient(to right, #ffbd00 0%, #fbfbfb 50%, #ffbd00 100%);
+}
+
+/* Magic Stuff End -> */

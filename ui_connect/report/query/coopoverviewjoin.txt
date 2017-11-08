@@ -1,0 +1,135 @@
+SELECT EXTRACT(year FROM application_dateS) AS year,COUNT(*) AS num
+        FROM application
+        GROUP BY year
+
+
+
+SELECT
+student_info.s_id,
+student_info.s_fname,
+student_info.s_lname,
+application.application_dateS
+FROM student_info
+INNER JOIN application ON application.s_id = student_info.s_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id
+INNER JOIN institute ON institute.ins_id = education_info.ins_id
+
+SELECT
+student_info.s_id,
+student_info.s_fname,
+student_info.s_lname,
+institute.ins_name,
+institute.ins_id,
+application.application_dateS
+FROM student_info
+INNER JOIN application ON application.s_id = student_info.s_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id
+INNER JOIN institute ON institute.ins_id = education_info.ins_id
+
+
+
+SELECT
+student_info.s_id,
+student_info.s_fname,
+student_info.s_lname,
+institute.ins_name,
+EXTRACT(year FROM application_dateS) AS year
+FROM student_info
+INNER JOIN application ON application.s_id = student_info.s_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id
+INNER JOIN institute ON institute.ins_id = education_info.ins_id
+
+SELECT
+student_info.s_id,
+student_info.s_fname,
+student_info.s_lname,
+institute.ins_name,
+EXTRACT(year FROM application_dateS) AS year,
+COUNT(*) AS num
+FROM student_info
+INNER JOIN application ON application.s_id = student_info.s_id
+INNER JOIN education_info ON education_info.s_id = student_info.s_id
+INNER JOIN institute ON institute.ins_id = education_info.ins_id
+WHERE ins_name IN (SELECT
+                                student_info.s_id,
+                                student_info.s_fname,
+                                student_info.s_lname,
+                                institute.ins_name,
+                                EXTRACT(year FROM application_dateS) AS year,
+                                COUNT(*) AS num
+                                FROM student_info
+                                INNER JOIN application ON application.s_id = student_info.s_id
+                                INNER JOIN education_info ON education_info.s_id = student_info.s_id
+                                INNER JOIN institute ON institute.ins_id = education_info.ins_id
+                  				GROUP BY ins_name)
+GROUP BY year
+
+
+
+
+SELECT
+student_info.s_id,
+student_info.s_fname,
+student_info.s_lname,
+institute.ins_name,
+EXTRACT(year FROM application_dateS),
+COUNT(*) AS num
+FROM (SELECT COUNT(*) AS numyear
+      FROM student_info
+      INNER JOIN application ON application.s_id = student_info.s_id
+      INNER JOIN education_info ON education_info.s_id = student_info.s_id
+      INNER JOIN institute ON institute.ins_id = education_info.ins_id)
+GROUP BY ins_name,year
+
+
+select count(*)
+from
+  (select count(*) cnt
+   from DocumentOutputItems
+   group by DocumentId, DocumentSessionId) t1
+
+
+
+
+
+
+   SELECT
+student_info.s_id,
+            student_info.s_fname,
+            student_info.s_lname,
+            institute.ins_name,
+COUNT(ins_name) AS num,
+EXTRACT(year FROM application_dateS) AS year
+FROM (SELECT DISTINCT EXTRACT(year FROM application_dateS) AS year
+              FROM student_info
+              INNER JOIN application ON application.s_id = student_info.s_id
+              INNER JOIN education_info ON education_info.s_id = student_info.s_id
+              INNER JOIN institute ON institute.ins_id = education_info.ins_id
+             GROUP BY year
+     		) sub,student_info
+    INNER JOIN application ON application.s_id = student_info.s_id
+    INNER JOIN education_info ON education_info.s_id = student_info.s_id
+    INNER JOIN institute ON institute.ins_id = education_info.ins_id
+GROUP BY ins_name
+
+
+
+
+
+CREATE VIEW universityoverview AS
+(SELECT
+student_info.s_id,
+student_info.s_fname,
+student_info.s_lname,
+institute.ins_name,
+EXTRACT(year FROM application_dateS) AS year,
+COUNT(*) AS num
+      FROM student_info
+      INNER JOIN application ON application.s_id = student_info.s_id
+      INNER JOIN education_info ON education_info.s_id = student_info.s_id
+      INNER JOIN institute ON institute.ins_id = education_info.ins_id
+GROUP BY ins_name,year);
+
+SELECT  year,COUNT(*) AS university_num
+FROM universityoverview
+GROUP BY year
