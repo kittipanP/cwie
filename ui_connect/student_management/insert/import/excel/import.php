@@ -109,7 +109,7 @@ if(isset($_POST["Import"])){
 			    $emapData[12] = $row_depSet['dep_id'];	
 
 
-				$query_tspSet = "SELECT * FROM trainee_transportation WHERE transportation_point = '$emapData[23]' ";
+				$query_tspSet = "SELECT * FROM trainee_transportation WHERE transportation_line = '$emapData[23]' ";
 				$tspSet = mysqli_query($conn, $query_tspSet) or die(mysqli_error());
 				$row_tspSet = mysqli_fetch_assoc($tspSet);
 				$totalRows_tspSet = mysqli_num_rows($tspSet);
@@ -203,11 +203,17 @@ if(isset($_POST["Import"])){
 				$couSetiii = mysqli_query($conn, $query_couSetiii) or die(mysqli_error($conn));
 				$row_couSetiii = mysqli_fetch_assoc($couSetiii);
 				$totalRows_couSetiii = mysqli_num_rows($couSetiii);
+
+				$query_couSetiv = "SELECT * FROM training_course WHERE course_name = '$emapData[27]' ";
+				$couSetiv = mysqli_query($conn, $query_couSetiv) or die(mysqli_error($conn));
+				$row_couSetiv = mysqli_fetch_assoc($couSetiv);
+				$totalRows_couSetiv = mysqli_num_rows($couSetiv);
 			    /*--  [E]--*/
 
 			    $emapData[24] = $row_couSet['course_id'];
 			    $emapData[25] = $row_couSetii['course_id'];
 			    $emapData[26] = $row_couSetiii['course_id'];
+			    $emapData[27] = $row_couSetiv['course_id'];
 
 
 
@@ -237,8 +243,8 @@ if(isset($_POST["Import"])){
 
 
 	    //It wiil insert a row to our student_info table from our csv file`
-	    $sql = "INSERT into student_info (`title_title_id`, `s_fname`, `s_lname`, `thai_fname`, `thai_lname`, `s_dob`, `status_id`,`date_of_birth`, `citizen_id`) 
-	           	values('$emapData[1]','$fname','$lname','$fnameTH','$lnameTH','$emapData[4]','$emapData[5]','$emapData[21]','$emapData[22]' ) ;";
+	    $sql = "INSERT into student_info (`title_title_id`, `s_fname`, `s_lname`, `thai_fname`, `thai_lname`, `s_dob`, `status_id`,`date_of_birth`, `citizen_id`, `remark`) 
+	           	values('$emapData[1]','$fname','$lname','$fnameTH','$lnameTH','$emapData[4]','$emapData[5]','$emapData[21]','$emapData[22]' ),'$emapData[28]' ) ;";
  
 
 	          //It wiil insert a row to our education_info table from our csv file`
@@ -294,6 +300,8 @@ if(isset($_POST["Import"])){
 			            	values('$emapData[25]','$tni_id') ;";
 			           $sql_thciii = "INSERT into trainee_info_has_training_course (`training_course_course_id`, `training_course_trainee_id`) 
 			            	values('$emapData[26]','$tni_id') ;"; 
+			           $sql_thciv = "INSERT into trainee_info_has_training_course (`training_course_course_id`, `training_course_trainee_id`) 
+			            	values('$emapData[27]','$tni_id') ;";
 			     
 
 	          //It wiil insert a row to xxx table from our csv file`
@@ -323,7 +331,7 @@ if(isset($_POST["Import"])){
 
 
 				    	
-/*
+/*V      V 
 
 	          //It wiil insert a row to xxx table from our csv file`
 	           $sql = "INSERT into xx (`xx`, `xx`, `xx`, `xx`, `xx`, `xx`, `xx`) 
@@ -351,6 +359,7 @@ if(isset($_POST["Import"])){
 			        $result_thc = mysqli_query( $conn, $sql_thc) or die(mysqli_error($conn));
 			        $result_thcii = mysqli_query( $conn, $sql_thcii) or die(mysqli_error($conn));
 			        $result_thciii = mysqli_query( $conn, $sql_thciii) or die(mysqli_error($conn));
+			        $result_thciv = mysqli_query( $conn, $sql_thciv) or die(mysqli_error($conn));
 	          	$result_scd = mysqli_query( $conn, $sql_scd) or die(mysqli_error($conn));
 	          		$result_ = mysqli_query( $conn, $sql_sec) or die(mysqli_error($conn));
 	          	$result_spv = mysqli_query( $conn, $sql_spv) or die(mysqli_error($conn));
