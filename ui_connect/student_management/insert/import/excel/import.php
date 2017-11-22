@@ -57,6 +57,14 @@ if(isset($_POST["Import"])){
 				$totalRows_tniSet = mysqli_num_rows($tniSet);
 			    /*-- trainee_infoSet [E]--*/
 
+				/*-- Table: trainee_has_project [S]--*/
+				$query_thpSet = "SELECT * FROM trainee_has_project
+					ORDER BY trainee_has_project.tp_id DESC";
+				$thpSet = mysqli_query($conn, $query_thpSet) or die(mysqli_error());
+				$row_thpSet = mysqli_fetch_assoc($thpSet);
+				$totalRows_thpSet = mysqli_num_rows($thpSet);
+			    /*-- Table: trainee_has_project [E]--*/
+
 
 
 
@@ -83,7 +91,7 @@ if(isset($_POST["Import"])){
 
 				/*-- instituteSet [S]--*/
 				$query_insSet = "SELECT * FROM institute WHERE ins_name = '$emapData[8]' ";
-				$insSet = mysqli_query($conn, $query_insSet) or die(mysqli_error());
+				$insSet = mysqli_query($conn, $query_insSet) or die(mysqli_error($conn));
 				$row_insSet = mysqli_fetch_assoc($insSet);
 				$totalRows_insSet = mysqli_num_rows($insSet);
 			    /*-- instituteSet [E]--*/
@@ -109,7 +117,7 @@ if(isset($_POST["Import"])){
 			    $emapData[12] = $row_depSet['dep_id'];	
 
 
-				$query_tspSet = "SELECT * FROM trainee_transportation WHERE transportation_point = '$emapData[23]' ";
+				$query_tspSet = "SELECT * FROM trainee_transportation WHERE transportation_line = '$emapData[23]' ";
 				$tspSet = mysqli_query($conn, $query_tspSet) or die(mysqli_error());
 				$row_tspSet = mysqli_fetch_assoc($tspSet);
 				$totalRows_tspSet = mysqli_num_rows($tspSet);
@@ -130,13 +138,15 @@ if(isset($_POST["Import"])){
 
 
 				/*-- bank_branchSet [S]--*/
-				$query_bchSet = "SELECT * FROM bnk_banch WHERE bch_name = '$emapData[16]' ";
+				$query_bchSet = "SELECT bank_has_banch.bnk_has_bch_id, bnk_banch.bch_name FROM bank_has_banch 
+				RIGHT JOIN bnk_banch ON bnk_banch.bch_id = bank_has_banch.bch_id
+				WHERE bnk_banch.bch_name = '$emapData[16]' ";
 				$bchSet = mysqli_query($conn, $query_bchSet) or die(mysqli_error($conn));
 				$row_bchSet = mysqli_fetch_assoc($bchSet);
 				$totalRows_bchSet = mysqli_num_rows($bchSet);
 			    /*-- bank_branchSet [E]--*/
 
-			    $emapData[16] = $row_bchSet['bch_id'];
+			    $emapData[16] = $row_bchSet['bnk_has_bch_id'];
 
 
 				/*-- bank_has_banchSet [S]--*/
@@ -157,13 +167,13 @@ if(isset($_POST["Import"])){
 			    /*--  [E]--*/
 
 				/*-- supervisor_infoSet [S]--*/
-				$query_spvSet = "SELECT * FROM supervisor_info WHERE spv_fname = '$emapData[11]' ";
-				$spvSet = mysqli_query($conn, $query_spvSet) or die(mysqli_error($conn));
-				$row_spvSet = mysqli_fetch_assoc($spvSet);
-				$totalRows_spvSet = mysqli_num_rows($spvSet);
+				$query_shsSet = "SELECT * FROM supervisor_info WHERE supervisor_info.spv_fname = '$emapData[11]' ";
+				$shsSet = mysqli_query($conn, $query_shsSet) or die(mysqli_error($conn));
+				$row_shsSet = mysqli_fetch_assoc($shsSet);
+				$totalRows_shsSet = mysqli_num_rows($shsSet);
 			    /*-- supervisor_infoSet [E]--*/
 
-			    $emapData[11] = $row_spvSet['spv_id'];
+			    $emapData[11] = $row_shsSet['spv_id'];
 
 
 				/*-- building_infoSet [S]--*/
@@ -176,13 +186,22 @@ if(isset($_POST["Import"])){
 			    $emapData[14] = $row_bdgSet['bldg_id'];
 
 
-				/*-- bank_has_banchSet [S]--*/
+				/*-- trainee_projectSet [S]--*/
 				$query_pjcSet = "SELECT * FROM trainee_project
 					ORDER BY trainee_project.project_id DESC";
 				$pjcSet = mysqli_query($conn, $query_pjcSet) or die(mysqli_error());
 				$row_pjcSet = mysqli_fetch_assoc($pjcSet);
 				$totalRows_pjcSet = mysqli_num_rows($pjcSet);
-			    /*-- bank_has_banchSet [E]--*/
+			    /*-- trainee_projectSet [E]--*/
+
+
+				/*-- trainee_projectSet [S]--*/
+				$query_tacSet = "SELECT * FROM trainee_account
+					ORDER BY trainee_account.trainee_acc_id DESC";
+				$tacSet = mysqli_query($conn, $query_tacSet) or die(mysqli_error());
+				$row_tacSet = mysqli_fetch_assoc($tacSet);
+				$totalRows_tacSet = mysqli_num_rows($tacSet);
+			    /*-- trainee_projectSet [E]--*/
 
 
 
@@ -203,11 +222,19 @@ if(isset($_POST["Import"])){
 				$couSetiii = mysqli_query($conn, $query_couSetiii) or die(mysqli_error($conn));
 				$row_couSetiii = mysqli_fetch_assoc($couSetiii);
 				$totalRows_couSetiii = mysqli_num_rows($couSetiii);
+
+				$query_couSetiv = "SELECT * FROM training_course WHERE course_name = '$emapData[27]' ";
+				$couSetiv = mysqli_query($conn, $query_couSetiv) or die(mysqli_error($conn));
+				$row_couSetiv = mysqli_fetch_assoc($couSetiv);
+				$totalRows_couSetiv = mysqli_num_rows($couSetiv);
 			    /*--  [E]--*/
+
+
 
 			    $emapData[24] = $row_couSet['course_id'];
 			    $emapData[25] = $row_couSetii['course_id'];
 			    $emapData[26] = $row_couSetiii['course_id'];
+			    $emapData[27] = $row_couSetiv['course_id'];
 
 
 
@@ -228,17 +255,23 @@ if(isset($_POST["Import"])){
 			    $stu_sid = $row_studentSet['s_id']+1;
 			    	$app_id = $row_appSet['application_id']+1;
 			    	$tni_id	= $row_tniSet['trainee_id']+1;
-			    		$bhb_id = $row_bhbSet['bnk_has_bch_id']+1;
+//171120			    		$bhb_id = $row_bhbSet['bnk_has_bch_id']+1;
 			    			$bnk_id = '1';
 			    		$pjc_id = $row_pjcSet['project_id']+1;
 			    	$scd_id = $row_scdSet['contact_id']+1;
 
 
+			    	$tac_id = $row_tacSet['trainee_acc_id']+1;
+			    	$thp_id = $row_thpSet['tp_id']+1;
+
+			    	
+
+
 
 
 	    //It wiil insert a row to our student_info table from our csv file`
-	    $sql = "INSERT into student_info (`title_title_id`, `s_fname`, `s_lname`, `thai_fname`, `thai_lname`, `s_dob`, `status_id`,`date_of_birth`, `citizen_id`) 
-	           	values('$emapData[1]','$fname','$lname','$fnameTH','$lnameTH','$emapData[4]','$emapData[5]','$emapData[21]','$emapData[22]' ) ;";
+	    $sql = "INSERT into student_info (`title_title_id`, `s_fname`, `s_lname`, `thai_fname`, `thai_lname`, `s_dob`, `status_id`,`date_of_birth`, `citizen_id`, `remark`) 
+	           	values('$emapData[1]','$fname','$lname','$fnameTH','$lnameTH','$emapData[4]','$emapData[5]','$emapData[21]','$emapData[22]','$emapData[28]' ) ;";
  
 
 	          //It wiil insert a row to our education_info table from our csv file`
@@ -267,17 +300,18 @@ if(isset($_POST["Import"])){
 			            	values('$scd_id') ;";
 
 	          //It wiil insert a row to trainee_info table from our csv file`
-	           $sql_tni = "INSERT into trainee_info (`trainee_code`, `s_id`, `dep_id`, `transportation_id`, `location_id`,`tni_bdg`) 
-	            	values('$emapData[0]','$stu_sid','$emapData[12]','$emapData[23]','$emapData[13]','$emapData[14]' ) ;"; 
+	           $sql_tni = "INSERT into trainee_info (`trainee_code`, `s_id`, `dep_id`, `transportation_id`, `location_id`,`tni_bdg`,`tac_acc_id`) 
+	            	values('$emapData[0]','$stu_sid','$emapData[12]','$emapData[23]','$emapData[13]','$emapData[14]','$tac_id' ) ;"; 
 
 
 			          //It wiil insert a row to xxx table from our csv file`
+/*171120
 			           $sql_bch = "INSERT into bank_has_banch (`bnk_id`, `bch_id`) 
 			            	values('$bnk_id','$emapData[16]') ;";
-
+*/
 			          //It wiil insert a row to xxx table from our csv file`
 			           $sql_bac = "INSERT into bank_acc_info (`bac_no`, `trainee_id`, `bnk_has_id`) 
-			            	values('$emapData[15]','$tni_id','$bhb_id') ;";
+			            	values('$emapData[15]','$tni_id','$emapData[16]') ;";
 
 			          //It wiil insert a row to xxx table from our csv file`
 			           $sql_thp = "INSERT into trainee_has_project (`project_id`, `trainee_id`) 
@@ -294,6 +328,8 @@ if(isset($_POST["Import"])){
 			            	values('$emapData[25]','$tni_id') ;";
 			           $sql_thciii = "INSERT into trainee_info_has_training_course (`training_course_course_id`, `training_course_trainee_id`) 
 			            	values('$emapData[26]','$tni_id') ;"; 
+			           $sql_thciv = "INSERT into trainee_info_has_training_course (`training_course_course_id`, `training_course_trainee_id`) 
+			            	values('$emapData[27]','$tni_id') ;";
 			     
 
 	          //It wiil insert a row to xxx table from our csv file`
@@ -301,6 +337,8 @@ if(isset($_POST["Import"])){
 	            	values('$emapData[11]','$stu_sid') ;";
 
 	          //It wiil insert a row to xxx table from our csv file`
+
+
 	           $sql_eva = "INSERT into evaluation (`eva_finalPre_score`, `stu_id`) 
 	            	values('$emapData[20]','$stu_sid') ;";
 
@@ -320,15 +358,29 @@ if(isset($_POST["Import"])){
 			   	$sql_wex = "INSERT into work_experience (`student_info_s_id`) 
 		         	values('$stu_sid') ;";
 
+			   	$sql_lge = "INSERT into language_info (`s_id`) 
+		         	values('$stu_sid') ;";
+			   	$sql_nth = "INSERT into non_thai (`s_id`) 
+		         	values('$stu_sid') ;";
+			   	$sql_roi = "INSERT into roi_project (`tp_id`) 
+		         	values('$thp_id') ;";
+/*			   	$sql_cat = "INSERT into trainee_category (`trainee_id`) 
+		         	values('$tni_id') ;"; */
+			   	$sql_tac = "INSERT into trainee_account (`trainee_acc_id`) 
+		         	values('$tac_id') ;";
+
+
 
 
 				    	
-/*
+/*V      V 
 
 	          //It wiil insert a row to xxx table from our csv file`
 	           $sql = "INSERT into xx (`xx`, `xx`, `xx`, `xx`, `xx`, `xx`, `xx`) 
 	            	values('$emapData[x]','$emapData[x]','$emapData[x]','$emapData[x]','$emapData[x]','$emapData[x]','$emapData[x]' ) ;";
 */
+	          	$result_tac = mysqli_query( $conn, $sql_tac) or die(mysqli_error($conn));
+
 
 
 	         //we are using mysql_query function. it returns a resource on true else False on error
@@ -345,15 +397,16 @@ if(isset($_POST["Import"])){
 	           		$result_vsa = mysqli_query( $conn, $sql_vsa) or die(mysqli_error());
 	       	  		$result_oth = mysqli_query( $conn, $sql_oth) or die(mysqli_error());
 	          	$result_tni = mysqli_query( $conn, $sql_tni) or die(mysqli_error($conn));
-			        $result_bch = mysqli_query( $conn, $sql_bch) or die(mysqli_error($conn));
+	          	$result_spv = mysqli_query( $conn, $sql_spv) or die(mysqli_error($conn));
+//			        $result_bch = mysqli_query( $conn, $sql_bch) or die(mysqli_error($conn));
 			        $result_bac = mysqli_query( $conn, $sql_bac) or die(mysqli_error($conn));
 			        $result_thp = mysqli_query( $conn, $sql_thp) or die(mysqli_error($conn));
 			        $result_thc = mysqli_query( $conn, $sql_thc) or die(mysqli_error($conn));
 			        $result_thcii = mysqli_query( $conn, $sql_thcii) or die(mysqli_error($conn));
 			        $result_thciii = mysqli_query( $conn, $sql_thciii) or die(mysqli_error($conn));
+			        $result_thciv = mysqli_query( $conn, $sql_thciv) or die(mysqli_error($conn));
 	          	$result_scd = mysqli_query( $conn, $sql_scd) or die(mysqli_error($conn));
 	          		$result_ = mysqli_query( $conn, $sql_sec) or die(mysqli_error($conn));
-	          	$result_spv = mysqli_query( $conn, $sql_spv) or die(mysqli_error($conn));
 	          	$result_eva = mysqli_query( $conn, $sql_eva) or die(mysqli_error($conn));
 
 	          		//reserve
@@ -364,6 +417,11 @@ if(isset($_POST["Import"])){
 	          	  	$result_hob = mysqli_query( $conn, $sql_hob) or die(mysqli_error());
 	          	  	$result_wex = mysqli_query( $conn, $sql_wex) or die(mysqli_error());
 
+	          	  	$result_lge = mysqli_query( $conn, $sql_lge) or die(mysqli_error());
+	          	  	$result_nth = mysqli_query( $conn, $sql_nth) or die(mysqli_error($conn));
+	          	  	$result_roi = mysqli_query( $conn, $sql_roi) or die(mysqli_error($conn));
+/*	          	  	$result_cat = mysqli_query( $conn, $sql_cat) or die(mysqli_error()); */
+
 
 
 
@@ -373,7 +431,7 @@ if(isset($_POST["Import"])){
               $result_xx = mysqli_query( $conn, $xxxx) or die(mysqli_error($conn));
 */
 
-				if(! $result || ! $result_edu)
+				if(! $result || ! $result_edu )
 				{
 					echo "<script type=\"text/javascript\">
 							alert(\"Invalid File:Please Upload CSV File or check your file format.\");
