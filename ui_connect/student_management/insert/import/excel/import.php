@@ -430,15 +430,15 @@ if(isset($_POST["Import"])){
 /*
               $result_xx = mysqli_query( $conn, $xxxx) or die(mysqli_error($conn));
 */
-
-				if(! $result || ! $result_edu )
+/*
+				if(! $result_tac || ! $result || ! $result_pjc || ! $result_edu || ! $result_app || ! $result_res || ! $result_tsc || ! $result_vdo || ! $result_vsa || ! $result_oth || ! $result_tni || ! $result_spv || ! $result_bac || ! $result_thp || ! $result_thc || ! $result_thci || ! $result_thcii || ! $result_thciii || ! $result_thciv || ! $result_scd || ! $result_eva || ! $result_add || ! $result_rel || ! $result_edb || ! $result_ext || ! $result_hob || ! $result_wex || ! $result_lge || ! $result_nth || ! $result_roi)
 				{
 					echo "<script type=\"text/javascript\">
 							alert(\"Invalid File:Please Upload CSV File or check your file format.\");
 							window.location = \"../../../Student_Management.php\"
 						</script>";
 				
-				} 
+				}  */
 
 
 	         } 
