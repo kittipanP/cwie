@@ -75,7 +75,25 @@ if(isset($_POST["Import"])){
 				$totalRows_degreeSet = mysqli_num_rows($degreeSet);
 			    /*-- degree_infoSet [E]--*/
 
+			    if($row_degreeSet['degree_id']==8
+					|| $row_degreeSet['degree_id']==9
+					|| $row_degreeSet['degree_id']==10
+					|| $row_degreeSet['degree_id']==12
+					|| $row_degreeSet['degree_id']==13 ){
+			    	$origin = 1;
+			    }if($row_degreeSet['degree_id']==1
+					|| $row_degreeSet['degree_id']==2
+					|| $row_degreeSet['degree_id']==3
+					|| $row_degreeSet['degree_id']==4
+					|| $row_degreeSet['degree_id']==5
+					|| $row_degreeSet['degree_id']==6
+					|| $row_degreeSet['degree_id']==7
+					|| $row_degreeSet['degree_id']==11 ){
+			    	$origin = 2;
+			    }
+
 			    $emapData[6] = $row_degreeSet['degree_id'];
+
 
 
 				/*-- education_infoSet [S]--*/
@@ -270,8 +288,8 @@ if(isset($_POST["Import"])){
 
 
 	    //It wiil insert a row to our student_info table from our csv file`
-	    $sql = "INSERT into student_info (`title_title_id`, `s_fname`, `s_lname`, `thai_fname`, `thai_lname`, `s_dob`, `status_id`,`date_of_birth`, `citizen_id`, `remark`) 
-	           	values('$emapData[1]','$fname','$lname','$fnameTH','$lnameTH','$emapData[4]','$emapData[5]','$emapData[21]','$emapData[22]','$emapData[28]' ) ;";
+	    $sql = "INSERT into student_info (`title_title_id`, `s_fname`, `s_lname`, `thai_fname`, `thai_lname`, `s_dob`, `status_id`,`date_of_birth`, `citizen_id`, `remark`, `origin_id`) 
+	           	values('$emapData[1]','$fname','$lname','$fnameTH','$lnameTH','$emapData[4]','$emapData[5]','$emapData[21]','$emapData[22]','$emapData[28]','$origin' ) ;";
  
 
 	          //It wiil insert a row to our education_info table from our csv file`
